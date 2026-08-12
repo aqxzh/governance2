@@ -1281,11 +1281,22 @@ function Group7() {
   );
 }
 
-function Group8() {
+function Group8({ onVideoClick }: { onVideoClick: () => void }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div className="col-1 h-[387.656px] ml-[110.47px] mt-0 relative row-1 w-[786.737px]" data-name="image 57">
+      <div
+        onClick={onVideoClick}
+        className="col-1 h-[387.656px] ml-[110.47px] mt-0 relative row-1 w-[786.737px] cursor-pointer"
+        data-name="image 57"
+      >
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage57} />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white/80 shadow-lg">
+            <svg className="h-[22px] w-[22px] text-[#0d0f16]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
       </div>
       <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3b4a60] text-[0px] w-[270px]">
         <p className="text-[18px]">
@@ -1308,7 +1319,7 @@ function Group8() {
   );
 }
 
-function BackgroundHorizontalBorder4() {
+function BackgroundHorizontalBorder4({ onVideoClick }: { onVideoClick: (id: string) => void }) {
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
@@ -1316,7 +1327,7 @@ function BackgroundHorizontalBorder4() {
         <div className="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
           <Container49 />
           <Heading7 />
-          <Group8 />
+          <Group8 onVideoClick={() => onVideoClick("assessment")} />
         </div>
       </div>
     </div>
@@ -1589,7 +1600,6 @@ function BackgroundHorizontalBorder6() {
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-col items-end justify-center size-full">
         <div className="content-stretch flex flex-col gap-[6px] items-end justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
-          <Container51 />
           <Heading9 />
           <Group10 />
         </div>
@@ -1953,13 +1963,12 @@ function Background() {
       <HorizontalBorder7 onVideoClick={(id) => setVideoModal(id)} />
       <BackgroundHorizontalBorder2 />
       <BackgroundHorizontalBorder3 />
-      <BackgroundHorizontalBorder4 />
+      <BackgroundHorizontalBorder4 onVideoClick={() => setVideoModal("assessment")} />
       <BackgroundHorizontalBorder5 />
       <Frame22 />
       <BackgroundHorizontalBorder6 />
       <HorizontalBorder10 />
       <Background7 />
-      <Container10 onMeetingClick={() => setModal("meeting")} onNoteClick={() => setModal("note")} />
       <Container66 />
       {modal === "meeting" && (
         <InfoModal
