@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import imgTelegramCloudPhotoSize25399823280891436280W2 from "./024996798644ee39e17d62182850eebdd0609893.png";
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
@@ -134,10 +135,8 @@ function HorizontalBorder() {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex gap-[207.5px] items-center pb-[22px] pt-[20px] px-[44px] relative size-full">
+        <div className="content-stretch flex items-center pb-[22px] pt-[20px] px-[44px] relative size-full">
           <Container2 />
-          <Container4 />
-          <Border />
         </div>
       </div>
     </div>
@@ -146,7 +145,7 @@ function HorizontalBorder() {
 
 function Container9() {
   return (
-    <div className="absolute content-stretch flex flex-col items-start left-[44px] right-[43.68px] top-[20px]" data-name="Container">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
         <p className="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
       </div>
@@ -156,8 +155,8 @@ function Container9() {
 
 function Container11() {
   return (
-    <div className="col-0 content-stretch flex flex-col items-start max-w-[626.39599609375px] relative row-0 self-end shrink-0 w-[603.64px]" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[18px] text-black whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="col-0 content-stretch flex flex-col items-start max-w-[620px] relative row-0 self-end shrink-0" data-name="Container">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[18px] text-black" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[28.8px] mb-0">Governance.kz — прикладной центр цифровой трансформации</p>
         <p className="leading-[28.8px] mb-0">управления. ИИ анализирует функции, кадры, услуги и нагрузку в</p>
         <p className="leading-[28.8px] mb-0">единой логике данных: находит дублирования, барьеры и аномалии —</p>
@@ -167,9 +166,9 @@ function Container11() {
   );
 }
 
-function Background2() {
+function Background2({ onClick }: { onClick: () => void }) {
   return (
-    <div className="bg-[#2242d6] h-full relative shrink-0" data-name="Background">
+    <div onClick={onClick} className="bg-[#2242d6] h-full relative shrink-0 w-full cursor-pointer" data-name="Background">
       <div className="content-stretch flex flex-col items-start px-[26px] py-[14px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Записаться на встречу</p>
@@ -179,9 +178,9 @@ function Background2() {
   );
 }
 
-function Border1() {
+function Border1({ onClick }: { onClick: () => void }) {
   return (
-    <div className="h-full relative shrink-0" data-name="Border">
+    <div onClick={onClick} className="h-full relative shrink-0 cursor-pointer" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col items-start px-[27px] py-[15px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
@@ -192,20 +191,61 @@ function Border1() {
   );
 }
 
-function Container12() {
+function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => void; onNoteClick: () => void }) {
   return (
-    <div className="col-0 content-stretch flex gap-[12px] h-[49px] items-start justify-self-stretch relative row-0 self-end shrink-0" data-name="Container">
-      <Background2 />
-      <Border1 />
+    <div className="col-0 content-stretch flex flex-wrap gap-[12px] items-start justify-self-stretch relative row-0 self-end shrink-0" data-name="Container">
+      <Background2 onClick={onMeetingClick} />
+      <Border1 onClick={onNoteClick} />
     </div>
   );
 }
 
-function Container10() {
+function InfoModal({ title, description, onClose }: { title: string; description: React.ReactNode; onClose: () => void }) {
   return (
-    <div className="absolute gap-x-[44px] gap-y-[44px] grid grid-cols-[__minmax(0,1.30fr)_minmax(0,1fr)] grid-rows-[_115.19px] h-[163.19px] left-[44px] pb-[28px] pt-[20px] right-[43.68px] top-[252px]" data-name="Container">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
+      <div className="relative w-full max-w-2xl rounded-[24px] bg-white p-8 shadow-[0_40px_80px_rgba(0,0,0,0.18)]" onClick={(event) => event.stopPropagation()}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-5 top-5 text-[24px] font-bold text-slate-500 hover:text-slate-900"
+        >
+          ×
+        </button>
+        <h2 className="mb-4 text-2xl font-semibold text-slate-900">{title}</h2>
+        <div className="space-y-4 text-sm leading-6 text-slate-700">{description}</div>
+      </div>
+    </div>
+  );
+}
+
+function VideoModal({ title, src, onClose }: { title: string; src: string; onClose: () => void }) {
+  const isQuickTime = src.toLowerCase().endsWith(".mov") || src.toLowerCase().endsWith(".qt");
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={onClose}>
+      <div className="relative w-full max-w-3xl overflow-hidden rounded-[24px] bg-black" onClick={(event) => event.stopPropagation()}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-xl font-bold text-slate-900 shadow-lg"
+        >
+          ×
+        </button>
+        <div className="bg-slate-900 px-5 py-4 text-white">{title}</div>
+        <video className="w-full" controls autoPlay playsInline>
+          <source src={src} type={isQuickTime ? "video/quicktime" : "video/mp4"} />
+          Ваш браузер не поддерживает видео.
+        </video>
+      </div>
+    </div>
+  );
+}
+
+function Container10({ onMeetingClick, onNoteClick }: { onMeetingClick: () => void; onNoteClick: () => void }) {
+  return (
+    <div className="flex flex-col gap-[20px] w-full" data-name="Container">
       <Container11 />
-      <Container12 />
+      <Container12 onMeetingClick={onMeetingClick} onNoteClick={onNoteClick} />
     </div>
   );
 }
@@ -343,7 +383,7 @@ function Container16() {
 
 function Border2() {
   return (
-    <div className="absolute content-stretch flex h-[103px] items-start justify-center left-[44px] p-px right-[43.68px] top-[425.19px]" data-name="Border">
+    <div className="content-stretch flex h-[103px] items-start justify-center p-px relative w-full max-w-[1112px] mx-auto" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
       <VerticalBorder />
       <VerticalBorder1 />
@@ -355,7 +395,7 @@ function Border2() {
 
 function Container18() {
   return (
-    <div className="absolute content-stretch flex flex-col items-start left-[44px] right-[43.68px] top-[538.19px]" data-name="Container">
+    <div className="content-stretch flex flex-col items-start mt-[14px] w-full max-w-[1112px]" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-black w-full">
         <p className="leading-[normal]">{`// плейсхолдеры — подставить фактические показатели`}</p>
       </div>
@@ -428,7 +468,7 @@ function Container21() {
 
 function Background3() {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[9.2px] h-[346px] items-center justify-center pb-[26px] pt-[11px] px-[24px] relative shrink-0 w-[369px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9.2px] items-center justify-start pb-[26px] pt-[11px] px-[24px] relative shrink-0 w-[369px] min-h-[346px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame />
       <Container20 />
@@ -482,7 +522,7 @@ function Container23() {
 
 function Background4() {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[9px] h-[346px] items-center justify-center pb-[48.47px] pt-[19px] px-[24px] relative shrink-0 w-[369px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[19px] px-[24px] relative shrink-0 w-[369px] min-h-[346px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame1 />
       <Container22 />
@@ -536,7 +576,7 @@ function Container25() {
 
 function Background5() {
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[9px] h-[345px] items-center justify-center pb-[48.47px] pt-[35px] px-[24px] relative shrink-0 w-[370px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[35px] px-[24px] relative shrink-0 w-[370px] min-h-[345px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame2 />
       <Container24 />
@@ -548,7 +588,7 @@ function Background5() {
 
 function BackgroundBorder() {
   return (
-    <div className="bg-white content-stretch flex h-[366px] items-center justify-center p-px relative shrink-0 w-[1112px]" data-name="Background+Border">
+    <div className="bg-white flex items-stretch justify-center p-px relative w-full max-w-[1112px]" data-name="Background+Border">
       <Background3 />
       <Background4 />
       <Background5 />
@@ -558,35 +598,63 @@ function BackgroundBorder() {
 
 function HorizontalBorder6() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-[8px] items-start left-[44px] pr-[44px] py-[52px] right-[43.68px] top-[562.19px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <Container19 />
-      <Heading />
-      <BackgroundBorder />
+    <div className="relative w-full" data-name="HorizontalBorder">
+      <div className="flex flex-col gap-[8px] items-start px-[44px] py-[52px]">
+        <Container19 />
+        <Heading />
+        <BackgroundBorder />
+      </div>
     </div>
   );
 }
 
 function HorizontalBorder1() {
+  const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
+
   return (
-    <div className="border-[#e6e8ee] border-b border-solid col-1 h-[1124px] ml-0 mt-0 relative row-1 w-[1169.682px]" data-name="HorizontalBorder">
-      <Container9 />
-      <div className="absolute flex h-[288px] items-center justify-center left-[640px] top-[20px] w-[516px]">
-        <div className="-scale-y-100 flex-none rotate-180">
-          <div className="h-[288px] relative w-[516px]" data-name="telegram-cloud-photo-size-2-5399823280891436280-w 2">
-            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgTelegramCloudPhotoSize25399823280891436280W2} />
+    <div className="border-b border-[#e6e8ee] w-full" data-name="HorizontalBorder">
+      <div className="px-[44px] py-[40px]">
+        {/* Label */}
+        <Container9 />
+        
+        {/* Hero content: text left, image and buttons right */}
+        <div className="flex flex-col lg:flex-row gap-[40px] items-start mt-[32px] mb-[40px]">
+          <div className="flex-1">
+            {/* Main heading */}
+            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+              <p className="mb-0">Государство и бизнес,</p>
+              <p className="mb-0">которые видят свои</p>
+              <p>процессы целиком</p>
+            </div>
+            
+            {/* Description text only */}
+            <Container11 />
+          </div>
+          
+          {/* Right column: image top, buttons below */}
+          <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
+            {/* Hero image */}
+            <div className="w-full lg:w-[516px]">
+              <img alt="" className="w-full h-auto object-cover rounded-[8px]" src={imgTelegramCloudPhotoSize25399823280891436280W2} />
+            </div>
+            
+            {/* Buttons */}
+            <Container12 onMeetingClick={() => setModal({title: "Записаться на встречу", description: "Описание встречи"})} onNoteClick={() => setModal({title: "Аналитическая записка", description: "Описание записки"})} />
           </div>
         </div>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] left-[44px] text-[#0d0f16] text-[52px] top-[144px] tracking-[-1.04px] w-[1112px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[55.12px] mb-0">Государство и бизнес,</p>
-        <p className="leading-[55.12px] mb-0">которые видят свои</p>
-        <p className="leading-[55.12px]">процессы целиком</p>
+      
+      {/* Statistics section below */}
+      <div className="mt-[8px] w-full">
+        <Border2 />
+        <Container18 />
       </div>
-      <Container10 />
-      <Border2 />
-      <Container18 />
+      
+      {/* More content sections */}
       <HorizontalBorder6 />
+      
+      {/* Modal */}
+      {modal && <InfoModal title={modal.title} description={modal.description} onClose={() => setModal(null)} />}
     </div>
   );
 }
@@ -714,7 +782,7 @@ function Container33() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px] mb-0">Диалоговый помощник KZ/RU/EN, фильтр профилей, аналитика</p>
           <p className="leading-[21px]">кандидатов</p>
         </div>
@@ -735,14 +803,16 @@ function Container34() {
   );
 }
 
-function HorizontalBorder8() {
+function HorizontalBorder8({ onClick }: { onClick: () => void }) {
   return (
-    <div className="grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_74px] h-[75px] pt-px relative shrink-0 w-full" data-name="HorizontalBorder">
+    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <Container31 />
-      <Container32 />
-      <Container33 />
-      <Container34 />
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[75px] pt-px relative shrink-0 w-full">
+        <Container31 />
+        <Container32 />
+        <Container33 />
+        <Container34 />
+      </div>
     </div>
   );
 }
@@ -775,7 +845,7 @@ function Container37() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px]">Компьютерное зрение, анализ видео/аудио, поведенческие паттерны</p>
         </div>
       </div>
@@ -795,14 +865,16 @@ function Container38() {
   );
 }
 
-function BackgroundHorizontalBorder() {
+function BackgroundHorizontalBorder({ onClick }: { onClick: () => void }) {
   return (
-    <div className="bg-[#f6f7fb] grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_53px] h-[54px] pt-px relative shrink-0 w-full" data-name="Background+HorizontalBorder">
+    <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <Container35 />
-      <Container36 />
-      <Container37 />
-      <Container38 />
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[54px] pt-px relative shrink-0 w-full">
+        <Container35 />
+        <Container36 />
+        <Container37 />
+        <Container38 />
+      </div>
     </div>
   );
 }
@@ -835,7 +907,7 @@ function Container41() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px]">Интеграция ЭДО, нагрузка, узкие места, управленческий сигнал</p>
         </div>
       </div>
@@ -855,14 +927,16 @@ function Container42() {
   );
 }
 
-function HorizontalBorder9() {
+function HorizontalBorder9({ onClick }: { onClick: () => void }) {
   return (
-    <div className="grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_53px] h-[54px] pt-px relative shrink-0 w-full" data-name="HorizontalBorder">
+    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <Container39 />
-      <Container40 />
-      <Container41 />
-      <Container42 />
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[54px] pt-px relative shrink-0 w-full">
+        <Container39 />
+        <Container40 />
+        <Container41 />
+        <Container42 />
+      </div>
     </div>
   );
 }
@@ -895,7 +969,7 @@ function Container45() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px] mb-0">Закрытый контур, суперкомпьютер и локальные сервера, защита</p>
           <p className="leading-[21px]">данных РК</p>
         </div>
@@ -916,41 +990,43 @@ function Container46() {
   );
 }
 
-function BackgroundHorizontalBorder1() {
+function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
   return (
-    <div className="bg-[#f6f7fb] grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_74px] h-[75px] pt-px relative shrink-0 w-full" data-name="Background+HorizontalBorder">
+    <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <Container43 />
-      <Container44 />
-      <Container45 />
-      <Container46 />
-    </div>
-  );
-}
-
-function Border3() {
-  return (
-    <div className="relative shrink-0 w-full" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col items-start pb-px pt-[17px] px-px relative size-full">
-        <Background6 />
-        <HorizontalBorder8 />
-        <BackgroundHorizontalBorder />
-        <HorizontalBorder9 />
-        <BackgroundHorizontalBorder1 />
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[75px] pt-px relative shrink-0 w-full">
+        <Container43 />
+        <Container44 />
+        <Container45 />
+        <Container46 />
       </div>
     </div>
   );
 }
 
-function HorizontalBorder7() {
+function Border3({ onVideoClick }: { onVideoClick: (id: string) => void }) {
+  return (
+    <div className="relative shrink-0 w-full" data-name="Border">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch flex flex-col items-start pb-px pt-[17px] px-px relative size-full">
+        <Background6 />
+        <HorizontalBorder8 onClick={() => onVideoClick("smarthr")} />
+        <BackgroundHorizontalBorder onClick={() => onVideoClick("assessment")} />
+        <HorizontalBorder9 onClick={() => onVideoClick("assistant")} />
+        <BackgroundHorizontalBorder1 onClick={() => onVideoClick("sovereignty")} />
+      </div>
+    </div>
+  );
+}
+
+function HorizontalBorder7({ onVideoClick }: { onVideoClick: (id: string) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
         <Container26 />
         <Heading4 />
-        <Border3 />
+        <Border3 onVideoClick={onVideoClick} />
       </div>
     </div>
   );
@@ -1834,12 +1910,47 @@ function Container66() {
 }
 
 function Background() {
+  const [modal, setModal] = useState<"meeting" | "note" | null>(null);
+  const [videoModal, setVideoModal] = useState<"smarthr" | "assessment" | "assistant" | "sovereignty" | null>(null);
+
+  const videoItems: Record<"smarthr" | "assessment" | "assistant" | "sovereignty", { title: string; src: string; description: string }> = {
+    smarthr: {
+      title: "Smart HR",
+      src: "/videos/smart-hr.mov",
+      description: "Краткий ролик о Smart HR — кадровые профили, анализ и подбор через ИИ.",
+    },
+    assessment: {
+      title: "Онлайн-ассессмент",
+      src: "/videos/online-assessment.mov",
+      description: "Краткий обзор ассессмента: компьютерное зрение, аудио и поведенческий анализ.",
+    },
+    assistant: {
+      title: "Помощник руководителя",
+      src: "/videos/assistant-guidance.mov",
+      description: "Ролик про помощника руководителя: интеграция ЭДО, нагрузка и управленческий сигнал.",
+    },
+    sovereignty: {
+      title: "Цифровой суверенитет",
+      src: "/videos/digital-sovereignty.mov",
+      description: "Видео о цифровом суверенитете: защита данных и локальная инфраструктура.",
+    },
+  };
+
+  const videoSources = {
+    smarthr: ["/videos/smart-hr.mov", "/videos/smart-hr.mp4"],
+    assessment: ["/videos/online-assessment.mov", "/videos/online-assessment.mp4"],
+    assistant: ["/videos/assistant-guidance.mp4", "/videos/assistant-guidance.mov"],
+    sovereignty: ["/videos/digital-sovereignty.mov", "/videos/digital-sovereignty.mp4"],
+  };
+
+  const selectedVideo = videoModal ? videoItems[videoModal] : null;
+
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
       <Background1 />
       <HorizontalBorder />
       <Frame21 />
-      <HorizontalBorder7 />
+      <HorizontalBorder7 onVideoClick={(id) => setVideoModal(id)} />
       <BackgroundHorizontalBorder2 />
       <BackgroundHorizontalBorder3 />
       <BackgroundHorizontalBorder4 />
@@ -1848,7 +1959,41 @@ function Background() {
       <BackgroundHorizontalBorder6 />
       <HorizontalBorder10 />
       <Background7 />
+      <Container10 onMeetingClick={() => setModal("meeting")} onNoteClick={() => setModal("note")} />
       <Container66 />
+      {modal === "meeting" && (
+        <InfoModal
+          title="Записаться на встречу"
+          onClose={() => setModal(null)}
+          description={
+            <>
+              <p>Оставьте заявку на встречу с командой Governance.kz.</p>
+              <p>Мы свяжемся с вами в ближайшее время и подготовим план цифровой трансформации.</p>
+              <p>Для бронирования встречи укажите ваше имя, организацию и удобное время.</p>
+            </>
+          }
+        />
+      )}
+      {modal === "note" && (
+        <InfoModal
+          title="Аналитическая записка"
+          onClose={() => setModal(null)}
+          description={
+            <>
+              <p>Аналитическая записка представляет ключевые выводы и советы по развитию управления.</p>
+              <p>Она поможет понять текущие риски, возможности оптимизации и пути улучшения процессов.</p>
+              <p>Документ включает краткий обзор модели, дорожную карту внедрения и ожидаемые результаты.</p>
+            </>
+          }
+        />
+      )}
+      {selectedVideo && (
+        <VideoModal
+          title={selectedVideo.title}
+          src={videoSources[videoModal!][0]}
+          onClose={() => setVideoModal(null)}
+        />
+      )}
     </div>
   );
 }
