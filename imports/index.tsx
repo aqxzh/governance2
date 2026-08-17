@@ -129,7 +129,8 @@ function Container() {
   return (
     <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.46px] whitespace-nowrap">
-        <p className="leading-[normal]">ЛАБОРАТОРИЯ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА · ГОСУДАРСТВЕННАЯ СЛУЖБА РК</p>
+        <p className="leading-[normal] hidden sm:block">ЛАБОРАТОРИЯ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА · ГОСУДАРСТВЕННАЯ СЛУЖБА РК</p>
+        <p className="leading-[normal] sm:hidden">ЛАБОРАТОРИЯ ИИ · ГС РК</p>
       </div>
     </div>
   );
@@ -149,7 +150,7 @@ function Background1() {
   return (
     <div className="bg-[#0d0f16] h-[33px] relative shrink-0 w-full" data-name="Background">
       <div className="flex flex-row justify-center size-full">
-        <div className="content-stretch flex items-start justify-between px-[44px] py-[9px] relative size-full">
+        <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[9px] relative size-full">
           <Container />
           <Container1 />
         </div>
@@ -172,7 +173,7 @@ function Container2() {
   return (
     <div className="content-stretch flex gap-[11px] items-center relative shrink-0" data-name="Container">
       <div className="relative shrink-0 size-[26px]" data-name="Border">
-        <div aria-hidden className="absolute border-3 border-[#2242d6] border-solid inset-0 pointer-events-none" />
+        <div aria-hidden className="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none" />
       </div>
       <Container3 />
     </div>
@@ -181,8 +182,8 @@ function Container2() {
 
 function Container5() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Контуры</p>
       </div>
     </div>
@@ -191,8 +192,8 @@ function Container5() {
 
 function Container6() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Продукты</p>
       </div>
     </div>
@@ -201,8 +202,8 @@ function Container6() {
 
 function Container7() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Видение</p>
       </div>
     </div>
@@ -211,30 +212,19 @@ function Container7() {
 
 function Container8() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Принципы</p>
       </div>
     </div>
   );
 }
 
-function Container4() {
-  return (
-    <div className="content-stretch flex gap-[26px] h-[18px] items-start relative shrink-0" data-name="Container">
-      <Container5 />
-      <Container6 />
-      <Container7 />
-      <Container8 />
-    </div>
-  );
-}
-
 function Border() {
   return (
-    <div className="content-stretch flex flex-col items-start px-[19px] py-[10px] relative shrink-0" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="content-stretch flex flex-col items-start px-[19px] py-[10px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#0d0f16] group" data-name="Border">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none group-hover:border-[#0d0f16]" />
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap transition-colors group-hover:text-white" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
     </div>
@@ -245,7 +235,7 @@ function HorizontalBorder() {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pb-[22px] pt-[20px] px-[44px] relative size-full">
+        <div className="content-stretch flex items-center pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full">
           <Container2 />
         </div>
       </div>
@@ -278,10 +268,10 @@ function Container11() {
 
 function Background2({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="bg-[#2242d6] h-full relative shrink-0 w-full cursor-pointer" data-name="Background">
+    <div onClick={onClick} className="bg-[#2242d6] h-full relative shrink-0 w-full cursor-pointer transition-colors hover:bg-[#1a35ad]" data-name="Background">
       <div className="content-stretch flex flex-col items-start px-[26px] py-[14px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Записаться на встречу</p>
+          <p className="leading-[normal]">Записаться на встречу →</p>
         </div>
       </div>
     </div>
@@ -324,38 +314,6 @@ function InfoModal({ title, description, onClose }: { title: string; description
         <h2 className="mb-4 text-2xl font-semibold text-slate-900">{title}</h2>
         <div className="space-y-4 text-sm leading-6 text-slate-700">{description}</div>
       </div>
-    </div>
-  );
-}
-
-function VideoModal({ title, src, onClose }: { title: string; src: string; onClose: () => void }) {
-  const isQuickTime = src.toLowerCase().endsWith(".mov") || src.toLowerCase().endsWith(".qt");
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={onClose}>
-      <div className="relative w-full max-w-3xl overflow-hidden rounded-[24px] bg-black" onClick={(event) => event.stopPropagation()}>
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-xl font-bold text-slate-900 shadow-lg"
-        >
-          ×
-        </button>
-        <div className="bg-slate-900 px-5 py-4 text-white">{title}</div>
-        <video className="w-full" controls autoPlay playsInline>
-          <source src={src} type={isQuickTime ? "video/quicktime" : "video/mp4"} />
-          Ваш браузер не поддерживает видео.
-        </video>
-      </div>
-    </div>
-  );
-}
-
-function Container10({ onMeetingClick, onNoteClick }: { onMeetingClick: () => void; onNoteClick: () => void }) {
-  return (
-    <div className="flex flex-col gap-[20px] w-full" data-name="Container">
-      <Container11 />
-      <Container12 onMeetingClick={onMeetingClick} onNoteClick={onNoteClick} />
     </div>
   );
 }
@@ -505,7 +463,7 @@ function Border2() {
 
 function Container18() {
   return (
-    <div className="content-stretch flex flex-col items-start mt-[14px] w-full max-w-[1112px]" data-name="Container">
+    <div className="content-stretch flex flex-col items-start mt-[14px] w-full max-w-[1112px] mx-auto" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-black w-full">
         <p className="leading-[normal]">{`// плейсхолдеры — подставить фактические показатели`}</p>
       </div>
@@ -578,7 +536,7 @@ function Container21() {
 
 function Background3() {
   return (
-    <div className="bg-white flex flex-col gap-[9.2px] items-center justify-start pb-[26px] pt-[11px] px-[24px] relative shrink-0 w-[369px] min-h-[346px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9.2px] items-center justify-start pb-[26px] pt-[11px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame />
       <Container20 />
@@ -632,7 +590,7 @@ function Container23() {
 
 function Background4() {
   return (
-    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[19px] px-[24px] relative shrink-0 w-[369px] min-h-[346px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[19px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame1 />
       <Container22 />
@@ -686,7 +644,7 @@ function Container25() {
 
 function Background5() {
   return (
-    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[35px] px-[24px] relative shrink-0 w-[370px] min-h-[345px]" data-name="Background">
+    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[35px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px]" data-name="Background">
       <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
       <Frame2 />
       <Container24 />
@@ -698,7 +656,7 @@ function Background5() {
 
 function BackgroundBorder() {
   return (
-    <div className="bg-white flex items-stretch justify-center p-px relative w-full max-w-[1112px]" data-name="Background+Border">
+    <div className="bg-white flex flex-col md:flex-row items-stretch justify-center p-px relative w-full max-w-[1112px] mx-auto gap-0" data-name="Background+Border">
       <Background3 />
       <Background4 />
       <Background5 />
@@ -709,7 +667,7 @@ function BackgroundBorder() {
 function HorizontalBorder6() {
   return (
     <div className="relative w-full" data-name="HorizontalBorder">
-      <div className="flex flex-col gap-[8px] items-start px-[44px] py-[52px]">
+      <div className="flex flex-col gap-[8px] items-start px-[20px] sm:px-[44px] py-[52px]">
         <Container19 />
         <Heading />
         <BackgroundBorder />
@@ -752,12 +710,12 @@ function HorizontalBorder1() {
             <Container12 onMeetingClick={() => setModal({title: "Записаться на встречу", description: "Описание встречи"})} onNoteClick={() => setModal({title: "Аналитическая записка", description: "Описание записки"})} />
           </div>
         </div>
-      </div>
-      
-      {/* Statistics section below */}
-      <div className="mt-[8px] w-full">
-        <Border2 />
-        <Container18 />
+
+        {/* Statistics section — inside px-[44px] so it aligns with the rest of the hero */}
+        <div className="mt-[8px] w-full">
+          <Border2 />
+          <Container18 />
+        </div>
       </div>
       
       {/* More content sections */}
@@ -867,7 +825,7 @@ function Background6() {
 function Container31() {
   return (
     <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
           <p className="leading-[normal]">01</p>
         </div>
@@ -879,7 +837,7 @@ function Container31() {
 function Container32() {
   return (
     <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Smart HR</p>
         </div>
@@ -904,7 +862,7 @@ function Container33() {
 function Container34() {
   return (
     <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">3 модуля</p>
         </div>
@@ -917,7 +875,7 @@ function HorizontalBorder8({ onClick }: { onClick: () => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[75px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
         <Container31 />
         <Container32 />
         <Container33 />
@@ -979,7 +937,7 @@ function BackgroundHorizontalBorder({ onClick }: { onClick: () => void }) {
   return (
     <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[54px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
         <Container35 />
         <Container36 />
         <Container37 />
@@ -1041,7 +999,7 @@ function HorizontalBorder9({ onClick }: { onClick: () => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[54px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
         <Container39 />
         <Container40 />
         <Container41 />
@@ -1054,7 +1012,7 @@ function HorizontalBorder9({ onClick }: { onClick: () => void }) {
 function Container43() {
   return (
     <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
           <p className="leading-[normal]">04</p>
         </div>
@@ -1066,7 +1024,7 @@ function Container43() {
 function Container44() {
   return (
     <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Цифровой суверенитет</p>
         </div>
@@ -1091,7 +1049,7 @@ function Container45() {
 function Container46() {
   return (
     <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[40px] pt-[16px] px-[16px] relative size-full">
+      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Инфраструктура</p>
         </div>
@@ -1104,7 +1062,7 @@ function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
   return (
     <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[75px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
         <Container43 />
         <Container44 />
         <Container45 />
@@ -1133,10 +1091,12 @@ function HorizontalBorder7({ onImageClick }: { onImageClick: (id: ProductImageKe
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
+      <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[20px] sm:px-[44px] relative size-full">
         <Container26 />
         <Heading4 />
-        <Border3 onImageClick={onImageClick} />
+        <div className="w-full overflow-x-auto">
+          <Border3 onImageClick={onImageClick} />
+        </div>
       </div>
     </div>
   );
@@ -1164,17 +1124,17 @@ function Heading5() {
 
 function Frame3() {
   return (
-    <div className="col-1 h-[55.677px] ml-[20.87px] mt-0 relative row-1 w-[1216.598px]" data-name="Frame">
-      <div className="absolute h-[63.5px] left-0 top-0 w-[1927.2px]" data-name="Rectangle" />
+    <div className="col-1 h-[55.677px] ml-[20.87px] mt-0 relative row-1 w-full max-w-[1082px]" data-name="Frame">
+      <div className="absolute h-[63.5px] left-0 top-0 w-full" data-name="Rectangle" />
     </div>
   );
 }
 
 function Frame4() {
   return (
-    <div className="col-1 h-[103.399px] ml-0 mt-[11px] relative row-1 w-[1221.134px]" data-name="Frame">
-      <div className="absolute h-[117.086px] left-0 top-0 w-[1545px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal h-[117px] leading-[normal] left-0 not-italic text-[#2a3b52] text-[22px] top-0 w-[1121px]">В Governance.kz инфографика — это не украшение. Это функциональный инструмент, который переводит сложнейшие процессы (коллизии полномочий, скрытые барьеры) в кристально чистую визуальную структуру. От хаоса неструктурированных данных — к математическому порядку.</p>
+    <div className="col-1 h-[103.399px] ml-0 mt-[11px] relative row-1 w-full max-w-[1082px]" data-name="Frame">
+      <div className="absolute h-[117.086px] left-0 top-0 w-full" data-name="Rectangle" />
+      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[normal] left-0 not-italic text-[#3a4050] text-[22px] top-0 w-full">В Governance.kz инфографика — это не украшение. Это функциональный инструмент, который переводит сложнейшие процессы (коллизии полномочий, скрытые барьеры) в кристально чистую визуальную структуру. От хаоса неструктурированных данных — к математическому порядку.</p>
     </div>
   );
 }
@@ -1201,7 +1161,7 @@ function Frame7() {
   return (
     <div className="col-1 h-[19.654px] ml-[11.05px] mt-[5.2px] relative row-1 w-[49.772px]" data-name="Frame">
       <div className="absolute h-[31.5px] left-0 top-0 w-[77.023px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[77.023px]">Стало</p>
+      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[77.023px]">Стало</p>
     </div>
   );
 }
@@ -1211,7 +1171,7 @@ function Group3() {
     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
       <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[100.58px] row-1 w-[498.977px]" data-name="Rectangle" />
       <Frame6 />
-      <div className="bg-[#13315f] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px]" data-name="Rectangle" />
+      <div className="bg-[#0d0f16] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px]" data-name="Rectangle" />
       <Frame7 />
     </div>
   );
@@ -1229,9 +1189,9 @@ function Frame8() {
 
 function Frame9() {
   return (
-    <div className="bg-[#13315f] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px]" data-name="Frame">
+    <div className="bg-[#0d0f16] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px]" data-name="Frame">
       <div className="absolute h-[31.5px] left-0 top-0 w-[68.625px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p>
+      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p>
     </div>
   );
 }
@@ -1239,7 +1199,7 @@ function Frame9() {
 function Group1() {
   return (
     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="bg-[#13315f] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px]" data-name="Rectangle" />
+      <div className="bg-[#0d0f16] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px]" data-name="Rectangle" />
       <Frame9 />
     </div>
   );
@@ -1261,7 +1221,7 @@ function Group4() {
       <Frame3 />
       <Frame4 />
       <Frame5 />
-      <p className="[word-break:break-word] col-1 font-['Inter:Bold',sans-serif] font-bold h-[84.841px] leading-[normal] ml-[517.12px] mt-[244.92px] not-italic relative row-1 text-[#026dd5] text-[80px] w-[81.651px]">→</p>
+      <p className="[word-break:break-word] col-1 font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[84.841px] leading-[normal] ml-[517.12px] mt-[244.92px] not-italic relative row-1 text-[#2242d6] text-[80px] w-[81.651px]">→</p>
       <Group3 />
       <Group2 />
     </div>
@@ -1270,7 +1230,7 @@ function Group4() {
 
 function BackgroundHorizontalBorder2() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
+    <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
         <Container47 />
@@ -1297,27 +1257,27 @@ function Group6() {
       <div className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]" data-name="image 55">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage55} />
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[93px] justify-center ml-[843px] mt-[0.5px] not-italic relative row-1 text-[#0a2049] text-[16px] text-center w-[265px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[93px] justify-center ml-[843px] mt-[0.5px] not-italic relative row-1 text-[#0d0f16] text-[16px] text-center w-[265px]">
         <p className="leading-[normal] mb-0">governance.kz — создание сложных</p>
         <p className="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p>
         <p className="leading-[normal]">вычислительных мощностей.</p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3b4a60] text-[20px] w-[552px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
       </div>
       <div className="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]" data-name="Rectangle" />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[68px] justify-center ml-[83px] mt-[229.5px] not-italic relative row-1 text-[#3b4a60] text-[20px] w-[305px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[83px] mt-[229.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]">
         <p className="leading-[normal] mb-0">Передовая экосистема eGov,</p>
         <p className="leading-[normal]">суперкомпьютеры, ЦОДы.</p>
       </div>
       <div className="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]" data-name="Rectangle" />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[79px] justify-center ml-[40px] mt-[362.5px] not-italic relative row-1 text-[#3b4a60] text-[20px] w-[463px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79px] justify-center ml-[40px] mt-[362.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]">
         <p className="leading-[normal] mb-0">Дешевая электроэнергия,</p>
         <p className="leading-[normal] mb-0">запасы редкоземельных металлов</p>
         <p className="leading-[normal]">(кремний, литий), критичные для вычислений.</p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold h-[72.394px] justify-center ml-[694.47px] mt-[149.84px] not-italic relative row-1 text-[#0a2049] text-[20px] text-center w-[119.534px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold h-[72.394px] justify-center ml-[694.47px] mt-[149.84px] not-italic relative row-1 text-[#0d0f16] text-[20px] text-center w-[119.534px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`Технологии `}</p>
         <p className="leading-[normal] mb-0">{`&`}</p>
         <p className="leading-[normal]">Продукты</p>
@@ -1383,7 +1343,7 @@ function Group7() {
   return (
     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[427.5px] place-items-start relative row-1">
       <div className="bg-[#e5e9ec] border-[#9fa6ae] border-[0.5px] border-solid col-1 h-[79px] ml-0 mt-0 relative rounded-[15px] row-1 w-[1001px]" />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[63px] justify-center ml-[31.75px] mt-[8px] not-italic relative row-1 text-[#051533] text-[19px] w-[954px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[63px] justify-center ml-[31.75px] mt-[8px] not-italic relative row-1 text-[#0d0f16] text-[19px] w-[954px]">
         <p className="leading-[normal] mb-0">Использование компьютерного зрения и аудиоаналитики в реальном времени. Прогнозирование</p>
         <p className="leading-[normal]">эффективности на основе поведенческих паттернов как дополнение к экспертной оценке.</p>
       </div>
@@ -1412,21 +1372,21 @@ function Group8({ onImageClick }: { onImageClick: () => void }) {
           ⤢
         </span>
       </button>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3b4a60] text-[0px] w-[270px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3a4050] text-[0px] w-[270px]">
         <p className="text-[18px]">
           <span className="leading-[normal]">{`Уровень вовлеченности: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3b4a60]">87%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">87%</span>
         </p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[30.39px] justify-center ml-[591px] mt-[188.42px] not-italic relative row-1 text-[#0a2049] text-[0px] w-[203px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[30.39px] justify-center ml-[591px] mt-[188.42px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[203px]">
         <p className="text-[18px]">
           <span className="leading-[normal]">{`Уровень стресса: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0a2049]">12%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">12%</span>
         </p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[46.598px] justify-center ml-[591px] mt-[303.9px] not-italic relative row-1 text-[#0a2049] text-[0px] w-[292px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[46.598px] justify-center ml-[591px] mt-[303.9px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[292px]">
         <p className="leading-[normal] mb-0 text-[18px]">Эмоциональное состояние:</p>
-        <p className="font-['Inter:Bold',sans-serif] font-bold leading-[normal] text-[18px]">Стабильное</p>
+        <p className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] text-[18px]">Стабильное</p>
       </div>
       <Group7 />
     </div>
@@ -1470,10 +1430,12 @@ function Heading8() {
 
 function BackgroundHorizontalBorder5() {
   return (
-    <div className="bg-white h-[130px] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
+    <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
+      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch flex flex-col gap-[20px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full max-w-[1170px] mx-auto">
         <Container50 />
         <Heading8 />
+        <Frame22 />
       </div>
     </div>
   );
@@ -1483,7 +1445,7 @@ function Frame11() {
   return (
     <div className="absolute h-[44.511px] left-[19px] top-[3px] w-[457.523px]" data-name="Frame">
       <div className="absolute h-[44.511px] left-0 top-0 w-[457.523px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-0 not-italic text-[#001229] text-[26px] top-[27.26px] w-[457.523px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[26px] top-[27.26px] w-[457.523px]">
         <p className="leading-[normal]">Управленческий сигнал</p>
       </div>
     </div>
@@ -1494,7 +1456,7 @@ function Frame12() {
   return (
     <div className="absolute h-[44.511px] left-[629px] top-[7px] w-[408.548px]" data-name="Frame">
       <div className="absolute h-[44.511px] left-0 top-0 w-[408.548px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-[-62px] not-italic text-[#001229] text-[26px] top-[22.26px] w-[408.548px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-[-62px] not-italic text-[#0d0f16] text-[26px] top-[22.26px] w-[408.548px]">
         <p className="leading-[normal]">Прямая координация</p>
       </div>
     </div>
@@ -1505,7 +1467,7 @@ function Frame13() {
   return (
     <div className="absolute h-[48.17px] left-[51px] top-[72px] w-[540.963px]" data-name="Frame">
       <div className="absolute h-[48.17px] left-0 top-0 w-[540.963px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3b4a60] text-[24px] top-[24.09px] w-[540.963px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[540.963px]">
         <p className="leading-[normal]">Эффективность департаментов</p>
       </div>
     </div>
@@ -1532,10 +1494,10 @@ function Frame16() {
   return (
     <div className="absolute h-[48.17px] left-[36px] top-[259.07px] w-[270.691px]" data-name="Frame">
       <div className="absolute h-[48.17px] left-0 top-0 w-[270.691px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-[-7px] not-italic text-[#3b4a60] text-[0px] top-[-30.91px] w-[270.691px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-[-7px] not-italic text-[#3a4050] text-[0px] top-[-30.91px] w-[270.691px]">
         <p className="text-[19px]">
           <span className="leading-[normal]">{`Разработка: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3b4a60]">95%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">95%</span>
         </p>
       </div>
     </div>
@@ -1546,7 +1508,7 @@ function Frame17() {
   return (
     <div className="absolute h-[48.17px] left-[93px] top-[290px] w-[428.501px]" data-name="Frame">
       <div className="absolute h-[48.17px] left-0 top-0 w-[428.501px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3b4a60] text-[24px] top-[24.09px] w-[428.501px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[428.501px]">
         <p className="leading-[normal]">Общий уровень нагрузки</p>
       </div>
     </div>
@@ -1557,10 +1519,10 @@ function Frame18() {
   return (
     <div className="absolute h-[39.159px] left-[479.99px] top-[740.34px] w-[316.039px]" data-name="Frame">
       <div className="absolute h-[39.159px] left-0 top-0 w-[316.039px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[39.159px] justify-center leading-[0] left-0 not-italic text-[#0a2049] text-[0px] top-[19.58px] w-[316.039px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[39.159px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[0px] top-[19.58px] w-[316.039px]">
         <p className="text-[23px]">
           <span className="leading-[normal]">{`Оптимальный: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0a2049]">70%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">70%</span>
         </p>
       </div>
     </div>
@@ -1571,15 +1533,15 @@ function Frame19() {
   return (
     <div className="absolute h-[159.927px] left-[651px] top-[76px] w-[473.849px]" data-name="Frame">
       <div className="absolute h-[159.927px] left-0 top-0 w-[473.849px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[159.927px] justify-center leading-[0] left-0 not-italic text-[#3b4a60] text-[0px] top-[79.96px] w-[473.849px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[159.927px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[0px] top-[79.96px] w-[473.849px]">
         <p className="mb-0 text-[19px]">
           <span className="leading-[normal]">{`Робот: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3b4a60]">Назначена задача</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Назначена задача</span>
         </p>
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">на основе анализа.</p>
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">@Иванов, просьба</p>
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">подготовить отчет по проекту</p>
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] text-[19px]">{`"Альфа" к 15:00.`}</p>
+        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">на основе анализа.</p>
+        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">@Иванов, просьба</p>
+        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">подготовить отчет по проекту</p>
+        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">{`"Альфа" к 15:00.`}</p>
       </div>
     </div>
   );
@@ -1603,16 +1565,16 @@ function Frame10() {
       <Frame12 />
       <Frame13 />
       <Frame14 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[30px] not-italic text-[#3b4a60] text-[0px] top-[142.41px] w-[245.296px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[30px] not-italic text-[#3a4050] text-[0px] top-[142.41px] w-[245.296px]">
         <p className="text-[19px]">
           <span className="leading-[normal]">{`Маркетинг: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3b4a60]">92%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">92%</span>
         </p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[29px] not-italic text-[#3b4a60] text-[0px] top-[185.41px] w-[223.529px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[29px] not-italic text-[#3a4050] text-[0px] top-[185.41px] w-[223.529px]">
         <p className="text-[19px]">
           <span className="leading-[normal]">{`Продажи: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3b4a60]">88%</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">88%</span>
         </p>
       </div>
       <Frame15 />
@@ -1621,12 +1583,12 @@ function Frame10() {
       <Frame18 />
       <Frame19 />
       <Frame20 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[73.586px] justify-center leading-[0] left-[706px] not-italic text-[#3b4a60] text-[0px] top-[282.79px] w-[419.431px]">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[73.586px] justify-center leading-[0] left-[706px] not-italic text-[#3a4050] text-[0px] top-[282.79px] w-[419.431px]">
         <p className="mb-0 text-[19px]">
           <span className="leading-[normal]">{`Иванов: `}</span>
-          <span className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3b4a60]">Принято в работу.</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Принято в работу.</span>
         </p>
-        <p className="font-['Inter:Regular',sans-serif] font-normal leading-[normal] text-[19px]">Будет готово.</p>
+        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">Будет готово.</p>
       </div>
     </div>
   );
@@ -1635,7 +1597,7 @@ function Frame10() {
 function Frame22() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <div className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal h-[117px] leading-[0] not-italic relative shrink-0 text-[#2a3b52] text-[22px] w-[1064px]">
+      <div className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[0] not-italic relative shrink-0 text-[#3a4050] text-[22px] w-[1064px]">
         <p className="leading-[normal] mb-0">ИИ видит ведомство изнутри в реальном времени. Координация задач и умные боты работают прямо в рабочих мессенджерах сотрудников.</p>
         <p className="leading-[normal]">Переход от избыточных данных к чистому управленческому сигналу.</p>
       </div>
@@ -1658,12 +1620,12 @@ function Heading9() {
   return (
     <div className="[word-break:break-word] content-stretch flex flex-col h-[69px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
       <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">{` ServiceFlow: Проактивный клиентский сервис`}</p>
+        <p className="leading-[normal]">{`ServiceFlow: Проактивный клиентский сервис`}</p>
       </div>
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[375px] justify-center not-italic relative shrink-0 text-[#0a2049] text-[0px] w-[350px]">
+      <div className="flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[375px] justify-center not-italic relative shrink-0 text-[#0d0f16] text-[0px] w-[350px]">
         <p className="mb-0 text-[26px]">
           <span className="leading-[normal]">{`Проанализировано `}</span>
-          <span className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0a2049]">1 500</span>
+          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">1 500</span>
           <span className="leading-[normal]">{` государственных услуг`}</span>
         </p>
         <p className="leading-[normal] mb-0 text-[26px]">с помощью ИИ.</p>
@@ -1678,14 +1640,14 @@ function Heading9() {
 function Group9() {
   return (
     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[79.178px] justify-center ml-[43.66px] mt-[117.43px] not-italic relative row-1 text-[#0a2049] text-[24px] w-[210.797px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79.178px] justify-center ml-[43.66px] mt-[117.43px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[210.797px]">
         <p className="leading-[normal] mb-0">Спрятанный</p>
         <p className="leading-[normal]">барьер</p>
       </div>
       <div className="col-1 h-[321.121px] ml-0 mt-0 relative row-1 w-[723.175px]" data-name="image 58">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[41.378px] justify-center ml-[316.92px] mt-[218.87px] not-italic relative row-1 text-[#0a2049] text-[24px] w-[290.732px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[41.378px] justify-center ml-[316.92px] mt-[218.87px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[290.732px]">
         <p className="leading-[normal]">Проактивный формат</p>
       </div>
     </div>
@@ -1695,11 +1657,11 @@ function Group9() {
 function Group10() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[343.57px] mt-[117.73px] not-italic relative row-1 text-[#0a2049] text-[24px] w-[176.18px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[343.57px] mt-[117.73px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[176.18px]">
         <p className="leading-[normal] mb-0">Лишний</p>
         <p className="leading-[normal]">документ</p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[580.67px] mt-[117.73px] not-italic relative row-1 text-[#0a2049] text-[24px] w-[154.385px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[580.67px] mt-[117.73px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[154.385px]">
         <p className="leading-[normal] mb-0">Потеря</p>
         <p className="leading-[normal]">времени</p>
       </div>
@@ -1765,7 +1727,7 @@ function Container55() {
 
 function HorizontalBorder11() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pt-[16px] relative shrink-0 w-[209.59px]" data-name="HorizontalBorder">
+    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
       <Container54 />
       <Container55 />
@@ -1795,7 +1757,7 @@ function Container57() {
 
 function HorizontalBorder12() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[209.59px]" data-name="HorizontalBorder">
+    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
       <Container56 />
       <Container57 />
@@ -1825,7 +1787,7 @@ function Container59() {
 
 function HorizontalBorder13() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[209.61px]" data-name="HorizontalBorder">
+    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
       <Container58 />
       <Container59 />
@@ -1855,7 +1817,7 @@ function Container61() {
 
 function HorizontalBorder14() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[209.59px]" data-name="HorizontalBorder">
+    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
       <Container60 />
       <Container61 />
@@ -1885,7 +1847,7 @@ function Container63() {
 
 function HorizontalBorder15() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[209.61px]" data-name="HorizontalBorder">
+    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
       <Container62 />
       <Container63 />
@@ -1979,8 +1941,8 @@ function Container64() {
 
 function Background8() {
   return (
-    <div className="bg-[#2242d6] content-stretch flex flex-col items-start px-[34px] py-[17px] relative shrink-0" data-name="Background">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[15px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 transition-colors hover:bg-[#1a35ad]" data-name="Background">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
     </div>
@@ -1991,7 +1953,7 @@ function Background7() {
   return (
     <div className="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex gap-[411.79px] items-center px-[44px] py-[56px] relative size-full">
+        <div className="content-stretch flex justify-between items-center px-[20px] sm:px-[44px] py-[56px] relative size-full gap-[32px] flex-col sm:flex-row items-start sm:items-center">
           <Container64 />
           <Background8 />
         </div>
@@ -2024,7 +1986,7 @@ function Container66() {
   return (
     <div className="h-[59px] relative shrink-0 w-full" data-name="Container">
       <div className="flex flex-row justify-center size-full">
-        <div className="content-stretch flex items-start justify-between px-[44px] py-[22px] relative size-full">
+        <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[22px] relative size-full">
           <Container67 />
           <Container68 />
         </div>
@@ -2047,7 +2009,6 @@ function Background() {
       <BackgroundHorizontalBorder3 />
       <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
       <BackgroundHorizontalBorder5 />
-      <Frame22 />
       <BackgroundHorizontalBorder6 />
       <HorizontalBorder10 />
       <Background7 />
