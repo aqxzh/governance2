@@ -48,6 +48,66 @@ const productImages: Record<ProductImageKey, { index: string; title: string; ima
   },
 };
 
+type TabKey = "recruitment" | "analytics" | "assessment";
+
+type TabRow = {
+  num: string;
+  name: string;
+  does: string;
+  feature: string;
+};
+
+type TabData = {
+  index: string;
+  label: string;
+  title: string;
+  description: string;
+  image?: string;
+  rows: TabRow[];
+};
+
+const tabData: Record<TabKey, TabData> = {
+  recruitment: {
+    index: "01",
+    label: "Подбор кандидатов",
+    title: "Smart HR · Подбор кандидатов",
+    description:
+      "Описание раздела. Здесь будет текст о том, как ИИ-ассистент помогает подбирать кандидатов на государственную службу: фильтрация профилей, ранжирование, диалоговый интерфейс KZ/RU/EN. Подробности появятся позже — пока это шаблон для заполнения контентом.",
+    image: undefined,
+    rows: [
+      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "03", name: "Решение 3", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+    ],
+  },
+  analytics: {
+    index: "02",
+    label: "Кадровая аналитика",
+    title: "Smart HR · Кадровая аналитика",
+    description:
+      "Описание раздела. Здесь будет текст о кадровых профилях, аналитике кандидатов и сотрудников, метриках эффективности. Шаблон — замените этот абзац на реальный контент, когда он будет готов.",
+    image: undefined,
+    rows: [
+      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+    ],
+  },
+  assessment: {
+    index: "03",
+    label: "Онлайн-ассессмент",
+    title: "Smart HR · Онлайн-ассессмент",
+    description:
+      "Описание раздела. Здесь будет текст об онлайн-оценке компетенций: компьютерное зрение, аудиоанализ, поведенческие паттерны. Это плейсхолдер — впоследствии заменяется на реальное описание продукта.",
+    image: undefined,
+    rows: [
+      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "03", name: "Решение 3", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "04", name: "Решение 4", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+    ],
+  },
+};
+
 function ImageModal({ index, title, image, description, onClose }: { index: string; title: string; image: string; description: string; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -231,12 +291,13 @@ function Border() {
   );
 }
 
-function HorizontalBorder() {
+function HorizontalBorder({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full">
+        <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full gap-[24px]">
           <Container2 />
+          <HeroTabs onTabClick={onTabClick} />
         </div>
       </div>
     </div>
@@ -676,12 +737,12 @@ function HorizontalBorder6() {
   );
 }
 
-function HorizontalBorder1() {
+function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
 
   return (
     <div className="border-b border-[#e6e8ee] w-full" data-name="HorizontalBorder">
-      <div className="px-[44px] py-[40px]">
+      <div className="px-[20px] sm:px-[44px] py-[40px]">
         {/* Label */}
         <Container9 />
         
@@ -699,9 +760,9 @@ function HorizontalBorder1() {
             <Container11 />
           </div>
           
-          {/* Right column: image top, buttons below */}
+          {/* Right column: image + buttons */}
           <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
-            {/* Hero image */}
+            {/* Hero image — aligned with "Государство" heading */}
             <div className="w-full lg:w-[516px]">
               <img alt="" className="w-full h-auto object-cover rounded-[8px]" src={imgTelegramCloudPhotoSize25399823280891436280W2} />
             </div>
@@ -712,7 +773,7 @@ function HorizontalBorder1() {
         </div>
 
         {/* Statistics section — inside px-[44px] so it aligns with the rest of the hero */}
-        <div className="mt-[8px] w-full">
+        <div className="mt-[24px] w-full">
           <Border2 />
           <Container18 />
         </div>
@@ -727,18 +788,18 @@ function HorizontalBorder1() {
   );
 }
 
-function Group11() {
+function Group11({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <HorizontalBorder1 />
+      <HorizontalBorder1 onTabClick={onTabClick} />
     </div>
   );
 }
 
-function Frame21() {
+function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <Group11 />
+      <Group11 onTabClick={onTabClick} />
     </div>
   );
 }
@@ -875,7 +936,9 @@ function HorizontalBorder8({ onClick }: { onClick: () => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]">
+        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
         <Container31 />
         <Container32 />
         <Container33 />
@@ -937,7 +1000,9 @@ function BackgroundHorizontalBorder({ onClick }: { onClick: () => void }) {
   return (
     <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white">
+        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
         <Container35 />
         <Container36 />
         <Container37 />
@@ -999,7 +1064,9 @@ function HorizontalBorder9({ onClick }: { onClick: () => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]">
+        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
         <Container39 />
         <Container40 />
         <Container41 />
@@ -1062,7 +1129,9 @@ function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
   return (
     <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full">
+      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white">
+        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
         <Container43 />
         <Container44 />
         <Container45 />
@@ -1075,8 +1144,8 @@ function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
 function Border3({ onImageClick }: { onImageClick: (id: ProductImageKey) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col items-start pb-px pt-[17px] px-px relative size-full">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10" />
+      <div className="content-stretch flex flex-col items-start relative size-full">
         <Background6 />
         <HorizontalBorder8 onClick={() => onImageClick("smarthr")} />
         <BackgroundHorizontalBorder onClick={() => onImageClick("assessment")} />
@@ -1106,7 +1175,7 @@ function Container47() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ВИДЕНИЕ</p>
+        <p className="leading-[normal]">04 / ИНФОГРАФИКА</p>
       </div>
     </div>
   );
@@ -1245,7 +1314,7 @@ function Container48() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ВИДЕНИЕ</p>
+        <p className="leading-[normal]">05 / СТРАТЕГИЯ</p>
       </div>
     </div>
   );
@@ -1323,7 +1392,7 @@ function Container49() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ВИДЕНИЕ</p>
+        <p className="leading-[normal]">06 / AI-АССЕССМЕНТ</p>
       </div>
     </div>
   );
@@ -1362,15 +1431,13 @@ function Group8({ onImageClick }: { onImageClick: () => void }) {
         data-name="image 57"
       >
         <img alt="AI Assessment" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full transition-transform duration-500 group-hover:scale-[1.03]" src={imgImage57} />
-        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/50 to-transparent py-4">
-          <span className="rounded-full border border-white/60 bg-white/15 px-4 py-2 text-[14px] font-medium tracking-[0.12em] text-white backdrop-blur-sm">
-            AI ASSESSMENT
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent py-4">
+          <span className="flex items-center gap-[8px] rounded-full border border-white/60 bg-white/15 px-4 py-2 text-[14px] font-medium tracking-[0.12em] text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
+            <span className="text-[16px] leading-none">⤢</span>
+            AI ASSESSMENT — ОТКРЫТЬ
           </span>
         </div>
-        <span className="pointer-events-none absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white/90 text-[18px] text-[#0d0f16] opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
-          ⤢
-        </span>
       </button>
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3a4050] text-[0px] w-[270px]">
         <p className="text-[18px]">
@@ -1412,7 +1479,7 @@ function Container50() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ВИДЕНИЕ</p>
+        <p className="leading-[normal]">07 / EXECASSIST</p>
       </div>
     </div>
   );
@@ -1610,7 +1677,7 @@ function Container51() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ВИДЕНИЕ</p>
+        <p className="leading-[normal]">08 / SERVICEFLOW</p>
       </div>
     </div>
   );
@@ -1674,8 +1741,13 @@ function BackgroundHorizontalBorder6() {
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="flex flex-col items-end justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[6px] items-end justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+      <div className="flex flex-col items-start justify-center size-full">
+        <div className="content-stretch flex flex-col gap-[6px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
+            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+              <p className="leading-[normal]">08 / SERVICEFLOW</p>
+            </div>
+          </div>
           <Heading9 />
           <Group10 />
         </div>
@@ -1688,7 +1760,7 @@ function Container52() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">05 / ПРИНЦИПЫ</p>
+        <p className="leading-[normal]">09 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
       </div>
     </div>
   );
@@ -1913,7 +1985,7 @@ function Container65() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8fa6ff] text-[12px] tracking-[1.2px] whitespace-nowrap">
-        <p className="leading-[normal]">06 / КОНТАКТ</p>
+        <p className="leading-[normal]">КОНТАКТ</p>
       </div>
     </div>
   );
@@ -1995,23 +2067,169 @@ function Container66() {
   );
 }
 
+function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
+  const tabs: TabKey[] = ["recruitment", "analytics", "assessment"];
+  return (
+    <div className="hidden md:flex flex-row gap-[6px] shrink-0">
+      {tabs.map((key) => (
+        <button
+          key={key}
+          type="button"
+          onClick={() => onTabClick(key)}
+          className="group flex items-center gap-[6px] rounded-[6px] border border-[#e6e8ee] bg-white px-[12px] py-[8px] text-left cursor-pointer transition-colors hover:border-[#0d0f16] hover:bg-[#f6f7fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        >
+          <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] text-[#2242d6] tabular-nums shrink-0">
+            {tabData[key].index}
+          </span>
+          <span
+            className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {tabData[key].label}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
+  const data = tabData[tabKey];
+  return (
+    <div className="w-full">
+      {/* Back link */}
+      <div className="px-[20px] sm:px-[44px] pt-[24px] pb-[8px]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#3a4050] cursor-pointer transition-colors hover:text-[#2242d6]"
+        >
+          <span className="text-[14px] leading-none">←</span>
+          НАЗАД К ГЛАВНОЙ
+        </button>
+      </div>
+
+      {/* Page content */}
+      <div className="content-stretch flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
+        {/* Label + heading */}
+        <div className="flex flex-col gap-[10px]">
+          <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
+            {data.index} / SMART HR
+          </div>
+          <h2
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.3px] text-[#0d0f16] sm:text-[34px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.title}
+          </h2>
+        </div>
+
+        {/* Description */}
+        <p
+          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.6] text-[#3a4050] max-w-[900px]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          {data.description}
+        </p>
+
+        {/* Image placeholder */}
+        <div className="relative w-full h-[300px] sm:h-[420px] rounded-[14px] border-2 border-dashed border-[#c8cedd] bg-[#f6f7fb] flex items-center justify-center overflow-hidden">
+          {data.image ? (
+            <img src={data.image} alt={data.title} className="block max-h-full max-w-full object-contain" />
+          ) : (
+            <div className="flex flex-col items-center gap-[8px] text-center px-[24px]">
+              <span className="text-[36px] leading-none text-[#b9c1e8]">⤢</span>
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tracking-[0.5px] text-[#5a606e]">
+                // место для изображения
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Registry table — same columns as "03 / ПРОДУКТЫ" */}
+        <div className="relative w-full">
+          <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
+          <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
+            {/* Header */}
+            <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
+              {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
+                <div key={h} className="justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
+                  <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
+                      <p className="leading-[normal]">{h}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Rows */}
+            {data.rows.map((row, i) => (
+              <div
+                key={row.num}
+                className={`grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
+              >
+                <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
+                <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
+                      <p className="leading-[normal]">{row.num}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+                      <p className="leading-[normal]">{row.name}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                      <p className="leading-[21px]">{row.does}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+                      <p className="leading-[normal]">{row.feature}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Background() {
   const [modal, setModal] = useState<"meeting" | "note" | null>(null);
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
+  const [activeTab, setActiveTab] = useState<TabKey | null>(null);
 
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
       <Background1 />
-      <HorizontalBorder />
-      <Frame21 />
-      <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
-      <BackgroundHorizontalBorder2 />
-      <BackgroundHorizontalBorder3 />
-      <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
-      <BackgroundHorizontalBorder5 />
-      <BackgroundHorizontalBorder6 />
-      <HorizontalBorder10 />
-      <Background7 />
+      <HorizontalBorder onTabClick={(key) => setActiveTab(key)} />
+      {activeTab ? (
+        <TabPage tabKey={activeTab} onBack={() => setActiveTab(null)} />
+      ) : (
+        <>
+          <Frame21 onTabClick={(key) => setActiveTab(key)} />
+          <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
+          <BackgroundHorizontalBorder2 />
+          <BackgroundHorizontalBorder3 />
+          <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
+          <BackgroundHorizontalBorder5 />
+          <BackgroundHorizontalBorder6 />
+          <HorizontalBorder10 />
+          <Background7 />
+        </>
+      )}
       <Container66 />
       {modal === "meeting" && (
         <InfoModal
