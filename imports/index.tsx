@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imgTelegramCloudPhotoSize25399823280891436280W2 from "./024996798644ee39e17d62182850eebdd0609893.png";
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
@@ -14,6 +14,116 @@ import imgImage59 from "./29ec613a87bc4f3acf7213fc4f5fc665e405cb89.png";
 import imgImage60 from "./139f115f8c2e5f0ed078adfaed1ec6bced7ee40c.png";
 import imgImage61 from "./8a984d7d3fd8f76fd80c78c281b414d9286b59ad.png";
 import imgImage62 from "./f69f67e473112b2672b4d0eedc1b935c373c076e.png";
+import imgProductSmartHr from "./smart-hr.png";
+import imgProductOnlineAssessment from "./online-assessment.png";
+import imgProductAssistant from "./assistant.png";
+import imgProductSovereignty from "./sovereignty.png";
+
+type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty";
+
+const productImages: Record<ProductImageKey, { index: string; title: string; image: string; description: string }> = {
+  smarthr: {
+    index: "01",
+    title: "Smart HR",
+    image: imgProductSmartHr,
+    description: "Кадровые профили, подбор и аналитика кандидатов в едином контуре данных.",
+  },
+  assessment: {
+    index: "02",
+    title: "AI Assessment",
+    image: imgProductOnlineAssessment,
+    description: "Поведенческий анализ, компьютерное зрение и аудиоанализ для оценки кандидатов.",
+  },
+  assistant: {
+    index: "03",
+    title: "Помощник руководителя",
+    image: imgProductAssistant,
+    description: "Управленческий сигнал, координация задач и приоритизация действий.",
+  },
+  sovereignty: {
+    index: "04",
+    title: "Цифровой суверенитет",
+    image: imgProductSovereignty,
+    description: "Закрытый контур, локальная инфраструктура и защита данных национального уровня.",
+  },
+};
+
+function ImageModal({ index, title, image, description, onClose }: { index: string; title: string; image: string; description: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-[6px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+    >
+      <div
+        className="relative flex w-full max-w-[1100px] max-h-[90vh] flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-start justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
+          <div className="flex min-w-0 flex-col gap-[10px]">
+            <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6] whitespace-nowrap">
+              03 / РЕЕСТР РЕШЕНИЙ
+            </div>
+            <div className="flex items-baseline gap-[14px] min-w-0">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[22px] leading-none text-[#2242d6] tabular-nums shrink-0">
+                {index}
+              </span>
+              <h2
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {title}
+              </h2>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Закрыть"
+            className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Image stage */}
+        <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-[#f6f7fb] p-4 sm:p-8">
+          <img
+            src={image}
+            alt={title}
+            className="block max-h-[64vh] max-w-full object-contain shadow-[0_8px_32px_rgba(13,15,22,0.12)]"
+          />
+        </div>
+
+        {/* Footer description */}
+        <div className="border-t border-[#e6e8ee] px-7 py-5">
+          <p
+            className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.55] text-[#3a4050]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Container() {
   return (
@@ -1004,29 +1114,29 @@ function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
   );
 }
 
-function Border3({ onVideoClick }: { onVideoClick: (id: string) => void }) {
+function Border3({ onImageClick }: { onImageClick: (id: ProductImageKey) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col items-start pb-px pt-[17px] px-px relative size-full">
         <Background6 />
-        <HorizontalBorder8 onClick={() => onVideoClick("smarthr")} />
-        <BackgroundHorizontalBorder onClick={() => onVideoClick("assessment")} />
-        <HorizontalBorder9 onClick={() => onVideoClick("assistant")} />
-        <BackgroundHorizontalBorder1 onClick={() => onVideoClick("sovereignty")} />
+        <HorizontalBorder8 onClick={() => onImageClick("smarthr")} />
+        <BackgroundHorizontalBorder onClick={() => onImageClick("assessment")} />
+        <HorizontalBorder9 onClick={() => onImageClick("assistant")} />
+        <BackgroundHorizontalBorder1 onClick={() => onImageClick("sovereignty")} />
       </div>
     </div>
   );
 }
 
-function HorizontalBorder7({ onVideoClick }: { onVideoClick: (id: string) => void }) {
+function HorizontalBorder7({ onImageClick }: { onImageClick: (id: ProductImageKey) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
         <Container26 />
         <Heading4 />
-        <Border3 onVideoClick={onVideoClick} />
+        <Border3 onImageClick={onImageClick} />
       </div>
     </div>
   );
@@ -1281,23 +1391,27 @@ function Group7() {
   );
 }
 
-function Group8({ onVideoClick }: { onVideoClick: () => void }) {
+function Group8({ onImageClick }: { onImageClick: () => void }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div
-        onClick={onVideoClick}
-        className="col-1 h-[387.656px] ml-[110.47px] mt-0 relative row-1 w-[786.737px] cursor-pointer"
+      <button
+        type="button"
+        onClick={onImageClick}
+        aria-label="Открыть AI Assessment"
+        className="group col-1 relative h-[387.656px] ml-[110.47px] mt-0 row-1 w-[786.737px] cursor-zoom-in overflow-hidden rounded-[14px] outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
         data-name="image 57"
       >
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage57} />
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white/80 shadow-lg">
-            <svg className="h-[22px] w-[22px] text-[#0d0f16]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
+        <img alt="AI Assessment" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full transition-transform duration-500 group-hover:scale-[1.03]" src={imgImage57} />
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/50 to-transparent py-4">
+          <span className="rounded-full border border-white/60 bg-white/15 px-4 py-2 text-[14px] font-medium tracking-[0.12em] text-white backdrop-blur-sm">
+            AI ASSESSMENT
+          </span>
         </div>
-      </div>
+        <span className="pointer-events-none absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white/90 text-[18px] text-[#0d0f16] opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+          ⤢
+        </span>
+      </button>
       <div className="[word-break:break-word] col-1 flex flex-col font-['Inter:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3b4a60] text-[0px] w-[270px]">
         <p className="text-[18px]">
           <span className="leading-[normal]">{`Уровень вовлеченности: `}</span>
@@ -1319,7 +1433,7 @@ function Group8({ onVideoClick }: { onVideoClick: () => void }) {
   );
 }
 
-function BackgroundHorizontalBorder4({ onVideoClick }: { onVideoClick: (id: string) => void }) {
+function BackgroundHorizontalBorder4({ onImageClick }: { onImageClick: () => void }) {
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
@@ -1327,7 +1441,7 @@ function BackgroundHorizontalBorder4({ onVideoClick }: { onVideoClick: (id: stri
         <div className="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
           <Container49 />
           <Heading7 />
-          <Group8 onVideoClick={() => onVideoClick("assessment")} />
+          <Group8 onImageClick={onImageClick} />
         </div>
       </div>
     </div>
@@ -1921,49 +2035,17 @@ function Container66() {
 
 function Background() {
   const [modal, setModal] = useState<"meeting" | "note" | null>(null);
-  const [videoModal, setVideoModal] = useState<"smarthr" | "assessment" | "assistant" | "sovereignty" | null>(null);
-
-  const videoItems: Record<"smarthr" | "assessment" | "assistant" | "sovereignty", { title: string; src: string; description: string }> = {
-    smarthr: {
-      title: "Smart HR",
-      src: "/videos/smart-hr.mov",
-      description: "Краткий ролик о Smart HR — кадровые профили, анализ и подбор через ИИ.",
-    },
-    assessment: {
-      title: "Онлайн-ассессмент",
-      src: "/videos/online-assessment.mov",
-      description: "Краткий обзор ассессмента: компьютерное зрение, аудио и поведенческий анализ.",
-    },
-    assistant: {
-      title: "Помощник руководителя",
-      src: "/videos/assistant-guidance.mov",
-      description: "Ролик про помощника руководителя: интеграция ЭДО, нагрузка и управленческий сигнал.",
-    },
-    sovereignty: {
-      title: "Цифровой суверенитет",
-      src: "/videos/digital-sovereignty.mov",
-      description: "Видео о цифровом суверенитете: защита данных и локальная инфраструктура.",
-    },
-  };
-
-  const videoSources = {
-    smarthr: ["/videos/smart-hr.mov", "/videos/smart-hr.mp4"],
-    assessment: ["/videos/online-assessment.mov", "/videos/online-assessment.mp4"],
-    assistant: ["/videos/assistant-guidance.mp4", "/videos/assistant-guidance.mov"],
-    sovereignty: ["/videos/digital-sovereignty.mov", "/videos/digital-sovereignty.mp4"],
-  };
-
-  const selectedVideo = videoModal ? videoItems[videoModal] : null;
+  const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
 
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
       <Background1 />
       <HorizontalBorder />
       <Frame21 />
-      <HorizontalBorder7 onVideoClick={(id) => setVideoModal(id)} />
+      <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
       <BackgroundHorizontalBorder2 />
       <BackgroundHorizontalBorder3 />
-      <BackgroundHorizontalBorder4 onVideoClick={() => setVideoModal("assessment")} />
+      <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
       <BackgroundHorizontalBorder5 />
       <Frame22 />
       <BackgroundHorizontalBorder6 />
@@ -1996,11 +2078,13 @@ function Background() {
           }
         />
       )}
-      {selectedVideo && (
-        <VideoModal
-          title={selectedVideo.title}
-          src={videoSources[videoModal!][0]}
-          onClose={() => setVideoModal(null)}
+      {imageModal && (
+        <ImageModal
+          index={productImages[imageModal].index}
+          title={productImages[imageModal].title}
+          image={productImages[imageModal].image}
+          description={productImages[imageModal].description}
+          onClose={() => setImageModal(null)}
         />
       )}
     </div>

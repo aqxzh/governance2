@@ -81,3 +81,13 @@ html, body, #root {
   font-weight: 700;
   src: url('https://static.figma.com/font/Inter_1') format('woff2');
 }
+
+@keyframes imgmodal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes imgmodal-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
