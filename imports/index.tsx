@@ -1703,7 +1703,7 @@ function Container51() {
 
 function Heading9() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
+    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full lg:w-[350px]" data-name="Heading 2">
       <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">{`ServiceFlow: Проактивный клиентский сервис`}</p>
       </div>
@@ -1724,15 +1724,13 @@ function Heading9() {
 
 function Group9() {
   return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79.178px] justify-center ml-[43.66px] mt-[117.43px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[210.797px]">
-        <p className="leading-[normal] mb-0">Спрятанный</p>
-        <p className="leading-[normal]">барьер</p>
+    <div className="relative w-full h-[321.121px]" data-name="image 58">
+      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
+      <div className="absolute left-[6%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+        <p className="mb-0">Спрятанный</p>
+        <p>барьер</p>
       </div>
-      <div className="col-1 h-[321.121px] ml-0 mt-0 relative row-1 w-[723.175px]" data-name="image 58">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
-      </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[41.378px] justify-center ml-[316.92px] mt-[218.87px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[290.732px]">
+      <div className="absolute left-[44%] top-[68%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="leading-[normal]">Проактивный формат</p>
       </div>
     </div>
@@ -1741,16 +1739,16 @@ function Group9() {
 
 function Group10() {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[343.57px] mt-[117.73px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[176.18px]">
-        <p className="leading-[normal] mb-0">Лишний</p>
-        <p className="leading-[normal]">документ</p>
-      </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[84.595px] justify-center ml-[580.67px] mt-[117.73px] not-italic relative row-1 text-[#0d0f16] text-[24px] w-[154.385px]">
-        <p className="leading-[normal] mb-0">Потеря</p>
-        <p className="leading-[normal]">времени</p>
-      </div>
+    <div className="relative w-full max-w-[723.175px]">
       <Group9 />
+      <div className="absolute left-[48%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+        <p className="mb-0">Лишний</p>
+        <p>документ</p>
+      </div>
+      <div className="absolute left-[80%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+        <p className="mb-0">Потеря</p>
+        <p>времени</p>
+      </div>
     </div>
   );
 }
@@ -1768,7 +1766,9 @@ function BackgroundHorizontalBorder6() {
           </div>
           <div className="flex flex-col lg:flex-row items-start gap-[40px] w-full">
             <Heading9 />
-            <Group10 />
+            <div className="w-full lg:flex-1 lg:min-w-0">
+              <Group10 />
+            </div>
           </div>
         </div>
       </div>
