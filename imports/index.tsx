@@ -19,6 +19,23 @@ import imgProductOnlineAssessment from "./online-assessment.png";
 import imgProductAssistant from "./assistant.png";
 import imgProductSovereignty from "./sovereignty.png";
 
+import imgSolutionFunctionalAnalysis from "./functional-analysis.png";
+import imgSolutionGovFunctionsAnalytics from "./gov-functions-analytics.png";
+import imgSolutionDigitalTwin from "./digital-twin.png";
+import imgSolutionGovServicesAnalytics from "./gov-services-analytics.png";
+import imgSolutionAiRecruitment from "./ai-recruitment.png";
+import imgSolutionCivilServiceSelection from "./civil-service-selection.png";
+import imgSolutionAiManagementAdvisor from "./ai-management-advisor.png";
+import imgSolutionEkyzmetAnalytics from "./ekyzmet-analytics.png";
+import imgSolutionBotAssistants from "./bot-assistants.png";
+import imgSolutionIndustryBank from "./industry-bank.png";
+import imgSolutionAnticorruptionMonitoring from "./anticorruption-monitoring.png";
+import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png";
+
+import imgTabDiagnostics from "./tab-diagnostics.png";
+import imgTabCoordination from "./tab-coordination.png";
+import imgTabActors from "./tab-actors.png";
+
 type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty";
 
 const productImages: Record<ProductImageKey, { index: string; title: string; image: string; description: string }> = {
@@ -55,6 +72,7 @@ type TabRow = {
   name: string;
   does: string;
   feature: string;
+  image?: string;
 };
 
 type TabData = {
@@ -69,41 +87,44 @@ type TabData = {
 const tabData: Record<TabKey, TabData> = {
   recruitment: {
     index: "01",
-    label: "Подбор кандидатов",
-    title: "Smart HR · Подбор кандидатов",
+    label: "Диагностика",
+    title: "Диагностика",
     description:
-      "Описание раздела. Здесь будет текст о том, как ИИ-ассистент помогает подбирать кандидатов на государственную службу: фильтрация профилей, ранжирование, диалоговый интерфейс KZ/RU/EN. Подробности появятся позже — пока это шаблон для заполнения контентом.",
-    image: undefined,
+      "ИИ анализирует функции, кадры и услуги госорганов в единой логике данных: находит дублирования полномочий, скрытые барьеры и аномалии. Диагностика показывает, где процессы ломаются и почему.",
+    image: imgTabDiagnostics,
     rows: [
-      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "03", name: "Решение 3", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "01", name: "Функциональный анализ", does: "Платформа выявляет коллизии между ведомствами, дублирование полномочий и несоответствие функций декларируемой миссии", feature: "Передача функций частному сектору", image: imgSolutionFunctionalAnalysis },
+      { num: "02", name: "Аналитика госфункций", does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи", feature: "Переход от обзора к профилю в один клик", image: imgSolutionGovFunctionsAnalytics },
+      { num: "03", name: "Рекрутинг с ИИ", does: "AI-платформа подбора кадровного резерва из 50 000+ профилей по опыту, компетенциям, рангу и параметрам", feature: "50 000+ профилей", image: imgSolutionAiRecruitment },
+      { num: "04", name: "Аналитика госуслуг", does: "Автоматизированный аудит реестра госуслуг и НПА: выявление неэффективных процедур и ошибок в нормативке", feature: "Пошаговый план автоматизации", image: imgSolutionGovServicesAnalytics },
+      { num: "05", name: "Аналитика Екызмет", does: "Платформа анализа качества данных о сотрудниках ИС eqyzmet.kz: демографические и профессиональные характеристики", feature: "Повышение точности метрик", image: imgSolutionEkyzmetAnalytics },
+      { num: "06", name: "Антикоррупционный мониторинг", does: "Сквозной анализ данных для выявления скрытой аффилированности, мониторинга фискальной дисциплины и оценки рисков", feature: "Предиктивная оценка рисков", image: imgSolutionAnticorruptionMonitoring },
+      { num: "07", name: "Сверка ЕКС и «Енбек»", does: "Интеллектуальный аудит расхождений между ИС «ЕКС» (ручной ввод) и ИС «Енбек» (автообновление) с проверкой ИИН/БИН", feature: "Аналитика качества данных", image: imgSolutionEksEnbekReconciliation },
     ],
   },
   analytics: {
     index: "02",
-    label: "Кадровая аналитика",
-    title: "Smart HR · Кадровая аналитика",
+    label: "Координация",
+    title: "Координация",
     description:
-      "Описание раздела. Здесь будет текст о кадровых профилях, аналитике кандидатов и сотрудников, метриках эффективности. Шаблон — замените этот абзац на реальный контент, когда он будет готов.",
-    image: undefined,
+      "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
+    image: imgTabCoordination,
     rows: [
-      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "01", name: "Цифровой двойник", does: "Моделирование перераспределения функций и сотрудников между ведомствами с мгновенным расчётом нагрузки и баланса", feature: "Drag-and-drop интерфейс", image: imgSolutionDigitalTwin },
+      { num: "02", name: "Отбор на госслужбу с ИИ", does: "Оценка кандидатов через анализ видео, голосовых ответов и текста по 15 компетенциям: логика, коммуникация, устойчивость", feature: "15 компетенций", image: imgSolutionCivilServiceSelection },
+      { num: "03", name: "ИИ-советник по управлению", does: "Единый интеллектуальный центр доступа к знаниям организации на данных eOtinish и Documentolog — вопросы на естественном языке", feature: "Интерактивные панели и упреждающие сигналы", image: imgSolutionAiManagementAdvisor },
+      { num: "04", name: "Банк отраслевых направлений", does: "Единая база данных по всем госслужащим Казахстана: стаж, прошлые места работы, быстрый подбор кандидата на вакансию", feature: "Поиск по всем регионам", image: imgSolutionIndustryBank },
     ],
   },
   assessment: {
     index: "03",
-    label: "Онлайн-ассессмент",
-    title: "Smart HR · Онлайн-ассессмент",
+    label: "Акторы",
+    title: "Акторы",
     description:
-      "Описание раздела. Здесь будет текст об онлайн-оценке компетенций: компьютерное зрение, аудиоанализ, поведенческие паттерны. Это плейсхолдер — впоследствии заменяется на реальное описание продукта.",
-    image: undefined,
+      "Smart HR и онлайн-ассессмент: подбор, оценка и развитие кадров госслужбы на основе данных. Снижение ручной нагрузки, структурный отбор, поведенческий анализ.",
+    image: imgTabActors,
     rows: [
-      { num: "01", name: "Решение 1", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "02", name: "Решение 2", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "03", name: "Решение 3", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
-      { num: "04", name: "Решение 4", does: "Что делает решение — краткое описание функции", feature: "Особенность решения" },
+      { num: "01", name: "Разработка ботов-ассистентов", does: "Telegram и WhatsApp-боты на платформе ИИ для ответов на вопросы по заданной теме в нескольких группах", feature: "Изолированные сессии", image: imgSolutionBotAssistants },
     ],
   },
 };
@@ -136,10 +157,7 @@ function ImageModal({ index, title, image, description, onClose }: { index: stri
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
-          <div className="flex min-w-0 flex-col gap-[10px]">
-            <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6] whitespace-nowrap">
-              03 / РЕЕСТР РЕШЕНИЙ
-            </div>
+          <div className="flex min-w-0 flex-col">
             <div className="flex items-baseline gap-[14px] min-w-0">
               <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[22px] leading-none text-[#2242d6] tabular-nums shrink-0">
                 {index}
@@ -597,8 +615,8 @@ function Container21() {
 
 function Background3() {
   return (
-    <div className="bg-white flex flex-col gap-[9.2px] items-center justify-start pb-[26px] pt-[11px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px]" data-name="Background">
-      <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
+    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame />
       <Container20 />
       <Heading1 />
@@ -651,8 +669,8 @@ function Container23() {
 
 function Background4() {
   return (
-    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[19px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px]" data-name="Background">
-      <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
+    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame1 />
       <Container22 />
       <Heading2 />
@@ -705,8 +723,8 @@ function Container25() {
 
 function Background5() {
   return (
-    <div className="bg-white flex flex-col gap-[9px] items-center justify-start pb-[48.47px] pt-[35px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px]" data-name="Background">
-      <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
+    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame2 />
       <Container24 />
       <Heading3 />
@@ -1685,7 +1703,7 @@ function Container51() {
 
 function Heading9() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col h-[69px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
+    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
       <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">{`ServiceFlow: Проактивный клиентский сервис`}</p>
       </div>
@@ -1742,14 +1760,16 @@ function BackgroundHorizontalBorder6() {
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-col items-start justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[6px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
           <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
             <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
               <p className="leading-[normal]">08 / SERVICEFLOW</p>
             </div>
           </div>
-          <Heading9 />
-          <Group10 />
+          <div className="flex flex-col lg:flex-row items-start gap-[40px] w-full">
+            <Heading9 />
+            <Group10 />
+          </div>
         </div>
       </div>
     </div>
@@ -2095,6 +2115,7 @@ function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
 
 function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   const data = tabData[tabKey];
+  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
   return (
     <div className="w-full">
       {/* Back link */}
@@ -2111,40 +2132,28 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
       {/* Page content */}
       <div className="content-stretch flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
-        {/* Label + heading */}
-        <div className="flex flex-col gap-[10px]">
-          <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
-            {data.index} / SMART HR
-          </div>
-          <h2
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.3px] text-[#0d0f16] sm:text-[34px]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {data.title}
-          </h2>
-        </div>
+        {/* Heading */}
+        <h2
+          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[36px] tracking-[-0.36px] text-[#0d0f16] sm:text-[42px]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          {data.title}
+        </h2>
 
         {/* Description */}
         <p
-          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.6] text-[#3a4050] max-w-[900px]"
+          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[900px]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           {data.description}
         </p>
 
-        {/* Image placeholder */}
-        <div className="relative w-full h-[300px] sm:h-[420px] rounded-[14px] border-2 border-dashed border-[#c8cedd] bg-[#f6f7fb] flex items-center justify-center overflow-hidden">
-          {data.image ? (
-            <img src={data.image} alt={data.title} className="block max-h-full max-w-full object-contain" />
-          ) : (
-            <div className="flex flex-col items-center gap-[8px] text-center px-[24px]">
-              <span className="text-[36px] leading-none text-[#b9c1e8]">⤢</span>
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tracking-[0.5px] text-[#5a606e]">
-                // место для изображения
-              </span>
-            </div>
-          )}
-        </div>
+        {/* Image */}
+        {data.image && (
+          <div className="flex items-center justify-center w-full overflow-hidden">
+            <img src={data.image} alt={data.title} className="block max-h-[260px] sm:max-h-[320px] max-w-full object-contain" />
+          </div>
+        )}
 
         {/* Registry table — same columns as "03 / ПРОДУКТЫ" */}
         <div className="relative w-full">
@@ -2163,45 +2172,59 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
               ))}
             </div>
             {/* Rows */}
-            {data.rows.map((row, i) => (
-              <div
-                key={row.num}
-                className={`grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
-              >
-                <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-                <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
-                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
-                      <p className="leading-[normal]">{row.num}</p>
+            {data.rows.map((row, i) => {
+              const clickable = Boolean(row.image);
+              return (
+                <div
+                  key={row.num}
+                  onClick={clickable ? () => setSelectedRow(row) : undefined}
+                  className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${clickable ? "cursor-pointer hover:bg-[#eef0f5]" : ""} ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
+                >
+                  <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
+                  <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
+                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
+                        <p className="leading-[normal]">{row.num}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
+                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                        <p className="leading-[24px]">{row.name}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
+                    <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
+                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                        <p className="leading-[24px]">{row.does}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
+                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                        <p className="leading-[24px]">{row.feature}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
-                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-                      <p className="leading-[normal]">{row.name}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
-                  <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                      <p className="leading-[21px]">{row.does}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
-                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-                      <p className="leading-[normal]">{row.feature}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
+      {selectedRow && selectedRow.image && (
+        <ImageModal
+          index={selectedRow.num}
+          title={selectedRow.name}
+          image={selectedRow.image}
+          description={selectedRow.does}
+          onClose={() => setSelectedRow(null)}
+        />
+      )}
     </div>
   );
 }

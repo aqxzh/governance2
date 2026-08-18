@@ -714,7 +714,7 @@ function Container33() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px] mb-0">Диалоговый помощник KZ/RU/EN, фильтр профилей, аналитика</p>
           <p className="leading-[21px]">кандидатов</p>
         </div>
@@ -775,7 +775,7 @@ function Container37() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px]">Компьютерное зрение, анализ видео/аудио, поведенческие паттерны</p>
         </div>
       </div>
@@ -787,7 +787,7 @@ function Container38() {
   return (
     <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Human-in-the-loop</p>
         </div>
       </div>
@@ -835,7 +835,7 @@ function Container41() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px]">Интеграция ЭДО, нагрузка, узкие места, управленческий сигнал</p>
         </div>
       </div>
@@ -895,7 +895,7 @@ function Container45() {
   return (
     <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
       <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[14px]" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[21px] mb-0">Закрытый контур, суперкомпьютер и локальные сервера, защита</p>
           <p className="leading-[21px]">данных РК</p>
         </div>
