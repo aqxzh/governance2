@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import imgTelegramCloudPhotoSize25399823280891436280W2 from "./024996798644ee39e17d62182850eebdd0609893.png";
+import imgLabaMain from "./laba-main.png";
+import imgDemkaPhoto from "./demka-photo.png";
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
 import imgFrame2 from "./a9248cf50efe8245aba6b07afe6d67b31ad55a5a.png";
@@ -197,6 +198,62 @@ function ImageModal({ index, title, image, description, onClose }: { index: stri
           >
             {description}
           </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VideoModal({ src, title, onClose }: { src: string; title: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-[6px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+    >
+      <div
+        className="relative flex w-full max-w-[1100px] flex-col overflow-hidden rounded-[14px] bg-black shadow-[0_24px_80px_rgba(0,0,0,0.5)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex items-center justify-between gap-6 border-b border-white/10 px-7 pt-6 pb-5">
+          <h2
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-white"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {title}
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Закрыть"
+            className="shrink-0 grid size-11 place-items-center rounded-full border border-white/20 text-[26px] leading-none text-white transition-colors hover:bg-white hover:text-[#0d0f16] cursor-pointer"
+          >
+            ×
+          </button>
+        </div>
+        <div className="relative flex min-h-0 items-center justify-center bg-black">
+          <video
+            src={src}
+            controls
+            autoPlay
+            playsInline
+            className="block max-h-[72vh] max-w-full object-contain"
+          />
         </div>
       </div>
     </div>
@@ -799,24 +856,15 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
           {/* Right column: image + buttons */}
           <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
             {/* Hero image — aligned with "Государство" heading */}
-            <div className="w-full lg:w-[516px]">
-              <img alt="" className="w-full h-auto object-cover rounded-[8px]" src={imgTelegramCloudPhotoSize25399823280891436280W2} />
+            <div className="w-full lg:w-[516px] min-h-[200px] bg-[#f4f5f8] rounded-[8px] overflow-hidden">
+              <img alt="Governance.kz" className="block w-full h-auto object-cover rounded-[8px]" src={imgLabaMain} />
             </div>
             
             {/* Buttons */}
             <Container12 onMeetingClick={() => setModal({title: "Записаться на встречу", description: "Описание встречи"})} onNoteClick={() => setModal({title: "Аналитическая записка", description: "Описание записки"})} />
           </div>
         </div>
-
-        {/* Statistics section — inside px-[44px] so it aligns with the rest of the hero */}
-        <div className="mt-[24px] w-full">
-          <Border2 />
-          <Container18 />
-        </div>
       </div>
-      
-      {/* More content sections */}
-          <HorizontalBorder6 onTabClick={onTabClick} />
       
       {/* Modal */}
       {modal && <InfoModal title={modal.title} description={modal.description} onClose={() => setModal(null)} />}
@@ -2271,6 +2319,125 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   );
 }
 
+function DemkaSection() {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const steps = [
+    {
+      num: "01",
+      title: "Придумываем человека",
+      text: "Сто покупателей с возрастом, профессией, доходом, составом семьи и отношением к новинкам. Всё записано обычными словами и передано модели как роль.",
+    },
+    {
+      num: "02",
+      title: "Задаём один вопрос",
+      text: "Один и тот же продукт для всех. Меняется только цена — сначала повышенная, потом со скидкой. Так сравниваем сценарии между собой.",
+    },
+    {
+      num: "03",
+      title: "Получаем живой ответ",
+      text: "Не цифру, а реплику — как в настоящем интервью. Это принципиально: если просить модель сразу назвать балл, она отвечает неохотно и однообразно.",
+    },
+    {
+      num: "04",
+      title: "Переводим слова в оценку",
+      text: "Пять эталонных фраз — от «точно не куплю» до «обязательно куплю». Программа измеряет, на какую похож ответ, по смыслу, а не по совпадению слов.",
+    },
+  ];
+
+  return (
+    <section className="w-full bg-white py-[52px]">
+      <div className="mx-auto w-full max-w-[1112px] px-[20px] sm:px-[44px] flex flex-col items-center gap-[32px]">
+        <div className="flex w-full flex-col gap-[10px]">
+          <h3
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[28px] sm:text-[34px] tracking-[-0.34px] leading-[1.1]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            Процесс работы
+          </h3>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setShowVideo(true)}
+          aria-label="Смотреть видео демо"
+          className="group relative block w-full max-w-[820px] overflow-hidden rounded-[16px] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6] border border-[#e6e8ee]"
+        >
+          <div className="relative aspect-video w-full bg-[#f4f5f8]">
+            <img alt="Опрос синтетических покупателей" className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" src={imgDemkaPhoto} />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+
+            <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-0.5">
+              <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-colors group-hover:bg-[#0d0f16]">
+                <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current" aria-hidden>
+                  <path d="M8 5.14v13.72L19 12 8 5.14z" />
+                </svg>
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Смотреть демо
+              </span>
+            </span>
+
+            <span className="absolute top-5 right-5 rounded-full bg-black/45 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-sm">
+              ДЕМО · 100 РЕСПОНДЕНТОВ
+            </span>
+          </div>
+        </button>
+
+        <p
+          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Опрос 100 синтетических покупателей
+        </p>
+
+        <div className="grid w-full grid-cols-1 gap-px overflow-hidden rounded-[12px] border border-[#e6e8ee] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s) => (
+            <div key={s.num} className="flex flex-col gap-[8px] bg-white p-[20px]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6]">
+                {s.num}
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[15px] leading-[1.25] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {s.title}
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13px] leading-[1.5] text-[#5a606e]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {s.text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {showVideo && (
+        <VideoModal src="/videos/demka.mp4" title="Опрос 100 синтетических покупателей" onClose={() => setShowVideo(false)} />
+      )}
+    </section>
+  );
+}
+
+function GraphsVideoSection() {
+  return (
+    <div className="w-full bg-[#0d0f16]">
+      <video
+        src="/videos/graphs.mov"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="block mx-auto w-full h-auto"
+      />
+    </div>
+  );
+}
+
 function Background() {
   const [modal, setModal] = useState<"meeting" | "note" | null>(null);
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
@@ -2285,6 +2452,13 @@ function Background() {
       ) : (
         <>
           <Frame21 onTabClick={(key) => setActiveTab(key)} />
+          <DemkaSection />
+          <GraphsVideoSection />
+          <div className="w-full px-[20px] sm:px-[44px] py-[40px]">
+            <Border2 />
+            <Container18 />
+          </div>
+          <HorizontalBorder6 onTabClick={(key) => setActiveTab(key)} />
           <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
           <BackgroundHorizontalBorder2 />
           <BackgroundHorizontalBorder3 />
