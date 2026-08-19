@@ -594,7 +594,10 @@ function Heading1() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[2.8px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Прозрачность аппарата</p>
+        <p className="leading-[normal]">
+          <span>Диагностика</span>
+          <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]">{` (Прозрачность аппарата)`}</span>
+        </p>
       </div>
     </div>
   );
@@ -613,15 +616,19 @@ function Container21() {
   );
 }
 
-function Background3() {
+function Background3({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
-    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+    <button
+      type="button"
+      onClick={() => onTabClick("recruitment")}
+      aria-label="Открыть вкладку Диагностика"
+      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame />
       <Container20 />
       <Heading1 />
       <Container21 />
-    </div>
+    </button>
   );
 }
 
@@ -649,7 +656,7 @@ function Heading2() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Кадровая трансформация</p>
+        <p className="leading-[normal]">Координация</p>
       </div>
     </div>
   );
@@ -667,15 +674,19 @@ function Container23() {
   );
 }
 
-function Background4() {
+function Background4({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
-    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+    <button
+      type="button"
+      onClick={() => onTabClick("analytics")}
+      aria-label="Открыть вкладку Координация"
+      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame1 />
       <Container22 />
       <Heading2 />
       <Container23 />
-    </div>
+    </button>
   );
 }
 
@@ -703,7 +714,10 @@ function Heading3() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Управленческий интеллект</p>
+        <p className="leading-[normal]">
+          <span>Акторы</span>
+          <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]">{` (Управленческий интеллект)`}</span>
+        </p>
       </div>
     </div>
   );
@@ -721,35 +735,39 @@ function Container25() {
   );
 }
 
-function Background5() {
+function Background5({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
-    <div className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-default" data-name="Background">
+    <button
+      type="button"
+      onClick={() => onTabClick("assessment")}
+      aria-label="Открыть вкладку Акторы"
+      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <Frame2 />
       <Container24 />
       <Heading3 />
       <Container25 />
-    </div>
+    </button>
   );
 }
 
-function BackgroundBorder() {
+function BackgroundBorder({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
     <div className="bg-white flex flex-col md:flex-row items-stretch justify-center p-px relative w-full max-w-[1112px] mx-auto gap-0" data-name="Background+Border">
-      <Background3 />
-      <Background4 />
-      <Background5 />
+      <Background3 onTabClick={onTabClick} />
+      <Background4 onTabClick={onTabClick} />
+      <Background5 onTabClick={onTabClick} />
     </div>
   );
 }
 
-function HorizontalBorder6() {
+function HorizontalBorder6({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
     <div className="relative w-full" data-name="HorizontalBorder">
       <div className="flex flex-col gap-[8px] items-start px-[20px] sm:px-[44px] py-[52px]">
         <Container19 />
         <Heading />
-        <BackgroundBorder />
+        <BackgroundBorder onTabClick={onTabClick} />
       </div>
     </div>
   );
@@ -798,7 +816,7 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
       </div>
       
       {/* More content sections */}
-      <HorizontalBorder6 />
+          <HorizontalBorder6 onTabClick={onTabClick} />
       
       {/* Modal */}
       {modal && <InfoModal title={modal.title} description={modal.description} onClose={() => setModal(null)} />}
