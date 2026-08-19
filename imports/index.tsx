@@ -3,8 +3,8 @@ import imgTelegramCloudPhotoSize25399823280891436280W2 from "./024996798644ee39e
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
 import imgFrame2 from "./a9248cf50efe8245aba6b07afe6d67b31ad55a5a.png";
-import imgFrame3 from "./4fa431e38b1b4027f74d48ede89597b91dd33cd6.png";
-import imgFrame4 from "./7806c1fdad08dfb8de9062c9932a90b67ebb6a1e.png";
+import imgAfter from "./after.png";
+import imgBefore from "./before.png";
 import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png";
 import imgImage57 from "./a1f65cf94f5b3c805215dfdc6c26bc10642d5405.png";
 import imgFrame5 from "./d905383f33c1e237129302dc61291c1114ce4e71.png";
@@ -347,9 +347,9 @@ function Container11() {
 
 function Background2({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="bg-[#2242d6] h-full relative shrink-0 w-full cursor-pointer transition-colors hover:bg-[#1a35ad]" data-name="Background">
-      <div className="content-stretch flex flex-col items-start px-[26px] py-[14px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div onClick={onClick} className="bg-[#2242d6] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]" data-name="Background">
+      <div className="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full">
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Записаться на встречу →</p>
         </div>
       </div>
@@ -359,10 +359,10 @@ function Background2({ onClick }: { onClick: () => void }) {
 
 function Border1({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="h-full relative shrink-0 cursor-pointer" data-name="Border">
+    <div onClick={onClick} className="relative shrink-0 cursor-pointer" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col items-start px-[27px] py-[15px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14.5px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+      <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
           <p className="leading-[normal]">Аналитическая записка</p>
         </div>
       </div>
@@ -372,7 +372,7 @@ function Border1({ onClick }: { onClick: () => void }) {
 
 function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => void; onNoteClick: () => void }) {
   return (
-    <div className="col-0 content-stretch flex flex-wrap gap-[12px] items-start justify-self-stretch relative row-0 self-end shrink-0" data-name="Container">
+    <div className="col-0 content-stretch flex flex-row gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full" data-name="Container">
       <Background2 onClick={onMeetingClick} />
       <Border1 onClick={onNoteClick} />
     </div>
@@ -1234,11 +1234,11 @@ function Frame5() {
   );
 }
 
-function Frame6() {
+function Frame6({ src }: { src: string }) {
   return (
     <div className="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[40px] row-1 w-[437.528px]" data-name="Frame">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
-        <img alt="" className="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%]" src={imgFrame3} />
+        <img alt="" className="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-rotate-[0.5deg]" src={src} />
       </div>
     </div>
   );
@@ -1253,22 +1253,22 @@ function Frame7() {
   );
 }
 
-function Group3() {
+function Group3({ src }: { src: string }) {
   return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[100.58px] row-1 w-[498.977px]" data-name="Rectangle" />
-      <Frame6 />
-      <div className="bg-[#0d0f16] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px]" data-name="Rectangle" />
+    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[100.58px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <Frame6 src={src} />
+      <div className="bg-[#2242d6] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
       <Frame7 />
     </div>
   );
 }
 
-function Frame8() {
+function Frame8({ src }: { src: string }) {
   return (
     <div className="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[40px] row-1 w-[437.398px]" data-name="Frame">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
-        <img alt="" className="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%]" src={imgFrame4} />
+        <img alt="" className="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:rotate-[0.5deg]" src={src} />
       </div>
     </div>
   );
@@ -1276,7 +1276,7 @@ function Frame8() {
 
 function Frame9() {
   return (
-    <div className="bg-[#0d0f16] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px]" data-name="Frame">
+    <div className="bg-[#2242d6] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Frame">
       <div className="absolute h-[31.5px] left-0 top-0 w-[68.625px]" data-name="Rectangle" />
       <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p>
     </div>
@@ -1286,31 +1286,49 @@ function Frame9() {
 function Group1() {
   return (
     <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="bg-[#0d0f16] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px]" data-name="Rectangle" />
+      <div className="bg-[#2242d6] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
       <Frame9 />
     </div>
   );
 }
 
-function Group2() {
+function Group2({ src }: { src: string }) {
   return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[101.703px] row-1 w-[498.977px]" data-name="Rectangle" />
-      <Frame8 />
+    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[101.703px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <Frame8 src={src} />
       <Group1 />
     </div>
   );
 }
 
 function Group4() {
+  const [swapped, setSwapped] = useState(false);
+
+  const beforeSrc = swapped ? imgAfter : imgBefore;
+  const afterSrc = swapped ? imgBefore : imgAfter;
+
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
       <Frame3 />
       <Frame4 />
       <Frame5 />
-      <p className="[word-break:break-word] col-1 font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[84.841px] leading-[normal] ml-[517.12px] mt-[244.92px] not-italic relative row-1 text-[#2242d6] text-[80px] w-[81.651px]">→</p>
-      <Group3 />
-      <Group2 />
+      <button
+        type="button"
+        onClick={() => setSwapped((v) => !v)}
+        aria-label={swapped ? "Вернуть к исходному состоянию" : "Поменять «Было» и «Стало» местами"}
+        title={swapped ? "Вернуть" : "Поменять местами"}
+        className="col-1 group relative ml-[517.12px] mt-[244.92px] row-1 flex h-[84.841px] w-[81.651px] cursor-pointer items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        data-name="Arrow"
+      >
+        <span aria-hidden className="absolute inset-0 rounded-full bg-[#2242d6]/10 transition-transform duration-300 group-hover:scale-110 group-active:scale-95" />
+        <span aria-hidden className="absolute -inset-[6px] rounded-full border border-[#2242d6]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <span className="pointer-events-none select-none font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-none text-[#2242d6] text-[80px] transition-transform duration-500 ease-out group-hover:translate-x-[2px] group-hover:text-[#1a35ad]" style={{ display: 'inline-block', transform: swapped ? 'scaleX(-1)' : 'none' }}>
+          →
+        </span>
+      </button>
+      <Group2 src={beforeSrc} />
+      <Group3 src={afterSrc} />
     </div>
   );
 }
@@ -1703,21 +1721,26 @@ function Container51() {
 
 function Heading9() {
   return (
-    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full lg:w-[350px]" data-name="Heading 2">
-      <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
+      <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">{`ServiceFlow: Проактивный клиентский сервис`}</p>
       </div>
-      <div className="flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[375px] justify-center not-italic relative shrink-0 text-[#0d0f16] text-[0px] w-[350px]">
-        <p className="mb-0 text-[26px]">
-          <span className="leading-[normal]">{`Проанализировано `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">1 500</span>
-          <span className="leading-[normal]">{` государственных услуг`}</span>
-        </p>
-        <p className="leading-[normal] mb-0 text-[26px]">с помощью ИИ.</p>
-        <p className="leading-[normal] mb-0 text-[26px]">Выявление аномалий,</p>
-        <p className="leading-[normal] mb-0 text-[26px]">скрытых офлайн-процессов</p>
-        <p className="leading-[normal] text-[26px]">и нормативных барьеров.</p>
-      </div>
+    </div>
+  );
+}
+
+function ServiceFlowText() {
+  return (
+    <div className="flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center not-italic relative shrink-0 text-[#0d0f16] text-[0px] w-full max-w-[350px]" data-name="ServiceFlow Text">
+      <p className="mb-0 text-[26px]">
+        <span className="leading-[normal]">{`Проанализировано `}</span>
+        <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">1 500</span>
+        <span className="leading-[normal]">{` государственных услуг`}</span>
+      </p>
+      <p className="leading-[normal] mb-0 text-[26px]">с помощью ИИ.</p>
+      <p className="leading-[normal] mb-0 text-[26px]">Выявление аномалий,</p>
+      <p className="leading-[normal] mb-0 text-[26px]">скрытых офлайн-процессов</p>
+      <p className="leading-[normal] text-[26px]">и нормативных барьеров.</p>
     </div>
   );
 }
@@ -1764,8 +1787,9 @@ function BackgroundHorizontalBorder6() {
               <p className="leading-[normal]">08 / SERVICEFLOW</p>
             </div>
           </div>
+          <Heading9 />
           <div className="flex flex-col lg:flex-row items-start gap-[40px] w-full">
-            <Heading9 />
+            <ServiceFlowText />
             <div className="w-full lg:flex-1 lg:min-w-0">
               <Group10 />
             </div>
