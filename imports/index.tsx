@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import imgLabaMain from "./laba-main.png";
 import imgDemkaPhoto from "./demka-photo.png";
 import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png";
@@ -99,9 +99,9 @@ const tabData: Record<TabKey, TabData> = {
       { num: "02", name: "Аналитика госфункций", does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи", feature: "Переход от обзора к профилю в один клик", image: imgSolutionGovFunctionsAnalytics },
       { num: "03", name: "Рекрутинг с ИИ", does: "AI-платформа подбора кадровного резерва из 50 000+ профилей по опыту, компетенциям, рангу и параметрам", feature: "50 000+ профилей", image: imgSolutionAiRecruitment },
       { num: "04", name: "Аналитика госуслуг", does: "Автоматизированный аудит реестра госуслуг и НПА: выявление неэффективных процедур и ошибок в нормативке", feature: "Пошаговый план автоматизации", image: imgSolutionGovServicesAnalytics },
-      { num: "05", name: "Аналитика Екызмет", does: "Платформа анализа качества данных о сотрудниках ИС eqyzmet.kz: демографические и профессиональные характеристики", feature: "Повышение точности метрик", image: imgSolutionEkyzmetAnalytics },
+      { num: "05", name: "Кадровая аналитика госслужащих", does: "Платформа анализа качества данных о сотрудниках государственных органов: демографические и профессиональные характеристики", feature: "Повышение точности метрик", image: imgSolutionEkyzmetAnalytics },
       { num: "06", name: "Антикоррупционный мониторинг", does: "Сквозной анализ данных для выявления скрытой аффилированности, мониторинга фискальной дисциплины и оценки рисков", feature: "Предиктивная оценка рисков", image: imgSolutionAnticorruptionMonitoring },
-      { num: "07", name: "Сверка ЕКС и «Енбек»", does: "Интеллектуальный аудит расхождений между ИС «ЕКС» (ручной ввод) и ИС «Енбек» (автообновление) с проверкой ИИН/БИН", feature: "Аналитика качества данных", image: imgSolutionEksEnbekReconciliation },
+      { num: "07", name: "Сверка баз данных", does: "Интеллектуальный аудит расхождений между кадровой системой с ручным вводом и системой с автообновлением, с проверкой идентификаторов сотрудников", feature: "Аналитика качества данных", image: imgSolutionEksEnbekReconciliation },
     ],
   },
   analytics: {
@@ -114,7 +114,7 @@ const tabData: Record<TabKey, TabData> = {
     rows: [
       { num: "01", name: "Цифровой двойник", does: "Моделирование перераспределения функций и сотрудников между ведомствами с мгновенным расчётом нагрузки и баланса", feature: "Drag-and-drop интерфейс", image: imgSolutionDigitalTwin },
       { num: "02", name: "Отбор на госслужбу с ИИ", does: "Оценка кандидатов через анализ видео, голосовых ответов и текста по 15 компетенциям: логика, коммуникация, устойчивость", feature: "15 компетенций", image: imgSolutionCivilServiceSelection },
-      { num: "03", name: "ИИ-советник по управлению", does: "Единый интеллектуальный центр доступа к знаниям организации на данных eOtinish и Documentolog — вопросы на естественном языке", feature: "Интерактивные панели и упреждающие сигналы", image: imgSolutionAiManagementAdvisor },
+      { num: "03", name: "ИИ-советник по управлению", does: "Единый интеллектуальный центр доступа к знаниям организации на данных систем документооборота и обращений граждан — вопросы на естественном языке", feature: "Интерактивные панели и упреждающие сигналы", image: imgSolutionAiManagementAdvisor },
       { num: "04", name: "Банк отраслевых направлений", does: "Единая база данных по всем госслужащим Казахстана: стаж, прошлые места работы, быстрый подбор кандидата на вакансию", feature: "Поиск по всем регионам", image: imgSolutionIndustryBank },
     ],
   },
@@ -221,19 +221,19 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-[6px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/50 backdrop-blur-[3px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
       <div
-        className="relative flex w-full max-w-[1100px] flex-col overflow-hidden rounded-[14px] bg-black shadow-[0_24px_80px_rgba(0,0,0,0.5)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        className="relative flex w-full max-w-[1100px] flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_80px_rgba(13,15,22,0.25)] ring-1 ring-[#e6e8ee] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center justify-between gap-6 border-b border-white/10 px-7 pt-6 pb-5">
+        <div className="flex items-center justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
           <h2
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-white"
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
             style={{ fontVariationSettings: '"wdth" 100' }}
           >
             {title}
@@ -242,12 +242,12 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
             type="button"
             onClick={onClose}
             aria-label="Закрыть"
-            className="shrink-0 grid size-11 place-items-center rounded-full border border-white/20 text-[26px] leading-none text-white transition-colors hover:bg-white hover:text-[#0d0f16] cursor-pointer"
+            className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:bg-[#0d0f16] hover:text-white cursor-pointer"
           >
             ×
           </button>
         </div>
-        <div className="relative flex min-h-0 items-center justify-center bg-black">
+        <div className="relative flex min-h-0 items-center justify-center bg-[#f6f7fb]">
           <video
             src={src}
             controls
@@ -833,26 +833,54 @@ function HorizontalBorder6({ onTabClick }: { onTabClick: (id: TabKey) => void })
 
 function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    let rafId = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const el = heroRef.current;
+        const v = videoRef.current;
+        if (!el || !v) return;
+        const rect = el.getBoundingClientRect();
+        const progress = Math.max(-1, Math.min(1, -rect.top / rect.height));
+        v.style.transform = `translateY(${progress * 8}%) scale(1.12)`;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
-    <div className="relative w-full overflow-hidden" data-name="HorizontalBorder">
-      {/* Фоновое зацикленное видео */}
-      <div className="absolute inset-0 z-0">
+    <div ref={heroRef} className="relative w-full overflow-hidden" data-name="HorizontalBorder">
+      {/* Фоновое зацикленное видео с параллаксом */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <video
+          ref={videoRef}
           src="/videos/graphs.mov"
           autoPlay
           muted
           loop
           playsInline
-          className="size-full object-cover"
+          className="absolute inset-0 size-full object-cover will-change-transform"
+          style={{ transform: "scale(1.12)" }}
         />
-        <div className="absolute inset-0 bg-[#0d0f16]/55" />
+        {/* Затемнение для читаемости текста */}
+        <div className="absolute inset-0 bg-[#0d0f16]/65" />
+        {/* Плавный fade в белый снизу — бесшовный переход в контент */}
+        <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-b from-transparent to-white" />
       </div>
 
       {/* Контент поверх фона */}
       <div className="relative z-10 px-[20px] sm:px-[44px] py-[48px] sm:py-[64px]">
         {/* Label */}
-        <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#7d92ff] mb-[24px]">
+        <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white mb-[24px]">
           <p className="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
         </div>
 
@@ -2335,6 +2363,24 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
 function DemkaSection() {
   const [showVideo, setShowVideo] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const steps = [
     {
@@ -2360,9 +2406,18 @@ function DemkaSection() {
   ];
 
   return (
-    <section className="w-full bg-white py-[52px]">
-      <div className="mx-auto w-full max-w-[1112px] px-[20px] sm:px-[44px] flex flex-col items-center gap-[32px]">
-        <div className="flex w-full flex-col gap-[10px]">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white py-[52px]"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity .6s ease, transform .6s cubic-bezier(0.2,0.8,0.2,1)",
+      }}
+    >
+      <div className="mx-auto w-full max-w-[1112px] px-[20px] sm:px-[44px] flex flex-col items-center gap-[28px]">
+        {/* Заголовок */}
+        <div className="flex w-full flex-col gap-[6px]">
           <h3
             className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[28px] sm:text-[34px] tracking-[-0.34px] leading-[1.1]"
             style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2371,18 +2426,25 @@ function DemkaSection() {
           </h3>
         </div>
 
+        {/* Кликабельное превью */}
         <button
           type="button"
           onClick={() => setShowVideo(true)}
           aria-label="Смотреть видео демо"
-          className="group relative block w-full max-w-[820px] overflow-hidden rounded-[16px] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6] border border-[#e6e8ee]"
+          className="group relative block w-full max-w-[820px] overflow-hidden rounded-[16px] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6] shadow-[0_12px_40px_-12px_rgba(13,15,22,0.25)] transition-shadow duration-500 hover:shadow-[0_24px_60px_-16px_rgba(13,15,22,0.4)]"
         >
-          <div className="relative aspect-video w-full bg-[#f4f5f8]">
-            <img alt="Опрос синтетических покупателей" className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" src={imgDemkaPhoto} />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+          <div className="relative aspect-video w-full bg-[#0d0f16]">
+            <img
+              alt="Опрос синтетических покупателей"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              src={imgDemkaPhoto}
+            />
+            {/* Градиент для читаемости снизу */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
 
-            <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-0.5">
-              <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-colors group-hover:bg-[#0d0f16]">
+            {/* Подпись в левом нижнем углу */}
+            <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-white">
+              <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0d0f16]">
                 <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current" aria-hidden>
                   <path d="M8 5.14v13.72L19 12 8 5.14z" />
                 </svg>
@@ -2395,12 +2457,17 @@ function DemkaSection() {
               </span>
             </span>
 
-            <span className="absolute top-5 right-5 rounded-full bg-black/45 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-sm">
+            {/* Бейдж справа сверху */}
+            <span className="absolute top-5 right-5 rounded-full border border-white/20 bg-black/40 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-md">
               ДЕМО · 100 РЕСПОНДЕНТОВ
             </span>
+
+            {/* Тонкая внутренняя рамка */}
+            <span className="pointer-events-none absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/10" />
           </div>
         </button>
 
+        {/* Подзаголовок */}
         <p
           className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2408,10 +2475,14 @@ function DemkaSection() {
           Опрос 100 синтетических покупателей
         </p>
 
+        {/* Шаги */}
         <div className="grid w-full grid-cols-1 gap-px overflow-hidden rounded-[12px] border border-[#e6e8ee] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
-            <div key={s.num} className="flex flex-col gap-[8px] bg-white p-[20px]">
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6]">
+            <div
+              key={s.num}
+              className="group/step flex flex-col gap-[8px] bg-white p-[20px] transition-colors duration-300 hover:bg-[#f8f9fc]"
+            >
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6] transition-colors group-hover/step:text-[#0d0f16]">
                 {s.num}
               </span>
               <span
