@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import imgLabaMain from "./laba-main.png";
 import imgDemkaPhoto from "./demka-photo.png";
+import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png";
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
 import imgFrame2 from "./a9248cf50efe8245aba6b07afe6d67b31ad55a5a.png";
@@ -92,7 +93,7 @@ const tabData: Record<TabKey, TabData> = {
     title: "Диагностика",
     description:
       "ИИ анализирует функции, кадры и услуги госорганов в единой логике данных: находит дублирования полномочий, скрытые барьеры и аномалии. Диагностика показывает, где процессы ломаются и почему.",
-    image: imgTabDiagnostics,
+    image: imgBrain,
     rows: [
       { num: "01", name: "Функциональный анализ", does: "Платформа выявляет коллизии между ведомствами, дублирование полномочий и несоответствие функций декларируемой миссии", feature: "Передача функций частному сектору", image: imgSolutionFunctionalAnalysis },
       { num: "02", name: "Аналитика госфункций", does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи", feature: "Переход от обзора к профилю в один клик", image: imgSolutionGovFunctionsAnalytics },
