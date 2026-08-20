@@ -417,7 +417,7 @@ function Background2({ onClick }: { onClick: () => void }) {
 
 function Border1({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="relative shrink-0 cursor-pointer" data-name="Border">
+    <div onClick={onClick} className="relative shrink-0 cursor-pointer bg-white" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
@@ -835,56 +835,69 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
   const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
 
   return (
-    <div className="border-b border-[#e6e8ee] w-full" data-name="HorizontalBorder">
-      <div className="px-[20px] sm:px-[44px] py-[40px]">
+    <div className="relative w-full overflow-hidden" data-name="HorizontalBorder">
+      {/* Фоновое зацикленное видео */}
+      <div className="absolute inset-0 z-0">
+        <video
+          src="/videos/graphs.mov"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="size-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0d0f16]/55" />
+      </div>
+
+      {/* Контент поверх фона */}
+      <div className="relative z-10 px-[20px] sm:px-[44px] py-[48px] sm:py-[64px]">
         {/* Label */}
-        <Container9 />
-        
+        <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#7d92ff] mb-[24px]">
+          <p className="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
+        </div>
+
         {/* Hero content: text left, image and buttons right */}
         <div className="flex flex-col lg:flex-row gap-[40px] items-start mt-[32px] mb-[40px]">
           <div className="flex-1">
             {/* Main heading */}
-            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-white text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style={{ fontVariationSettings: '"wdth" 100' }}>
               <p className="mb-0">Государство и бизнес,</p>
               <p className="mb-0">которые видят свои</p>
               <p>процессы целиком</p>
             </div>
-            
+
             {/* Description text only */}
-            <Container11 />
+            <div className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] text-white/75" style={{ fontVariationSettings: '"wdth" 100' }}>
+              <p className="leading-[28.8px] mb-0">Governance.kz — прикладной центр цифровой трансформации</p>
+              <p className="leading-[28.8px] mb-0">управления. ИИ анализирует функции, кадры, услуги и нагрузку в</p>
+              <p className="leading-[28.8px] mb-0">единой логике данных: находит дублирования, барьеры и аномалии —</p>
+              <p className="leading-[28.8px]">а решения остаются за людьми.</p>
+            </div>
           </div>
-          
+
           {/* Right column: image + buttons */}
           <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
-            {/* Hero image — aligned with "Государство" heading */}
+            {/* Hero image */}
             <div className="w-full lg:w-[516px] min-h-[200px] bg-[#f4f5f8] rounded-[8px] overflow-hidden">
               <img alt="Governance.kz" className="block w-full h-auto object-cover rounded-[8px]" src={imgLabaMain} />
             </div>
-            
+
             {/* Buttons */}
             <Container12 onMeetingClick={() => setModal({title: "Записаться на встречу", description: "Описание встречи"})} onNoteClick={() => setModal({title: "Аналитическая записка", description: "Описание записки"})} />
           </div>
         </div>
       </div>
-      
+
       {/* Modal */}
       {modal && <InfoModal title={modal.title} description={modal.description} onClose={() => setModal(null)} />}
     </div>
   );
 }
 
-function Group11({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <HorizontalBorder1 onTabClick={onTabClick} />
-    </div>
-  );
-}
-
 function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <Group11 onTabClick={onTabClick} />
+    <div className="w-full">
+      <HorizontalBorder1 onTabClick={onTabClick} />
     </div>
   );
 }
@@ -2241,8 +2254,8 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
         {/* Image */}
         {data.image && (
-          <div className="flex items-center justify-center w-full overflow-hidden">
-            <img src={data.image} alt={data.title} className="block max-h-[260px] sm:max-h-[320px] max-w-full object-contain" />
+          <div className="flex items-center justify-center w-full h-[260px] sm:h-[320px] overflow-hidden">
+            <img src={data.image} alt={data.title} className="block max-h-full max-w-full object-contain" />
           </div>
         )}
 
@@ -2424,42 +2437,63 @@ function DemkaSection() {
   );
 }
 
-function GraphsVideoSection() {
-  return (
-    <div className="w-full bg-[#0d0f16]">
-      <video
-        src="/videos/graphs.mov"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="block mx-auto w-full h-auto"
-      />
-    </div>
-  );
-}
-
 function Background() {
   const [modal, setModal] = useState<"meeting" | "note" | null>(null);
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
 
+  const hashToTab: Record<string, TabKey> = {
+    diagnostics: "recruitment",
+    coordination: "analytics",
+    actors: "assessment",
+  };
+  const tabToHash: Record<TabKey, string> = {
+    recruitment: "diagnostics",
+    analytics: "coordination",
+    assessment: "actors",
+  };
+
+  useEffect(() => {
+    const applyHash = () => {
+      const h = window.location.hash.replace("#", "");
+      if (hashToTab[h]) {
+        setActiveTab(hashToTab[h]);
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
+
+  const handleTabChange = (key: TabKey) => {
+    setActiveTab(key);
+    if (window.location.hash !== `#${tabToHash[key]}`) {
+      window.history.replaceState(null, "", `#${tabToHash[key]}`);
+    }
+  };
+
+  const handleBack = () => {
+    setActiveTab(null);
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  };
+
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
       <Background1 />
-      <HorizontalBorder onTabClick={(key) => setActiveTab(key)} />
+      <HorizontalBorder onTabClick={(key) => handleTabChange(key)} />
       {activeTab ? (
-        <TabPage tabKey={activeTab} onBack={() => setActiveTab(null)} />
+        <TabPage tabKey={activeTab} onBack={handleBack} />
       ) : (
         <>
-          <Frame21 onTabClick={(key) => setActiveTab(key)} />
+          <Frame21 onTabClick={(key) => handleTabChange(key)} />
           <DemkaSection />
-          <GraphsVideoSection />
           <div className="w-full px-[20px] sm:px-[44px] py-[40px]">
             <Border2 />
             <Container18 />
           </div>
-          <HorizontalBorder6 onTabClick={(key) => setActiveTab(key)} />
+          <HorizontalBorder6 onTabClick={(key) => handleTabChange(key)} />
           <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
           <BackgroundHorizontalBorder2 />
           <BackgroundHorizontalBorder3 />
