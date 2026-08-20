@@ -131,7 +131,7 @@ const tabData: Record<TabKey, TabData> = {
   },
 };
 
-function ImageModal({ index, title, image, description, onClose }: { index: string; title: string; image: string; description: string; onClose: () => void }) {
+function ImageModal({ index, title, image, description, onClose, showTitle = true }: { index: string; title: string; image: string; description: string; onClose: () => void; showTitle?: boolean }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -147,7 +147,7 @@ function ImageModal({ index, title, image, description, onClose }: { index: stri
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-[6px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/25 backdrop-blur-[3px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -157,36 +157,48 @@ function ImageModal({ index, title, image, description, onClose }: { index: stri
         className="relative flex w-full max-w-[1100px] max-h-[90vh] flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
         onClick={(event) => event.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
-          <div className="flex min-w-0 flex-col">
-            <div className="flex items-baseline gap-[14px] min-w-0">
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[22px] leading-none text-[#2242d6] tabular-nums shrink-0">
-                {index}
-              </span>
-              <h2
-                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
-                style={{ fontVariationSettings: '"wdth" 100' }}
-              >
-                {title}
-              </h2>
+        {/* Header — только для реестра решений */}
+        {showTitle && (
+          <div className="flex items-start justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
+            <div className="flex min-w-0 flex-col">
+              <div className="flex items-baseline gap-[14px] min-w-0">
+                <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[22px] leading-none text-[#2242d6] tabular-nums shrink-0">
+                  {index}
+                </span>
+                <h2
+                  className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {title}
+                </h2>
+              </div>
             </div>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Закрыть"
+              className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
+            >
+              ×
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Закрыть"
-            className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
-          >
-            ×
-          </button>
-        </div>
+        )}
 
         {/* Image stage */}
         <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-[#f6f7fb] p-4 sm:p-8">
+          {!showTitle && (
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Закрыть"
+              className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full border border-[#e6e8ee] bg-white text-[24px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
+            >
+              ×
+            </button>
+          )}
           <img
             src={image}
-            alt={title}
+            alt=""
             className="block max-h-[64vh] max-w-full object-contain shadow-[0_8px_32px_rgba(13,15,22,0.12)]"
           />
         </div>
@@ -2355,6 +2367,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
           image={selectedRow.image}
           description={selectedRow.does}
           onClose={() => setSelectedRow(null)}
+          showTitle={false}
         />
       )}
     </div>
