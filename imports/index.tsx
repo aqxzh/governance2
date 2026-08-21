@@ -233,75 +233,31 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/50 backdrop-blur-[3px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/60 backdrop-blur-[2px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
       <div
-        className="relative flex w-full max-w-[1100px] flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_80px_rgba(13,15,22,0.25)] ring-1 ring-[#e6e8ee] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        className="relative animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
-          <h2
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {title}
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Закрыть"
-            className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:bg-[#0d0f16] hover:text-white cursor-pointer"
-          >
-            ×
-          </button>
-        </div>
-        <div className="relative flex min-h-0 items-center justify-center bg-[#f6f7fb]">
-          <video
-            src={src}
-            controls
-            autoPlay
-            playsInline
-            className="block max-h-[72vh] max-w-full object-contain"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.46px] whitespace-nowrap">
-        <p className="leading-[normal] hidden sm:block">ЛАБОРАТОРИЯ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА · ГОСУДАРСТВЕННАЯ СЛУЖБА РК</p>
-        <p className="leading-[normal] sm:hidden">ЛАБОРАТОРИЯ ИИ · ГС РК</p>
-      </div>
-    </div>
-  );
-}
-
-function Container1() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.46px] whitespace-nowrap">
-        <p className="leading-[normal]">RU / KZ / EN</p>
-      </div>
-    </div>
-  );
-}
-
-function Background1() {
-  return (
-    <div className="bg-[#0d0f16] h-[33px] relative shrink-0 w-full" data-name="Background">
-      <div className="flex flex-row justify-center size-full">
-        <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[9px] relative size-full">
-          <Container />
-          <Container1 />
-        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Закрыть"
+          className="absolute -right-3 -top-3 z-10 grid size-9 place-items-center rounded-full bg-white text-[22px] leading-none text-[#0d0f16] shadow-lg transition-colors hover:bg-[#2242d6] hover:text-white cursor-pointer"
+        >
+          ×
+        </button>
+        <video
+          src={src}
+          controls
+          autoPlay
+          playsInline
+          className="block max-h-[65vh] max-w-[760px] rounded-[12px] object-contain ring-4 ring-white"
+        />
       </div>
     </div>
   );
@@ -385,13 +341,16 @@ function Border() {
   );
 }
 
-function HorizontalBorder({ onTabClick, onHomeClick }: { onTabClick: (id: TabKey) => void; onHomeClick?: () => void }) {
+function HorizontalBorder({ onTabClick, onHomeClick, language, onLanguageChange }: { onTabClick: (id: TabKey) => void; onHomeClick?: () => void; language: Language; onLanguageChange: (lang: Language) => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full gap-[24px]">
           <Container2 onHomeClick={onHomeClick} />
-          <HeroTabs onTabClick={onTabClick} />
+          <div className="flex flex-row items-center gap-[16px]">
+            <HeroTabs onTabClick={onTabClick} />
+            <LanguageSwitcher language={language} onChange={onLanguageChange} />
+          </div>
         </div>
       </div>
     </div>
@@ -682,11 +641,8 @@ function Heading1() {
 function Container21() {
   return (
     <div className="content-stretch flex flex-col items-start pb-[0.68px] relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[22.48px] mb-0">Функциональный анализ госорганов и</p>
-        <p className="leading-[22.48px] mb-0">аналитика госуслуг: дублирования, коллизии,</p>
-        <p className="leading-[22.48px] mb-0">скрытые барьеры, перевод в проактивный</p>
-        <p className="leading-[22.48px]">формат.</p>
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[22.48px] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <p>Функциональный анализ госорганов и аналитика госуслуг: дублирования, коллизии, скрытые барьеры, перевод в проактивный формат.</p>
       </div>
     </div>
   );
@@ -1469,7 +1425,7 @@ function Container48() {
   );
 }
 
-function Group6() {
+function Group6({ onPlayClick }: { onPlayClick: () => void }) {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
       <div className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]" data-name="image 55">
@@ -1480,6 +1436,23 @@ function Group6() {
         <p className="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p>
         <p className="leading-[normal]">вычислительных мощностей.</p>
       </div>
+      <button
+        type="button"
+        onClick={onPlayClick}
+        aria-label="Смотреть видео"
+        className="group col-1 row-1 relative z-10 flex items-center justify-center gap-[10px] rounded-full bg-white/90 backdrop-blur-sm px-[20px] py-[12px] transition-all duration-300 hover:bg-[#2242d6] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        style={{ marginLeft: 905, marginTop: 110 }}
+      >
+        <svg viewBox="0 0 24 24" className="size-5 fill-[#2242d6] group-hover:fill-white transition-colors" aria-hidden>
+          <path d="M8 5.14v13.72L19 12 8 5.14z" />
+        </svg>
+        <span
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] group-hover:text-white whitespace-nowrap transition-colors"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Смотреть видео
+        </span>
+      </button>
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
@@ -1513,26 +1486,30 @@ function Group5() {
   );
 }
 
-function Heading6() {
+function Heading6({ onPlayClick }: { onPlayClick: () => void }) {
   return (
     <div className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Стратегический фундамент: Почему Казахстан?</p>
       </div>
-      <Group6 />
+      <Group6 onPlayClick={onPlayClick} />
       <Group5 />
     </div>
   );
 }
 
 function BackgroundHorizontalBorder3() {
+  const [showProcessVideo, setShowProcessVideo] = useState(false);
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
         <Container48 />
-        <Heading6 />
+        <Heading6 onPlayClick={() => setShowProcessVideo(true)} />
       </div>
+      {showProcessVideo && (
+        <VideoModal src="/videos/process.MP4" title="Стратегический фундамент" onClose={() => setShowProcessVideo(false)} />
+      )}
     </div>
   );
 }
@@ -2250,6 +2227,31 @@ function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   );
 }
 
+type Language = "RU" | "KZ" | "EN";
+
+function LanguageSwitcher({ language, onChange }: { language: Language; onChange: (lang: Language) => void }) {
+  const langs: Language[] = ["RU", "KZ", "EN"];
+  return (
+    <div className="flex flex-row items-center gap-[2px] shrink-0">
+      {langs.map((lang, i) => (
+        <React.Fragment key={lang}>
+          {i > 0 && <span className="text-[12px] text-[#b9c1e8] select-none">·</span>}
+          <button
+            type="button"
+            onClick={() => onChange(lang)}
+            className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[0.46px] px-[6px] py-[4px] cursor-pointer transition-colors hover:text-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] rounded-[4px]"
+            style={{ color: lang === language ? "#2242d6" : "#3a4050", fontWeight: lang === language ? 700 : 400 }}
+            aria-pressed={lang === language}
+            aria-label={`Сменить язык на ${lang}`}
+          >
+            {lang}
+          </button>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
 function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   const data = tabData[tabKey];
   const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
@@ -2267,31 +2269,39 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
         </button>
       </div>
 
-      {/* Page content */}
-      <div className="content-stretch flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
-        {/* Heading */}
-        <h2
-          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[36px] tracking-[-0.36px] text-[#0d0f16] sm:text-[42px]"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          {data.title}
-        </h2>
-
-        {/* Description */}
-        <p
-          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[900px]"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          {data.description}
-        </p>
-
-        {/* Image */}
+      {/* Hero-фон вкладки с картинкой */}
+      <div className="relative w-full overflow-hidden">
+        {/* Фоновая картинка с затемнением */}
         {data.image && (
-          <div className="flex items-center justify-center w-full h-[260px] sm:h-[320px] overflow-hidden">
-            <img src={data.image} alt={data.title} className="block max-h-full max-w-full object-contain" />
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <img src={data.image} alt="" className="size-full object-cover" style={{ transform: "scale(1.05)" }} />
+            <div className="absolute inset-0 bg-[#0d0f16]/65" />
+            <div className="absolute inset-x-0 bottom-0 h-[160px] bg-gradient-to-b from-transparent via-white/40 to-white" />
           </div>
         )}
 
+        {/* Контент поверх фона */}
+        <div className="relative z-10 flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[40px] pt-[20px] w-full max-w-[1170px] mx-auto min-h-[300px] sm:min-h-[360px]">
+          {/* Heading */}
+          <h2
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[36px] tracking-[-0.36px] text-white sm:text-[42px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.title}
+          </h2>
+
+          {/* Description */}
+          <p
+            className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-white/75 max-w-[900px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.description}
+          </p>
+        </div>
+      </div>
+
+      {/* Registry table */}
+      <div className="content-stretch flex flex-col px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
         {/* Registry table — same columns as "03 / ПРОДУКТЫ" */}
         <div className="relative w-full">
           <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
@@ -2417,7 +2427,7 @@ function DemkaSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white py-[52px]"
+      className="w-full bg-white py-[80px]"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -2428,80 +2438,133 @@ function DemkaSection() {
         {/* Заголовок */}
         <div className="flex w-full flex-col gap-[6px]">
           <h3
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[28px] sm:text-[34px] tracking-[-0.34px] leading-[1.1]"
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[34px] sm:text-[42px] tracking-[-0.34px] leading-[1.1]"
             style={{ fontVariationSettings: '"wdth" 100' }}
           >
             Процесс работы
           </h3>
         </div>
+      </div>
 
-        {/* Кликабельное превью */}
-        <button
-          type="button"
-          onClick={() => setShowVideo(true)}
-          aria-label="Смотреть видео демо"
-          className="group relative block w-full max-w-[820px] overflow-hidden rounded-[16px] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6] shadow-[0_12px_40px_-12px_rgba(13,15,22,0.25)] transition-shadow duration-500 hover:shadow-[0_24px_60px_-16px_rgba(13,15,22,0.4)]"
+      {/* Превью / встроенное видео */}
+      <div className="w-full px-[20px] sm:px-[44px] mt-[28px]">
+        <div
+          className="relative block w-full max-w-[1600px] mx-auto overflow-hidden rounded-[14px] outline-none"
         >
-          <div className="relative aspect-video w-full bg-[#0d0f16]">
-            <img
-              alt="Опрос синтетических покупателей"
-              className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              src={imgDemkaPhoto}
-            />
-            {/* Градиент для читаемости снизу */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
-
-            {/* Подпись в левом нижнем углу */}
-            <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-white">
-              <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0d0f16]">
-                <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current" aria-hidden>
-                  <path d="M8 5.14v13.72L19 12 8 5.14z" />
-                </svg>
-              </span>
-              <span
-                className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
-                style={{ fontVariationSettings: '"wdth" 100' }}
+          <div className="relative w-full bg-white" style={{ aspectRatio: "21 / 7" }}>
+            {showVideo ? (
+              <>
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    alt=""
+                    aria-hidden
+                    className="size-full object-cover"
+                    style={{ transform: "scale(1.05)" }}
+                    src={imgDemkaPhoto}
+                  />
+                  <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white via-white/80 to-transparent" />
+                  <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-white via-white/80 to-transparent" />
+                </div>
+                <video
+                  src="/videos/demka.MP4"
+                  controls
+                  autoPlay
+                  playsInline
+                  className="relative h-full w-full object-contain outline-none border-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowVideo(false)}
+                  aria-label="Вернуться к превью"
+                  className="group absolute left-4 top-4 z-20 flex items-center gap-[8px] rounded-full bg-white/95 pl-[12px] pr-[16px] py-[8px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all hover:bg-white"
+                >
+                  <svg viewBox="0 0 24 24" className="size-4 fill-[#2242d6]" aria-hidden>
+                    <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                  </svg>
+                  <span
+                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] whitespace-nowrap"
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    Назад
+                  </span>
+                </button>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowVideo(true)}
+                aria-label="Смотреть видео демо"
+                className="group absolute inset-0 size-full cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6]"
               >
-                Смотреть демо
-              </span>
-            </span>
-
-            {/* Бейдж справа сверху */}
-            <span className="absolute top-5 right-5 rounded-full border border-white/20 bg-black/40 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-md">
-              ДЕМО · 100 РЕСПОНДЕНТОВ
-            </span>
-
-            {/* Тонкая внутренняя рамка */}
-            <span className="pointer-events-none absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/10" />
+                <div className="absolute inset-0 overflow-hidden">
+                  <img
+                    alt=""
+                    aria-hidden
+                    className="size-full object-cover"
+                    style={{ transform: "scale(1.05)" }}
+                    src={imgDemkaPhoto}
+                  />
+                  <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white via-white/80 to-transparent" />
+                  <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-white via-white/80 to-transparent" />
+                </div>
+                <img
+                  alt="Опрос синтетических покупателей"
+                  className="relative h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  src={imgDemkaPhoto}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-white">
+                  <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0d0f16]">
+                    <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current" aria-hidden>
+                      <path d="M8 5.14v13.72L19 12 8 5.14z" />
+                    </svg>
+                  </span>
+                  <span
+                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    Смотреть демо
+                  </span>
+                </span>
+                <span className="absolute top-5 right-5 rounded-full border border-white/20 bg-black/40 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-md">
+                  ДЕМО · 100 РЕСПОНДЕНТОВ
+                </span>
+                <span className="pointer-events-none absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/10" />
+              </button>
+            )}
           </div>
-        </button>
+        </div>
+      </div>
 
-        {/* Подзаголовок */}
+      {/* Подзаголовок */}
+      <div className="w-full px-[20px] sm:px-[44px] mt-[28px]">
         <p
-          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center"
+          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center mx-auto"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Опрос 100 синтетических покупателей
         </p>
+      </div>
 
-        {/* Шаги */}
-        <div className="grid w-full grid-cols-1 gap-px overflow-hidden rounded-[12px] border border-[#e6e8ee] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
+      {/* Шаги — выровнены по границам статистики */}
+      <div className="w-full px-[20px] sm:px-[44px]">
+        <div className="grid w-full max-w-[1112px] mx-auto grid-cols-1 gap-px overflow-hidden border border-[#0d0f16] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div
               key={s.num}
-              className="group/step flex flex-col gap-[8px] bg-white p-[20px] transition-colors duration-300 hover:bg-[#f8f9fc]"
+              className="group/step flex flex-col gap-[10px] bg-white p-[28px] transition-colors duration-300 hover:bg-[#f8f9fc]"
             >
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6] transition-colors group-hover/step:text-[#0d0f16]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[15px] tabular-nums text-[#2242d6] transition-colors group-hover/step:text-[#0d0f16]">
                 {s.num}
               </span>
               <span
-                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[15px] leading-[1.25] text-[#0d0f16]"
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[18px] leading-[1.25] text-[#0d0f16]"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 {s.title}
               </span>
               <span
-                className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13px] leading-[1.5] text-[#5a606e]"
+                className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.55] text-[#5a606e]"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 {s.text}
@@ -2510,9 +2573,6 @@ function DemkaSection() {
           ))}
         </div>
       </div>
-      {showVideo && (
-        <VideoModal src="/videos/demka.mp4" title="Опрос 100 синтетических покупателей" onClose={() => setShowVideo(false)} />
-      )}
     </section>
   );
 }
@@ -2521,6 +2581,7 @@ function Background() {
   const [modal, setModal] = useState<"meeting" | "note" | null>(null);
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
+  const [language, setLanguage] = useState<Language>("RU");
 
   const hashToTab: Record<string, TabKey> = {
     diagnostics: "recruitment",
@@ -2563,8 +2624,7 @@ function Background() {
 
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
-      <Background1 />
-      <HorizontalBorder onTabClick={(key) => handleTabChange(key)} onHomeClick={handleBack} />
+      <HorizontalBorder onTabClick={(key) => handleTabChange(key)} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
       {activeTab ? (
         <TabPage tabKey={activeTab} onBack={handleBack} />
       ) : (
