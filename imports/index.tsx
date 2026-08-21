@@ -317,14 +317,20 @@ function Container3() {
   );
 }
 
-function Container2() {
+function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
   return (
-    <div className="content-stretch flex gap-[11px] items-center relative shrink-0" data-name="Container">
+    <button
+      type="button"
+      onClick={onHomeClick}
+      className="content-stretch flex gap-[11px] items-center relative shrink-0 cursor-pointer outline-none"
+      data-name="Container"
+      aria-label="На главную"
+    >
       <div className="relative shrink-0 size-[26px]" data-name="Border">
         <div aria-hidden className="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none" />
       </div>
       <Container3 />
-    </div>
+    </button>
   );
 }
 
@@ -379,12 +385,12 @@ function Border() {
   );
 }
 
-function HorizontalBorder({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
+function HorizontalBorder({ onTabClick, onHomeClick }: { onTabClick: (id: TabKey) => void; onHomeClick?: () => void }) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full gap-[24px]">
-          <Container2 />
+          <Container2 onHomeClick={onHomeClick} />
           <HeroTabs onTabClick={onTabClick} />
         </div>
       </div>
@@ -698,6 +704,9 @@ function Background3({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
       <Container20 />
       <Heading1 />
       <Container21 />
+      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        Открыть →
+      </span>
     </button>
   );
 }
@@ -756,6 +765,9 @@ function Background4({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
       <Container22 />
       <Heading2 />
       <Container23 />
+      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        Открыть →
+      </span>
     </button>
   );
 }
@@ -817,6 +829,9 @@ function Background5({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
       <Container24 />
       <Heading3 />
       <Container25 />
+      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        Открыть →
+      </span>
     </button>
   );
 }
@@ -907,11 +922,8 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
             </div>
 
             {/* Description text only */}
-            <div className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] text-white/75" style={{ fontVariationSettings: '"wdth" 100' }}>
-              <p className="leading-[28.8px] mb-0">Governance.kz — прикладной центр цифровой трансформации</p>
-              <p className="leading-[28.8px] mb-0">управления. ИИ анализирует функции, кадры, услуги и нагрузку в</p>
-              <p className="leading-[28.8px] mb-0">единой логике данных: находит дублирования, барьеры и аномалии —</p>
-              <p className="leading-[28.8px]">а решения остаются за людьми.</p>
+            <div className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[28.8px] text-white/75" style={{ fontVariationSettings: '"wdth" 100' }}>
+              <p>Governance.kz — прикладной центр цифровой трансформации управления. ИИ анализирует функции, кадры, услуги и нагрузку в единой логике данных: находит дублирования, барьеры и аномалии — а решения остаются за людьми.</p>
             </div>
           </div>
 
@@ -1423,32 +1435,13 @@ function Group2({ src }: { src: string }) {
 }
 
 function Group4() {
-  const [swapped, setSwapped] = useState(false);
-
-  const beforeSrc = swapped ? imgAfter : imgBefore;
-  const afterSrc = swapped ? imgBefore : imgAfter;
-
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
       <Frame3 />
       <Frame4 />
       <Frame5 />
-      <button
-        type="button"
-        onClick={() => setSwapped((v) => !v)}
-        aria-label={swapped ? "Вернуть к исходному состоянию" : "Поменять «Было» и «Стало» местами"}
-        title={swapped ? "Вернуть" : "Поменять местами"}
-        className="col-1 group relative ml-[517.12px] mt-[244.92px] row-1 flex h-[84.841px] w-[81.651px] cursor-pointer items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-        data-name="Arrow"
-      >
-        <span aria-hidden className="absolute inset-0 rounded-full bg-[#2242d6]/10 transition-transform duration-300 group-hover:scale-110 group-active:scale-95" />
-        <span aria-hidden className="absolute -inset-[6px] rounded-full border border-[#2242d6]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <span className="pointer-events-none select-none font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-none text-[#2242d6] text-[80px] transition-transform duration-500 ease-out group-hover:translate-x-[2px] group-hover:text-[#1a35ad]" style={{ display: 'inline-block', transform: swapped ? 'scaleX(-1)' : 'none' }}>
-          →
-        </span>
-      </button>
-      <Group2 src={beforeSrc} />
-      <Group3 src={afterSrc} />
+      <Group2 src={imgBefore} />
+      <Group3 src={imgAfter} />
     </div>
   );
 }
@@ -2326,6 +2319,9 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
                 >
                   <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
                   <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+                  {clickable && (
+                    <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
+                  )}
                   <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
                     <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
                       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
@@ -2554,6 +2550,7 @@ function Background() {
     if (window.location.hash !== `#${tabToHash[key]}`) {
       window.history.replaceState(null, "", `#${tabToHash[key]}`);
     }
+    window.scrollTo(0, 0);
   };
 
   const handleBack = () => {
@@ -2561,12 +2558,13 @@ function Background() {
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background">
       <Background1 />
-      <HorizontalBorder onTabClick={(key) => handleTabChange(key)} />
+      <HorizontalBorder onTabClick={(key) => handleTabChange(key)} onHomeClick={handleBack} />
       {activeTab ? (
         <TabPage tabKey={activeTab} onBack={handleBack} />
       ) : (
