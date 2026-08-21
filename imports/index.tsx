@@ -1508,7 +1508,7 @@ function BackgroundHorizontalBorder3() {
         <Heading6 onPlayClick={() => setShowProcessVideo(true)} />
       </div>
       {showProcessVideo && (
-        <VideoModal src="/videos/process.MP4" title="Стратегический фундамент" onClose={() => setShowProcessVideo(false)} />
+        <VideoModal src="/videos/process.mov" title="Стратегический фундамент" onClose={() => setShowProcessVideo(false)} />
       )}
     </div>
   );
@@ -2466,7 +2466,7 @@ function DemkaSection() {
                   <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-white via-white/80 to-transparent" />
                 </div>
                 <video
-                  src="/videos/demka.MP4"
+                  src="/videos/demka.mov"
                   controls
                   autoPlay
                   playsInline
