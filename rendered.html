@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma Make App</title>
+    
+    <meta name="description" content="This web application allows users to replicate designs with precision, ensuring every graphic and text matches the original for seamless branding and presentation.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Figma Make App">
+    <meta property="og:description" content="This web application allows users to replicate designs with precision, ensuring every graphic and text matches the original for seamless branding and presentation.">
+  <style type="text/css" data-vite-dev-id="/Users/akbota/Desktop/governance2/src/index.css">/*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    --color-orange-50: oklch(98% 0.016 73.684);
+    --color-orange-100: oklch(95.4% 0.038 75.164);
+    --color-amber-50: oklch(98.7% 0.022 95.277);
+    --color-amber-100: oklch(96.2% 0.059 95.617);
+    --color-yellow-50: oklch(98.7% 0.026 102.212);
+    --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-700: oklch(37.2% 0.044 257.287);
+    --color-slate-900: oklch(20.8% 0.042 265.755);
+    --color-stone-50: oklch(98.5% 0.001 106.423);
+    --color-stone-100: oklch(97% 0.001 106.424);
+    --color-stone-200: oklch(92.3% 0.003 48.717);
+    --color-black: #000;
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-2xl: 42rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --text-4xl: 2.25rem;
+    --text-4xl--line-height: calc(2.5 / 2.25);
+    --text-5xl: 3rem;
+    --text-5xl--line-height: 1;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
+    --text-8xl: 6rem;
+    --text-8xl--line-height: 1;
+    --text-9xl: 8rem;
+    --text-9xl--line-height: 1;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --tracking-widest: 0.1em;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-bounce: bounce 1s infinite;
+    --blur-sm: 8px;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring:where(:not(iframe)) {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .\!visible {
+    visibility: visible !important;
+  }
+  .collapse {
+    visibility: collapse;
+  }
+  .invisible {
+    visibility: hidden;
+  }
+  .visible {
+    visibility: visible;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .relative {
+    position: relative;
+  }
+  .static {
+    position: static;
+  }
+  .sticky {
+    position: sticky;
+  }
+  .-inset-\[6px\] {
+    inset: calc(6px * -1);
+  }
+  .inset-0 {
+    inset: 0px;
+  }
+  .inset-x-0 {
+    inset-inline: 0px;
+  }
+  .top-0 {
+    top: 0px;
+  }
+  .top-1\/2 {
+    top: calc(1 / 2 * 100%);
+  }
+  .top-5 {
+    top: calc(var(--spacing) * 5);
+  }
+  .top-\[-2\.61\%\] {
+    top: -2.61%;
+  }
+  .top-\[-9\.36\%\] {
+    top: -9.36%;
+  }
+  .top-\[-10\.22\%\] {
+    top: -10.22%;
+  }
+  .top-\[-10\.68\%\] {
+    top: -10.68%;
+  }
+  .top-\[-11\.24\%\] {
+    top: -11.24%;
+  }
+  .top-\[-13\.53\%\] {
+    top: -13.53%;
+  }
+  .top-\[-27\.9\%\] {
+    top: -27.9%;
+  }
+  .top-\[-30\.91px\] {
+    top: -30.91px;
+  }
+  .top-\[3px\] {
+    top: 3px;
+  }
+  .top-\[7px\] {
+    top: 7px;
+  }
+  .top-\[19\.58px\] {
+    top: 19.58px;
+  }
+  .top-\[20px\] {
+    top: 20px;
+  }
+  .top-\[22\.26px\] {
+    top: 22.26px;
+  }
+  .top-\[24\.09px\] {
+    top: 24.09px;
+  }
+  .top-\[27\.26px\] {
+    top: 27.26px;
+  }
+  .top-\[37\%\] {
+    top: 37%;
+  }
+  .top-\[68\%\] {
+    top: 68%;
+  }
+  .top-\[72px\] {
+    top: 72px;
+  }
+  .top-\[76px\] {
+    top: 76px;
+  }
+  .top-\[79\.96px\] {
+    top: 79.96px;
+  }
+  .top-\[142\.41px\] {
+    top: 142.41px;
+  }
+  .top-\[144px\] {
+    top: 144px;
+  }
+  .top-\[176px\] {
+    top: 176px;
+  }
+  .top-\[185\.41px\] {
+    top: 185.41px;
+  }
+  .top-\[219px\] {
+    top: 219px;
+  }
+  .top-\[252px\] {
+    top: 252px;
+  }
+  .top-\[259\.07px\] {
+    top: 259.07px;
+  }
+  .top-\[282\.79px\] {
+    top: 282.79px;
+  }
+  .top-\[290px\] {
+    top: 290px;
+  }
+  .top-\[332px\] {
+    top: 332px;
+  }
+  .top-\[425\.19px\] {
+    top: 425.19px;
+  }
+  .top-\[538\.19px\] {
+    top: 538.19px;
+  }
+  .top-\[562\.19px\] {
+    top: 562.19px;
+  }
+  .top-\[740\.34px\] {
+    top: 740.34px;
+  }
+  .right-5 {
+    right: calc(var(--spacing) * 5);
+  }
+  .right-\[14px\] {
+    right: 14px;
+  }
+  .right-\[43\.68px\] {
+    right: 43.68px;
+  }
+  .bottom-0 {
+    bottom: 0px;
+  }
+  .left-0 {
+    left: 0px;
+  }
+  .left-\[-1\.51\%\] {
+    left: -1.51%;
+  }
+  .left-\[-7px\] {
+    left: -7px;
+  }
+  .left-\[-19\.45\%\] {
+    left: -19.45%;
+  }
+  .left-\[-40\.37\%\] {
+    left: -40.37%;
+  }
+  .left-\[-62px\] {
+    left: -62px;
+  }
+  .left-\[0\.35\%\] {
+    left: 0.35%;
+  }
+  .left-\[6\%\] {
+    left: 6%;
+  }
+  .left-\[19px\] {
+    left: 19px;
+  }
+  .left-\[29px\] {
+    left: 29px;
+  }
+  .left-\[30px\] {
+    left: 30px;
+  }
+  .left-\[36px\] {
+    left: 36px;
+  }
+  .left-\[37px\] {
+    left: 37px;
+  }
+  .left-\[44\%\] {
+    left: 44%;
+  }
+  .left-\[44px\] {
+    left: 44px;
+  }
+  .left-\[48\%\] {
+    left: 48%;
+  }
+  .left-\[51px\] {
+    left: 51px;
+  }
+  .left-\[80\%\] {
+    left: 80%;
+  }
+  .left-\[93px\] {
+    left: 93px;
+  }
+  .left-\[479\.99px\] {
+    left: 479.99px;
+  }
+  .left-\[629px\] {
+    left: 629px;
+  }
+  .left-\[640px\] {
+    left: 640px;
+  }
+  .left-\[651px\] {
+    left: 651px;
+  }
+  .left-\[706px\] {
+    left: 706px;
+  }
+  .left-\[929px\] {
+    left: 929px;
+  }
+  .z-10 {
+    z-index: 10;
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  .col-0 {
+    grid-column: 0;
+  }
+  .col-1 {
+    grid-column: 1;
+  }
+  .col-2 {
+    grid-column: 2;
+  }
+  .col-3 {
+    grid-column: 3;
+  }
+  .col-4 {
+    grid-column: 4;
+  }
+  .row-0 {
+    grid-row: 0;
+  }
+  .row-1 {
+    grid-row: 1;
+  }
+  .container {
+    width: 100%;
+    @media (width >= 40rem) {
+      max-width: 40rem;
+    }
+    @media (width >= 48rem) {
+      max-width: 48rem;
+    }
+    @media (width >= 64rem) {
+      max-width: 64rem;
+    }
+    @media (width >= 80rem) {
+      max-width: 80rem;
+    }
+    @media (width >= 96rem) {
+      max-width: 96rem;
+    }
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-0 {
+    margin-top: 0px;
+  }
+  .mt-\[0\.5px\] {
+    margin-top: 0.5px;
+  }
+  .mt-\[0\.26px\] {
+    margin-top: 0.26px;
+  }
+  .mt-\[0\.73px\] {
+    margin-top: 0.73px;
+  }
+  .mt-\[1\.77px\] {
+    margin-top: 1.77px;
+  }
+  .mt-\[5\.2px\] {
+    margin-top: 5.2px;
+  }
+  .mt-\[6\.1px\] {
+    margin-top: 6.1px;
+  }
+  .mt-\[8px\] {
+    margin-top: 8px;
+  }
+  .mt-\[11px\] {
+    margin-top: 11px;
+  }
+  .mt-\[14px\] {
+    margin-top: 14px;
+  }
+  .mt-\[23\.12px\] {
+    margin-top: 23.12px;
+  }
+  .mt-\[24px\] {
+    margin-top: 24px;
+  }
+  .mt-\[31\.38px\] {
+    margin-top: 31.38px;
+  }
+  .mt-\[32px\] {
+    margin-top: 32px;
+  }
+  .mt-\[45px\] {
+    margin-top: 45px;
+  }
+  .mt-\[73\.95px\] {
+    margin-top: 73.95px;
+  }
+  .mt-\[86\.89px\] {
+    margin-top: 86.89px;
+  }
+  .mt-\[111\.5px\] {
+    margin-top: 111.5px;
+  }
+  .mt-\[117\.43px\] {
+    margin-top: 117.43px;
+  }
+  .mt-\[117\.73px\] {
+    margin-top: 117.73px;
+  }
+  .mt-\[128px\] {
+    margin-top: 128px;
+  }
+  .mt-\[149\.84px\] {
+    margin-top: 149.84px;
+  }
+  .mt-\[161\.62px\] {
+    margin-top: 161.62px;
+  }
+  .mt-\[173\.51px\] {
+    margin-top: 173.51px;
+  }
+  .mt-\[188\.42px\] {
+    margin-top: 188.42px;
+  }
+  .mt-\[218\.87px\] {
+    margin-top: 218.87px;
+  }
+  .mt-\[229\.5px\] {
+    margin-top: 229.5px;
+  }
+  .mt-\[244\.92px\] {
+    margin-top: 244.92px;
+  }
+  .mt-\[303\.9px\] {
+    margin-top: 303.9px;
+  }
+  .mt-\[359\.44px\] {
+    margin-top: 359.44px;
+  }
+  .mt-\[362\.5px\] {
+    margin-top: 362.5px;
+  }
+  .mt-\[412\.71px\] {
+    margin-top: 412.71px;
+  }
+  .mt-\[427\.5px\] {
+    margin-top: 427.5px;
+  }
+  .mb-0 {
+    margin-bottom: 0px;
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-\[24px\] {
+    margin-bottom: 24px;
+  }
+  .mb-\[40px\] {
+    margin-bottom: 40px;
+  }
+  .ml-0 {
+    margin-left: 0px;
+  }
+  .ml-\[0\.43px\] {
+    margin-left: 0.43px;
+  }
+  .ml-\[11\.05px\] {
+    margin-left: 11.05px;
+  }
+  .ml-\[12\.72px\] {
+    margin-left: 12.72px;
+  }
+  .ml-\[20\.87px\] {
+    margin-left: 20.87px;
+  }
+  .ml-\[30\.41px\] {
+    margin-left: 30.41px;
+  }
+  .ml-\[30\.47px\] {
+    margin-left: 30.47px;
+  }
+  .ml-\[31\.75px\] {
+    margin-left: 31.75px;
+  }
+  .ml-\[40px\] {
+    margin-left: 40px;
+  }
+  .ml-\[43\.66px\] {
+    margin-left: 43.66px;
+  }
+  .ml-\[83px\] {
+    margin-left: 83px;
+  }
+  .ml-\[110\.47px\] {
+    margin-left: 110.47px;
+  }
+  .ml-\[130px\] {
+    margin-left: 130px;
+  }
+  .ml-\[216\.62px\] {
+    margin-left: 216.62px;
+  }
+  .ml-\[271\.9px\] {
+    margin-left: 271.9px;
+  }
+  .ml-\[316\.92px\] {
+    margin-left: 316.92px;
+  }
+  .ml-\[343\.57px\] {
+    margin-left: 343.57px;
+  }
+  .ml-\[517\.12px\] {
+    margin-left: 517.12px;
+  }
+  .ml-\[524px\] {
+    margin-left: 524px;
+  }
+  .ml-\[540\.71px\] {
+    margin-left: 540.71px;
+  }
+  .ml-\[580\.67px\] {
+    margin-left: 580.67px;
+  }
+  .ml-\[591px\] {
+    margin-left: 591px;
+  }
+  .ml-\[610\.57px\] {
+    margin-left: 610.57px;
+  }
+  .ml-\[694\.47px\] {
+    margin-left: 694.47px;
+  }
+  .ml-\[741\.96px\] {
+    margin-left: 741.96px;
+  }
+  .ml-\[742\.01px\] {
+    margin-left: 742.01px;
+  }
+  .ml-\[843px\] {
+    margin-left: 843px;
+  }
+  .block {
+    display: block;
+  }
+  .contents {
+    display: contents;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .hidden {
+    display: none;
+  }
+  .inline {
+    display: inline;
+  }
+  .inline-block {
+    display: inline-block;
+  }
+  .inline-flex {
+    display: inline-flex;
+  }
+  .inline-grid {
+    display: inline-grid;
+  }
+  .table {
+    display: table;
+  }
+  .size-11 {
+    width: calc(var(--spacing) * 11);
+    height: calc(var(--spacing) * 11);
+  }
+  .size-\[26px\] {
+    width: 26px;
+    height: 26px;
+  }
+  .size-full {
+    width: 100%;
+    height: 100%;
+  }
+  .h-\[18px\] {
+    height: 18px;
+  }
+  .h-\[19\.654px\] {
+    height: 19.654px;
+  }
+  .h-\[23\.248px\] {
+    height: 23.248px;
+  }
+  .h-\[30\.39px\] {
+    height: 30.39px;
+  }
+  .h-\[31\.5px\] {
+    height: 31.5px;
+  }
+  .h-\[31\.403px\] {
+    height: 31.403px;
+  }
+  .h-\[33px\] {
+    height: 33px;
+  }
+  .h-\[39\.159px\] {
+    height: 39.159px;
+  }
+  .h-\[39px\] {
+    height: 39px;
+  }
+  .h-\[41\.378px\] {
+    height: 41.378px;
+  }
+  .h-\[41px\] {
+    height: 41px;
+  }
+  .h-\[42\.818px\] {
+    height: 42.818px;
+  }
+  .h-\[44\.511px\] {
+    height: 44.511px;
+  }
+  .h-\[46\.598px\] {
+    height: 46.598px;
+  }
+  .h-\[48\.17px\] {
+    height: 48.17px;
+  }
+  .h-\[49px\] {
+    height: 49px;
+  }
+  .h-\[53px\] {
+    height: 53px;
+  }
+  .h-\[54px\] {
+    height: 54px;
+  }
+  .h-\[55\.677px\] {
+    height: 55.677px;
+  }
+  .h-\[59px\] {
+    height: 59px;
+  }
+  .h-\[60\.537px\] {
+    height: 60.537px;
+  }
+  .h-\[63\.5px\] {
+    height: 63.5px;
+  }
+  .h-\[63px\] {
+    height: 63px;
+  }
+  .h-\[68\.5px\] {
+    height: 68.5px;
+  }
+  .h-\[68\.247px\] {
+    height: 68.247px;
+  }
+  .h-\[68px\] {
+    height: 68px;
+  }
+  .h-\[69px\] {
+    height: 69px;
+  }
+  .h-\[72\.394px\] {
+    height: 72.394px;
+  }
+  .h-\[73\.586px\] {
+    height: 73.586px;
+  }
+  .h-\[75px\] {
+    height: 75px;
+  }
+  .h-\[79\.178px\] {
+    height: 79.178px;
+  }
+  .h-\[79px\] {
+    height: 79px;
+  }
+  .h-\[84\.595px\] {
+    height: 84.595px;
+  }
+  .h-\[84\.841px\] {
+    height: 84.841px;
+  }
+  .h-\[85\.579px\] {
+    height: 85.579px;
+  }
+  .h-\[86\.436px\] {
+    height: 86.436px;
+  }
+  .h-\[86\.478px\] {
+    height: 86.478px;
+  }
+  .h-\[93px\] {
+    height: 93px;
+  }
+  .h-\[100px\] {
+    height: 100px;
+  }
+  .h-\[102\.75\%\] {
+    height: 102.75%;
+  }
+  .h-\[103\.399px\] {
+    height: 103.399px;
+  }
+  .h-\[103px\] {
+    height: 103px;
+  }
+  .h-\[109\.41\%\] {
+    height: 109.41%;
+  }
+  .h-\[109\.199px\] {
+    height: 109.199px;
+  }
+  .h-\[113\.85\%\] {
+    height: 113.85%;
+  }
+  .h-\[114\.35\%\] {
+    height: 114.35%;
+  }
+  .h-\[117\.086px\] {
+    height: 117.086px;
+  }
+  .h-\[117px\] {
+    height: 117px;
+  }
+  .h-\[120\.332px\] {
+    height: 120.332px;
+  }
+  .h-\[122\.67\%\] {
+    height: 122.67%;
+  }
+  .h-\[124\.48\%\] {
+    height: 124.48%;
+  }
+  .h-\[130px\] {
+    height: 130px;
+  }
+  .h-\[131px\] {
+    height: 131px;
+  }
+  .h-\[135px\] {
+    height: 135px;
+  }
+  .h-\[143px\] {
+    height: 143px;
+  }
+  .h-\[159\.927px\] {
+    height: 159.927px;
+  }
+  .h-\[162\.9\%\] {
+    height: 162.9%;
+  }
+  .h-\[163\.19px\] {
+    height: 163.19px;
+  }
+  .h-\[165\.6px\] {
+    height: 165.6px;
+  }
+  .h-\[259\.97px\] {
+    height: 259.97px;
+  }
+  .h-\[259\.848px\] {
+    height: 259.848px;
+  }
+  .h-\[288px\] {
+    height: 288px;
+  }
+  .h-\[293\.898px\] {
+    height: 293.898px;
+  }
+  .h-\[308\.645px\] {
+    height: 308.645px;
+  }
+  .h-\[321\.121px\] {
+    height: 321.121px;
+  }
+  .h-\[345px\] {
+    height: 345px;
+  }
+  .h-\[346px\] {
+    height: 346px;
+  }
+  .h-\[351\.737px\] {
+    height: 351.737px;
+  }
+  .h-\[353\.502px\] {
+    height: 353.502px;
+  }
+  .h-\[366px\] {
+    height: 366px;
+  }
+  .h-\[375px\] {
+    height: 375px;
+  }
+  .h-\[387\.656px\] {
+    height: 387.656px;
+  }
+  .h-\[510px\] {
+    height: 510px;
+  }
+  .h-\[511\.807px\] {
+    height: 511.807px;
+  }
+  .h-\[523px\] {
+    height: 523px;
+  }
+  .h-\[1124px\] {
+    height: 1124px;
+  }
+  .h-auto {
+    height: auto;
+  }
+  .h-full {
+    height: 100%;
+  }
+  .max-h-\[64vh\] {
+    max-height: 64vh;
+  }
+  .max-h-\[90vh\] {
+    max-height: 90vh;
+  }
+  .max-h-\[260px\] {
+    max-height: 260px;
+  }
+  .min-h-0 {
+    min-height: 0px;
+  }
+  .min-h-\[64px\] {
+    min-height: 64px;
+  }
+  .min-h-\[345px\] {
+    min-height: 345px;
+  }
+  .min-h-\[346px\] {
+    min-height: 346px;
+  }
+  .w-24 {
+    width: calc(var(--spacing) * 24);
+  }
+  .w-\[3px\] {
+    width: 3px;
+  }
+  .w-\[49\.772px\] {
+    width: 49.772px;
+  }
+  .w-\[50\.425px\] {
+    width: 50.425px;
+  }
+  .w-\[58\.063px\] {
+    width: 58.063px;
+  }
+  .w-\[64px\] {
+    width: 64px;
+  }
+  .w-\[68\.625px\] {
+    width: 68.625px;
+  }
+  .w-\[77\.023px\] {
+    width: 77.023px;
+  }
+  .w-\[81\.651px\] {
+    width: 81.651px;
+  }
+  .w-\[87\.995px\] {
+    width: 87.995px;
+  }
+  .w-\[88\.037px\] {
+    width: 88.037px;
+  }
+  .w-\[89px\] {
+    width: 89px;
+  }
+  .w-\[95px\] {
+    width: 95px;
+  }
+  .w-\[101\.51\%\] {
+    width: 101.51%;
+  }
+  .w-\[101\.79\%\] {
+    width: 101.79%;
+  }
+  .w-\[119\.534px\] {
+    width: 119.534px;
+  }
+  .w-\[138\.83\%\] {
+    width: 138.83%;
+  }
+  .w-\[154\.385px\] {
+    width: 154.385px;
+  }
+  .w-\[159\.35\%\] {
+    width: 159.35%;
+  }
+  .w-\[174\.24px\] {
+    width: 174.24px;
+  }
+  .w-\[176\.18px\] {
+    width: 176.18px;
+  }
+  .w-\[189px\] {
+    width: 189px;
+  }
+  .w-\[203px\] {
+    width: 203px;
+  }
+  .w-\[209\.59px\] {
+    width: 209.59px;
+  }
+  .w-\[209\.61px\] {
+    width: 209.61px;
+  }
+  .w-\[210\.797px\] {
+    width: 210.797px;
+  }
+  .w-\[210px\] {
+    width: 210px;
+  }
+  .w-\[216px\] {
+    width: 216px;
+  }
+  .w-\[217\.687px\] {
+    width: 217.687px;
+  }
+  .w-\[223\.529px\] {
+    width: 223.529px;
+  }
+  .w-\[245\.296px\] {
+    width: 245.296px;
+  }
+  .w-\[261\.761px\] {
+    width: 261.761px;
+  }
+  .w-\[265px\] {
+    width: 265px;
+  }
+  .w-\[270\.691px\] {
+    width: 270.691px;
+  }
+  .w-\[270px\] {
+    width: 270px;
+  }
+  .w-\[290\.732px\] {
+    width: 290.732px;
+  }
+  .w-\[292px\] {
+    width: 292px;
+  }
+  .w-\[305px\] {
+    width: 305px;
+  }
+  .w-\[316\.039px\] {
+    width: 316.039px;
+  }
+  .w-\[350px\] {
+    width: 350px;
+  }
+  .w-\[369px\] {
+    width: 369px;
+  }
+  .w-\[370px\] {
+    width: 370px;
+  }
+  .w-\[408\.548px\] {
+    width: 408.548px;
+  }
+  .w-\[419\.431px\] {
+    width: 419.431px;
+  }
+  .w-\[428\.501px\] {
+    width: 428.501px;
+  }
+  .w-\[437\.398px\] {
+    width: 437.398px;
+  }
+  .w-\[437\.528px\] {
+    width: 437.528px;
+  }
+  .w-\[440px\] {
+    width: 440px;
+  }
+  .w-\[457\.523px\] {
+    width: 457.523px;
+  }
+  .w-\[463px\] {
+    width: 463px;
+  }
+  .w-\[473\.849px\] {
+    width: 473.849px;
+  }
+  .w-\[498\.977px\] {
+    width: 498.977px;
+  }
+  .w-\[504\.237px\] {
+    width: 504.237px;
+  }
+  .w-\[516px\] {
+    width: 516px;
+  }
+  .w-\[526\.026px\] {
+    width: 526.026px;
+  }
+  .w-\[540\.963px\] {
+    width: 540.963px;
+  }
+  .w-\[552px\] {
+    width: 552px;
+  }
+  .w-\[603\.64px\] {
+    width: 603.64px;
+  }
+  .w-\[617\.147px\] {
+    width: 617.147px;
+  }
+  .w-\[627\.918px\] {
+    width: 627.918px;
+  }
+  .w-\[723\.175px\] {
+    width: 723.175px;
+  }
+  .w-\[786\.737px\] {
+    width: 786.737px;
+  }
+  .w-\[840\.103px\] {
+    width: 840.103px;
+  }
+  .w-\[954px\] {
+    width: 954px;
+  }
+  .w-\[1001px\] {
+    width: 1001px;
+  }
+  .w-\[1064px\] {
+    width: 1064px;
+  }
+  .w-\[1112px\] {
+    width: 1112px;
+  }
+  .w-\[1121px\] {
+    width: 1121px;
+  }
+  .w-\[1169\.682px\] {
+    width: 1169.682px;
+  }
+  .w-\[1216\.598px\] {
+    width: 1216.598px;
+  }
+  .w-\[1221\.134px\] {
+    width: 1221.134px;
+  }
+  .w-\[1545px\] {
+    width: 1545px;
+  }
+  .w-\[1927\.2px\] {
+    width: 1927.2px;
+  }
+  .w-\[min-content\] {
+    width: min-content;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
+  }
+  .max-w-\[350px\] {
+    max-width: 350px;
+  }
+  .max-w-\[448\.79998779296875px\] {
+    max-width: 448.79998779296875px;
+  }
+  .max-w-\[620px\] {
+    max-width: 620px;
+  }
+  .max-w-\[626\.39599609375px\] {
+    max-width: 626.39599609375px;
+  }
+  .max-w-\[723\.175px\] {
+    max-width: 723.175px;
+  }
+  .max-w-\[900px\] {
+    max-width: 900px;
+  }
+  .max-w-\[1082px\] {
+    max-width: 1082px;
+  }
+  .max-w-\[1100px\] {
+    max-width: 1100px;
+  }
+  .max-w-\[1112px\] {
+    max-width: 1112px;
+  }
+  .max-w-\[1170px\] {
+    max-width: 1170px;
+  }
+  .max-w-\[inherit\] {
+    max-width: inherit;
+  }
+  .max-w-full {
+    max-width: 100%;
+  }
+  .max-w-none {
+    max-width: none;
+  }
+  .min-w-0 {
+    min-width: 0px;
+  }
+  .min-w-full {
+    min-width: 100%;
+  }
+  .min-w-px {
+    min-width: 1px;
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .flex-\[1_0_0\] {
+    flex: 1 0 0;
+  }
+  .flex-none {
+    flex: none;
+  }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+  .shrink {
+    flex-shrink: 1;
+  }
+  .shrink-0 {
+    flex-shrink: 0;
+  }
+  .grow {
+    flex-grow: 1;
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-scale-y-100 {
+    --tw-scale-y: calc(100% * -1);
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  .rotate-180 {
+    rotate: 180deg;
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .animate-\[imgmodal-fade_\.18s_ease-out\] {
+    animation: imgmodal-fade .18s ease-out;
+  }
+  .animate-\[imgmodal-pop_\.24s_cubic-bezier\(0\.2\,0\.8\,0\.2\,1\)\] {
+    animation: imgmodal-pop .24s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .animate-bounce {
+    animation: var(--animate-bounce);
+  }
+  .animate-ping {
+    animation: var(--animate-ping);
+  }
+  .animate-pulse {
+    animation: var(--animate-pulse);
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .cursor-zoom-in {
+    cursor: zoom-in;
+  }
+  .resize {
+    resize: both;
+  }
+  .grid-cols-\[60px_minmax\(0\,1\.10fr\)_minmax\(0\,2fr\)_minmax\(0\,1\.10fr\)\] {
+    grid-template-columns: 60px minmax(0,1.10fr) minmax(0,2fr) minmax(0,1.10fr);
+  }
+  .grid-cols-\[____60px_minmax\(0\,1\.10fr\)_minmax\(0\,2fr\)_minmax\(0\,1\.10fr\)\] {
+    grid-template-columns:     60px minmax(0,1.10fr) minmax(0,2fr) minmax(0,1.10fr);
+  }
+  .grid-cols-\[__minmax\(0\,1\.30fr\)_minmax\(0\,1fr\)\] {
+    grid-template-columns:   minmax(0,1.30fr) minmax(0,1fr);
+  }
+  .grid-cols-\[max-content\] {
+    grid-template-columns: max-content;
+  }
+  .grid-rows-\[39px\] {
+    grid-template-rows: 39px;
+  }
+  .grid-rows-\[_39px\] {
+    grid-template-rows:  39px;
+  }
+  .grid-rows-\[_53px\] {
+    grid-template-rows:  53px;
+  }
+  .grid-rows-\[_74px\] {
+    grid-template-rows:  74px;
+  }
+  .grid-rows-\[_115\.19px\] {
+    grid-template-rows:  115.19px;
+  }
+  .grid-rows-\[auto\] {
+    grid-template-rows: auto;
+  }
+  .grid-rows-\[max-content\] {
+    grid-template-rows: max-content;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .flex-row {
+    flex-direction: row;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .place-items-center {
+    place-items: center;
+  }
+  .place-items-start {
+    place-items: start;
+  }
+  .content-stretch {
+    align-content: stretch;
+  }
+  .items-baseline {
+    align-items: baseline;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .items-end {
+    align-items: flex-end;
+  }
+  .items-start {
+    align-items: flex-start;
+  }
+  .items-stretch {
+    align-items: stretch;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .justify-start {
+    justify-content: flex-start;
+  }
+  .gap-0 {
+    gap: 0px;
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+  .gap-\[6px\] {
+    gap: 6px;
+  }
+  .gap-\[8px\] {
+    gap: 8px;
+  }
+  .gap-\[9\.2px\] {
+    gap: 9.2px;
+  }
+  .gap-\[9px\] {
+    gap: 9px;
+  }
+  .gap-\[10px\] {
+    gap: 10px;
+  }
+  .gap-\[11px\] {
+    gap: 11px;
+  }
+  .gap-\[12px\] {
+    gap: 12px;
+  }
+  .gap-\[14px\] {
+    gap: 14px;
+  }
+  .gap-\[16px\] {
+    gap: 16px;
+  }
+  .gap-\[20px\] {
+    gap: 20px;
+  }
+  .gap-\[24px\] {
+    gap: 24px;
+  }
+  .gap-\[26px\] {
+    gap: 26px;
+  }
+  .gap-\[32px\] {
+    gap: 32px;
+  }
+  .gap-\[40px\] {
+    gap: 40px;
+  }
+  .gap-\[207\.5px\] {
+    gap: 207.5px;
+  }
+  .gap-\[411\.79px\] {
+    gap: 411.79px;
+  }
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  .gap-x-\[44px\] {
+    column-gap: 44px;
+  }
+  .gap-y-\[44px\] {
+    row-gap: 44px;
+  }
+  .self-end {
+    align-self: flex-end;
+  }
+  .self-start {
+    align-self: flex-start;
+  }
+  .self-stretch {
+    align-self: stretch;
+  }
+  .justify-self-stretch {
+    justify-self: stretch;
+  }
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .overflow-auto {
+    overflow: auto;
+  }
+  .overflow-clip {
+    overflow: clip;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  .rounded-\[2px\] {
+    border-radius: 2px;
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+  }
+  .rounded-\[7\.191px\] {
+    border-radius: 7.191px;
+  }
+  .rounded-\[8px\] {
+    border-radius: 8px;
+  }
+  .rounded-\[14px\] {
+    border-radius: 14px;
+  }
+  .rounded-\[15px\] {
+    border-radius: 15px;
+  }
+  .rounded-\[20px\] {
+    border-radius: 20px;
+  }
+  .rounded-\[24px\] {
+    border-radius: 24px;
+  }
+  .rounded-\[40px\] {
+    border-radius: 40px;
+  }
+  .rounded-\[100\.58px\] {
+    border-radius: 100.58px;
+  }
+  .rounded-\[101\.703px\] {
+    border-radius: 101.703px;
+  }
+  .rounded-\[inherit\] {
+    border-radius: inherit;
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-3 {
+    border-style: var(--tw-border-style);
+    border-width: 3px;
+  }
+  .border-\[0\.5px\] {
+    border-style: var(--tw-border-style);
+    border-width: 0.5px;
+  }
+  .border-\[0\.75px\] {
+    border-style: var(--tw-border-style);
+    border-width: 0.75px;
+  }
+  .border-\[3px\] {
+    border-style: var(--tw-border-style);
+    border-width: 3px;
+  }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-t-2 {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 2px;
+  }
+  .border-r {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 1px;
+  }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-b-2 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 2px;
+  }
+  .border-dashed {
+    --tw-border-style: dashed;
+    border-style: dashed;
+  }
+  .border-solid {
+    --tw-border-style: solid;
+    border-style: solid;
+  }
+  .border-\[\#0d0f16\] {
+    border-color: #0d0f16;
+  }
+  .border-\[\#9fa6ae\] {
+    border-color: #9fa6ae;
+  }
+  .border-\[\#2242d6\] {
+    border-color: #2242d6;
+  }
+  .border-\[\#2242d6\]\/30 {
+    border-color: color-mix(in oklab, #2242d6 30%, transparent);
+  }
+  .border-\[\#b9c1e8\] {
+    border-color: #b9c1e8;
+  }
+  .border-\[\#dbe2ec\] {
+    border-color: #dbe2ec;
+  }
+  .border-\[\#e6e8ee\] {
+    border-color: #e6e8ee;
+  }
+  .border-\[rgba\(0\,0\,0\,0\.1\)\] {
+    border-color: rgba(0,0,0,0.1);
+  }
+  .border-black {
+    border-color: var(--color-black);
+  }
+  .border-white\/60 {
+    border-color: color-mix(in srgb, #fff 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-white) 60%, transparent);
+    }
+  }
+  .bg-\[\#0d0f16\] {
+    background-color: #0d0f16;
+  }
+  .bg-\[\#2242d6\] {
+    background-color: #2242d6;
+  }
+  .bg-\[\#2242d6\]\/10 {
+    background-color: color-mix(in oklab, #2242d6 10%, transparent);
+  }
+  .bg-\[\#13315f\] {
+    background-color: #13315f;
+  }
+  .bg-\[\#e5e9ec\] {
+    background-color: #e5e9ec;
+  }
+  .bg-\[\#f5f0e6\] {
+    background-color: #f5f0e6;
+  }
+  .bg-\[\#f6f7fb\] {
+    background-color: #f6f7fb;
+  }
+  .bg-\[rgb\(245_240_230\)\] {
+    background-color: rgb(245 240 230);
+  }
+  .bg-amber-50 {
+    background-color: var(--color-amber-50);
+  }
+  .bg-amber-100 {
+    background-color: var(--color-amber-100);
+  }
+  .bg-black\/0 {
+    background-color: color-mix(in srgb, #000 0%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 0%, transparent);
+    }
+  }
+  .bg-black\/50 {
+    background-color: color-mix(in srgb, #000 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    }
+  }
+  .bg-black\/70 {
+    background-color: color-mix(in srgb, #000 70%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 70%, transparent);
+    }
+  }
+  .bg-orange-50 {
+    background-color: var(--color-orange-50);
+  }
+  .bg-orange-100 {
+    background-color: var(--color-orange-100);
+  }
+  .bg-stone-50 {
+    background-color: var(--color-stone-50);
+  }
+  .bg-stone-100 {
+    background-color: var(--color-stone-100);
+  }
+  .bg-stone-200 {
+    background-color: var(--color-stone-200);
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .bg-white\/15 {
+    background-color: color-mix(in srgb, #fff 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+    }
+  }
+  .bg-yellow-50 {
+    background-color: var(--color-yellow-50);
+  }
+  .bg-gradient-to-t {
+    --tw-gradient-position: to top in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
+  .from-black\/60 {
+    --tw-gradient-from: color-mix(in srgb, #000 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-black) 60%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .to-transparent {
+    --tw-gradient-to: transparent;
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .bg-clip-text {
+    background-clip: text;
+  }
+  .object-contain {
+    object-fit: contain;
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
+  .p-\[16px\] {
+    padding: 16px;
+  }
+  .p-px {
+    padding: 1px;
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+  .px-7 {
+    padding-inline: calc(var(--spacing) * 7);
+  }
+  .px-\[12px\] {
+    padding-inline: 12px;
+  }
+  .px-\[16px\] {
+    padding-inline: 16px;
+  }
+  .px-\[19px\] {
+    padding-inline: 19px;
+  }
+  .px-\[20px\] {
+    padding-inline: 20px;
+  }
+  .px-\[22px\] {
+    padding-inline: 22px;
+  }
+  .px-\[24px\] {
+    padding-inline: 24px;
+  }
+  .px-\[26px\] {
+    padding-inline: 26px;
+  }
+  .px-\[27px\] {
+    padding-inline: 27px;
+  }
+  .px-\[34px\] {
+    padding-inline: 34px;
+  }
+  .px-\[44px\] {
+    padding-inline: 44px;
+  }
+  .px-px {
+    padding-inline: 1px;
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+  .py-\[8px\] {
+    padding-block: 8px;
+  }
+  .py-\[9px\] {
+    padding-block: 9px;
+  }
+  .py-\[10px\] {
+    padding-block: 10px;
+  }
+  .py-\[12px\] {
+    padding-block: 12px;
+  }
+  .py-\[14px\] {
+    padding-block: 14px;
+  }
+  .py-\[15px\] {
+    padding-block: 15px;
+  }
+  .py-\[17px\] {
+    padding-block: 17px;
+  }
+  .py-\[18px\] {
+    padding-block: 18px;
+  }
+  .py-\[22px\] {
+    padding-block: 22px;
+  }
+  .py-\[40px\] {
+    padding-block: 40px;
+  }
+  .py-\[52px\] {
+    padding-block: 52px;
+  }
+  .py-\[56px\] {
+    padding-block: 56px;
+  }
+  .pt-6 {
+    padding-top: calc(var(--spacing) * 6);
+  }
+  .pt-\[2\.8px\] {
+    padding-top: 2.8px;
+  }
+  .pt-\[3px\] {
+    padding-top: 3px;
+  }
+  .pt-\[11px\] {
+    padding-top: 11px;
+  }
+  .pt-\[16px\] {
+    padding-top: 16px;
+  }
+  .pt-\[17px\] {
+    padding-top: 17px;
+  }
+  .pt-\[19px\] {
+    padding-top: 19px;
+  }
+  .pt-\[20px\] {
+    padding-top: 20px;
+  }
+  .pt-\[24px\] {
+    padding-top: 24px;
+  }
+  .pt-\[28px\] {
+    padding-top: 28px;
+  }
+  .pt-\[35px\] {
+    padding-top: 35px;
+  }
+  .pt-\[52px\] {
+    padding-top: 52px;
+  }
+  .pt-px {
+    padding-top: 1px;
+  }
+  .pr-\[21px\] {
+    padding-right: 21px;
+  }
+  .pr-\[44px\] {
+    padding-right: 44px;
+  }
+  .pb-5 {
+    padding-bottom: calc(var(--spacing) * 5);
+  }
+  .pb-\[0\.68px\] {
+    padding-bottom: 0.68px;
+  }
+  .pb-\[2px\] {
+    padding-bottom: 2px;
+  }
+  .pb-\[8px\] {
+    padding-bottom: 8px;
+  }
+  .pb-\[19px\] {
+    padding-bottom: 19px;
+  }
+  .pb-\[21px\] {
+    padding-bottom: 21px;
+  }
+  .pb-\[22px\] {
+    padding-bottom: 22px;
+  }
+  .pb-\[24px\] {
+    padding-bottom: 24px;
+  }
+  .pb-\[26px\] {
+    padding-bottom: 26px;
+  }
+  .pb-\[28px\] {
+    padding-bottom: 28px;
+  }
+  .pb-\[40px\] {
+    padding-bottom: 40px;
+  }
+  .pb-\[48\.47px\] {
+    padding-bottom: 48.47px;
+  }
+  .pb-\[53px\] {
+    padding-bottom: 53px;
+  }
+  .pb-\[60px\] {
+    padding-bottom: 60px;
+  }
+  .pb-px {
+    padding-bottom: 1px;
+  }
+  .pl-\[20px\] {
+    padding-left: 20px;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .font-\[\'IBM_Plex_Mono\:Regular\'\,sans-serif\] {
+    font-family: 'IBM Plex Mono:Regular',sans-serif;
+  }
+  .font-\[\'IBM_Plex_Sans\:Bold\'\,sans-serif\] {
+    font-family: 'IBM Plex Sans:Bold',sans-serif;
+  }
+  .font-\[\'IBM_Plex_Sans\:Medium\'\,sans-serif\] {
+    font-family: 'IBM Plex Sans:Medium',sans-serif;
+  }
+  .font-\[\'IBM_Plex_Sans\:Regular\'\,sans-serif\] {
+    font-family: 'IBM Plex Sans:Regular',sans-serif;
+  }
+  .font-\[\'IBM_Plex_Sans\:SemiBold\'\,sans-serif\] {
+    font-family: 'IBM Plex Sans:SemiBold',sans-serif;
+  }
+  .font-\[\'Inter\:Bold\'\,sans-serif\] {
+    font-family: 'Inter:Bold',sans-serif;
+  }
+  .font-\[\'Inter\:Medium\'\,sans-serif\] {
+    font-family: 'Inter:Medium',sans-serif;
+  }
+  .font-\[\'Inter\:Regular\'\,sans-serif\] {
+    font-family: 'Inter:Regular',sans-serif;
+  }
+  .font-\[\'Inter\:Semi_Bold\'\,sans-serif\] {
+    font-family: 'Inter:Semi Bold',sans-serif;
+  }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .text-4xl {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+  .text-5xl {
+    font-size: var(--text-5xl);
+    line-height: var(--tw-leading, var(--text-5xl--line-height));
+  }
+  .text-6xl {
+    font-size: var(--text-6xl);
+    line-height: var(--tw-leading, var(--text-6xl--line-height));
+  }
+  .text-7xl {
+    font-size: var(--text-7xl);
+    line-height: var(--tw-leading, var(--text-7xl--line-height));
+  }
+  .text-8xl {
+    font-size: var(--text-8xl);
+    line-height: var(--tw-leading, var(--text-8xl--line-height));
+  }
+  .text-9xl {
+    font-size: var(--text-9xl);
+    line-height: var(--tw-leading, var(--text-9xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
+  .text-lg {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .text-\[0px\] {
+    font-size: 0px;
+  }
+  .text-\[11\.5px\] {
+    font-size: 11.5px;
+  }
+  .text-\[11px\] {
+    font-size: 11px;
+  }
+  .text-\[12px\] {
+    font-size: 12px;
+  }
+  .text-\[13\.5px\] {
+    font-size: 13.5px;
+  }
+  .text-\[13px\] {
+    font-size: 13px;
+  }
+  .text-\[14\.5px\] {
+    font-size: 14.5px;
+  }
+  .text-\[14px\] {
+    font-size: 14px;
+  }
+  .text-\[15px\] {
+    font-size: 15px;
+  }
+  .text-\[16px\] {
+    font-size: 16px;
+  }
+  .text-\[17px\] {
+    font-size: 17px;
+  }
+  .text-\[18px\] {
+    font-size: 18px;
+  }
+  .text-\[19px\] {
+    font-size: 19px;
+  }
+  .text-\[20px\] {
+    font-size: 20px;
+  }
+  .text-\[22px\] {
+    font-size: 22px;
+  }
+  .text-\[23px\] {
+    font-size: 23px;
+  }
+  .text-\[24px\] {
+    font-size: 24px;
+  }
+  .text-\[26px\] {
+    font-size: 26px;
+  }
+  .text-\[30px\] {
+    font-size: 30px;
+  }
+  .text-\[34px\] {
+    font-size: 34px;
+  }
+  .text-\[36px\] {
+    font-size: 36px;
+  }
+  .text-\[48px\] {
+    font-size: 48px;
+  }
+  .text-\[52px\] {
+    font-size: 52px;
+  }
+  .text-\[80px\] {
+    font-size: 80px;
+  }
+  .leading-6 {
+    --tw-leading: calc(var(--spacing) * 6);
+    line-height: calc(var(--spacing) * 6);
+  }
+  .leading-\[0\] {
+    --tw-leading: 0;
+    line-height: 0;
+  }
+  .leading-\[1\.1\] {
+    --tw-leading: 1.1;
+    line-height: 1.1;
+  }
+  .leading-\[1\.55\] {
+    --tw-leading: 1.55;
+    line-height: 1.55;
+  }
+  .leading-\[1\.65\] {
+    --tw-leading: 1.65;
+    line-height: 1.65;
+  }
+  .leading-\[21px\] {
+    --tw-leading: 21px;
+    line-height: 21px;
+  }
+  .leading-\[22\.48px\] {
+    --tw-leading: 22.48px;
+    line-height: 22.48px;
+  }
+  .leading-\[23px\] {
+    --tw-leading: 23px;
+    line-height: 23px;
+  }
+  .leading-\[24px\] {
+    --tw-leading: 24px;
+    line-height: 24px;
+  }
+  .leading-\[28\.8px\] {
+    --tw-leading: 28.8px;
+    line-height: 28.8px;
+  }
+  .leading-\[55\.12px\] {
+    --tw-leading: 55.12px;
+    line-height: 55.12px;
+  }
+  .leading-\[55px\] {
+    --tw-leading: 55px;
+    line-height: 55px;
+  }
+  .leading-\[normal\] {
+    --tw-leading: normal;
+    line-height: normal;
+  }
+  .leading-none {
+    --tw-leading: 1;
+    line-height: 1;
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .tracking-\[-0\.3px\] {
+    --tw-tracking: -0.3px;
+    letter-spacing: -0.3px;
+  }
+  .tracking-\[-0\.17px\] {
+    --tw-tracking: -0.17px;
+    letter-spacing: -0.17px;
+  }
+  .tracking-\[-0\.26px\] {
+    --tw-tracking: -0.26px;
+    letter-spacing: -0.26px;
+  }
+  .tracking-\[-0\.36px\] {
+    --tw-tracking: -0.36px;
+    letter-spacing: -0.36px;
+  }
+  .tracking-\[-0\.68px\] {
+    --tw-tracking: -0.68px;
+    letter-spacing: -0.68px;
+  }
+  .tracking-\[-1\.04px\] {
+    --tw-tracking: -1.04px;
+    letter-spacing: -1.04px;
+  }
+  .tracking-\[0\.12em\] {
+    --tw-tracking: 0.12em;
+    letter-spacing: 0.12em;
+  }
+  .tracking-\[0\.46px\] {
+    --tw-tracking: 0.46px;
+    letter-spacing: 0.46px;
+  }
+  .tracking-\[0\.69px\] {
+    --tw-tracking: 0.69px;
+    letter-spacing: 0.69px;
+  }
+  .tracking-\[1\.2px\] {
+    --tw-tracking: 1.2px;
+    letter-spacing: 1.2px;
+  }
+  .\[word-break\:break-word\] {
+    word-break: break-word;
+  }
+  .break-all {
+    word-break: break-all;
+  }
+  .whitespace-normal {
+    white-space: normal;
+  }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+  .whitespace-pre-wrap {
+    white-space: pre-wrap;
+  }
+  .text-\[\#0a2049\] {
+    color: #0a2049;
+  }
+  .text-\[\#0d0f16\] {
+    color: #0d0f16;
+  }
+  .text-\[\#2a3b52\] {
+    color: #2a3b52;
+  }
+  .text-\[\#3a4050\] {
+    color: #3a4050;
+  }
+  .text-\[\#3b4a60\] {
+    color: #3b4a60;
+  }
+  .text-\[\#5a606e\] {
+    color: #5a606e;
+  }
+  .text-\[\#8fa6ff\] {
+    color: #8fa6ff;
+  }
+  .text-\[\#026dd5\] {
+    color: #026dd5;
+  }
+  .text-\[\#001229\] {
+    color: #001229;
+  }
+  .text-\[\#2242d6\] {
+    color: #2242d6;
+  }
+  .text-\[\#8990a0\] {
+    color: #8990a0;
+  }
+  .text-\[\#051533\] {
+    color: #051533;
+  }
+  .text-\[…\] {
+    color: …;
+  }
+  .text-black {
+    color: var(--color-black);
+  }
+  .text-slate-500 {
+    color: var(--color-slate-500);
+  }
+  .text-slate-700 {
+    color: var(--color-slate-700);
+  }
+  .text-slate-900 {
+    color: var(--color-slate-900);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .capitalize {
+    text-transform: capitalize;
+  }
+  .lowercase {
+    text-transform: lowercase;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .italic {
+    font-style: italic;
+  }
+  .not-italic {
+    font-style: normal;
+  }
+  .tabular-nums {
+    --tw-numeric-spacing: tabular-nums;
+    font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .opacity-0 {
+    opacity: 0%;
+  }
+  .shadow {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_8px_32px_rgba\(13\,15\,22\,0\.12\)\] {
+    --tw-shadow: 0 8px 32px var(--tw-shadow-color, rgba(13,15,22,0.12));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_24px_80px_rgba\(0\,0\,0\,0\.35\)\] {
+    --tw-shadow: 0 24px 80px var(--tw-shadow-color, rgba(0,0,0,0.35));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_40px_80px_rgba\(0\,0\,0\,0\.18\)\] {
+    --tw-shadow: 0 40px 80px var(--tw-shadow-color, rgba(0,0,0,0.18));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0px_8px_40px_0px_rgba\(0\,0\,0\,0\.1\)\] {
+    --tw-shadow: 0px 8px 40px 0px var(--tw-shadow-color, rgba(0,0,0,0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow\/elevation {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .ring {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .blur {
+    --tw-blur: blur(8px);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .grayscale {
+    --tw-grayscale: grayscale(100%);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .invert {
+    --tw-invert: invert(100%);
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .filter {
+    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .backdrop-blur-\[6px\] {
+    --tw-backdrop-blur: blur(6px);
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
+  .backdrop-blur-sm {
+    --tw-backdrop-blur: blur(var(--blur-sm));
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
+  .backdrop-filter {
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
+  .transition {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  .duration-500 {
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
+  }
+  .ease-in {
+    --tw-ease: var(--ease-in);
+    transition-timing-function: var(--ease-in);
+  }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+  }
+  .ease-out {
+    --tw-ease: var(--ease-out);
+    transition-timing-function: var(--ease-out);
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  @media (hover: hover) {
+    .group-hover\:translate-x-\[2px\]:is(:where(.group):hover *) {
+      --tw-translate-x: 2px;
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+    .group-hover\:scale-105:is(:where(.group):hover *) {
+      --tw-scale-x: 105%;
+      --tw-scale-y: 105%;
+      --tw-scale-z: 105%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+    .group-hover\:scale-110:is(:where(.group):hover *) {
+      --tw-scale-x: 110%;
+      --tw-scale-y: 110%;
+      --tw-scale-z: 110%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+    .group-hover\:scale-\[1\.03\]:is(:where(.group):hover *) {
+      scale: 1.03;
+    }
+    .group-hover\:scale-\[1\.05\]:is(:where(.group):hover *) {
+      scale: 1.05;
+    }
+    .group-hover\:-rotate-\[0\.5deg\]:is(:where(.group):hover *) {
+      rotate: calc(0.5deg * -1);
+    }
+    .group-hover\:rotate-\[0\.5deg\]:is(:where(.group):hover *) {
+      rotate: 0.5deg;
+    }
+    .group-hover\:border-\[\#0d0f16\]:is(:where(.group):hover *) {
+      border-color: #0d0f16;
+    }
+    .group-hover\:border-\[\#2242d6\]:is(:where(.group):hover *) {
+      border-color: #2242d6;
+    }
+    .group-hover\:bg-\[\#1a35ad\]:is(:where(.group):hover *) {
+      background-color: #1a35ad;
+    }
+    .group-hover\:bg-black\/20:is(:where(.group):hover *) {
+      background-color: color-mix(in srgb, #000 20%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .group-hover\:bg-black\/20:is(:where(.group):hover *) {
+        background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
+      }
+    }
+    .group-hover\:text-\[\#1a35ad\]:is(:where(.group):hover *) {
+      color: #1a35ad;
+    }
+    .group-hover\:text-white:is(:where(.group):hover *) {
+      color: var(--color-white);
+    }
+    .group-hover\:opacity-100:is(:where(.group):hover *) {
+      opacity: 100%;
+    }
+  }
+  .group-active\:scale-95:is(:where(.group):active *) {
+    --tw-scale-x: 95%;
+    --tw-scale-y: 95%;
+    --tw-scale-z: 95%;
+    scale: var(--tw-scale-x) var(--tw-scale-y);
+  }
+  @media (hover: hover) {
+    .hover\:-translate-y-1:hover {
+      --tw-translate-y: calc(var(--spacing) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+    .hover\:border-\[\#0d0f16\]:hover {
+      border-color: #0d0f16;
+    }
+    .hover\:bg-\[\#0d0f16\]:hover {
+      background-color: #0d0f16;
+    }
+    .hover\:bg-\[\#1a35ad\]:hover {
+      background-color: #1a35ad;
+    }
+    .hover\:bg-\[\#eef0f5\]:hover {
+      background-color: #eef0f5;
+    }
+    .hover\:bg-\[\#f6f7fb\]:hover {
+      background-color: #f6f7fb;
+    }
+    .hover\:bg-white:hover {
+      background-color: var(--color-white);
+    }
+    .hover\:text-\[\#2242d6\]:hover {
+      color: #2242d6;
+    }
+    .hover\:text-slate-900:hover {
+      color: var(--color-slate-900);
+    }
+    .hover\:text-white:hover {
+      color: var(--color-white);
+    }
+    .hover\:shadow-\[0_12px_40px_rgba\(13\,15\,22\,0\.08\)\]:hover {
+      --tw-shadow: 0 12px 40px var(--tw-shadow-color, rgba(13,15,22,0.08));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus-visible\:ring-2:focus-visible {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .focus-visible\:ring-\[\#2242d6\]:focus-visible {
+    --tw-ring-color: #2242d6;
+  }
+  .focus-visible\:outline-none:focus-visible {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  @media (width >= 40rem) {
+    .sm\:block {
+      display: block;
+    }
+    .sm\:hidden {
+      display: none;
+    }
+    .sm\:max-h-\[320px\] {
+      max-height: 320px;
+    }
+    .sm\:flex-row {
+      flex-direction: row;
+    }
+    .sm\:items-center {
+      align-items: center;
+    }
+    .sm\:p-6 {
+      padding: calc(var(--spacing) * 6);
+    }
+    .sm\:p-8 {
+      padding: calc(var(--spacing) * 8);
+    }
+    .sm\:px-\[44px\] {
+      padding-inline: 44px;
+    }
+    .sm\:text-\[42px\] {
+      font-size: 42px;
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:flex {
+      display: flex;
+    }
+    .md\:flex-row {
+      flex-direction: row;
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:w-\[516px\] {
+      width: 516px;
+    }
+    .lg\:w-auto {
+      width: auto;
+    }
+    .lg\:min-w-0 {
+      min-width: 0px;
+    }
+    .lg\:flex-1 {
+      flex: 1;
+    }
+    .lg\:flex-row {
+      flex-direction: row;
+    }
+    .lg\:text-\[52px\] {
+      font-size: 52px;
+    }
+  }
+}
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+[data-name="Background+Border+Shadow"] {
+  border-radius: 0 !important;
+}
+[data-name="Background+Border+Shadow"] > div[aria-hidden] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+[data-name="Background+Border+Shadow"] > div:first-child {
+  border-radius: 0 !important;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/IBMPlexMono-Regular_2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@keyframes imgmodal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes imgmodal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-gradient-position {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-via {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-via-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --tw-gradient-via-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --tw-gradient-to-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ordinal {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-slashed-zero {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-figure {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-spacing {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-numeric-fraction {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-backdrop-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-gradient-position: initial;
+      --tw-gradient-from: #0000;
+      --tw-gradient-via: #0000;
+      --tw-gradient-to: #0000;
+      --tw-gradient-stops: initial;
+      --tw-gradient-via-stops: initial;
+      --tw-gradient-from-position: 0%;
+      --tw-gradient-via-position: 50%;
+      --tw-gradient-to-position: 100%;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
+      --tw-ordinal: initial;
+      --tw-slashed-zero: initial;
+      --tw-numeric-figure: initial;
+      --tw-numeric-spacing: initial;
+      --tw-numeric-fraction: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
+      --tw-backdrop-blur: initial;
+      --tw-backdrop-brightness: initial;
+      --tw-backdrop-contrast: initial;
+      --tw-backdrop-grayscale: initial;
+      --tw-backdrop-hue-rotate: initial;
+      --tw-backdrop-invert: initial;
+      --tw-backdrop-opacity: initial;
+      --tw-backdrop-saturate: initial;
+      --tw-backdrop-sepia: initial;
+      --tw-duration: initial;
+      --tw-ease: initial;
+    }
+  }
+}
+</style></head>
+  <body>
+    
+    <div id="root"><div style="min-height: 100vh; width: 100%; background-color: rgb(255, 255, 255); display: flex; justify-content: center; align-items: flex-start;"><div style="width: 100%; max-width: 1170px; border-radius: 0px; box-shadow: none; overflow: visible;"><div class="bg-white relative rounded-[14px] size-full" data-name="Background+Border+Shadow"><div class="content-stretch flex flex-col items-start max-w-[inherit] overflow-clip p-px relative rounded-[inherit] size-full"><div class="bg-white content-stretch flex flex-col items-center justify-center relative shrink-0 w-full" data-name="Background"><div class="bg-[#0d0f16] h-[33px] relative shrink-0 w-full" data-name="Background"><div class="flex flex-row justify-center size-full"><div class="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[9px] relative size-full"><div class="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.46px] whitespace-nowrap"><p class="leading-[normal] hidden sm:block">ЛАБОРАТОРИЯ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА · ГОСУДАРСТВЕННАЯ СЛУЖБА РК</p><p class="leading-[normal] sm:hidden">ЛАБОРАТОРИЯ ИИ · ГС РК</p></div></div><div class="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.46px] whitespace-nowrap"><p class="leading-[normal]">RU / KZ / EN</p></div></div></div></div></div><div class="relative shrink-0 w-full" data-name="HorizontalBorder"><div class="flex flex-row items-center size-full"><div class="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full gap-[24px]"><div class="content-stretch flex gap-[11px] items-center relative shrink-0" data-name="Container"><div class="relative shrink-0 size-[26px]" data-name="Border"><div aria-hidden="true" class="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none"></div></div><div class="content-stretch flex flex-col items-start relative shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] tracking-[-0.17px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">GOVERNANCE.KZ</p></div></div></div><div class="hidden md:flex flex-row gap-[6px] shrink-0"><button type="button" class="group flex items-center gap-[6px] rounded-[6px] border border-[#e6e8ee] bg-white px-[12px] py-[8px] text-left cursor-pointer transition-colors hover:border-[#0d0f16] hover:bg-[#f6f7fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"><span class="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] text-[#2242d6] tabular-nums shrink-0">01</span><span class="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;">Диагностика</span></button><button type="button" class="group flex items-center gap-[6px] rounded-[6px] border border-[#e6e8ee] bg-white px-[12px] py-[8px] text-left cursor-pointer transition-colors hover:border-[#0d0f16] hover:bg-[#f6f7fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"><span class="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] text-[#2242d6] tabular-nums shrink-0">02</span><span class="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;">Координация</span></button><button type="button" class="group flex items-center gap-[6px] rounded-[6px] border border-[#e6e8ee] bg-white px-[12px] py-[8px] text-left cursor-pointer transition-colors hover:border-[#0d0f16] hover:bg-[#f6f7fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"><span class="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] text-[#2242d6] tabular-nums shrink-0">03</span><span class="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;">Акторы</span></button></div></div></div></div><div class="content-stretch flex flex-col items-start relative shrink-0"><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0"><div class="border-b border-[#e6e8ee] w-full" data-name="HorizontalBorder"><div class="px-[20px] sm:px-[44px] py-[40px]"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p></div></div><div class="flex flex-col lg:flex-row gap-[40px] items-start mt-[32px] mb-[40px]"><div class="flex-1"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="mb-0">Государство и бизнес,</p><p class="mb-0">которые видят свои</p><p>процессы целиком</p></div><div class="col-0 content-stretch flex flex-col items-start max-w-[620px] relative row-0 self-end shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[18px] text-black" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[28.8px] mb-0">Governance.kz — прикладной центр цифровой трансформации</p><p class="leading-[28.8px] mb-0">управления. ИИ анализирует функции, кадры, услуги и нагрузку в</p><p class="leading-[28.8px] mb-0">единой логике данных: находит дублирования, барьеры и аномалии —</p><p class="leading-[28.8px]">а решения остаются за людьми.</p></div></div></div><div class="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]"><div class="w-full lg:w-[516px]"><img alt="" class="w-full h-auto object-cover rounded-[8px]" src="/imports/024996798644ee39e17d62182850eebdd0609893.png"></div><div class="col-0 content-stretch flex flex-row gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full" data-name="Container"><div class="bg-[#2242d6] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]" data-name="Background"><div class="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Записаться на встречу →</p></div></div></div><div class="relative shrink-0 cursor-pointer" data-name="Border"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Аналитическая записка</p></div></div></div></div></div></div><div class="mt-[24px] w-full"><div class="content-stretch flex h-[103px] items-start justify-center p-px relative w-full max-w-[1112px] mx-auto" data-name="Border"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"></div><div class="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full"><div class="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"></div><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap"><p class="leading-[normal]">0 000</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">профилей · Smart HR</p></div></div></div></div><div class="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full"><div class="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"></div><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap"><p class="leading-[normal]">0 000</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">госуслуг проверено</p></div></div></div></div><div class="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full"><div class="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"></div><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap"><p class="leading-[normal]">00</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">госорганов в пилоте</p></div></div></div></div><div class="flex-[1_0_0] min-w-px relative" data-name="Container"><div class="content-stretch flex flex-col gap-[8px] items-start px-[20px] py-[18px] relative size-full"><div class="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"></div><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap"><p class="leading-[normal]">+00%</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">эффективность управления</p></div></div></div></div></div><div class="content-stretch flex flex-col items-start mt-[14px] w-full max-w-[1112px] mx-auto" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-black w-full"><p class="leading-[normal]">// плейсхолдеры — подставить фактические показатели</p></div></div></div></div><div class="relative w-full" data-name="HorizontalBorder"><div class="flex flex-col gap-[8px] items-start px-[20px] sm:px-[44px] py-[52px]"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">02 / АРХИТЕКТУРА</p></div></div><div class="content-stretch flex flex-col items-start pb-[22px] relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Три взаимосвязанных контура</p></div></div><div class="bg-white flex flex-col md:flex-row items-stretch justify-center p-px relative w-full max-w-[1112px] mx-auto gap-0" data-name="Background+Border"><button type="button" aria-label="Открыть вкладку Диагностика" class="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]"></div><div class="h-[143px] relative shrink-0 w-[189px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none"><img alt="" class="absolute h-[124.48%] left-[0.35%] max-w-none top-[-11.24%] w-full" src="/imports/abf3bb7accbdf5e82f4b0b47958890c444c8104e.png"></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full"><p class="leading-[normal]">К1</p></div></div><div class="content-stretch flex flex-col items-start pt-[2.8px] relative shrink-0 w-full" data-name="Heading 3"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]"><span>Диагностика</span><span class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]"> (Прозрачность аппарата)</span></p></div></div><div class="content-stretch flex flex-col items-start pb-[0.68px] relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[22.48px] mb-0">Функциональный анализ госорганов и</p><p class="leading-[22.48px] mb-0">аналитика госуслуг: дублирования, коллизии,</p><p class="leading-[22.48px] mb-0">скрытые барьеры, перевод в проактивный</p><p class="leading-[22.48px]">формат.</p></div></div></button><button type="button" aria-label="Открыть вкладку Координация" class="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]"></div><div class="h-[165.6px] relative shrink-0 w-[174.24px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none"><img alt="" class="absolute left-0 max-w-none size-full top-0" src="/imports/57ff537c2189b0a378566d8a505380f1ac26642d.png"></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full"><p class="leading-[normal]">К2</p></div></div><div class="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Координация</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[22.48px] mb-0">Smart HR и онлайн-ассессмент: подбор и</p><p class="leading-[22.48px] mb-0">оценка кандидатов на данных, снижение</p><p class="leading-[22.48px]">ручной нагрузки, структурный отбор.</p></div></div></button><button type="button" aria-label="Открыть вкладку Акторы" class="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]"></div><div class="h-[135px] relative shrink-0 w-[216px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none"><img alt="" class="absolute h-[122.67%] left-0 max-w-none top-[-13.53%] w-full" src="/imports/a9248cf50efe8245aba6b07afe6d67b31ad55a5a.png"></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full"><p class="leading-[normal]">К3</p></div></div><div class="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]"><span>Акторы</span><span class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]"> (Управленческий интеллект)</span></p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[22.48px] mb-0">Помощник руководителя поверх ЭДО:</p><p class="leading-[22.48px] mb-0">управленческий сигнал, рекомендации и</p><p class="leading-[22.48px]">действия вместо избыточных данных.</p></div></div></button></div></div></div></div></div></div><div class="relative shrink-0 w-full" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[20px] sm:px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">03 / ПРОДУКТЫ</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Реестр решений</p></div></div><div class="w-full overflow-x-auto"><div class="relative shrink-0 w-full" data-name="Border"><div aria-hidden="true" class="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10"></div><div class="content-stretch flex flex-col items-start relative size-full"><div class="bg-[#0d0f16] grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_39px] h-[39px] relative shrink-0 w-full" data-name="Background"><div class="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap"><p class="leading-[normal]">№</p></div></div></div><div class="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap"><p class="leading-[normal]">РЕШЕНИЕ</p></div></div></div><div class="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap"><p class="leading-[normal]">ЧТО ДЕЛАЕТ</p></div></div></div><div class="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap"><p class="leading-[normal]">ОСОБЕННОСТЬ</p></div></div></div></div><div class="relative shrink-0 w-full" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"></div><div class="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]"><span aria-hidden="true" class="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"></span><span aria-hidden="true" class="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span><div class="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap"><p class="leading-[normal]">01</p></div></div></div><div class="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Smart HR</p></div></div></div><div class="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start p-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[21px] mb-0">Диалоговый помощник KZ/RU/EN, фильтр профилей, аналитика</p><p class="leading-[21px]">кандидатов</p></div></div></div><div class="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">3 модуля</p></div></div></div></div></div><div class="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"></div><div class="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white"><span aria-hidden="true" class="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"></span><span aria-hidden="true" class="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span><div class="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap"><p class="leading-[normal]">02</p></div></div></div><div class="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Онлайн-ассессмент</p></div></div></div><div class="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start p-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[21px]">Компьютерное зрение, анализ видео/аудио, поведенческие паттерны</p></div></div></div><div class="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Human-in-the-loop</p></div></div></div></div></div><div class="relative shrink-0 w-full" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"></div><div class="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]"><span aria-hidden="true" class="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"></span><span aria-hidden="true" class="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span><div class="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap"><p class="leading-[normal]">03</p></div></div></div><div class="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Помощник руководителя</p></div></div></div><div class="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start p-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[21px]">Интеграция ЭДО, нагрузка, узкие места, управленческий сигнал</p></div></div></div><div class="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Для ЛПР</p></div></div></div></div></div><div class="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"></div><div class="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white"><span aria-hidden="true" class="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"></span><span aria-hidden="true" class="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span><div class="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap"><p class="leading-[normal]">04</p></div></div></div><div class="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Цифровой суверенитет</p></div></div></div><div class="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start p-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[21px] mb-0">Закрытый контур, суперкомпьютер и локальные сервера, защита</p><p class="leading-[21px]">данных РК</p></div></div></div><div class="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container"><div class="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Инфраструктура</p></div></div></div></div></div></div></div></div></div></div><div class="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">04 / ИНФОГРАФИКА</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Инфографика: Философия “Укрощения хаоса”</p></div></div><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0"><div class="col-1 h-[55.677px] ml-[20.87px] mt-0 relative row-1 w-full max-w-[1082px]" data-name="Frame"><div class="absolute h-[63.5px] left-0 top-0 w-full" data-name="Rectangle"></div></div><div class="col-1 h-[103.399px] ml-0 mt-[11px] relative row-1 w-full max-w-[1082px]" data-name="Frame"><div class="absolute h-[117.086px] left-0 top-0 w-full" data-name="Rectangle"></div><p class="[word-break:break-word] absolute font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[normal] left-0 not-italic text-[#3a4050] text-[22px] top-0 w-full">В Governance.kz инфографика — это не украшение. Это функциональный инструмент, который переводит сложнейшие процессы (коллизии полномочий, скрытые барьеры) в кристально чистую визуальную структуру. От хаоса неструктурированных данных — к математическому порядку.</p></div><div class="col-1 h-[60.537px] ml-[540.71px] mt-[412.71px] relative row-1 w-[58.063px]" data-name="Frame"><div class="absolute h-[68.5px] left-0 top-0 w-[64px]" data-name="Rectangle"></div></div><button type="button" aria-label="Поменять «Было» и «Стало» местами" title="Поменять местами" class="col-1 group relative ml-[517.12px] mt-[244.92px] row-1 flex h-[84.841px] w-[81.651px] cursor-pointer items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Arrow"><span aria-hidden="true" class="absolute inset-0 rounded-full bg-[#2242d6]/10 transition-transform duration-300 group-hover:scale-110 group-active:scale-95"></span><span aria-hidden="true" class="absolute -inset-[6px] rounded-full border border-[#2242d6]/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span><span class="pointer-events-none select-none font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-none text-[#2242d6] text-[80px] transition-transform duration-500 ease-out group-hover:translate-x-[2px] group-hover:text-[#1a35ad]" style="display: inline-block; transform: none;">→</span></button><div class="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1"><div class="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[101.703px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle"></div><div class="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[40px] row-1 w-[437.398px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]"><img alt="" class="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:rotate-[0.5deg]" src="/imports/before.png"></div></div><div class="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1"><div class="bg-[#2242d6] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle"></div><div class="bg-[#2242d6] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Frame"><div class="absolute h-[31.5px] left-0 top-0 w-[68.625px]" data-name="Rectangle"></div><p class="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p></div></div></div><div class="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1"><div class="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[100.58px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle"></div><div class="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[40px] row-1 w-[437.528px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]"><img alt="" class="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-rotate-[0.5deg]" src="/imports/after.png"></div></div><div class="bg-[#2242d6] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle"></div><div class="col-1 h-[19.654px] ml-[11.05px] mt-[5.2px] relative row-1 w-[49.772px]" data-name="Frame"><div class="absolute h-[31.5px] left-0 top-0 w-[77.023px]" data-name="Rectangle"></div><p class="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[77.023px]">Стало</p></div></div></div></div></div><div class="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">05 / СТРАТЕГИЯ</p></div></div><div class="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Стратегический фундамент: Почему Казахстан?</p></div><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"><div class="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]" data-name="image 55"><img alt="" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/imports/762e3da223b722c4708edaa513edb7fb81d065dc.png"></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[93px] justify-center ml-[843px] mt-[0.5px] not-italic relative row-1 text-[#0d0f16] text-[16px] text-center w-[265px]"><p class="leading-[normal] mb-0">governance.kz — создание сложных</p><p class="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p><p class="leading-[normal]">вычислительных мощностей.</p></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap"><p class="leading-[normal] mb-0">«Будущее инноваций и ИИ упирается в </p><p class="leading-[normal]">энергию и вычислительные мощности.»</p></div><div class="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]" data-name="Rectangle"></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[83px] mt-[229.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]"><p class="leading-[normal] mb-0">Передовая экосистема eGov,</p><p class="leading-[normal]">суперкомпьютеры, ЦОДы.</p></div><div class="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]" data-name="Rectangle"></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79px] justify-center ml-[40px] mt-[362.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]"><p class="leading-[normal] mb-0">Дешевая электроэнергия,</p><p class="leading-[normal] mb-0">запасы редкоземельных металлов</p><p class="leading-[normal]">(кремний, литий), критичные для вычислений.</p></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold h-[72.394px] justify-center ml-[694.47px] mt-[149.84px] not-italic relative row-1 text-[#0d0f16] text-[20px] text-center w-[119.534px] whitespace-pre-wrap"><p class="leading-[normal] mb-0">Технологии </p><p class="leading-[normal] mb-0">&amp;</p><p class="leading-[normal]">Продукты</p></div></div><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"><div class="col-1 h-[109.199px] ml-0 mt-0 relative row-1 w-[617.147px]" data-name="Rectangle"></div><div class="col-1 h-[85.579px] ml-[524px] mt-[45px] relative row-1 w-[261.761px]" data-name="Rectangle"></div></div></div></div></div><div class="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="flex flex-col items-center justify-center size-full"><div class="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">06 / AI-АССЕССМЕНТ</p></div></div><div class="content-stretch flex flex-col h-[53px] items-start relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">AI-Ассессмент: Поведенческий анализ</p></div></div><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0"><button type="button" aria-label="Открыть AI Assessment" class="group col-1 relative h-[387.656px] ml-[110.47px] mt-0 row-1 w-[786.737px] cursor-zoom-in overflow-hidden rounded-[14px] outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="image 57"><img alt="AI Assessment" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full transition-transform duration-500 group-hover:scale-[1.03]" src="/imports/a1f65cf94f5b3c805215dfdc6c26bc10642d5405.png"><div class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20"></div><div class="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent py-4"><span class="flex items-center gap-[8px] rounded-full border border-white/60 bg-white/15 px-4 py-2 text-[14px] font-medium tracking-[0.12em] text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-105"><span class="text-[16px] leading-none">⤢</span>AI ASSESSMENT — ОТКРЫТЬ</span></div></button><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3a4050] text-[0px] w-[270px]"><p class="text-[18px]"><span class="leading-[normal]">Уровень вовлеченности: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">87%</span></p></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[30.39px] justify-center ml-[591px] mt-[188.42px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[203px]"><p class="text-[18px]"><span class="leading-[normal]">Уровень стресса: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">12%</span></p></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[46.598px] justify-center ml-[591px] mt-[303.9px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[292px]"><p class="leading-[normal] mb-0 text-[18px]">Эмоциональное состояние:</p><p class="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] text-[18px]">Стабильное</p></div><div class="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[427.5px] place-items-start relative row-1"><div class="bg-[#e5e9ec] border-[#9fa6ae] border-[0.5px] border-solid col-1 h-[79px] ml-0 mt-0 relative rounded-[15px] row-1 w-[1001px]"></div><div class="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[63px] justify-center ml-[31.75px] mt-[8px] not-italic relative row-1 text-[#0d0f16] text-[19px] w-[954px]"><p class="leading-[normal] mb-0">Использование компьютерного зрения и аудиоаналитики в реальном времени. Прогнозирование</p><p class="leading-[normal]">эффективности на основе поведенческих паттернов как дополнение к экспертной оценке.</p></div></div></div></div></div></div><div class="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col gap-[20px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full max-w-[1170px] mx-auto"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">07 / EXECASSIST</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">ExecAssist: Помощник Руководителя</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0"><div class="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[0] not-italic relative shrink-0 text-[#3a4050] text-[22px] w-[1064px]"><p class="leading-[normal] mb-0">ИИ видит ведомство изнутри в реальном времени. Координация задач и умные боты работают прямо в рабочих мессенджерах сотрудников.</p><p class="leading-[normal]">Переход от избыточных данных к чистому управленческому сигналу.</p></div><div class="h-[510px] overflow-clip relative rounded-[20px] shrink-0 w-[1064px]" data-name="Frame"><div class="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]"><img alt="" class="absolute h-[162.9%] left-[-19.45%] max-w-none top-[-27.9%] w-[138.83%]" src="/imports/d905383f33c1e237129302dc61291c1114ce4e71.png"></div><div class="absolute h-[44.511px] left-[19px] top-[3px] w-[457.523px]" data-name="Frame"><div class="absolute h-[44.511px] left-0 top-0 w-[457.523px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[26px] top-[27.26px] w-[457.523px]"><p class="leading-[normal]">Управленческий сигнал</p></div></div><div class="absolute h-[44.511px] left-[629px] top-[7px] w-[408.548px]" data-name="Frame"><div class="absolute h-[44.511px] left-0 top-0 w-[408.548px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-[-62px] not-italic text-[#0d0f16] text-[26px] top-[22.26px] w-[408.548px]"><p class="leading-[normal]">Прямая координация</p></div></div><div class="absolute h-[48.17px] left-[51px] top-[72px] w-[540.963px]" data-name="Frame"><div class="absolute h-[48.17px] left-0 top-0 w-[540.963px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[540.963px]"><p class="leading-[normal]">Эффективность департаментов</p></div></div><div class="absolute h-[42.818px] left-[37px] top-[176px] w-[245.296px]" data-name="Frame"><div class="absolute h-[42.818px] left-0 top-0 w-[245.296px]" data-name="Rectangle"></div></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[30px] not-italic text-[#3a4050] text-[0px] top-[142.41px] w-[245.296px]"><p class="text-[19px]"><span class="leading-[normal]">Маркетинг: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">92%</span></p></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[29px] not-italic text-[#3a4050] text-[0px] top-[185.41px] w-[223.529px]"><p class="text-[19px]"><span class="leading-[normal]">Продажи: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">88%</span></p></div><div class="absolute h-[42.818px] left-[36px] top-[219px] w-[223.529px]" data-name="Frame"><div class="absolute h-[42.818px] left-0 top-0 w-[223.529px]" data-name="Rectangle"></div></div><div class="absolute h-[48.17px] left-[36px] top-[259.07px] w-[270.691px]" data-name="Frame"><div class="absolute h-[48.17px] left-0 top-0 w-[270.691px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-[-7px] not-italic text-[#3a4050] text-[0px] top-[-30.91px] w-[270.691px]"><p class="text-[19px]"><span class="leading-[normal]">Разработка: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">95%</span></p></div></div><div class="absolute h-[48.17px] left-[93px] top-[290px] w-[428.501px]" data-name="Frame"><div class="absolute h-[48.17px] left-0 top-0 w-[428.501px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[428.501px]"><p class="leading-[normal]">Общий уровень нагрузки</p></div></div><div class="absolute h-[39.159px] left-[479.99px] top-[740.34px] w-[316.039px]" data-name="Frame"><div class="absolute h-[39.159px] left-0 top-0 w-[316.039px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[39.159px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[0px] top-[19.58px] w-[316.039px]"><p class="text-[23px]"><span class="leading-[normal]">Оптимальный: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">70%</span></p></div></div><div class="absolute h-[159.927px] left-[651px] top-[76px] w-[473.849px]" data-name="Frame"><div class="absolute h-[159.927px] left-0 top-0 w-[473.849px]" data-name="Rectangle"></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[159.927px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[0px] top-[79.96px] w-[473.849px]"><p class="mb-0 text-[19px]"><span class="leading-[normal]">Робот: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Назначена задача</span></p><p class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">на основе анализа.</p><p class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">@Иванов, просьба</p><p class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">подготовить отчет по проекту</p><p class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">"Альфа" к 15:00.</p></div></div><div class="absolute h-[73.586px] left-[929px] top-[332px] w-[419.431px]" data-name="Frame"><div class="absolute h-[73.586px] left-0 top-0 w-[419.431px]" data-name="Rectangle"></div></div><div class="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[73.586px] justify-center leading-[0] left-[706px] not-italic text-[#3a4050] text-[0px] top-[282.79px] w-[419.431px]"><p class="mb-0 text-[19px]"><span class="leading-[normal]">Иванов: </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Принято в работу.</span></p><p class="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">Будет готово.</p></div></div></div></div></div><div class="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="flex flex-col items-start justify-center size-full"><div class="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">08 / SERVICEFLOW</p></div></div><div class="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2"><div class="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">ServiceFlow: Проактивный клиентский сервис</p></div></div><div class="flex flex-col lg:flex-row items-start gap-[40px] w-full"><div class="flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center not-italic relative shrink-0 text-[#0d0f16] text-[0px] w-full max-w-[350px]" data-name="ServiceFlow Text"><p class="mb-0 text-[26px]"><span class="leading-[normal]">Проанализировано </span><span class="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">1 500</span><span class="leading-[normal]"> государственных услуг</span></p><p class="leading-[normal] mb-0 text-[26px]">с помощью ИИ.</p><p class="leading-[normal] mb-0 text-[26px]">Выявление аномалий,</p><p class="leading-[normal] mb-0 text-[26px]">скрытых офлайн-процессов</p><p class="leading-[normal] text-[26px]">и нормативных барьеров.</p></div><div class="w-full lg:flex-1 lg:min-w-0"><div class="relative w-full max-w-[723.175px]"><div class="relative w-full h-[321.121px]" data-name="image 58"><img alt="" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/imports/29a3bee7660df8358ecf16a3422d11eb33c3cb17.png"><div class="absolute left-[6%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]"><p class="mb-0">Спрятанный</p><p>барьер</p></div><div class="absolute left-[44%] top-[68%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold not-italic text-[#0d0f16] text-[24px] leading-[normal]"><p class="leading-[normal]">Проактивный формат</p></div></div><div class="absolute left-[48%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]"><p class="mb-0">Лишний</p><p>документ</p></div><div class="absolute left-[80%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]"><p class="mb-0">Потеря</p><p>времени</p></div></div></div></div></div></div></div><div class="relative shrink-0 w-full" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"></div><div class="flex flex-col items-center justify-center size-full"><div class="content-stretch flex flex-col gap-[8px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full"><p class="leading-[normal]">09 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Безопасность и доверие</p></div></div><div class="content-stretch flex gap-[16px] h-auto items-start justify-center pt-[16px] relative shrink-0 w-full pb-[24px]" data-name="Container"><div class="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Human-in-the-loop</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[23px] mb-0">Ответственность — за</p><p class="leading-[23px]">уполномоченными лицами</p></div></div></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Замкнутый контур</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[23px]">Безопасная среда апробации</p></div></div></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Защита данных</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[23px]">Этика и законодательство РК</p></div></div></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Межведомственность</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[23px]">Устранение барьеров данных</p></div></div></div><div class="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder"><div aria-hidden="true" class="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Прозрачность и аудит</p></div></div><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[23px]">Проверяемость процессов</p></div></div></div></div><div class="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0"><div class="col-1 h-[259.97px] ml-[216.62px] mt-0 relative row-1 w-[526.026px]" data-name="image 56"><div class="absolute inset-0 overflow-hidden pointer-events-none"><img alt="" class="absolute h-[114.35%] left-[-40.37%] max-w-none top-[-10.22%] w-[159.35%]" src="/imports/c07407db45f5b55ba113edc2d3987e4a10064c6c.png"></div></div><div class="col-1 h-[259.848px] ml-0 mt-[0.73px] relative row-1 w-[217.687px]" data-name="image 59"><img alt="" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/imports/29ec613a87bc4f3acf7213fc4f5fc665e405cb89.png"></div><div class="col-1 h-[86.478px] ml-[742.01px] mt-[0.26px] relative row-1 w-[87.995px]" data-name="image 60"><img alt="" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/imports/139f115f8c2e5f0ed078adfaed1ec6bced7ee40c.png"></div><div class="col-1 h-[86.478px] ml-[742.01px] mt-[86.89px] relative row-1 w-[87.995px]" data-name="image 61"><img alt="" class="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src="/imports/8a984d7d3fd8f76fd80c78c281b414d9286b59ad.png"></div><div class="col-1 h-[86.436px] ml-[741.96px] mt-[173.51px] relative row-1 w-[88.037px]" data-name="image 62"><div class="absolute inset-0 overflow-hidden pointer-events-none"><img alt="" class="absolute h-[102.75%] left-0 max-w-none top-[-2.61%] w-full" src="/imports/f69f67e473112b2672b4d0eedc1b935c373c076e.png"></div></div></div></div></div></div><div class="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background"><div class="flex flex-row items-center size-full"><div class="content-stretch flex justify-between items-center px-[20px] sm:px-[44px] py-[56px] relative size-full gap-[32px] flex-col sm:flex-row items-start sm:items-center"><div class="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[440px]" data-name="Container"><div class="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8fa6ff] text-[12px] tracking-[1.2px] whitespace-nowrap"><p class="leading-[normal]">КОНТАКТ</p></div></div><div class="content-stretch flex flex-col items-start max-w-[448.79998779296875px] relative shrink-0 w-full" data-name="Heading 2"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[34px] text-white tracking-[-0.68px] whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal] mb-0">Готовы показать модель на</p><p class="leading-[normal]">ваших данных</p></div></div></div><div class="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 transition-colors hover:bg-[#1a35ad]" data-name="Background"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style="font-variation-settings: &quot;wdth&quot; 100;"><p class="leading-[normal]">Записаться на встречу →</p></div></div></div></div></div><div class="h-[59px] relative shrink-0 w-full" data-name="Container"><div class="flex flex-row justify-center size-full"><div class="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[22px] relative size-full"><div class="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8990a0] text-[11.5px] whitespace-nowrap"><p class="leading-[normal]">GOVERNANCE.KZ</p></div></div><div class="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container"><div class="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8990a0] text-[11.5px] whitespace-nowrap"><p class="leading-[normal]">ЛАБОРАТОРИЯ ИИ · КАЗАХСТАН · 2026</p></div></div></div></div></div></div></div><div aria-hidden="true" class="absolute border border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none rounded-[14px] shadow-[0px_8px_40px_0px_rgba(0,0,0,0.1)]"></div></div></div></div></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+  
+
+</body></html>

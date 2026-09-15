@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Strip the Figma card-frame treatment so the design renders as a full page */
+[data-name="Background+Border+Shadow"] {
+  border-radius: 0 !important;
+}
+[data-name="Background+Border+Shadow"] > div[aria-hidden] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+[data-name="Background+Border+Shadow"] > div:first-child {
+  border-radius: 0 !important;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/IBMPlexMono-Regular_2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://static.figma.com/font/IBMPlexSans_wdth_wght__1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+
+/* Алиасы семейств из экспорта слайдов ИИ-симулятора (Figma Make) */
+@font-face {
+  font-family: 'Inter:Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Semi_Bold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Extra_Bold';
+  font-style: normal;
+  font-weight: 800;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Inter:Black';
+  font-style: normal;
+  font-weight: 900;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+@font-face {
+  font-family: 'Arial:Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial');
+}
+@font-face {
+  font-family: 'Arial:Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Arial Bold'), local('Arial-Bold');
+}
+
+@keyframes imgmodal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes imgmodal-pop {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes msheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes simulator-slide {
+  from { opacity: 0; transform: translateX(calc(var(--sim-dir, 1) * 36px)); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
