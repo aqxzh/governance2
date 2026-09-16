@@ -322,13 +322,13 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
           />
           <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col gap-[12px] px-[20px] pb-[22px] pt-[10px] sm:px-[44px]">
             <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white/60">
-              <p className="leading-[normal]">04 / ИИ СИМУЛЯТОР</p>
+              <p className="leading-[normal]">03 / ИИ СИМУЛЯТОРЫ</p>
             </div>
             <h2
               className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-white sm:text-[38px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
-              ИИ симулятор
+              ИИ симуляторы
             </h2>
             <p
               className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/70 max-w-[900px] sm:text-[17px]"

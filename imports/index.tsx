@@ -4,7 +4,6 @@ import imgDemkaPhoto from "./demka-photo.png";
 import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png";
 import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
 import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
-import imgFrame2 from "./a9248cf50efe8245aba6b07afe6d67b31ad55a5a.png";
 import imgAfter from "./after.png";
 import imgBefore from "./before.png";
 import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png";
@@ -36,7 +35,6 @@ import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png";
 
 import imgTabDiagnostics from "./tab-diagnostics.png";
 import imgTabCoordination from "./tab-coordination.png";
-import imgTabActors from "./tab-actors.png";
 
 import AISimulatorPage from "../src/simulator/AISimulatorPage";
 
@@ -69,7 +67,7 @@ export const productImages: Record<ProductImageKey, { index: string; title: stri
   },
 };
 
-export type TabKey = "recruitment" | "analytics" | "assessment" | "simulator";
+export type TabKey = "recruitment" | "analytics" | "simulator";
 
 type TabRow = {
   num: string;
@@ -85,6 +83,9 @@ type TabData = {
   title: string;
   description: string;
   image?: string;
+  video?: string;
+  videoGradient?: [string, string, string];
+  videoGlow?: string;
   rows: TabRow[];
 };
 
@@ -96,6 +97,9 @@ export const tabData: Record<TabKey, TabData> = {
     description:
       "ИИ анализирует функции, кадры и услуги госорганов в единой логике данных: находит дублирования полномочий, скрытые барьеры и аномалии. Диагностика показывает, где процессы ломаются и почему.",
     image: imgBrain,
+    video: "/videos/diagnostics.mov",
+    videoGradient: ["#0d9488", "#14b8a6", "#22d3ee"],
+    videoGlow: "rgba(20,184,166,0.55)",
     rows: [
       { num: "01", name: "Функциональный анализ", does: "Платформа выявляет коллизии между ведомствами, дублирование полномочий и несоответствие функций декларируемой миссии", feature: "Передача функций частному сектору", image: imgSolutionFunctionalAnalysis },
       { num: "02", name: "Аналитика госфункций", does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи", feature: "Переход от обзора к профилю в один клик", image: imgSolutionGovFunctionsAnalytics },
@@ -113,28 +117,21 @@ export const tabData: Record<TabKey, TabData> = {
     description:
       "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
     image: imgTabCoordination,
+    video: "/videos/coordination.mov",
+    videoGradient: ["#1a35ad", "#2242d6", "#3b82f6"],
+    videoGlow: "rgba(34,66,214,0.55)",
     rows: [
       { num: "01", name: "Цифровой двойник", does: "Моделирование перераспределения функций и сотрудников между ведомствами с мгновенным расчётом нагрузки и баланса", feature: "Drag-and-drop интерфейс", image: imgSolutionDigitalTwin },
       { num: "02", name: "Отбор на госслужбу с ИИ", does: "Оценка кандидатов через анализ видео, голосовых ответов и текста по 15 компетенциям: логика, коммуникация, устойчивость", feature: "15 компетенций", image: imgSolutionCivilServiceSelection },
       { num: "03", name: "ИИ-советник по управлению", does: "Единый интеллектуальный центр доступа к знаниям организации на данных систем документооборота и обращений граждан — вопросы на естественном языке", feature: "Интерактивные панели и упреждающие сигналы", image: imgSolutionAiManagementAdvisor },
       { num: "04", name: "Банк отраслевых направлений", does: "Единая база данных по всем госслужащим Казахстана: стаж, прошлые места работы, быстрый подбор кандидата на вакансию", feature: "Поиск по всем регионам", image: imgSolutionIndustryBank },
-    ],
-  },
-  assessment: {
-    index: "03",
-    label: "Акторы",
-    title: "Акторы",
-    description:
-      "Smart HR и онлайн-ассессмент: подбор, оценка и развитие кадров госслужбы на основе данных. Снижение ручной нагрузки, структурный отбор, поведенческий анализ.",
-    image: imgTabActors,
-    rows: [
-      { num: "01", name: "Разработка ботов-ассистентов", does: "Telegram и WhatsApp-боты на платформе ИИ для ответов на вопросы по заданной теме в нескольких группах", feature: "Изолированные сессии", image: imgSolutionBotAssistants },
+      { num: "05", name: "Разработка ботов-ассистентов", does: "Telegram и WhatsApp-боты на платформе ИИ для ответов на вопросы по заданной теме в нескольких группах", feature: "Изолированные сессии", image: imgSolutionBotAssistants },
     ],
   },
   simulator: {
-    index: "04",
-    label: "ИИ симулятор",
-    title: "ИИ симулятор",
+    index: "03",
+    label: "ИИ симуляторы",
+    title: "ИИ симуляторы",
     description:
       "Моделирование сценариев и поведение синтетической аудитории: опросы, реакции и прогнозы без полевых исследований.",
     rows: [],
@@ -227,7 +224,7 @@ function ImageModal({ index, title, image, description, onClose, showTitle = tru
   );
 }
 
-function VideoModal({ src, title, onClose }: { src: string; title: string; onClose: () => void }) {
+function VideoModal({ src, title, onClose, onError, large = false }: { src: string; title: string; onClose: () => void; onError?: () => void; large?: boolean }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -266,7 +263,8 @@ function VideoModal({ src, title, onClose }: { src: string; title: string; onClo
           controls
           autoPlay
           playsInline
-          className="block max-h-[65vh] max-w-[760px] rounded-[12px] object-contain ring-4 ring-white"
+          onError={onError}
+          className={`block rounded-[12px] object-contain ring-4 ring-white ${large ? "max-h-[80vh] max-w-[1100px]" : "max-h-[65vh] max-w-[760px]"}`}
         />
       </div>
     </div>
@@ -738,70 +736,6 @@ function Background4({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   );
 }
 
-function Frame2() {
-  return (
-    <div className="h-[135px] relative shrink-0 w-[216px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[122.67%] left-0 max-w-none top-[-13.53%] w-full" src={imgFrame2} />
-      </div>
-    </div>
-  );
-}
-
-function Container24() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full">
-        <p className="leading-[normal]">К3</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading3() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">
-          <span>Акторы</span>
-          <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]">{` (Управленческий интеллект)`}</span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Container25() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[22.48px] mb-0">Помощник руководителя поверх ЭДО:</p>
-        <p className="leading-[22.48px] mb-0">управленческий сигнал, рекомендации и</p>
-        <p className="leading-[22.48px]">действия вместо избыточных данных.</p>
-      </div>
-    </div>
-  );
-}
-
-function Background5({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onTabClick("assessment")}
-      aria-label="Открыть вкладку Акторы"
-      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
-      <Frame2 />
-      <Container24 />
-      <Heading3 />
-      <Container25 />
-      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        Открыть →
-      </span>
-    </button>
-  );
-}
-
 function FrameSim() {
   return (
     <div className="h-[135px] relative shrink-0 w-[216px]" data-name="Frame">
@@ -816,7 +750,7 @@ function ContainerSim() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full">
-        <p className="leading-[normal]">К4</p>
+        <p className="leading-[normal]">К3</p>
       </div>
     </div>
   );
@@ -826,7 +760,7 @@ function HeadingSim() {
   return (
     <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">ИИ симулятор</p>
+        <p className="leading-[normal]">ИИ симуляторы</p>
       </div>
     </div>
   );
@@ -849,7 +783,7 @@ function BackgroundSim({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
     <button
       type="button"
       onClick={() => onTabClick("simulator")}
-      aria-label="Открыть вкладку ИИ симулятор"
+      aria-label="Открыть вкладку ИИ симуляторы"
       className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
       <FrameSim />
@@ -868,7 +802,6 @@ function BackgroundBorder({ onTabClick }: { onTabClick: (id: TabKey) => void }) 
     <div className="bg-white flex flex-col md:flex-row items-stretch justify-center p-px relative w-full max-w-[1112px] mx-auto gap-0" data-name="Background+Border">
       <Background3 onTabClick={onTabClick} />
       <Background4 onTabClick={onTabClick} />
-      <Background5 onTabClick={onTabClick} />
       <BackgroundSim onTabClick={onTabClick} />
     </div>
   );
@@ -2274,7 +2207,7 @@ function Container66() {
 }
 
 function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const tabs: TabKey[] = ["recruitment", "analytics", "assessment", "simulator"];
+  const tabs: TabKey[] = ["recruitment", "analytics", "simulator"];
   return (
     <div className="hidden md:flex flex-row gap-[6px] shrink-0">
       {tabs.map((key) => (
@@ -2327,6 +2260,13 @@ function LanguageSwitcher({ language, onChange }: { language: Language; onChange
 function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   const data = tabData[tabKey];
   const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
+  const [showHeroVideo, setShowHeroVideo] = useState(false);
+  const [heroVideoFailed, setHeroVideoFailed] = useState(false);
+
+  const closeHeroVideo = () => {
+    setShowHeroVideo(false);
+    setHeroVideoFailed(false);
+  };
   return (
     <div className="w-full">
       {/* Back link */}
@@ -2341,8 +2281,8 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
         </button>
       </div>
 
-      {/* Hero-фон вкладки с картинкой */}
-      <div className="relative w-full overflow-hidden">
+      {/* Hero-фон вкладки с картинкой; клик по картинке открывает видео */}
+      <div className="group relative w-full overflow-hidden">
         {/* Фоновая картинка с затемнением */}
         {data.image && (
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -2370,6 +2310,45 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
             {data.description}
           </p>
         </div>
+
+        {/* Клик по всей картинке открывает видео */}
+        {data.video && (
+          <>
+            <button
+              type="button"
+              onClick={() => setShowHeroVideo(true)}
+              aria-label={`Смотреть видео — ${data.title}`}
+              className="absolute inset-0 z-20 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80"
+            />
+            <span className="pointer-events-none absolute bottom-[22px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 group-hover:scale-[1.05] group-hover:text-white group-hover:ring-white/50">
+              <span
+                aria-hidden
+                className="absolute -inset-[6px] rounded-full opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
+                style={{ background: data.videoGlow }}
+              />
+              <span aria-hidden className="absolute inset-0 rounded-full bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
+              <span
+                aria-hidden
+                className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 animate-[glass-video-flow_4s_linear_infinite] group-hover:opacity-100"
+                style={
+                  data.videoGradient && {
+                    backgroundImage: `linear-gradient(120deg, ${[...data.videoGradient, data.videoGradient[0]].join(", ")})`,
+                    backgroundSize: "200% 100%",
+                  }
+                }
+              />
+              <svg viewBox="0 0 24 24" className="relative size-4 fill-current" aria-hidden>
+                <path d="M8 5.14v13.72L19 12 8 5.14z" />
+              </svg>
+              <span
+                className="relative font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Смотреть видео
+              </span>
+            </span>
+          </>
+        )}
       </div>
 
       {/* Registry table */}
@@ -2448,6 +2427,26 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
           showTitle={false}
         />
       )}
+      {showHeroVideo &&
+        (data.video && !heroVideoFailed ? (
+          <VideoModal
+            src={data.video}
+            title={data.title}
+            onClose={closeHeroVideo}
+            onError={() => setHeroVideoFailed(true)}
+            large
+          />
+        ) : (
+          data.image && (
+            <ImageModal
+              index={data.index}
+              title={data.title}
+              image={data.image}
+              description={data.description}
+              onClose={closeHeroVideo}
+            />
+          )
+        ))}
     </div>
   );
 }
@@ -2658,13 +2657,11 @@ function Background() {
   const hashToTab: Record<string, TabKey> = {
     diagnostics: "recruitment",
     coordination: "analytics",
-    actors: "assessment",
     simulator: "simulator",
   };
   const tabToHash: Record<TabKey, string> = {
     recruitment: "diagnostics",
     analytics: "coordination",
-    assessment: "actors",
     simulator: "simulator",
   };
 
