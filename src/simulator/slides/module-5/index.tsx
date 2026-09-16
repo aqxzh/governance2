@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import svgPaths from "./svg-oa9ptcl0hm";
+import { VideoModal } from "../../VideoModal";
 
 function Text() {
   return (
@@ -3827,13 +3829,31 @@ function ContainerMargin5() {
 }
 
 function Container26() {
+  const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="bg-white content-stretch flex flex-[944.021_0_0] flex-col h-full items-start min-w-px overflow-clip p-[16px] relative rounded-[12px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]" data-name="Container">
-      <Container27 />
-      <ContainerMargin3 />
-      <ContainerMargin4 />
-      <ContainerMargin5 />
-    </div>
+    <>
+      <button
+        type="button"
+        onClick={() => setShowVideo(true)}
+        aria-label="Смотреть видео — Обзор для руководства"
+        className="group bg-white content-stretch flex flex-[944.021_0_0] flex-col h-full items-start min-w-px overflow-clip p-[16px] relative rounded-[12px] text-left shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        data-name="Container"
+      >
+        <Container27 />
+        <ContainerMargin3 />
+        <ContainerMargin4 />
+        <ContainerMargin5 />
+        <span className="pointer-events-none absolute bottom-[16px] left-[16px] z-20 flex items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-white/90 group-hover:text-[#0d0f16] group-hover:ring-white/60">
+          <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
+            <path d="M8 5.14v13.72L19 12 8 5.14z" />
+          </svg>
+          <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">Смотреть видео</span>
+        </span>
+      </button>
+      {showVideo && (
+        <VideoModal src="/videos/ai%20sovetnik.webm" title="AI-Советник — обзор для руководства" onClose={() => setShowVideo(false)} large />
+      )}
+    </>
   );
 }
 

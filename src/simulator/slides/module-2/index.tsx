@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import svgPaths from "./svg-yxwmsir2oj";
 import imgRectangle1 from "./66dca440b38bcb4154e505b64a8e95cacb95f746.png";
 import { imgRectangle } from "./svg-noitr";
+import { VideoModal } from "../../VideoModal";
 
 function TitleBlock() {
   return (
@@ -128,11 +130,29 @@ function ClipPathGroup() {
 }
 
 function MapCard() {
+  const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="bg-white content-stretch flex flex-col gap-[12px] h-[658px] items-start overflow-clip p-[20px] relative rounded-[16px] shrink-0 w-[880px]" data-name="Map Card">
-      <MapHeader />
-      <ClipPathGroup />
-    </div>
+    <>
+      <button
+        type="button"
+        onClick={() => setShowVideo(true)}
+        aria-label="Смотреть видео — карта поставок Алматы"
+        className="group bg-white content-stretch flex flex-col gap-[12px] h-[658px] items-start overflow-clip p-[20px] relative rounded-[16px] shrink-0 w-[880px] cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        data-name="Map Card"
+      >
+        <MapHeader />
+        <ClipPathGroup />
+        <span className="pointer-events-none absolute bottom-[16px] left-[20px] z-10 flex items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-white/90 group-hover:text-[#0d0f16] group-hover:ring-white/60">
+          <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
+            <path d="M8 5.14v13.72L19 12 8 5.14z" />
+          </svg>
+          <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">Смотреть видео</span>
+        </span>
+      </button>
+      {showVideo && (
+        <VideoModal src="/videos/map%20almaty.webm" title="Карта поставок — Алматы" onClose={() => setShowVideo(false)} large />
+      )}
+    </>
   );
 }
 

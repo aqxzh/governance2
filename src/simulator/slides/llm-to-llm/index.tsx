@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import svgPaths from "./svg-i03o381urh";
 import imgImage4 from "./69b427c3dcdb4e4c688ac0c19f78534e10f8c495.png";
 import imgImage5 from "./5619dcc32a026213e7c0dea2f52371ea3e02f696.png";
+import { VideoModal } from "../../VideoModal";
 
 function TitleBlock() {
   return (
@@ -246,15 +248,33 @@ function Examples() {
 }
 
 function Frame() {
+  const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="content-stretch flex gap-[10px] items-center relative shrink-0">
-      <div className="h-[503px] relative rounded-[20px] shrink-0 w-[447px]" data-name="image 4">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgImage4} />
+    <>
+      <div className="content-stretch flex gap-[10px] items-center relative shrink-0">
+        <div className="h-[503px] relative rounded-[20px] shrink-0 w-[447px]" data-name="image 4">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgImage4} />
+        </div>
+        <button
+          type="button"
+          onClick={() => setShowVideo(true)}
+          aria-label="Смотреть видео — карта симулятора"
+          className="group relative h-[504px] rounded-[20px] shrink-0 w-[716px] cursor-pointer overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+          data-name="image 5"
+        >
+          <img alt="" className="absolute inset-0 max-w-none object-cover rounded-[20px] size-full" src={imgImage5} />
+          <span className="pointer-events-none absolute bottom-[16px] left-[16px] z-10 flex items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-white/90 group-hover:text-[#0d0f16] group-hover:ring-white/60">
+            <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
+              <path d="M8 5.14v13.72L19 12 8 5.14z" />
+            </svg>
+            <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">Смотреть видео</span>
+          </span>
+        </button>
       </div>
-      <div className="h-[504px] relative rounded-[20px] shrink-0 w-[716px]" data-name="image 5">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgImage5} />
-      </div>
-    </div>
+      {showVideo && (
+        <VideoModal src="/videos/map%202.mp4" title="Карта — LLM говорит с LLM" onClose={() => setShowVideo(false)} large />
+      )}
+    </>
   );
 }
 
