@@ -264,7 +264,7 @@ function VideoModal({ src, title, onClose, onError, large = false }: { src: stri
           autoPlay
           playsInline
           onError={onError}
-          className={`block rounded-[12px] object-contain ring-4 ring-white ${large ? "max-h-[80vh] max-w-[1100px]" : "max-h-[65vh] max-w-[760px]"}`}
+          className={`block rounded-[12px] object-contain ring-4 ring-white ${large ? "max-h-[75vh] max-w-[1000px]" : "max-h-[65vh] max-w-[760px]"}`}
         />
       </div>
     </div>
