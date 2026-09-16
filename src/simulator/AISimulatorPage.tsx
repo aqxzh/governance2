@@ -182,8 +182,7 @@ function ScaledSlide({ Component, height, minW, isLast }: SlideDef & { isLast: b
       const slideH = Math.min(height, Math.max(240, contentH + PAD_BOTTOM));
 
       // масштаб только по ширине — слайд занимает всю доступную ширину рамки,
-      // по высоте страница просто скроллится (раньше слайд вписывался в 92%
-      // высоты окна и из-за этого выглядел мелким)
+      // по высоте страница просто скроллится
       const fitW = Math.min(MAX_UPSCALE, (avail - WIDTH_SAFETY) / slideW);
       const s = Math.max(0.2, fitW);
 
@@ -273,6 +272,40 @@ function ScaledSlide({ Component, height, minW, isLast }: SlideDef & { isLast: b
   );
 }
 
+function RevealOnScroll({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : "translateY(24px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
   // Браузер восстанавливает прокрутку при перезагрузке/возврате —
   // открываем страницу всегда с верха, чтобы были видны заголовок и описание
@@ -282,16 +315,9 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
 
   return (
     <div className="w-full bg-black">
-      {/*
-        Full-bleed black page: parent (Background in imports/index.tsx) is already
-        full width with no max-width / overflow-clip, so plain w-full is enough.
-        No 100vw + negative-margin hack needed.
-      */}
       <div
         className="relative w-full overflow-x-clip bg-black"
-        style={{
-          fontFamily: "'Inter', sans-serif",
-        }}
+        style={{ fontFamily: "'Inter', sans-serif" }}
       >
         {/* Кнопка назад */}
         <div className="px-[20px] sm:px-[44px] pt-[16px] pb-[6px]">
@@ -321,9 +347,6 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
             className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           />
           <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col gap-[12px] px-[20px] pb-[22px] pt-[10px] sm:px-[44px]">
-            <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white/60">
-              <p className="leading-[normal]">03 / ИИ СИМУЛЯТОРЫ</p>
-            </div>
             <h2
               className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-white sm:text-[38px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
@@ -340,14 +363,15 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
           </div>
         </div>
 
-        {/* Слайды из Figma — единая рамка: одинаковые боковые поля,
-            одинаковый радиус и одинаковый зазор у всех */}
+        {/* Слайды друг за другом; каждый плавно проявляется при прокрутке */}
         <div
           className="mx-auto w-full px-[20px] pb-[40px] pt-[8px] sm:px-[44px]"
           style={{ maxWidth: FRAME_MAX_W }}
         >
           {SLIDES.map((slide, i) => (
-            <ScaledSlide key={i} {...slide} isLast={i === SLIDES.length - 1} />
+            <RevealOnScroll key={i}>
+              <ScaledSlide {...slide} isLast={i === SLIDES.length - 1} />
+            </RevealOnScroll>
           ))}
         </div>
       </div>
