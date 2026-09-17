@@ -24,10 +24,11 @@ const SLIDES: SlideDef[] = [
   { Component: LlmToLlm, height: 1400 },
 ];
 
-/* Единая рамка для всех слайдов */
+/* Единая рамка для всех слайдов — та же сетка 1170, что и видео на главной,
+   края слайдов заканчиваются ровно там же, где края hero-видео */
 const FRAME_GAP = 24;
 const FRAME_RADIUS = 18;
-const FRAME_MAX_W = 1600;
+const FRAME_MAX_W = 1170;
 /* Отступ между слайдами и запас снизу (px) */
 const GAP = FRAME_GAP;
 const PAD_BOTTOM = 16;
@@ -319,19 +320,8 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
         className="relative w-full overflow-x-clip bg-black"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
-        {/* Кнопка назад */}
-        <div className="px-[20px] sm:px-[44px] pt-[16px] pb-[6px]">
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white/50 cursor-pointer transition-colors hover:text-white"
-          >
-            <span className="text-[14px] leading-none">←</span>
-            НАЗАД К ГЛАВНОЙ
-          </button>
-        </div>
-
-        {/* Шапка страницы — компактная, без больших отступов */}
+        {/* Шапка страницы — та же колонка 1170: кнопка и текст в одном контейнере,
+            отступы как у контента главной */}
         <div className="relative w-full overflow-hidden bg-black">
           <div
             aria-hidden
@@ -346,7 +336,19 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
             aria-hidden
             className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           />
-          <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-col gap-[12px] px-[20px] pb-[22px] pt-[10px] sm:px-[44px]">
+          <div className="relative z-10 mx-auto w-full max-w-[1170px] px-[20px] sm:px-[44px]">
+            {/* Кнопка назад */}
+            <div className="pt-[16px] pb-[6px]">
+              <button
+                type="button"
+                onClick={onBack}
+                className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white/50 cursor-pointer transition-colors hover:text-white"
+              >
+                <span className="text-[14px] leading-none">←</span>
+                НАЗАД К ГЛАВНОЙ
+              </button>
+            </div>
+            <div className="flex flex-col gap-[12px] pb-[22px] pt-[10px]">
             <h2
               className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-white sm:text-[38px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
@@ -360,14 +362,13 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
               Моделирование сценариев и поведение синтетической аудитории:
               опросы, реакции и прогнозы без полевых исследований.
             </p>
+            </div>
           </div>
         </div>
 
-        {/* Слайды друг за другом; каждый плавно проявляется при прокрутке */}
-        <div
-          className="mx-auto w-full px-[20px] pb-[40px] pt-[8px] sm:px-[44px]"
-          style={{ maxWidth: FRAME_MAX_W }}
-        >
+        {/* Слайды друг за другом; каждый плавно проявляется при прокрутке.
+            Без боковых полей: внешний край слайда = край колонки 1170 = край видео на главной */}
+        <div className="mx-auto w-full pb-[40px] pt-[8px]" style={{ maxWidth: FRAME_MAX_W }}>
           {SLIDES.map((slide, i) => (
             <RevealOnScroll key={i}>
               <ScaledSlide {...slide} isLast={i === SLIDES.length - 1} />

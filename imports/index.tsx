@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import imgLabaMain from "./laba-main.png";
 import imgDemkaPhoto from "./demka-photo.png";
 import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png";
-import imgFrame from "./abf3bb7accbdf5e82f4b0b47958890c444c8104e.png";
-import imgFrame1 from "./57ff537c2189b0a378566d8a505380f1ac26642d.png";
+import imgAiSim from "./ai-sim.png";
+import imgSimSlide1 from "./sim-slide-1.png";
+import imgSimSlide2 from "./sim-slide-2.png";
+import imgSimSlide3 from "./sim-slide-3.png";
+import imgSimSlide4 from "./sim-slide-4.png";
+import imgSimSlide5 from "./sim-slide-5.png";
+import imgSimSlide6 from "./sim-slide-6.png";
 import imgAfter from "./after.png";
 import imgBefore from "./before.png";
 import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png";
@@ -92,7 +97,7 @@ type TabData = {
 
 export const tabData: Record<TabKey, TabData> = {
   recruitment: {
-    index: "01",
+    index: "02",
     label: "Диагностика",
     title: "Диагностика",
     description:
@@ -112,7 +117,7 @@ export const tabData: Record<TabKey, TabData> = {
     ],
   },
   analytics: {
-    index: "02",
+    index: "03",
     label: "Координация",
     title: "Координация",
     description:
@@ -130,7 +135,7 @@ export const tabData: Record<TabKey, TabData> = {
     ],
   },
   simulator: {
-    index: "03",
+    index: "01",
     label: "ИИ симуляторы",
     title: "ИИ симуляторы",
     description:
@@ -138,6 +143,17 @@ export const tabData: Record<TabKey, TabData> = {
     rows: [],
   },
 };
+
+
+/* Модули ИИ-симуляторов — те же шесть слайдов, что и в интерактивных демо */
+export const simulatorSlides: TabRow[] = [
+  { num: "01", name: "Потребительский спрос и рост бренда", does: "Синтетический аналитик оценивает спрос по брендам и торговым зонам: свой магазин против конкурентов", feature: "Синтетические профили", image: imgSimSlide1 },
+  { num: "02", name: "Партия доедет — и успеет продаться", does: "Моделирование поставок охлаждённой продукции на карте Алматы: завод → склад → магазины, маршруты и сроки продажи партии", feature: "Карта поставок", image: imgSimSlide2 },
+  { num: "03", name: "Продукты и офферы", does: "What-if сценарии для портфеля продуктов: изменение цен на сырьё, акции конкурентов, рост спроса, выход нового игрока", feature: "Сценарии what-if", image: imgSimSlide3 },
+  { num: "04", name: "Продовольственная экосистема", does: "Срез продовольственного рынка: объём, производство, привлечённый капитал и охват населения по регионам", feature: "Все регионы", image: imgSimSlide4 },
+  { num: "05", name: "Контроль исполнения документов", does: "Дашборды AI-Советника: приоритеты руководителя, движение документов и контроль сроков без ручной аналитики", feature: "AI-Советник", image: imgSimSlide5 },
+  { num: "06", name: "LLM говорит с LLM", does: "Переговоры закупщика и поставщика ведут ИИ-агенты: запрос скидки, расчёт и интерпретация ответа", feature: "Агент ↔ агент", image: imgSimSlide6 },
+];
 
 function ImageModal({ index, title, image, description, onClose, showTitle = true }: { index: string; title: string; image: string; description: string; onClose: () => void; showTitle?: boolean }) {
   useEffect(() => {
@@ -222,6 +238,465 @@ function ImageModal({ index, title, image, description, onClose, showTitle = tru
         </div>
       </div>
     </div>
+  );
+}
+function onRowKeyDown(onActivate: () => void) {
+  return (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onActivate();
+    }
+  };
+}
+
+function Reveal({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="w-full"
+      style={{
+        opacity: visible ? 1 : 0,
+        transition: "opacity .55s cubic-bezier(0.2,0.8,0.2,1)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function SolutionsRegistry({ rows, onSelect }: { rows: TabRow[]; onSelect: (row: TabRow) => void }) {
+  return (
+    <div className="relative w-full overflow-x-auto">
+      <div className="relative min-w-[760px]">
+        <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10" />
+        <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
+          {/* Header */}
+          <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
+                {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
+                  <div key={h} className="justify-self-stretch relative row-1 self-start shrink-0">
+                    <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
+                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
+                        <p className="leading-[normal]">{h}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {/* Rows */}
+              {rows.map((row, i) => {
+                const clickable = Boolean(row.image);
+                return (
+                  <div
+                    key={row.num}
+                    onClick={clickable ? () => onSelect(row) : undefined}
+                    onKeyDown={clickable ? onRowKeyDown(() => onSelect(row)) : undefined}
+                    role={clickable ? "button" : undefined}
+                    tabIndex={clickable ? 0 : undefined}
+                    className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${clickable ? "cursor-pointer hover:bg-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2242d6]" : ""} ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
+                  >
+                    <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
+                    <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
+                    {clickable && (
+                      <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
+                    )}
+                    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
+                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
+                          <p className="leading-[normal]">{row.num}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
+                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[24px]">{row.name}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
+                      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
+                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[24px]">{row.does}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
+                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                          <p className="leading-[24px]">{row.feature}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ContourBlock({ blockId, data }: { blockId: string; data: TabData }) {
+  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  const closeVideo = () => {
+    setShowVideo(false);
+    setVideoFailed(false);
+  };
+
+  return (
+    <>
+      <Reveal>
+        <div id={blockId} className="flex w-full flex-col gap-[18px]">
+          <ContourBanner data={data} onPlayClick={() => setShowVideo(true)} />
+          {data.rows.length > 0 && (
+            <SolutionsRegistry rows={data.rows} onSelect={setSelectedRow} />
+          )}
+        </div>
+      </Reveal>
+      {selectedRow && selectedRow.image && (
+        <ImageModal
+          index={selectedRow.num}
+          title={selectedRow.name}
+          image={selectedRow.image}
+          description={selectedRow.does}
+          onClose={() => setSelectedRow(null)}
+          showTitle={false}
+        />
+      )}
+      {showVideo &&
+        (data.video && !videoFailed ? (
+          <VideoModal src={data.video} title={data.title} onClose={closeVideo} onError={() => setVideoFailed(true)} large />
+        ) : (
+          data.image && (
+            <ImageModal index={data.index} title={data.title} image={data.image} description={data.description} onClose={closeVideo} />
+          )
+        ))}
+    </>
+  );
+}
+
+function SimulatorBlock({ blockId, onOpen }: { blockId: string; onOpen: () => void }) {
+  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
+
+  return (
+    <>
+      <Reveal>
+        <div id={blockId} className="flex w-full flex-col gap-[18px]">
+          <SimulatorBanner onOpen={onOpen} />
+          <SolutionsRegistry rows={simulatorSlides} onSelect={setSelectedRow} />
+        </div>
+      </Reveal>
+      {selectedRow && selectedRow.image && (
+        <ImageModal
+          index={selectedRow.num}
+          title={selectedRow.name}
+          image={selectedRow.image}
+          description={selectedRow.does}
+          onClose={() => setSelectedRow(null)}
+          showTitle={false}
+        />
+      )}
+    </>
+  );
+}
+
+function ContourBanner({ data, onPlayClick }: { data: TabData; onPlayClick: () => void }) {
+  return (
+    <div className="relative w-full overflow-hidden border border-[#0d0f16]">
+      <div className="relative min-h-[300px] w-full sm:min-h-[340px]">
+        <img src={data.image} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
+        <div aria-hidden className="absolute inset-0 bg-[#0d0f16]/60" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-[#0d0f16]/75 via-[#0d0f16]/25 to-transparent" />
+        <div className="relative flex min-h-[300px] w-full flex-col items-start justify-end gap-[14px] p-[26px] sm:min-h-[340px] sm:p-[36px]">
+          <h3
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.title}
+          </h3>
+          <p
+            className="max-w-[820px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/85 sm:text-[17px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.description}
+          </p>
+          {data.video && (
+            <button
+              type="button"
+              onClick={onPlayClick}
+              className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 hover:text-white hover:ring-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+            >
+              <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+                <path d="M8 5.14v13.72L19 12 8 5.14z" />
+              </svg>
+              <span
+                className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Смотреть видео
+              </span>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SimulatorBanner({ onOpen }: { onOpen: () => void }) {
+  const data = tabData.simulator;
+  return (
+    <div className="relative w-full overflow-hidden border border-[#0d0f16]">
+      <div className="relative min-h-[300px] w-full sm:min-h-[340px]">
+        <img src={imgAiSim} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
+        <div aria-hidden className="absolute inset-0 bg-[#0d0f16]/60" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-[#0d0f16]/75 via-[#0d0f16]/25 to-transparent" />
+        <div className="relative flex min-h-[300px] w-full flex-col items-start justify-end gap-[14px] p-[26px] sm:min-h-[340px] sm:p-[36px]">
+          <h3
+            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.title}
+          </h3>
+          <p
+            className="max-w-[820px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/85 sm:text-[17px]"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            {data.description}
+          </p>
+          <div className="mt-[8px] flex w-full flex-wrap items-end justify-between gap-x-[24px] gap-y-[14px]">
+            <p className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[11px] leading-[1.5] text-white/40">
+              {`// процесс показан в разделе «Процесс работы» выше`}
+            </p>
+            <button
+              type="button"
+              onClick={onOpen}
+              className="group relative shrink-0 cursor-pointer bg-[#2242d6] transition-colors hover:bg-[#1a35ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            >
+              <div className="flex items-center gap-[10px] px-[22px] py-[14px]">
+                <span
+                  className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-white whitespace-nowrap"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  Открыть интерактивные демо
+                </span>
+                <span
+                  aria-hidden
+                  className="text-[15px] leading-none text-white transition-transform duration-300 group-hover:translate-x-[3px]"
+                >
+                  →
+                </span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ContoursSection({ onOpenSimulator }: { onOpenSimulator: () => void }) {
+  const order: TabKey[] = ["simulator", "recruitment", "analytics"];
+  const counts: Record<TabKey, number> = {
+    recruitment: tabData.recruitment.rows.length,
+    analytics: tabData.analytics.rows.length,
+    simulator: simulatorSlides.length,
+  };
+  const [active, setActive] = useState<TabKey>("simulator");
+  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  const switchTab = (key: TabKey) => {
+    setActive(key);
+    setSelectedRow(null);
+    setShowVideo(false);
+    setVideoFailed(false);
+  };
+
+  const closeVideo = () => {
+    setShowVideo(false);
+    setVideoFailed(false);
+  };
+
+  const isSimulator = active === "simulator";
+  const data = tabData[active];
+  const rows = isSimulator ? simulatorSlides : data.rows;
+  const bannerImage = isSimulator ? imgAiSim : data.image;
+  const bannerTitle = data.title;
+  const bannerDesc = data.description;
+  const bannerVideo = isSimulator ? undefined : data.video;
+
+  return (
+    <section id="contours" className="relative w-full">
+      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch flex flex-col gap-[10px] items-start pb-[56px] pt-[52px] px-[20px] sm:px-[44px] relative size-full w-full max-w-[1170px] mx-auto">
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+          <p className="leading-[normal]">02 / КОНТУРЫ</p>
+        </div>
+        <h2
+          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Три контура. Одна логика данных.
+        </h2>
+
+        {/* Tabs — как на макете: номер / название / счётчик, подчёркивание активного */}
+        <div className="mt-[18px] flex w-full items-stretch gap-[24px] border-b border-[#d8dbe3] sm:gap-[40px]">
+          {order.map((key, i) => {
+            const t = tabData[key];
+            const isActive = key === active;
+            const num = `0${i + 1}`;
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => switchTab(key)}
+                aria-pressed={isActive}
+                className="relative flex-1 cursor-pointer pb-[12px] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] focus-visible:ring-offset-2"
+              >
+                <span className="flex flex-wrap items-baseline gap-x-[8px] gap-y-[2px]">
+                  <span
+                    className={`font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tabular-nums ${isActive ? "text-[#2242d6]" : "text-[#9aa0ae]"}`}
+                  >
+                    {num}
+                  </span>
+                  <span
+                    className={`font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] sm:text-[17px] whitespace-nowrap ${isActive ? "text-[#0d0f16]" : "text-[#6b7280]"}`}
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {t.label}
+                  </span>
+                  <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[12px] text-[#9aa0ae] whitespace-nowrap">
+                    {counts[key]} решений
+                  </span>
+                </span>
+                <span
+                  aria-hidden
+                  className={`absolute inset-x-0 -bottom-px h-[2px] transition-colors ${isActive ? "bg-[#0d0f16]" : "bg-transparent"}`}
+                />
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Banner */}
+        <div className="mt-[20px] w-full">
+          <div className="relative w-full overflow-hidden border border-[#0d0f16]">
+            <div className="relative min-h-[320px] w-full sm:min-h-[380px]">
+              <img src={bannerImage} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#0d0f16]/85 via-[#0d0f16]/55 to-[#0d0f16]/15" />
+              <div aria-hidden className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#0d0f16]/70 via-[#0d0f16]/20 to-transparent" />
+              <div className="relative flex min-h-[320px] w-full max-w-[640px] flex-col items-start justify-center gap-[14px] p-[26px] sm:min-h-[380px] sm:p-[40px]">
+                <h3
+                  className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {bannerTitle}
+                </h3>
+                <p
+                  className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.6] text-white/85 sm:text-[16px]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {bannerDesc}
+                </p>
+                {isSimulator ? (
+                  <button
+                    type="button"
+                    onClick={onOpenSimulator}
+                    className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white ring-1 ring-white/40 backdrop-blur-xl transition-all duration-300 hover:ring-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    style={{ backgroundColor: "rgba(255,255,255,0.10)" }}
+                  >
+                    <span
+                      aria-hidden
+                      className="text-[13px] leading-none transition-transform duration-300 group-hover:translate-x-[3px]"
+                    >
+                      →
+                    </span>
+                    <span
+                      className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      Открыть интерактивные демо
+                    </span>
+                  </button>
+                ) : (
+                  bannerVideo && (
+                    <button
+                      type="button"
+                      onClick={() => setShowVideo(true)}
+                      className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 hover:text-white hover:ring-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                    >
+                      <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+                        <path d="M8 5.14v13.72L19 12 8 5.14z" />
+                      </svg>
+                      <span
+                        className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
+                        style={{ fontVariationSettings: '"wdth" 100' }}
+                      >
+                        Смотреть видео
+                      </span>
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-[14px] w-full">
+            <SolutionsRegistry rows={rows} onSelect={setSelectedRow} />
+          </div>
+        </div>
+      </div>
+
+      {selectedRow && selectedRow.image && (
+        <ImageModal
+          index={selectedRow.num}
+          title={selectedRow.name}
+          image={selectedRow.image}
+          description={selectedRow.does}
+          onClose={() => setSelectedRow(null)}
+          showTitle={false}
+        />
+      )}
+      {showVideo &&
+        !isSimulator &&
+        (bannerVideo && !videoFailed ? (
+          <VideoModal src={bannerVideo} title={bannerTitle} onClose={closeVideo} onError={() => setVideoFailed(true)} large />
+        ) : (
+          bannerImage && (
+            <ImageModal index={data.index} title={bannerTitle} image={bannerImage} description={bannerDesc} onClose={closeVideo} />
+          )
+        ))}
+    </section>
   );
 }
 
@@ -546,233 +1021,6 @@ function Container18() {
     </div>
   );
 }
-
-function Container19() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">02 / АРХИТЕКТУРА</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading() {
-  return (
-    <div className="content-stretch flex flex-col items-start pb-[22px] relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Четыре взаимосвязанных контура</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame() {
-  return (
-    <div className="h-[143px] relative shrink-0 w-[189px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[124.48%] left-[0.35%] max-w-none top-[-11.24%] w-full" src={imgFrame} />
-      </div>
-    </div>
-  );
-}
-
-function Container20() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full">
-        <p className="leading-[normal]">К1</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading1() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[2.8px] relative shrink-0 w-full" data-name="Heading 3">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">
-          <span>Диагностика</span>
-          <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[#5a606e]">{` (Прозрачность аппарата)`}</span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Container21() {
-  return (
-    <div className="content-stretch flex flex-col items-start pb-[0.68px] relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[22.48px] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p>Функциональный анализ госорганов и аналитика госуслуг: дублирования, коллизии, скрытые барьеры, перевод в проактивный формат.</p>
-      </div>
-    </div>
-  );
-}
-
-function Background3({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onTabClick("recruitment")}
-      aria-label="Открыть вкладку Диагностика"
-      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
-      <Frame />
-      <Container20 />
-      <Heading1 />
-      <Container21 />
-      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        Открыть →
-      </span>
-    </button>
-  );
-}
-
-function Frame1() {
-  return (
-    <div className="h-[165.6px] relative shrink-0 w-[174.24px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgFrame1} />
-      </div>
-    </div>
-  );
-}
-
-function Container22() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full">
-        <p className="leading-[normal]">К2</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading2() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Координация</p>
-      </div>
-    </div>
-  );
-}
-
-function Container23() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[22.48px] mb-0">Smart HR и онлайн-ассессмент: подбор и</p>
-        <p className="leading-[22.48px] mb-0">оценка кандидатов на данных, снижение</p>
-        <p className="leading-[22.48px]">ручной нагрузки, структурный отбор.</p>
-      </div>
-    </div>
-  );
-}
-
-function Background4({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onTabClick("analytics")}
-      aria-label="Открыть вкладку Координация"
-      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[346px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
-      <Frame1 />
-      <Container22 />
-      <Heading2 />
-      <Container23 />
-      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        Открыть →
-      </span>
-    </button>
-  );
-}
-
-function FrameSim() {
-  return (
-    <div className="h-[135px] relative shrink-0 w-[216px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 top-0 size-full object-cover" src={imgFrame5} />
-      </div>
-    </div>
-  );
-}
-
-function ContainerSim() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[13px] w-full">
-        <p className="leading-[normal]">К3</p>
-      </div>
-    </div>
-  );
-}
-
-function HeadingSim() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[3px] relative shrink-0 w-full" data-name="Heading 3">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[19px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">ИИ симуляторы</p>
-      </div>
-    </div>
-  );
-}
-
-function ContainerSimDesc() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14.5px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[22.48px] mb-0">Моделирование сценариев и поведение</p>
-        <p className="leading-[22.48px] mb-0">синтетической аудитории: опросы,</p>
-        <p className="leading-[22.48px]">реакции и прогнозы.</p>
-      </div>
-    </div>
-  );
-}
-
-function BackgroundSim({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onTabClick("simulator")}
-      aria-label="Открыть вкладку ИИ симуляторы"
-      className="group bg-white flex flex-col gap-[12px] items-center justify-start pb-[28px] pt-[28px] px-[24px] relative shrink min-w-0 flex-1 min-h-[345px] rounded-[2px] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(13,15,22,0.08)] hover:-translate-y-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]" data-name="Background">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none transition-colors duration-300 group-hover:border-[#2242d6]" />
-      <FrameSim />
-      <ContainerSim />
-      <HeadingSim />
-      <ContainerSimDesc />
-      <span className="mt-auto font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] tracking-[0.6px] text-[#2242d6] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        Открыть →
-      </span>
-    </button>
-  );
-}
-
-function BackgroundBorder({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <div className="bg-white flex flex-col md:flex-row items-stretch justify-center p-px relative w-full max-w-[1112px] mx-auto gap-0" data-name="Background+Border">
-      <Background3 onTabClick={onTabClick} />
-      <Background4 onTabClick={onTabClick} />
-      <BackgroundSim onTabClick={onTabClick} />
-    </div>
-  );
-}
-
-function HorizontalBorder6({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  return (
-    <div className="relative w-full" data-name="HorizontalBorder">
-      <div className="flex flex-col gap-[8px] items-start px-[20px] sm:px-[44px] py-[52px]">
-        <Container19 />
-        <Heading />
-        <BackgroundBorder onTabClick={onTabClick} />
-      </div>
-    </div>
-  );
-}
-
 function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -2159,9 +2407,8 @@ function Container66() {
     </div>
   );
 }
-
 function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const tabs: TabKey[] = ["recruitment", "analytics", "simulator"];
+  const tabs: TabKey[] = ["simulator", "recruitment", "analytics"];
   return (
     <div className="hidden md:flex flex-row gap-[6px] shrink-0">
       {tabs.map((key) => (
@@ -2210,7 +2457,6 @@ function LanguageSwitcher({ language, onChange }: { language: Language; onChange
     </div>
   );
 }
-
 function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   const data = tabData[tabKey];
   const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
@@ -2608,22 +2854,19 @@ function Background() {
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
   const [language, setLanguage] = useState<Language>("RU");
 
-  const hashToTab: Record<string, TabKey> = {
-    diagnostics: "recruitment",
-    coordination: "analytics",
-    simulator: "simulator",
-  };
-  const tabToHash: Record<TabKey, string> = {
-    recruitment: "diagnostics",
-    analytics: "coordination",
-    simulator: "simulator",
-  };
-
   useEffect(() => {
     const applyHash = () => {
       const h = window.location.hash.replace("#", "");
-      if (hashToTab[h]) {
-        setActiveTab(hashToTab[h]);
+      const tab =
+        h === "diagnostics"
+          ? "recruitment"
+          : h === "coordination"
+            ? "analytics"
+            : h === "simulator"
+              ? "simulator"
+              : null;
+      if (tab) {
+        setActiveTab(tab as TabKey);
       } else if (!h) {
         setActiveTab(null);
       }
@@ -2637,11 +2880,11 @@ function Background() {
     return () => window.removeEventListener("hashchange", applyHash);
   }, []);
 
+  // Вкладки шапки открывают отдельную страницу контура, как раньше
   const handleTabChange = (key: TabKey) => {
     setActiveTab(key);
-    if (window.location.hash !== `#${tabToHash[key]}`) {
-      window.history.replaceState(null, "", `#${tabToHash[key]}`);
-    }
+    const hash = key === "recruitment" ? "diagnostics" : key === "analytics" ? "coordination" : "simulator";
+    window.history.replaceState(null, "", `#${hash}`);
     window.scrollTo(0, 0);
   };
 
@@ -2664,27 +2907,29 @@ function Background() {
         <>
           {/* White site header stays white, everything below is full-bleed black */}
           <div className="bg-white w-full">
-            <HorizontalBorder onTabClick={(key) => handleTabChange(key)} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
+            <HorizontalBorder onTabClick={handleTabChange} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
           </div>
           <AISimulatorPage onBack={handleBack} />
           <div className="bg-black w-full">
-            <Container66 />
+            <div className="mx-auto w-full max-w-[1170px]">
+              <Container66 />
+            </div>
           </div>
         </>
       ) : (
         <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
-          <HorizontalBorder onTabClick={(key) => handleTabChange(key)} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
+          <HorizontalBorder onTabClick={handleTabChange} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
           {activeTab ? (
             <TabPage tabKey={activeTab} onBack={handleBack} />
           ) : (
             <>
-              <Frame21 onTabClick={(key) => handleTabChange(key)} />
+              <Frame21 onTabClick={handleTabChange} />
               <DemkaSection />
+              <ContoursSection onOpenSimulator={() => handleTabChange("simulator")} />
               <div className="w-full px-[20px] sm:px-[44px] py-[40px]">
                 <Border2 />
                 <Container18 />
               </div>
-              <HorizontalBorder6 onTabClick={(key) => handleTabChange(key)} />
               <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
               <BackgroundHorizontalBorder2 />
               <BackgroundHorizontalBorder3 />

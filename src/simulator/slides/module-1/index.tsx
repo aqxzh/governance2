@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import svgPaths from "./svg-4rd17i8erx";
 import imgMap1 from "./4d207df994dd5e88fc46533ceaa6bc6ca0154437.png";
+import { VideoModal } from "../../VideoModal";
 type ComponentProps = {
   className?: string;
   variant?: "1" | "2";
@@ -742,21 +744,39 @@ function Overlay() {
 }
 
 function BackgroundBorderShadow() {
+  const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="bg-white border border-[#e6ecf5] border-solid flex-[1_0_0] h-[438px] min-w-px overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(16,30,64,0.04)]" data-name="Background+Border+Shadow">
-      <div className="absolute inset-0 rounded-[12px]" style={{ backgroundImage: "linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.35) 28%, rgba(255, 255, 255, 0.12) 55%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.14) 100%)" }} data-name="Gradient+Overlay" />
-      <div className="absolute h-[475px] left-[-1px] top-[-19.23px] w-[949px]" data-name="map — копия 1">
-        <div aria-hidden className="absolute inset-0 pointer-events-none">
-          <img alt="" className="absolute max-w-none object-cover size-full" src={imgMap1} />
-          <div className="absolute bg-[rgba(255,255,255,0.33)] inset-0" />
+    <>
+      <button
+        type="button"
+        onClick={() => setShowVideo(true)}
+        aria-label="Смотреть видео — карта спроса"
+        className="group bg-white border border-[#e6ecf5] border-solid flex-[1_0_0] h-[438px] min-w-px overflow-clip relative rounded-[12px] shadow-[0px_1px_2px_0px_rgba(16,30,64,0.04)] cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        data-name="Background+Border+Shadow"
+      >
+        <div className="absolute inset-0 rounded-[12px]" style={{ backgroundImage: "linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.35) 28%, rgba(255, 255, 255, 0.12) 55%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0) 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.14) 100%)" }} data-name="Gradient+Overlay" />
+        <div className="absolute h-[475px] left-[-1px] top-[-19.23px] w-[949px]" data-name="map — копия 1">
+          <div aria-hidden className="absolute inset-0 pointer-events-none">
+            <img alt="" className="absolute max-w-none object-cover size-full" src={imgMap1} />
+            <div className="absolute bg-[rgba(255,255,255,0.33)] inset-0" />
+          </div>
         </div>
-      </div>
-      <BackgroundShadow />
-      <BackgroundShadow1 />
-      <Container28 />
-      <BackgroundShadow2 />
-      <Overlay />
-    </div>
+        <BackgroundShadow />
+        <BackgroundShadow1 />
+        <Container28 />
+        <BackgroundShadow2 />
+        <Overlay />
+        <span className="pointer-events-none absolute bottom-[46px] right-[14px] z-10 flex items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-white/90 group-hover:text-[#0d0f16] group-hover:ring-white/60">
+          <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
+            <path d="M8 5.14v13.72L19 12 8 5.14z" />
+          </svg>
+          <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">Смотреть видео</span>
+        </span>
+      </button>
+      {showVideo && (
+        <VideoModal src="/videos/map%201.webm" title="Карта спроса" onClose={() => setShowVideo(false)} large />
+      )}
+    </>
   );
 }
 
