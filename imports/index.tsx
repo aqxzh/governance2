@@ -2871,11 +2871,8 @@ function Background() {
         setActiveTab(null);
       }
     };
-    // Сайт всегда открывается с главной: сбрасываем сохранившийся хэш
-    // (#simulator и др.), дальше хэш работает как обычно при кликах.
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
-    }
+    // Поддерживаем прямые ссылки: site.com/#simulator открывает симулятор сразу.
+    applyHash();
     window.addEventListener("hashchange", applyHash);
     return () => window.removeEventListener("hashchange", applyHash);
   }, []);
