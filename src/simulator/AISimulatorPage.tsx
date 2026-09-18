@@ -20,7 +20,7 @@ const SLIDES: SlideDef[] = [
   { Component: Module2, height: 1420 },
   { Component: Module3, height: 1300, minW: 1520 },
   { Component: Module4, height: 1250 },
-  { Component: Module5, height: 1350 },
+  { Component: Module5, height: 2200 },
   { Component: LlmToLlm, height: 1400 },
 ];
 

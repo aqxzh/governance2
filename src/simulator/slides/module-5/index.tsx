@@ -1,3834 +1,238 @@
 import React, { useState } from "react";
-import svgPaths from "./svg-oa9ptcl0hm";
+import { createPortal } from "react-dom";
 import { VideoModal } from "../../VideoModal";
 
-function Text() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[0] not-italic relative shrink-0 text-[#d3af83] text-[22px] whitespace-nowrap">
-        <span className="leading-[24px]">AI-Советник (</span>
-        <span className="font-['Inter:Regular',sans-serif] font-normal leading-[24px]">AI ассистент руководителя, AI планирование, AI культура</span>
-        <span className="leading-[24px]">)</span>
-      </p>
-    </div>
-  );
-}
-
-function Button() {
-  return (
-    <div className="bg-[#155dfc] content-stretch flex flex-col items-center justify-center px-[12px] py-[6px] relative rounded-[4px] shrink-0" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[12px] text-center text-white whitespace-nowrap">Обновить данные</p>
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <div className="content-stretch drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.1),0px_1px_1px_rgba(0,0,0,0.1)] flex items-center justify-between px-[16px] py-[8px] relative rounded-[12px] shrink-0 w-full" data-name="Header">
-      <Text />
-      <Button />
-    </div>
-  );
-}
-
-function HeaderMargin() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[12px] px-[12px] relative shrink-0 w-full" data-name="Header:margin">
-      <Header />
-    </div>
-  );
-}
-
-function Paragraph() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[0] not-italic relative shrink-0 text-[#4a5568] text-[0px] tracking-[0.3px] whitespace-nowrap">
-        <span className="leading-[16px] text-[#ffefd9] text-[16px]">Контролируйте исполнение документов —</span>
-        <span className="leading-[16px] text-[12px]">{` `}</span>
-        <span className="leading-[16px] text-[#d3af83] text-[16px]">без ручной аналитики</span>
-      </p>
-    </div>
-  );
-}
-
-function Paragraph1() {
-  return <div className="h-[16px] relative shrink-0 w-0" data-name="Paragraph" />;
-}
-
-function Container() {
-  return (
-    <div className="content-stretch flex items-center justify-between pl-[24px] pr-[16px] py-[8px] relative shrink-0 w-full" data-name="Container">
-      <Paragraph />
-      <Paragraph1 />
-    </div>
-  );
-}
-
-function TextInput() {
-  return (
-    <div className="absolute border-[#e5e7eb] border-[0.723px] border-solid content-stretch flex flex-col h-[29.445px] items-start justify-center left-[8px] overflow-clip px-[8px] py-[6px] rounded-[4px] top-[8px] w-[159.99px]" data-name="Text Input">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#99a1af] text-[12px] w-full">Поиск дашбордов...</p>
-    </div>
-  );
-}
-
-function Container2() {
-  return (
-    <div className="h-[45.444px] relative shrink-0 w-full" data-name="Container">
-      <TextInput />
-    </div>
-  );
-}
-
-function Text1() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#1447e6] text-[12px] whitespace-nowrap">🌡️</p>
-    </div>
-  );
-}
-
-function Container3() {
-  return (
-    <div className="bg-[#eff6ff] border-[#bedbff] border-[0.723px] border-solid content-stretch flex gap-[6px] items-center px-[8px] py-[6px] relative rounded-[4px] shrink-0 w-full" data-name="Container">
-      <Text1 />
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#1447e6] text-[12px] whitespace-nowrap">Тепловая карта</p>
-    </div>
-  );
-}
-
-function ContainerMargin() {
-  return (
-    <div className="content-stretch flex flex-col items-start pb-[8px] px-[8px] relative shrink-0 w-full" data-name="Container:margin">
-      <Container3 />
-    </div>
-  );
-}
-
-function Paragraph2() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">РУКОВОДСТВО</p>
-    </div>
-  );
-}
-
-function Text2() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[14.667px] not-italic relative shrink-0 text-[#193cb8] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text3() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[125.055px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#193cb8] text-[12px] whitespace-nowrap">Обзор для руковод...</p>
-    </div>
-  );
-}
-
-function Button1() {
-  return (
-    <div className="bg-[#dbeafe] content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text2 />
-      <Text3 />
-    </div>
-  );
-}
-
-function ButtonMargin() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button1 />
-    </div>
-  );
-}
-
-function Text4() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text5() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.908px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Приоритеты руково...</p>
-    </div>
-  );
-}
-
-function Button2() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text4 />
-      <Text5 />
-    </div>
-  );
-}
-
-function Text6() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text7() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[125.947px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Движение докумен...</p>
-    </div>
-  );
-}
-
-function Button3() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text6 />
-      <Text7 />
-    </div>
-  );
-}
-
-function Container4() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <Paragraph2 />
-      <ButtonMargin />
-      <Button2 />
-      <Button3 />
-    </div>
-  );
-}
-
-function Paragraph3() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">СРОКИ</p>
-    </div>
-  );
-}
-
-function Text8() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text9() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[100.728px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Контроль сроков</p>
-    </div>
-  );
-}
-
-function Button4() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text8 />
-      <Text9 />
-    </div>
-  );
-}
-
-function ButtonMargin1() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button4 />
-    </div>
-  );
-}
-
-function Text10() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text11() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.998px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Распределение сро...</p>
-    </div>
-  );
-}
-
-function Button5() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text10 />
-      <Text11 />
-    </div>
-  );
-}
-
-function Text12() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text13() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[100.073px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Риски по срокам</p>
-    </div>
-  );
-}
-
-function Button6() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text12 />
-      <Text13 />
-    </div>
-  );
-}
-
-function Container5() {
-  return (
-    <div className="content-stretch flex flex-col h-[102.997px] items-start pt-[12px] relative shrink-0 w-[159.99px]" data-name="Container">
-      <Paragraph3 />
-      <ButtonMargin1 />
-      <Button5 />
-      <Button6 />
-    </div>
-  );
-}
-
-function Paragraph4() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">ИСПОЛНИТЕЛИ</p>
-    </div>
-  );
-}
-
-function Text14() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text15() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.919px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Нагрузка на исполн...</p>
-    </div>
-  );
-}
-
-function Button7() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text14 />
-      <Text15 />
-    </div>
-  );
-}
-
-function ButtonMargin2() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button7 />
-    </div>
-  );
-}
-
-function Text16() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text17() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.716px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Эффективность исп...</p>
-    </div>
-  );
-}
-
-function Button8() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text16 />
-      <Text17 />
-    </div>
-  );
-}
-
-function Text18() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text19() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[130.399px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Детальный анализ и...</p>
-    </div>
-  );
-}
-
-function Button9() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text18 />
-      <Text19 />
-    </div>
-  );
-}
-
-function Container6() {
-  return (
-    <div className="content-stretch flex flex-col h-[102.997px] items-start pt-[12px] relative shrink-0 w-[159.99px]" data-name="Container">
-      <Paragraph4 />
-      <ButtonMargin2 />
-      <Button8 />
-      <Button9 />
-    </div>
-  );
-}
-
-function Paragraph5() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">ДЕПАРТАМЕНТЫ</p>
-    </div>
-  );
-}
-
-function Text20() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text21() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.953px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Эффективность деп...</p>
-    </div>
-  );
-}
-
-function Button10() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text20 />
-      <Text21 />
-    </div>
-  );
-}
-
-function ButtonMargin3() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button10 />
-    </div>
-  );
-}
-
-function Text22() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text23() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[127.97px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Движение по депар...</p>
-    </div>
-  );
-}
-
-function Button11() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text22 />
-      <Text23 />
-    </div>
-  );
-}
-
-function Text24() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text25() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[130.67px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Детальный анализ д...</p>
-    </div>
-  );
-}
-
-function Button12() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text24 />
-      <Text25 />
-    </div>
-  );
-}
-
-function Container7() {
-  return (
-    <div className="content-stretch flex flex-col h-[102.997px] items-start pt-[12px] relative shrink-0 w-[159.99px]" data-name="Container">
-      <Paragraph5 />
-      <ButtonMargin3 />
-      <Button11 />
-      <Button12 />
-    </div>
-  );
-}
-
-function Paragraph6() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">КОРРЕСПОНДЕНТЫ</p>
-    </div>
-  );
-}
-
-function Text26() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text27() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[126.365px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Анализ корреспонд...</p>
-    </div>
-  );
-}
-
-function Button13() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text26 />
-      <Text27 />
-    </div>
-  );
-}
-
-function ButtonMargin4() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button13 />
-    </div>
-  );
-}
-
-function Text28() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text29() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[128.297px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Типы корреспонден...</p>
-    </div>
-  );
-}
-
-function Button14() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text28 />
-      <Text29 />
-    </div>
-  );
-}
-
-function Text30() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text31() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[134.037px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic overflow-hidden relative shrink-0 text-[#4a5565] text-[12px] text-ellipsis w-full whitespace-nowrap">Приоритеты корресп...</p>
-    </div>
-  );
-}
-
-function Button15() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text30 />
-      <Text31 />
-    </div>
-  );
-}
-
-function Container8() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[12px] relative shrink-0 w-[159.99px]" data-name="Container">
-      <Paragraph6 />
-      <ButtonMargin4 />
-      <Button14 />
-      <Button15 />
-    </div>
-  );
-}
-
-function Paragraph7() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] tracking-[0.5px] whitespace-nowrap">КАЧЕСТВО ДАННЫХ</p>
-    </div>
-  );
-}
-
-function Text32() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text33() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[102.288px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Качество данных</p>
-    </div>
-  );
-}
-
-function Button16() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-[159.99px]" data-name="Button">
-      <Text32 />
-      <Text33 />
-    </div>
-  );
-}
-
-function ButtonMargin5() {
-  return (
-    <div className="content-stretch flex flex-col items-center pt-[4px] relative shrink-0 w-full" data-name="Button:margin">
-      <Button16 />
-    </div>
-  );
-}
-
-function Text34() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text35() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[96.559px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Полнота данных</p>
-    </div>
-  );
-}
-
-function Button17() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text34 />
-      <Text35 />
-    </div>
-  );
-}
-
-function Text36() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.667px] not-italic relative shrink-0 text-[#4a5565] text-[11px] whitespace-nowrap">◆</p>
-    </div>
-  );
-}
-
-function Text37() {
-  return (
-    <div className="content-stretch flex flex-col h-[15.999px] items-start overflow-clip relative shrink-0 w-[116.716px]" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] whitespace-nowrap">Аномалии в данных</p>
-    </div>
-  );
-}
-
-function Button18() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center px-[6px] py-[4px] relative rounded-[4px] shrink-0 w-full" data-name="Button">
-      <Text36 />
-      <Text37 />
-    </div>
-  );
-}
-
-function Container9() {
-  return (
-    <div className="content-stretch flex flex-col h-[102.997px] items-start pt-[12px] relative shrink-0 w-[159.99px]" data-name="Container">
-      <Paragraph7 />
-      <ButtonMargin5 />
-      <Button17 />
-      <Button18 />
-    </div>
-  );
-}
-
-function Navigation() {
-  return (
-    <div className="content-stretch flex flex-[631.261_0_0] flex-col items-start min-h-px overflow-clip pb-[16px] px-[8px] relative w-full" data-name="Navigation">
-      <Container4 />
-      <Container5 />
-      <Container6 />
-      <Container7 />
-      <Container8 />
-      <Container9 />
-    </div>
-  );
-}
-
-function Sidebar() {
-  return (
-    <div className="bg-white content-stretch flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] shrink-0 w-[175.99px]" data-name="Sidebar">
-      <Container2 />
-      <ContainerMargin />
-      <Navigation />
-    </div>
-  );
-}
-
-function Paragraph8() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[287.994px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[20px] not-italic relative shrink-0 text-[#364153] text-[14px] whitespace-nowrap">Чат с AI-Советником</p>
-    </div>
-  );
-}
-
-function Container12() {
-  return (
-    <div className="border-[#f3f4f6] border-b-[0.723px] border-solid content-stretch flex flex-col items-start px-[16px] py-[12px] relative shrink-0 w-full" data-name="Container">
-      <Paragraph8 />
-    </div>
-  );
-}
-
-function Container15() {
-  return (
-    <div className="bg-[#155dfc] content-stretch flex flex-col h-full items-start px-[12px] py-[8px] relative rounded-[12px] shrink-0" data-name="Container">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[19.5px] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">Нагрузка на департаменты</p>
-    </div>
-  );
-}
-
-function Container14() {
-  return (
-    <div className="content-stretch flex h-[35.489px] items-start justify-end relative shrink-0 w-[287.994px]" data-name="Container">
-      <Container15 />
-    </div>
-  );
-}
-
-function Container17() {
-  return (
-    <div className="bg-[#f3f4f6] content-stretch flex flex-col h-full items-start px-[12px] py-[8px] relative rounded-[12px] shrink-0" data-name="Container">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[19.5px] not-italic relative shrink-0 text-[#1e2939] text-[12px] w-[221px]">Отображаю аналитику по нагрузке на департаменты...</p>
-    </div>
-  );
-}
-
-function Container16() {
-  return (
-    <div className="content-stretch flex h-[54.98px] items-start relative shrink-0 w-[287.994px]" data-name="Container">
-      <Container17 />
-    </div>
-  );
-}
-
-function ContainerMargin1() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[12px] relative shrink-0" data-name="Container:margin">
-      <Container16 />
-    </div>
-  );
-}
-
-function Container19() {
-  return (
-    <div className="bg-[#155dfc] content-stretch flex flex-col h-full items-start px-[12px] py-[8px] relative rounded-[12px] shrink-0" data-name="Container">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[19.5px] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap">кто такой Пак?</p>
-    </div>
-  );
-}
-
-function Container18() {
-  return (
-    <div className="content-stretch flex h-[47.489px] items-start justify-end pt-[12px] relative shrink-0 w-[287.994px]" data-name="Container">
-      <Container19 />
-    </div>
-  );
-}
-
-function Container21() {
-  return (
-    <div className="bg-[#f3f4f6] content-stretch flex flex-col h-full items-start px-[12px] py-[8px] relative rounded-[12px] shrink-0" data-name="Container">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[19.5px] not-italic relative shrink-0 text-[#1e2939] text-[12px] w-[221px]">Пак Т.Е. — исполнитель с 31 просроченным документом, занимает 10-е место в рейтинге.</p>
-    </div>
-  );
-}
-
-function Container20() {
-  return (
-    <div className="content-stretch flex h-[86.47px] items-start pt-[12px] relative shrink-0 w-[287.994px]" data-name="Container">
-      <Container21 />
-    </div>
-  );
-}
-
-function Container13() {
-  return (
-    <div className="content-stretch flex flex-[470.976_0_0] flex-col items-start min-h-px overflow-clip p-[16px] relative w-full" data-name="Container">
-      <Container14 />
-      <ContainerMargin1 />
-      <Container18 />
-      <Container20 />
-    </div>
-  );
-}
-
-function Button19() {
-  return (
-    <div className="bg-[#155dfc] content-stretch flex flex-[147.268_0_0] flex-col h-full items-center justify-center min-w-px py-[6px] relative" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[12px] text-center text-white whitespace-nowrap">📊 Аналитика</p>
-    </div>
-  );
-}
-
-function Button20() {
-  return (
-    <div className="content-stretch flex flex-[147.279_0_0] flex-col h-full items-center justify-center min-w-px py-[6px] relative" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#6a7282] text-[12px] text-center whitespace-nowrap">💬 Чат</p>
-    </div>
-  );
-}
-
-function Container23() {
-  return (
-    <div className="border-[#e5e7eb] border-[0.723px] border-solid content-stretch flex h-[29.445px] items-start overflow-clip relative rounded-[8px] shrink-0 w-[295.994px]" data-name="Container">
-      <Button19 />
-      <Button20 />
-    </div>
-  );
-}
-
-function TextInput1() {
-  return (
-    <div className="border-[#e5e7eb] border-[0.723px] border-solid content-stretch flex flex-[211.116_0_0] flex-col h-full items-start justify-center min-w-px overflow-clip px-[12px] py-[8px] relative rounded-[8px]" data-name="Text Input">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[12px] text-[rgba(0,0,0,0.5)] w-full">Задайте ваш вопрос...</p>
-    </div>
-  );
-}
-
-function Button21() {
-  return (
-    <div className="bg-[#155dfc] content-stretch flex flex-col h-full items-center justify-center px-[12px] py-[8px] relative rounded-[8px] shrink-0" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[12px] text-center text-white whitespace-nowrap">Send</p>
-    </div>
-  );
-}
-
-function Container24() {
-  return (
-    <div className="content-stretch flex gap-[6px] h-[41.444px] items-start pt-[8px] relative shrink-0 w-[295.994px]" data-name="Container">
-      <TextInput1 />
-      <Button21 />
-    </div>
-  );
-}
-
-function Button22() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-0 px-[8px] py-[4px] rounded-[6px] top-0" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">Нагрузка на департаменты</p>
-    </div>
-  );
-}
-
-function Button23() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-0 px-[8px] py-[4px] rounded-[6px] top-[28.28px]" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">Аналитика по исполнителям</p>
-    </div>
-  );
-}
-
-function Button24() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-[161.61px] px-[8px] py-[4px] rounded-[6px] top-[28.28px]" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">Дашборд по авторам</p>
-    </div>
-  );
-}
-
-function Button25() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-0 px-[8px] py-[4px] rounded-[6px] top-[56.56px]" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">кто такой Пак?</p>
-    </div>
-  );
-}
-
-function Button26() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-[94.45px] px-[8px] py-[4px] rounded-[6px] top-[56.56px]" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">График связей</p>
-    </div>
-  );
-}
-
-function Button27() {
-  return (
-    <div className="absolute bg-[#f3f4f6] content-stretch flex flex-col h-[22.281px] items-center justify-center left-[188.07px] px-[8px] py-[4px] rounded-[6px] top-[56.56px]" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#4a5565] text-[10px] text-center whitespace-nowrap">Тепловая карта</p>
-    </div>
-  );
-}
-
-function Container25() {
-  return (
-    <div className="h-[78.843px] relative shrink-0 w-[295.994px]" data-name="Container">
-      <Button22 />
-      <Button23 />
-      <Button24 />
-      <Button25 />
-      <Button26 />
-      <Button27 />
-    </div>
-  );
-}
-
-function ContainerMargin2() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[8px] relative shrink-0" data-name="Container:margin">
-      <Container25 />
-    </div>
-  );
-}
-
-function Container22() {
-  return (
-    <div className="border-[#f3f4f6] border-solid border-t-[0.723px] content-stretch flex flex-col items-start p-[12px] relative shrink-0 w-full" data-name="Container">
-      <Container23 />
-      <Container24 />
-      <ContainerMargin2 />
-    </div>
-  );
-}
-
-function Container11() {
-  return (
-    <div className="bg-white content-stretch flex flex-col h-full items-start overflow-clip relative rounded-[12px] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] shrink-0 w-[319.992px]" data-name="Container">
-      <Container12 />
-      <Container13 />
-      <Container22 />
-    </div>
-  );
-}
-
-function Text38() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[24px] not-italic relative shrink-0 text-[16px] text-black whitespace-nowrap">📊</p>
-    </div>
-  );
-}
-
-function Heading() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Heading 1">
-      <p className="[word-break:break-word] font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#101828] text-[16px] whitespace-nowrap">Обзор для руководства</p>
-    </div>
-  );
-}
-
-function Text39() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular','Noto_Sans:Regular','Noto_Sans_Math:Regular','Noto_Sans_Symbols:Regular','Noto_Sans_Symbols2:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#99a1af] text-[12px] whitespace-nowrap">ⓘ</p>
-    </div>
-  );
-}
-
-function Container29() {
-  return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 w-full" data-name="Container">
-      <Text38 />
-      <Heading />
-      <Text39 />
-    </div>
-  );
-}
-
-function Paragraph9() {
-  return (
-    <div className="content-stretch flex flex-col h-[18px] items-start pt-[2px] relative shrink-0 w-[409.659px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[15.714px] not-italic relative shrink-0 text-[#6a7282] text-[11px] whitespace-nowrap">Комплексная сводка по документообороту и исполнительской дисциплине</p>
-    </div>
-  );
-}
-
-function Container28() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[409.659px]" data-name="Container">
-      <Container29 />
-      <Paragraph9 />
-    </div>
-  );
-}
-
-function Button28() {
-  return (
-    <div className="border-[#d1d5dc] border-[0.723px] border-solid content-stretch flex flex-col items-center justify-center px-[12px] py-[6px] relative rounded-[4px] shrink-0" data-name="Button">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#4a5565] text-[12px] text-center whitespace-nowrap">Export Excel</p>
-    </div>
-  );
-}
-
-function Container27() {
-  return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-[944.023px]" data-name="Container">
-      <Container28 />
-      <Button28 />
-    </div>
-  );
-}
-
-function Paragraph10() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Всего документов</p>
-    </div>
-  );
-}
-
-function Paragraph11() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">10 000</p>
-    </div>
-  );
-}
-
-function Group2() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_0_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_0_" stroke="#60A5FA" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group1() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group2 />
-    </div>
-  );
-}
-
-function Group() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group1 />
-    </div>
-  );
-}
-
-function Icon() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group />
-    </div>
-  );
-}
-
-function Container34() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon />
-    </div>
-  );
-}
-
-function Container33() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container34 />
-    </div>
-  );
-}
-
-function Container32() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Container">
-      <Container33 />
-    </div>
-  );
-}
-
-function Paragraph12() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">Всего</p>
-    </div>
-  );
-}
-
-function Container31() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-1 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph10 />
-      <Paragraph11 />
-      <Container32 />
-      <Paragraph12 />
-    </div>
-  );
-}
-
-function Paragraph13() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Просрочено (шт)</p>
-    </div>
-  );
-}
-
-function Paragraph14() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">5 000</p>
-    </div>
-  );
-}
-
-function Group5() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_1_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_1_" stroke="#F87171" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group4() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group5 />
-    </div>
-  );
-}
-
-function Group3() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group4 />
-    </div>
-  );
-}
-
-function Icon1() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group3 />
-    </div>
-  );
-}
-
-function Container38() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon1 />
-    </div>
-  );
-}
-
-function Container37() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container38 />
-    </div>
-  );
-}
-
-function Container36() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Container">
-      <Container37 />
-    </div>
-  );
-}
-
-function Paragraph15() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">Просрочено</p>
-    </div>
-  );
-}
-
-function Container35() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-2 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph13 />
-      <Paragraph14 />
-      <Container36 />
-      <Paragraph15 />
-    </div>
-  );
-}
-
-function Paragraph16() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Просрочено (%)</p>
-    </div>
-  );
-}
-
-function Paragraph17() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">0.5</p>
-    </div>
-  );
-}
-
-function Group8() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_2_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_2_" stroke="#FB923C" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group7() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group8 />
-    </div>
-  );
-}
-
-function Group6() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group7 />
-    </div>
-  );
-}
-
-function Icon2() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group6 />
-    </div>
-  );
-}
-
-function Container42() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon2 />
-    </div>
-  );
-}
-
-function Container41() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container42 />
-    </div>
-  );
-}
-
-function Container40() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Container">
-      <Container41 />
-    </div>
-  );
-}
-
-function Paragraph18() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">% Просрочки</p>
-    </div>
-  );
-}
-
-function Container39() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-3 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph16 />
-      <Paragraph17 />
-      <Container40 />
-      <Paragraph18 />
-    </div>
-  );
-}
-
-function Paragraph19() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Скоро срок (0-2 дн)</p>
-    </div>
-  );
-}
-
-function Paragraph20() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">—</p>
-    </div>
-  );
-}
-
-function Group11() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_3_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_3_" stroke="#FBBF24" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group10() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group11 />
-    </div>
-  );
-}
-
-function Group9() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group10 />
-    </div>
-  );
-}
-
-function Icon3() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group9 />
-    </div>
-  );
-}
-
-function Container46() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon3 />
-    </div>
-  );
-}
-
-function Container45() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container46 />
-    </div>
-  );
-}
-
-function Container44() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Container">
-      <Container45 />
-    </div>
-  );
-}
-
-function Paragraph21() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">Скоро срок</p>
-    </div>
-  );
-}
-
-function Container43() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-4 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph19 />
-      <Paragraph20 />
-      <Container44 />
-      <Paragraph21 />
-    </div>
-  );
-}
-
-function Paragraph22() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Исполнено</p>
-    </div>
-  );
-}
-
-function Paragraph23() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">10 000</p>
-    </div>
-  );
-}
-
-function Group14() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_4_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_4_" stroke="#34D399" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group13() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group14 />
-    </div>
-  );
-}
-
-function Group12() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group13 />
-    </div>
-  );
-}
-
-function Icon4() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group12 />
-    </div>
-  );
-}
-
-function Container50() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon4 />
-    </div>
-  );
-}
-
-function Container49() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container50 />
-    </div>
-  );
-}
-
-function Container48() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.891px]" data-name="Container">
-      <Container49 />
-    </div>
-  );
-}
-
-function Paragraph24() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.891px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">Исполнено</p>
-    </div>
-  );
-}
-
-function Container47() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-5 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph22 />
-      <Paragraph23 />
-      <Container48 />
-      <Paragraph24 />
-    </div>
-  );
-}
-
-function Paragraph25() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[121.902px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.5px] not-italic relative shrink-0 text-[#6a7282] text-[10px] whitespace-nowrap">Исполнено в срок (%)</p>
-    </div>
-  );
-}
-
-function Paragraph26() {
-  return (
-    <div className="content-stretch flex flex-col h-[22px] items-start pt-[4px] relative shrink-0 w-[121.902px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[18px] not-italic relative shrink-0 text-[#101828] text-[18px] whitespace-nowrap">1</p>
-    </div>
-  );
-}
-
-function Group17() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <div className="absolute inset-[14.44%_1.64%_41.11%_1.64%]" data-name="recharts-line-_r_5_">
-        <div className="absolute inset-[-3.82%_-0.37%_-4.18%_-0.29%]">
-          <svg className="block size-full" fill="none" height="17.2785" preserveAspectRatio="none" viewBox="0 0 118.768 17.2785" width="118.768">
-            <path d={svgPaths.pe7a940} id="recharts-line-_r_4_" stroke="#34D399" strokeWidth="1.49991" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group16() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group17 />
-    </div>
-  );
-}
-
-function Group15() {
-  return (
-    <div className="absolute contents inset-[14.44%_1.64%_41.11%_1.64%]" data-name="Group">
-      <Group16 />
-    </div>
-  );
-}
-
-function Icon5() {
-  return (
-    <div className="h-[35.998px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group15 />
-    </div>
-  );
-}
-
-function Container54() {
-  return (
-    <div className="content-stretch flex flex-col h-[35.998px] items-start relative shrink-0 w-[121.993px]" data-name="Container">
-      <Icon5 />
-    </div>
-  );
-}
-
-function Container53() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container54 />
-    </div>
-  );
-}
-
-function Container52() {
-  return (
-    <div className="content-stretch flex flex-col h-[39.998px] items-start pt-[4px] relative shrink-0 w-[121.902px]" data-name="Container">
-      <Container53 />
-    </div>
-  );
-}
-
-function Paragraph27() {
-  return (
-    <div className="content-stretch flex flex-col h-[15px] items-start pt-[2px] relative shrink-0 w-[121.902px]" data-name="Paragraph">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#99a1af] text-[9px] whitespace-nowrap">% В срок</p>
-    </div>
-  );
-}
-
-function Container51() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-6 content-stretch flex flex-col items-start justify-self-stretch p-[12px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Paragraph25 />
-      <Paragraph26 />
-      <Container52 />
-      <Paragraph27 />
-    </div>
-  );
-}
-
-function Container30() {
-  return (
-    <div className="gap-x-[12px] gap-y-[12px] grid grid-cols-[______147.34px_147.34px_147.34px_147.34px_147.34px_147.35px] grid-rows-[_114.79px] relative shrink-0 w-[944.023px]" data-name="Container">
-      <Container31 />
-      <Container35 />
-      <Container39 />
-      <Container43 />
-      <Container47 />
-      <Container51 />
-    </div>
-  );
-}
-
-function ContainerMargin3() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[16px] relative shrink-0" data-name="Container:margin">
-      <Container30 />
-    </div>
-  );
-}
-
-function Text40() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[15.714px] not-italic relative shrink-0 text-[11px] text-black whitespace-nowrap">📈</p>
-    </div>
-  );
-}
-
-function Text41() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#364153] text-[12px] whitespace-nowrap">Динамика поступления</p>
-    </div>
-  );
-}
-
-function Text42() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular','Noto_Sans:Regular','Noto_Sans_Math:Regular','Noto_Sans_Symbols:Regular','Noto_Sans_Symbols2:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] whitespace-nowrap">ⓘ</p>
-    </div>
-  );
-}
-
-function Container58() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-name="Container">
-      <Text40 />
-      <Text41 />
-      <Text42 />
-    </div>
-  );
-}
-
-function Text43() {
-  return <div className="bg-[#51a2ff] h-[4px] relative rounded-[4px] shrink-0 w-[11.999px]" data-name="Text" />;
-}
-
-function Text44() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#6a7282] text-[9px] whitespace-nowrap">Поступило</p>
-    </div>
-  );
-}
-
-function Container59() {
-  return (
-    <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Container">
-      <Text43 />
-      <Text44 />
-    </div>
-  );
-}
-
-function Container57() {
-  return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-[430.562px]" data-name="Container">
-      <Container58 />
-      <Container59 />
-    </div>
-  );
-}
-
-function Group20() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[40.71%_1.86%_59.29%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_1.86%_97.14%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group21() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[2.86%_89.79%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_73.8%_21.43%_26.2%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_57.81%_21.43%_42.19%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_41.83%_21.43%_58.17%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_25.84%_21.43%_74.16%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_1.86%_21.43%_98.14%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group19() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group20 />
-      <Group21 />
-    </div>
-  );
-}
-
-function Group18() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group19 />
-    </div>
-  );
-}
-
-function Group24() {
-  return (
-    <div className="absolute contents inset-[12.7%_1.86%_36.57%_10.21%]" data-name="Group">
-      <div className="absolute inset-[12.7%_1.86%_36.57%_10.21%]" data-name="recharts-line-_r_6_">
-        <div className="absolute inset-[-1.39%_-0.15%_-1.17%_0]">
-          <svg className="block size-full" fill="none" height="72.8312" preserveAspectRatio="none" viewBox="0 0 379.698 72.8312" width="379.698">
-            <path d={svgPaths.p234ebd80} id="recharts-line-_r_6_" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group23() {
-  return (
-    <div className="absolute contents inset-[12.7%_1.86%_36.57%_10.21%]" data-name="Group">
-      <Group24 />
-    </div>
-  );
-}
-
-function Group22() {
-  return (
-    <div className="absolute contents inset-[12.7%_1.86%_36.57%_10.21%]" data-name="Group">
-      <Group23 />
-    </div>
-  );
-}
-
-function Group26() {
-  return (
-    <div className="absolute contents inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#666666" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group25() {
-  return (
-    <div className="absolute contents inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group26 />
-    </div>
-  );
-}
-
-function Group28() {
-  return (
-    <div className="absolute contents inset-[10.56%_1.16%_34.43%_9.51%]" data-name="Group">
-      <div className="absolute inset-[10.56%_89.09%_85.16%_9.51%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[14.34%_81.1%_81.37%_17.51%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[17.37%_73.11%_78.34%_25.5%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[20.4%_65.11%_75.31%_33.5%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[23.43%_57.12%_72.29%_41.49%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[27.21%_49.12%_68.5%_49.48%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[30.24%_41.13%_65.47%_57.48%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[34.03%_33.14%_61.69%_65.47%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[40.09%_25.14%_55.63%_73.46%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[43.87%_17.15%_51.84%_81.46%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[47.66%_9.16%_48.06%_89.45%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[61.29%_1.16%_34.43%_97.45%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#60A5FA" id="Vector" stroke="#60A5FA" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group27() {
-  return (
-    <div className="absolute contents inset-[10.56%_1.16%_34.43%_9.51%]" data-name="Group">
-      <Group28 />
-    </div>
-  );
-}
-
-function Group31() {
-  return (
-    <div className="absolute contents inset-[82.42%_86.43%_9.72%_6.85%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_86.43%_9.72%_6.85%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`окт'24`}</p>
-    </div>
-  );
-}
-
-function Group32() {
-  return (
-    <div className="absolute contents inset-[82.42%_78.43%_9.72%_14.84%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_78.43%_9.72%_14.84%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`ноя'24`}</p>
-    </div>
-  );
-}
-
-function Group33() {
-  return (
-    <div className="absolute contents inset-[82.42%_70.44%_9.72%_22.83%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_70.44%_9.72%_22.83%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`дек'24`}</p>
-    </div>
-  );
-}
-
-function Group34() {
-  return (
-    <div className="absolute contents inset-[82.42%_62.44%_9.72%_30.83%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_62.44%_9.72%_30.83%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`янв'25`}</p>
-    </div>
-  );
-}
-
-function Group35() {
-  return (
-    <div className="absolute contents inset-[82.42%_46.22%_9.72%_46.58%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_46.22%_9.72%_46.58%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`мар'25`}</p>
-    </div>
-  );
-}
-
-function Group36() {
-  return (
-    <div className="absolute contents inset-[82.42%_30.24%_9.72%_62.57%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_30.24%_9.72%_62.57%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`май'25`}</p>
-    </div>
-  );
-}
-
-function Group37() {
-  return (
-    <div className="absolute contents inset-[82.42%_14.25%_9.72%_78.56%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_14.25%_9.72%_78.56%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`июл'25`}</p>
-    </div>
-  );
-}
-
-function Group38() {
-  return (
-    <div className="absolute contents inset-[82.42%_0.03%_9.72%_93.25%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_0.03%_9.72%_93.25%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`сен'25`}</p>
-    </div>
-  );
-}
-
-function Group30() {
-  return (
-    <div className="absolute contents inset-[82.42%_0.03%_9.72%_6.85%]" data-name="Group">
-      <Group31 />
-      <Group32 />
-      <Group33 />
-      <Group34 />
-      <Group35 />
-      <Group36 />
-      <Group37 />
-      <Group38 />
-    </div>
-  );
-}
-
-function Group40() {
-  return (
-    <div className="absolute contents inset-[74.42%_91.65%_17.72%_6.96%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[74.42%_91.65%_17.72%_6.96%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0</p>
-    </div>
-  );
-}
-
-function Group41() {
-  return (
-    <div className="absolute contents inset-[55.5%_91.65%_36.65%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[55.5%_91.65%_36.65%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">250</p>
-    </div>
-  );
-}
-
-function Group42() {
-  return (
-    <div className="absolute contents inset-[36.57%_91.65%_55.57%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[36.57%_91.65%_55.57%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">500</p>
-    </div>
-  );
-}
-
-function Group43() {
-  return (
-    <div className="absolute contents inset-[17.64%_91.65%_74.5%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[17.64%_91.65%_74.5%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">750</p>
-    </div>
-  );
-}
-
-function Group44() {
-  return (
-    <div className="absolute contents inset-[0.68%_91.88%_91.47%_3.02%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[0.68%_91.88%_91.47%_3.02%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">1000</p>
-    </div>
-  );
-}
-
-function Group39() {
-  return (
-    <div className="absolute contents inset-[0.68%_91.65%_17.72%_3.02%]" data-name="Group">
-      <Group40 />
-      <Group41 />
-      <Group42 />
-      <Group43 />
-      <Group44 />
-    </div>
-  );
-}
-
-function Group29() {
-  return (
-    <div className="absolute contents inset-[0.68%_0.03%_9.72%_3.02%]" data-name="Group">
-      <Group30 />
-      <Group39 />
-    </div>
-  );
-}
-
-function Icon6() {
-  return (
-    <div className="h-[139.992px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group18 />
-      <Group22 />
-      <Group25 />
-      <Group27 />
-      <Group29 />
-    </div>
-  );
-}
-
-function Container62() {
-  return (
-    <div className="content-stretch flex flex-col h-[139.992px] items-start relative shrink-0 w-[430.991px]" data-name="Container">
-      <Icon6 />
-    </div>
-  );
-}
-
-function Container61() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container62 />
-    </div>
-  );
-}
-
-function Container60() {
-  return (
-    <div className="content-stretch flex flex-col h-[151.992px] items-start pt-[12px] relative shrink-0 w-[430.562px]" data-name="Container">
-      <Container61 />
-    </div>
-  );
-}
-
-function Container56() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-1 content-stretch flex flex-col items-start justify-self-stretch p-[16px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Container57 />
-      <Container60 />
-    </div>
-  );
-}
-
-function Text45() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[15.714px] not-italic relative shrink-0 text-[11px] text-black whitespace-nowrap">📈</p>
-    </div>
-  );
-}
-
-function Text46() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#364153] text-[12px] whitespace-nowrap">Динамика просрочки</p>
-    </div>
-  );
-}
-
-function Text47() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular','Noto_Sans:Regular','Noto_Sans_Math:Regular','Noto_Sans_Symbols:Regular','Noto_Sans_Symbols2:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] whitespace-nowrap">ⓘ</p>
-    </div>
-  );
-}
-
-function Container65() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0" data-name="Container">
-      <Text45 />
-      <Text46 />
-      <Text47 />
-    </div>
-  );
-}
-
-function Text48() {
-  return <div className="bg-[#ff8904] h-[4px] relative rounded-[4px] shrink-0 w-[11.999px]" data-name="Text" />;
-}
-
-function Text49() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[12.857px] not-italic relative shrink-0 text-[#6a7282] text-[9px] whitespace-nowrap">% Просрочки</p>
-    </div>
-  );
-}
-
-function Container66() {
-  return (
-    <div className="content-stretch flex gap-[4px] items-center relative shrink-0" data-name="Container">
-      <Text48 />
-      <Text49 />
-    </div>
-  );
-}
-
-function Container64() {
-  return (
-    <div className="content-stretch flex items-center justify-between relative shrink-0 w-[430.573px]" data-name="Container">
-      <Container65 />
-      <Container66 />
-    </div>
-  );
-}
-
-function Group47() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[40.71%_1.86%_59.29%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_1.86%_97.14%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group48() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[2.86%_89.79%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_73.8%_21.43%_26.2%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_57.81%_21.43%_42.19%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_41.83%_21.43%_58.17%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_25.84%_21.43%_74.16%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.86%_1.86%_21.43%_98.14%]" data-name="Vector">
-        <div className="absolute inset-[0_-0.5px]">
-          <svg className="block size-full" fill="none" height="105.994" preserveAspectRatio="none" viewBox="0 0 0.999943 105.994" width="0.999943">
-            <path d="M0.499971 0V105.994" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group46() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group47 />
-      <Group48 />
-    </div>
-  );
-}
-
-function Group45() {
-  return (
-    <div className="absolute contents inset-[2.86%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group46 />
-    </div>
-  );
-}
-
-function Group51() {
-  return (
-    <div className="absolute contents inset-[12.32%_1.86%_27.11%_10.21%]" data-name="Group">
-      <div className="absolute inset-[12.32%_1.86%_27.11%_10.21%]" data-name="recharts-line-_r_7_">
-        <div className="absolute inset-[-1.03%_0_-1.18%_-0.13%]">
-          <svg className="block size-full" fill="none" height="86.6655" preserveAspectRatio="none" viewBox="0 0 379.542 86.6655" width="379.542">
-            <path d={svgPaths.p12e00980} id="recharts-line-_r_7_" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group50() {
-  return (
-    <div className="absolute contents inset-[12.32%_1.86%_27.11%_10.21%]" data-name="Group">
-      <Group51 />
-    </div>
-  );
-}
-
-function Group49() {
-  return (
-    <div className="absolute contents inset-[12.32%_1.86%_27.11%_10.21%]" data-name="Group">
-      <Group50 />
-    </div>
-  );
-}
-
-function Group53() {
-  return (
-    <div className="absolute contents inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Group">
-      <div className="absolute inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999943" preserveAspectRatio="none" viewBox="0 0 378.978 0.999943" width="378.978">
-            <path d="M0 0.499971H378.978" id="Vector" stroke="#666666" strokeWidth="0.999943" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group52() {
-  return (
-    <div className="absolute contents inset-[78.57%_1.86%_21.43%_10.21%]" data-name="Group">
-      <Group53 />
-    </div>
-  );
-}
-
-function Group55() {
-  return (
-    <div className="absolute contents inset-[10.18%_1.16%_24.96%_9.51%]" data-name="Group">
-      <div className="absolute inset-[10.18%_89.09%_85.54%_9.51%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[23.43%_81.1%_72.29%_17.51%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[34.79%_73.11%_60.93%_25.5%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[42.36%_65.11%_53.36%_33.5%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p296f3b80} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[48.04%_57.12%_47.68%_41.49%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[53.71%_49.12%_42%_49.48%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[57.5%_41.13%_38.21%_57.48%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[61.29%_33.14%_34.43%_65.47%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[63.18%_25.14%_32.54%_73.46%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[66.96%_17.15%_28.75%_81.46%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[68.86%_9.16%_26.86%_89.45%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[70.75%_1.16%_24.96%_97.45%]" data-name="Vector">
-        <div className="absolute inset-[-16.67%]">
-          <svg className="block size-full" fill="none" height="7.99989" preserveAspectRatio="none" viewBox="0 0 7.99989 7.99989" width="7.99989">
-            <path d={svgPaths.p1589e300} fill="#FB923C" id="Vector" stroke="#FB923C" strokeWidth="1.99989" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group54() {
-  return (
-    <div className="absolute contents inset-[10.18%_1.16%_24.96%_9.51%]" data-name="Group">
-      <Group55 />
-    </div>
-  );
-}
-
-function Group58() {
-  return (
-    <div className="absolute contents inset-[82.42%_86.43%_9.72%_6.85%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_86.43%_9.72%_6.85%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`дек'24`}</p>
-    </div>
-  );
-}
-
-function Group59() {
-  return (
-    <div className="absolute contents inset-[82.42%_70.55%_9.72%_22.49%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_70.55%_9.72%_22.49%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`фев'25`}</p>
-    </div>
-  );
-}
-
-function Group60() {
-  return (
-    <div className="absolute contents inset-[82.42%_54.45%_9.72%_38.82%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_54.45%_9.72%_38.82%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`апр'25`}</p>
-    </div>
-  );
-}
-
-function Group61() {
-  return (
-    <div className="absolute contents inset-[82.42%_38.23%_9.72%_54.58%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_38.23%_9.72%_54.58%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`июн'25`}</p>
-    </div>
-  );
-}
-
-function Group62() {
-  return (
-    <div className="absolute contents inset-[82.42%_22.82%_9.72%_70.68%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_22.82%_9.72%_70.68%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`авг'25`}</p>
-    </div>
-  );
-}
-
-function Group63() {
-  return (
-    <div className="absolute contents inset-[82.42%_14.48%_9.72%_78.79%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_14.48%_9.72%_78.79%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`сен'25`}</p>
-    </div>
-  );
-}
-
-function Group64() {
-  return (
-    <div className="absolute contents inset-[82.42%_0.02%_9.72%_93.25%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[82.42%_0.02%_9.72%_93.25%] leading-[normal] not-italic text-[#666] text-[8.999px] text-center whitespace-nowrap">{`ноя'25`}</p>
-    </div>
-  );
-}
-
-function Group57() {
-  return (
-    <div className="absolute contents inset-[82.42%_0.02%_9.72%_6.85%]" data-name="Group">
-      <Group58 />
-      <Group59 />
-      <Group60 />
-      <Group61 />
-      <Group62 />
-      <Group63 />
-      <Group64 />
-    </div>
-  );
-}
-
-function Group66() {
-  return (
-    <div className="absolute contents inset-[74.42%_91.65%_17.72%_5.11%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[74.42%_91.65%_17.72%_5.11%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0.2</p>
-    </div>
-  );
-}
-
-function Group67() {
-  return (
-    <div className="absolute contents inset-[55.5%_91.65%_36.65%_5.11%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[55.5%_91.65%_36.65%_5.11%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0.3</p>
-    </div>
-  );
-}
-
-function Group68() {
-  return (
-    <div className="absolute contents inset-[36.57%_91.65%_55.57%_5.11%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[36.57%_91.65%_55.57%_5.11%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0.4</p>
-    </div>
-  );
-}
-
-function Group69() {
-  return (
-    <div className="absolute contents inset-[17.64%_91.65%_74.5%_5.11%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[17.64%_91.65%_74.5%_5.11%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0.5</p>
-    </div>
-  );
-}
-
-function Group70() {
-  return (
-    <div className="absolute contents inset-[0.68%_91.65%_91.47%_5.11%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[0.68%_91.65%_91.47%_5.11%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0.6</p>
-    </div>
-  );
-}
-
-function Group65() {
-  return (
-    <div className="absolute contents inset-[0.68%_91.65%_17.72%_5.11%]" data-name="Group">
-      <Group66 />
-      <Group67 />
-      <Group68 />
-      <Group69 />
-      <Group70 />
-    </div>
-  );
-}
-
-function Group56() {
-  return (
-    <div className="absolute contents inset-[0.68%_0.02%_9.72%_5.11%]" data-name="Group">
-      <Group57 />
-      <Group65 />
-    </div>
-  );
-}
-
-function Icon7() {
-  return (
-    <div className="h-[139.992px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group45 />
-      <Group49 />
-      <Group52 />
-      <Group54 />
-      <Group56 />
-    </div>
-  );
-}
-
-function Container69() {
-  return (
-    <div className="content-stretch flex flex-col h-[139.992px] items-start relative shrink-0 w-[430.991px]" data-name="Container">
-      <Icon7 />
-    </div>
-  );
-}
-
-function Container68() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container69 />
-    </div>
-  );
-}
-
-function Container67() {
-  return (
-    <div className="content-stretch flex flex-col h-[151.992px] items-start pt-[12px] relative shrink-0 w-[430.573px]" data-name="Container">
-      <Container68 />
-    </div>
-  );
-}
-
-function Container63() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-2 content-stretch flex flex-col items-start justify-self-stretch p-[16px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Container64 />
-      <Container67 />
-    </div>
-  );
-}
-
-function Container55() {
-  return (
-    <div className="gap-x-[16px] gap-y-[16px] grid grid-cols-[__464.01px_464.02px] grid-rows-[_201.43px] relative shrink-0 w-[944.023px]" data-name="Container">
-      <Container56 />
-      <Container63 />
-    </div>
-  );
-}
-
-function ContainerMargin4() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[16px] relative shrink-0" data-name="Container:margin">
-      <Container55 />
-    </div>
-  );
-}
-
-function Text50() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[15.714px] not-italic relative shrink-0 text-[11px] text-black whitespace-nowrap">📊</p>
-    </div>
-  );
-}
-
-function Text51() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#364153] text-[12px] whitespace-nowrap">Топ департаментов по просрочке</p>
-    </div>
-  );
-}
-
-function Text52() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular','Noto_Sans:Regular','Noto_Sans_Math:Regular','Noto_Sans_Symbols:Regular','Noto_Sans_Symbols2:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] whitespace-nowrap">ⓘ</p>
-    </div>
-  );
-}
-
-function Container72() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-[430.562px]" data-name="Container">
-      <Text50 />
-      <Text51 />
-      <Text52 />
-    </div>
-  );
-}
-
-function Group73() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <div className="absolute inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[29.38%_1.86%_70.62%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.5%_1.86%_97.5%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group72() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group73 />
-    </div>
-  );
-}
-
-function Group71() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group72 />
-    </div>
-  );
-}
-
-function Group78() {
-  return (
-    <div className="absolute contents inset-[2.5%_81.95%_43.75%_11.09%]" data-name="Group">
-      <div className="absolute inset-[2.5%_81.95%_43.75%_11.09%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="85.9946" preserveAspectRatio="none" viewBox="0 0 29.9981 85.9946" width="29.9981">
-          <path d={svgPaths.p1fbc9e40} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group77() {
-  return (
-    <div className="absolute contents inset-[2.5%_81.95%_43.75%_11.09%]" data-name="Group">
-      <Group78 />
-    </div>
-  );
-}
-
-function Group80() {
-  return (
-    <div className="absolute contents inset-[9.22%_73.16%_43.75%_19.88%]" data-name="Group">
-      <div className="absolute inset-[9.22%_73.16%_43.75%_19.88%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="75.2453" preserveAspectRatio="none" viewBox="0 0 29.9981 75.2453" width="29.9981">
-          <path d={svgPaths.p1885d100} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group79() {
-  return (
-    <div className="absolute contents inset-[9.22%_73.16%_43.75%_19.88%]" data-name="Group">
-      <Group80 />
-    </div>
-  );
-}
-
-function Group82() {
-  return (
-    <div className="absolute contents inset-[15.94%_64.36%_43.75%_28.68%]" data-name="Group">
-      <div className="absolute inset-[15.94%_64.36%_43.75%_28.68%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="64.496" preserveAspectRatio="none" viewBox="0 0 29.9981 64.496" width="29.9981">
-          <path d={svgPaths.p3c68080} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group81() {
-  return (
-    <div className="absolute contents inset-[15.94%_64.36%_43.75%_28.68%]" data-name="Group">
-      <Group82 />
-    </div>
-  );
-}
-
-function Group84() {
-  return (
-    <div className="absolute contents inset-[22.66%_55.57%_43.75%_37.47%]" data-name="Group">
-      <div className="absolute inset-[22.66%_55.57%_43.75%_37.47%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="53.7466" preserveAspectRatio="none" viewBox="0 0 29.9981 53.7466" width="29.9981">
-          <path d={svgPaths.p3898e980} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group83() {
-  return (
-    <div className="absolute contents inset-[22.66%_55.57%_43.75%_37.47%]" data-name="Group">
-      <Group84 />
-    </div>
-  );
-}
-
-function Group86() {
-  return (
-    <div className="absolute contents inset-[27.7%_46.78%_43.75%_46.26%]" data-name="Group">
-      <div className="absolute inset-[27.7%_46.78%_43.75%_46.26%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="45.6846" preserveAspectRatio="none" viewBox="0 0 29.9981 45.6846" width="29.9981">
-          <path d={svgPaths.p3a93cb80} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group85() {
-  return (
-    <div className="absolute contents inset-[27.7%_46.78%_43.75%_46.26%]" data-name="Group">
-      <Group86 />
-    </div>
-  );
-}
-
-function Group88() {
-  return (
-    <div className="absolute contents inset-[31.89%_37.98%_43.75%_55.06%]" data-name="Group">
-      <div className="absolute inset-[31.89%_37.98%_43.75%_55.06%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="38.9663" preserveAspectRatio="none" viewBox="0 0 29.9981 38.9663" width="29.9981">
-          <path d={svgPaths.p32345a80} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group87() {
-  return (
-    <div className="absolute contents inset-[31.89%_37.98%_43.75%_55.06%]" data-name="Group">
-      <Group88 />
-    </div>
-  );
-}
-
-function Group90() {
-  return (
-    <div className="absolute contents inset-[36.09%_29.19%_43.75%_63.85%]" data-name="Group">
-      <div className="absolute inset-[36.09%_29.19%_43.75%_63.85%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="32.248" preserveAspectRatio="none" viewBox="0 0 29.9981 32.248" width="29.9981">
-          <path d={svgPaths.p333d4d80} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group89() {
-  return (
-    <div className="absolute contents inset-[36.09%_29.19%_43.75%_63.85%]" data-name="Group">
-      <Group90 />
-    </div>
-  );
-}
-
-function Group92() {
-  return (
-    <div className="absolute contents inset-[40.29%_20.4%_43.75%_72.64%]" data-name="Group">
-      <div className="absolute inset-[40.29%_20.4%_43.75%_72.64%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="25.5296" preserveAspectRatio="none" viewBox="0 0 29.9981 25.5296" width="29.9981">
-          <path d={svgPaths.pb560c80} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group91() {
-  return (
-    <div className="absolute contents inset-[40.29%_20.4%_43.75%_72.64%]" data-name="Group">
-      <Group92 />
-    </div>
-  );
-}
-
-function Group94() {
-  return (
-    <div className="absolute contents inset-[42.81%_11.6%_43.75%_81.43%]" data-name="Group">
-      <div className="absolute inset-[42.81%_11.6%_43.75%_81.43%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="21.4987" preserveAspectRatio="none" viewBox="0 0 29.9981 21.4987" width="29.9981">
-          <path d={svgPaths.p34ac0e80} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group93() {
-  return (
-    <div className="absolute contents inset-[42.81%_11.6%_43.75%_81.43%]" data-name="Group">
-      <Group94 />
-    </div>
-  );
-}
-
-function Group96() {
-  return (
-    <div className="absolute contents inset-[45.33%_2.81%_43.75%_90.23%]" data-name="Group">
-      <div className="absolute inset-[45.33%_2.81%_43.75%_90.23%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="17.4676" preserveAspectRatio="none" viewBox="0 0 29.9981 17.4676" width="29.9981">
-          <path d={svgPaths.pab2ae00} fill="#60A5FA" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group95() {
-  return (
-    <div className="absolute contents inset-[45.33%_2.81%_43.75%_90.23%]" data-name="Group">
-      <Group96 />
-    </div>
-  );
-}
-
-function Group76() {
-  return (
-    <div className="absolute contents inset-[2.5%_2.81%_43.75%_11.09%]" data-name="Group">
-      <Group77 />
-      <Group79 />
-      <Group81 />
-      <Group83 />
-      <Group85 />
-      <Group87 />
-      <Group89 />
-      <Group91 />
-      <Group93 />
-      <Group95 />
-    </div>
-  );
-}
-
-function Group75() {
-  return (
-    <div className="absolute contents inset-[2.5%_2.81%_43.75%_11.09%]" data-name="Group">
-      <Group76 />
-    </div>
-  );
-}
-
-function RechartsBarR() {
-  return (
-    <div className="absolute contents inset-[2.5%_2.81%_43.75%_11.09%]" data-name="recharts-bar-_r_8_">
-      <Group75 />
-    </div>
-  );
-}
-
-function Group74() {
-  return (
-    <div className="absolute contents inset-[2.5%_2.81%_43.75%_11.09%]" data-name="Group">
-      <RechartsBarR />
-    </div>
-  );
-}
-
-function Group98() {
-  return (
-    <div className="absolute contents inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Group">
-      <div className="absolute inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#666666" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group97() {
-  return (
-    <div className="absolute contents inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group98 />
-    </div>
-  );
-}
-
-function Group101() {
-  return (
-    <div className="absolute contents inset-[60.42%_84.56%_17.25%_4.99%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_84.56%_17.25%_4.99%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(12.7306cqw,22.9305cqh)] w-[hypot(87.2694cqw,-77.0695cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Канцелярия</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group102() {
-  return (
-    <div className="absolute contents inset-[60.42%_75.77%_19.76%_15.11%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_75.77%_19.76%_15.11%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(14.587cqw,25.8341cqh)] w-[hypot(85.413cqw,-74.1659cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Юр. отдел</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group103() {
-  return (
-    <div className="absolute contents inset-[60.42%_66.97%_21.55%_24.85%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_66.97%_21.55%_24.85%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(16.2831cqw,28.4031cqh)] w-[hypot(83.7169cqw,-71.5969cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Финансы</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group104() {
-  return (
-    <div className="absolute contents inset-[60.42%_58.18%_19.4%_32.51%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_58.18%_19.4%_32.51%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(14.2893cqw,25.3751cqh)] w-[hypot(85.7107cqw,-74.6249cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Аналитика</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group105() {
-  return (
-    <div className="absolute contents inset-[60.42%_49.39%_21.2%_42.25%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_49.39%_21.2%_42.25%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(15.9131cqw,27.8492cqh)] w-[hypot(84.0869cqw,-72.1508cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">ИТ-отдел</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group106() {
-  return (
-    <div className="absolute contents inset-[60.42%_40.59%_16.53%_48.57%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_40.59%_16.53%_48.57%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(12.2839cqw,22.2171cqh)] w-[hypot(87.7161cqw,-77.7829cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Бухгалтерия</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group107() {
-  return (
-    <div className="absolute contents inset-[60.42%_31.8%_25.14%_61.93%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_31.8%_25.14%_61.93%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(21.2171cqw,35.4542cqh)] w-[hypot(78.7829cqw,-64.5458cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Кадры</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group108() {
-  return (
-    <div className="absolute contents inset-[60.42%_23.01%_19.4%_67.68%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_23.01%_19.4%_67.68%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(14.2893cqw,25.3751cqh)] w-[hypot(85.7107cqw,-74.6249cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Логистика</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group109() {
-  return (
-    <div className="absolute contents inset-[60.42%_14.22%_19.04%_76.28%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_14.22%_19.04%_76.28%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(14.0036cqw,24.9321cqh)] w-[hypot(85.9964cqw,-75.0679cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Маркетинг</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group110() {
-  return (
-    <div className="absolute contents inset-[60.42%_5.42%_18.33%_84.69%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_5.42%_18.33%_84.69%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(13.465cqw,24.091cqh)] w-[hypot(86.535cqw,-75.909cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Снабжение</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group100() {
-  return (
-    <div className="absolute contents inset-[60.42%_5.42%_16.53%_4.99%]" data-name="Group">
-      <Group101 />
-      <Group102 />
-      <Group103 />
-      <Group104 />
-      <Group105 />
-      <Group106 />
-      <Group107 />
-      <Group108 />
-      <Group109 />
-      <Group110 />
-    </div>
-  );
-}
-
-function Group112() {
-  return (
-    <div className="absolute contents inset-[52.62%_91.65%_40.5%_6.96%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[52.62%_91.65%_40.5%_6.96%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0</p>
-    </div>
-  );
-}
-
-function Group113() {
-  return (
-    <div className="absolute contents inset-[39.18%_91.65%_53.94%_5.57%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[39.18%_91.65%_53.94%_5.57%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">80</p>
-    </div>
-  );
-}
-
-function Group114() {
-  return (
-    <div className="absolute contents inset-[25.75%_91.88%_67.38%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[25.75%_91.88%_67.38%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">160</p>
-    </div>
-  );
-}
-
-function Group115() {
-  return (
-    <div className="absolute contents inset-[12.31%_91.88%_80.82%_4.18%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[12.31%_91.88%_80.82%_4.18%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">240</p>
-    </div>
-  );
-}
-
-function Group116() {
-  return (
-    <div className="absolute contents inset-[0.59%_91.88%_92.53%_4.18%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[0.59%_91.88%_92.53%_4.18%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">320</p>
-    </div>
-  );
-}
-
-function Group111() {
-  return (
-    <div className="absolute contents inset-[0.59%_91.65%_40.5%_4.18%]" data-name="Group">
-      <Group112 />
-      <Group113 />
-      <Group114 />
-      <Group115 />
-      <Group116 />
-    </div>
-  );
-}
-
-function Group99() {
-  return (
-    <div className="absolute contents inset-[0.59%_5.42%_16.53%_4.18%]" data-name="Group">
-      <Group100 />
-      <Group111 />
-    </div>
-  );
-}
-
-function Icon8() {
-  return (
-    <div className="h-[159.99px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group71 />
-      <Group74 />
-      <Group97 />
-      <Group99 />
-    </div>
-  );
-}
-
-function Container75() {
-  return (
-    <div className="content-stretch flex flex-col h-[159.99px] items-start relative shrink-0 w-[430.991px]" data-name="Container">
-      <Icon8 />
-    </div>
-  );
-}
-
-function Container74() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container75 />
-    </div>
-  );
-}
-
-function Container73() {
-  return (
-    <div className="content-stretch flex flex-col h-[171.99px] items-start pt-[12px] relative shrink-0 w-[430.562px]" data-name="Container">
-      <Container74 />
-    </div>
-  );
-}
-
-function Container71() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-1 content-stretch flex flex-col items-start justify-self-stretch p-[16px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Container72 />
-      <Container73 />
-    </div>
-  );
-}
-
-function Text53() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[15.714px] not-italic relative shrink-0 text-[11px] text-black whitespace-nowrap">👤</p>
-    </div>
-  );
-}
-
-function Text54() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Medium',sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[#364153] text-[12px] whitespace-nowrap">Топ исполнителей по просрочке</p>
-    </div>
-  );
-}
-
-function Text55() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Text">
-      <p className="[word-break:break-word] font-['Inter:Regular','Noto_Sans:Regular','Noto_Sans_Math:Regular','Noto_Sans_Symbols:Regular','Noto_Sans_Symbols2:Regular',sans-serif] font-normal leading-[14.286px] not-italic relative shrink-0 text-[#99a1af] text-[10px] whitespace-nowrap">ⓘ</p>
-    </div>
-  );
-}
-
-function Container77() {
-  return (
-    <div className="content-stretch flex gap-[6px] items-center relative shrink-0 w-[430.573px]" data-name="Container">
-      <Text53 />
-      <Text54 />
-      <Text55 />
-    </div>
-  );
-}
-
-function Group119() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <div className="absolute inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[29.38%_1.86%_70.62%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-      <div className="absolute inset-[2.5%_1.86%_97.5%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#F0F0F0" strokeDasharray="3 3" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group118() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group119 />
-    </div>
-  );
-}
-
-function Group117() {
-  return (
-    <div className="absolute contents inset-[2.5%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group118 />
-    </div>
-  );
-}
-
-function Group124() {
-  return (
-    <div className="absolute contents inset-[7.54%_81.95%_43.75%_11.09%]" data-name="Group">
-      <div className="absolute inset-[7.54%_81.95%_43.75%_11.09%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="77.9326" preserveAspectRatio="none" viewBox="0 0 29.9981 77.9326" width="29.9981">
-          <path d={svgPaths.p1d1b1400} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group123() {
-  return (
-    <div className="absolute contents inset-[7.54%_81.95%_43.75%_11.09%]" data-name="Group">
-      <Group124 />
-    </div>
-  );
-}
-
-function Group126() {
-  return (
-    <div className="absolute contents inset-[15.94%_73.16%_43.75%_19.88%]" data-name="Group">
-      <div className="absolute inset-[15.94%_73.16%_43.75%_19.88%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="64.496" preserveAspectRatio="none" viewBox="0 0 29.9981 64.496" width="29.9981">
-          <path d={svgPaths.p208a4480} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group125() {
-  return (
-    <div className="absolute contents inset-[15.94%_73.16%_43.75%_19.88%]" data-name="Group">
-      <Group126 />
-    </div>
-  );
-}
-
-function Group128() {
-  return (
-    <div className="absolute contents inset-[23.33%_64.36%_43.75%_28.68%]" data-name="Group">
-      <div className="absolute inset-[23.33%_64.36%_43.75%_28.68%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="52.6717" preserveAspectRatio="none" viewBox="0 0 29.9981 52.6717" width="29.9981">
-          <path d={svgPaths.p2f7f2a00} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group127() {
-  return (
-    <div className="absolute contents inset-[23.33%_64.36%_43.75%_28.68%]" data-name="Group">
-      <Group128 />
-    </div>
-  );
-}
-
-function Group130() {
-  return (
-    <div className="absolute contents inset-[27.02%_55.57%_43.75%_37.47%]" data-name="Group">
-      <div className="absolute inset-[27.02%_55.57%_43.75%_37.47%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="46.7596" preserveAspectRatio="none" viewBox="0 0 29.9981 46.7596" width="29.9981">
-          <path d={svgPaths.p17705df0} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group129() {
-  return (
-    <div className="absolute contents inset-[27.02%_55.57%_43.75%_37.47%]" data-name="Group">
-      <Group130 />
-    </div>
-  );
-}
-
-function Group132() {
-  return (
-    <div className="absolute contents inset-[31.39%_46.78%_43.75%_46.26%]" data-name="Group">
-      <div className="absolute inset-[31.39%_46.78%_43.75%_46.26%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="39.7725" preserveAspectRatio="none" viewBox="0 0 29.9981 39.7725" width="29.9981">
-          <path d={svgPaths.p24060800} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group131() {
-  return (
-    <div className="absolute contents inset-[31.39%_46.78%_43.75%_46.26%]" data-name="Group">
-      <Group132 />
-    </div>
-  );
-}
-
-function Group134() {
-  return (
-    <div className="absolute contents inset-[35.09%_37.98%_43.75%_55.06%]" data-name="Group">
-      <div className="absolute inset-[35.09%_37.98%_43.75%_55.06%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="33.8604" preserveAspectRatio="none" viewBox="0 0 29.9981 33.8604" width="29.9981">
-          <path d={svgPaths.p2d459880} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group133() {
-  return (
-    <div className="absolute contents inset-[35.09%_37.98%_43.75%_55.06%]" data-name="Group">
-      <Group134 />
-    </div>
-  );
-}
-
-function Group136() {
-  return (
-    <div className="absolute contents inset-[38.11%_29.19%_43.75%_63.85%]" data-name="Group">
-      <div className="absolute inset-[38.11%_29.19%_43.75%_63.85%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="29.0232" preserveAspectRatio="none" viewBox="0 0 29.9981 29.0232" width="29.9981">
-          <path d={svgPaths.p9796800} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group135() {
-  return (
-    <div className="absolute contents inset-[38.11%_29.19%_43.75%_63.85%]" data-name="Group">
-      <Group136 />
-    </div>
-  );
-}
-
-function Group138() {
-  return (
-    <div className="absolute contents inset-[42.14%_20.4%_43.75%_72.64%]" data-name="Group">
-      <div className="absolute inset-[42.14%_20.4%_43.75%_72.64%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="22.5736" preserveAspectRatio="none" viewBox="0 0 29.9981 22.5736" width="29.9981">
-          <path d={svgPaths.p247d9f30} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group137() {
-  return (
-    <div className="absolute contents inset-[42.14%_20.4%_43.75%_72.64%]" data-name="Group">
-      <Group138 />
-    </div>
-  );
-}
-
-function Group140() {
-  return (
-    <div className="absolute contents inset-[43.48%_11.6%_43.75%_81.43%]" data-name="Group">
-      <div className="absolute inset-[43.48%_11.6%_43.75%_81.43%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="20.4237" preserveAspectRatio="none" viewBox="0 0 29.9981 20.4237" width="29.9981">
-          <path d={svgPaths.p39ace680} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group139() {
-  return (
-    <div className="absolute contents inset-[43.48%_11.6%_43.75%_81.43%]" data-name="Group">
-      <Group140 />
-    </div>
-  );
-}
-
-function Group142() {
-  return (
-    <div className="absolute contents inset-[45.84%_2.81%_43.75%_90.23%]" data-name="Group">
-      <div className="absolute inset-[45.84%_2.81%_43.75%_90.23%]" data-name="Vector">
-        <svg className="absolute block inset-0 size-full" fill="none" height="16.6615" preserveAspectRatio="none" viewBox="0 0 29.9981 16.6615" width="29.9981">
-          <path d={svgPaths.p27f17780} fill="#818CF8" id="Vector" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function Group141() {
-  return (
-    <div className="absolute contents inset-[45.84%_2.81%_43.75%_90.23%]" data-name="Group">
-      <Group142 />
-    </div>
-  );
-}
-
-function Group122() {
-  return (
-    <div className="absolute contents inset-[7.54%_2.81%_43.75%_11.09%]" data-name="Group">
-      <Group123 />
-      <Group125 />
-      <Group127 />
-      <Group129 />
-      <Group131 />
-      <Group133 />
-      <Group135 />
-      <Group137 />
-      <Group139 />
-      <Group141 />
-    </div>
-  );
-}
-
-function Group121() {
-  return (
-    <div className="absolute contents inset-[7.54%_2.81%_43.75%_11.09%]" data-name="Group">
-      <Group122 />
-    </div>
-  );
-}
-
-function RechartsBarR1() {
-  return (
-    <div className="absolute contents inset-[7.54%_2.81%_43.75%_11.09%]" data-name="recharts-bar-_r_9_">
-      <Group121 />
-    </div>
-  );
-}
-
-function Group120() {
-  return (
-    <div className="absolute contents inset-[7.54%_2.81%_43.75%_11.09%]" data-name="Group">
-      <RechartsBarR1 />
-    </div>
-  );
-}
-
-function Group144() {
-  return (
-    <div className="absolute contents inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Group">
-      <div className="absolute inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Vector">
-        <div className="absolute inset-[-0.5px_0]">
-          <svg className="block size-full" fill="none" height="0.999937" preserveAspectRatio="none" viewBox="0 0 378.976 0.999937" width="378.976">
-            <path d="M0 0.499969H378.976" id="Vector" stroke="#666666" strokeWidth="0.999937" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group143() {
-  return (
-    <div className="absolute contents inset-[56.25%_1.86%_43.75%_10.21%]" data-name="Group">
-      <Group144 />
-    </div>
-  );
-}
-
-function Group147() {
-  return (
-    <div className="absolute contents inset-[60.42%_84.56%_17.25%_4.99%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_84.56%_17.25%_4.99%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(12.7306cqw,22.9305cqh)] w-[hypot(87.2694cqw,-77.0695cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Иванов И.И.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group148() {
-  return (
-    <div className="absolute contents inset-[60.42%_75.77%_16.53%_13.4%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_75.77%_16.53%_13.4%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(12.2839cqw,22.2171cqh)] w-[hypot(87.7161cqw,-77.7829cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Дулатов Е.А.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group149() {
-  return (
-    <div className="absolute contents inset-[60.42%_66.97%_14.74%_21.24%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_66.97%_14.74%_21.24%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(11.2933cqw,20.6137cqh)] w-[hypot(88.7067cqw,-79.3863cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Сейткали С.Е.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group150() {
-  return (
-    <div className="absolute contents inset-[60.42%_58.18%_12.23%_28.7%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_58.18%_12.23%_28.7%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(10.1476cqw,18.7221cqh)] w-[hypot(89.8524cqw,-81.2779cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Абдуллаев М.К.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group151() {
-  return (
-    <div className="absolute contents inset-[60.42%_49.39%_13.67%_38.26%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_49.39%_13.67%_38.26%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(10.7721cqw,19.7581cqh)] w-[hypot(89.2279cqw,-80.2419cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Байжанов А.Н.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group152() {
-  return (
-    <div className="absolute contents inset-[60.42%_40.59%_14.38%_47.43%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_40.59%_14.38%_47.43%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(11.114cqw,20.3204cqh)] w-[hypot(88.886cqw,-79.6796cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Шевченко Г.В.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group153() {
-  return (
-    <div className="absolute contents inset-[60.42%_31.8%_16.89%_57.55%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_31.8%_16.89%_57.55%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(12.5032cqw,22.5682cqh)] w-[hypot(87.4968cqw,-77.4318cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Куспаев Т.Б.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group154() {
-  return (
-    <div className="absolute contents inset-[60.42%_23.01%_18.33%_67.11%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_23.01%_18.33%_67.11%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(13.465cqw,24.091cqh)] w-[hypot(86.535cqw,-75.909cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Исахов Р.Е.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group155() {
-  return (
-    <div className="absolute contents inset-[60.42%_14.22%_13.67%_73.43%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_14.22%_13.67%_73.43%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(10.7721cqw,19.7581cqh)] w-[hypot(89.2279cqw,-80.2419cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Вырупаев М.А.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group156() {
-  return (
-    <div className="absolute contents inset-[60.42%_5.42%_23.35%_87.35%]" data-name="Group">
-      <div className="absolute flex inset-[60.42%_5.42%_23.35%_87.35%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-35 flex-none h-[hypot(18.4255cqw,31.5393cqh)] w-[hypot(81.5745cqw,-68.4607cqh)]">
-          <p className="[word-break:break-word] font-['Inter:Regular',sans-serif] font-normal leading-[normal] not-italic relative text-[#666] text-[7.999px] text-right whitespace-nowrap">Пак Т.Е.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group146() {
-  return (
-    <div className="absolute contents inset-[60.42%_5.42%_12.23%_4.99%]" data-name="Group">
-      <Group147 />
-      <Group148 />
-      <Group149 />
-      <Group150 />
-      <Group151 />
-      <Group152 />
-      <Group153 />
-      <Group154 />
-      <Group155 />
-      <Group156 />
-    </div>
-  );
-}
-
-function Group158() {
-  return (
-    <div className="absolute contents inset-[52.62%_91.65%_40.5%_6.96%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[52.62%_91.65%_40.5%_6.96%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">0</p>
-    </div>
-  );
-}
-
-function Group159() {
-  return (
-    <div className="absolute contents inset-[39.18%_91.65%_53.94%_5.57%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[39.18%_91.65%_53.94%_5.57%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">40</p>
-    </div>
-  );
-}
-
-function Group160() {
-  return (
-    <div className="absolute contents inset-[25.75%_91.65%_67.38%_5.57%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[25.75%_91.65%_67.38%_5.57%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">80</p>
-    </div>
-  );
-}
-
-function Group161() {
-  return (
-    <div className="absolute contents inset-[12.31%_91.88%_80.82%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[12.31%_91.88%_80.82%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">120</p>
-    </div>
-  );
-}
-
-function Group162() {
-  return (
-    <div className="absolute contents inset-[0.59%_91.88%_92.53%_4.41%]" data-name="Group">
-      <p className="[word-break:break-word] absolute font-['Inter:Regular',sans-serif] font-normal inset-[0.59%_91.88%_92.53%_4.41%] leading-[normal] not-italic text-[#666] text-[8.999px] text-right whitespace-nowrap">160</p>
-    </div>
-  );
-}
-
-function Group157() {
-  return (
-    <div className="absolute contents inset-[0.59%_91.65%_40.5%_4.41%]" data-name="Group">
-      <Group158 />
-      <Group159 />
-      <Group160 />
-      <Group161 />
-      <Group162 />
-    </div>
-  );
-}
-
-function Group145() {
-  return (
-    <div className="absolute contents inset-[0.59%_5.42%_12.23%_4.41%]" data-name="Group">
-      <Group146 />
-      <Group157 />
-    </div>
-  );
-}
-
-function Icon9() {
-  return (
-    <div className="h-[159.99px] overflow-clip relative shrink-0 w-full" data-name="Icon">
-      <Group117 />
-      <Group120 />
-      <Group143 />
-      <Group145 />
-    </div>
-  );
-}
-
-function Container80() {
-  return (
-    <div className="content-stretch flex flex-col h-[159.99px] items-start relative shrink-0 w-[430.991px]" data-name="Container">
-      <Icon9 />
-    </div>
-  );
-}
-
-function Container79() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-0" data-name="Container">
-      <Container80 />
-    </div>
-  );
-}
-
-function Container78() {
-  return (
-    <div className="content-stretch flex flex-col h-[171.99px] items-start pt-[12px] relative shrink-0 w-[430.573px]" data-name="Container">
-      <Container79 />
-    </div>
-  );
-}
-
-function Container76() {
-  return (
-    <div className="bg-white border-[#e5e7eb] border-[0.723px] border-solid col-2 content-stretch flex flex-col items-start justify-self-stretch p-[16px] relative rounded-[4px] row-1 self-stretch shrink-0" data-name="Container">
-      <Container77 />
-      <Container78 />
-    </div>
-  );
-}
-
-function Container70() {
-  return (
-    <div className="gap-x-[16px] gap-y-[16px] grid grid-cols-[__464.01px_464.02px] grid-rows-[_221.43px] relative shrink-0 w-[944.023px]" data-name="Container">
-      <Container71 />
-      <Container76 />
-    </div>
-  );
-}
-
-function ContainerMargin5() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[16px] relative shrink-0" data-name="Container:margin">
-      <Container70 />
-    </div>
-  );
-}
-
-function Container26() {
+/* ── Sidebar menu data ─────────────────────────────────────── */
+const MENU_SECTIONS = [
+  {
+    id: "digests",
+    label: "ДАЙДЖЕСТЫ",
+    items: [
+      { id: "digest-today", label: "Дайджест за сегодня" },
+      { id: "digest-week", label: "Дайджест за неделю" },
+      { id: "digest-critical", label: "Критические события" },
+    ],
+  },
+  {
+    id: "documents",
+    label: "ДОКУМЕНТЫ",
+    items: [
+      { id: "doc-overdue", label: "Просроченные" },
+      { id: "doc-priority", label: "Приоритетные" },
+      { id: "doc-control", label: "На контроле" },
+    ],
+  },
+  {
+    id: "social",
+    label: "СОЦИАЛЬНЫЕ СЕТИ",
+    items: [
+      { id: "social-monitor", label: "Мониторинг" },
+      { id: "social-sentiment", label: "Тональность" },
+    ],
+  },
+];
+
+/* ── Chat messages ──────────────────────────────────────────── */
+const INITIAL_MESSAGES: { id: number; role: "user" | "bot"; text: string }[] = [];
+
+/* ── Digest cards ───────────────────────────────────────────── */
+const DIGESTS = [
+  {
+    id: 1,
+    date: "18 сен 2026",
+    title: "Дайджест за сегодня",
+    badge: "🔴 Критично",
+    badgeColor: "#fef2f2",
+    badgeBorder: "#fca5a5",
+    badgeText: "#dc2626",
+    items: [
+      "31 просроченный документ на исполнении",
+      "Пак Т.Е. — 10-е место по нарушениям",
+      "Департамент логистики: перегруз ×2.3",
+    ],
+  },
+  {
+    id: 2,
+    date: "17 сен 2026",
+    title: "Входящая корреспонденция",
+    badge: "📄 Документы",
+    badgeColor: "#eff6ff",
+    badgeBorder: "#bfdbfe",
+    badgeText: "#1d4ed8",
+    items: [
+      "Поступило 128 новых документов",
+      "Из них приоритетных: 14",
+      "Требуют резолюции до 20.09: 37",
+    ],
+  },
+  {
+    id: 3,
+    date: "15 сен 2026",
+    title: "Социальные сети",
+    badge: "📣 Медиа",
+    badgeColor: "#f5f3ff",
+    badgeBorder: "#c4b5fd",
+    badgeText: "#7c3aed",
+    items: [
+      "Упоминаний организации: 412",
+      "Тональность: 68% позитив",
+      "Критических публикаций: 3",
+    ],
+  },
+];
+
+/* ── Kazakhstan map ──────────────────────────────────────────── */
+const KZ_OUTER =
+  "M 32,111 L 53,55 L 106,55 L 148,42 L 232,28 L 274,14 " +
+  "L 317,0 L 380,14 L 422,14 L 454,28 L 485,28 L 549,28 " +
+  "L 633,55 L 718,97 L 739,124 L 781,152 " +
+  "L 781,236 L 760,319 L 718,332 L 696,346 " +
+  "L 633,374 L 612,374 L 570,388 L 528,402 " +
+  "L 485,402 L 435,402 L 422,402 L 391,402 " +
+  "L 359,402 L 317,402 L 274,415 L 232,415 " +
+  "L 212,402 L 169,402 L 106,388 L 64,388 " +
+  "L 32,374 L 21,374 " +
+  "L 11,332 L 0,291 L 11,263 L 21,236 " +
+  "L 11,208 L 21,180 L 21,152 Z";
+
+interface Oblast {
+  id: string; name: string; fullName: string; capital: string;
+  value: number; points: string; lx: number; ly: number;
+}
+
+const OBLASTS: Oblast[] = [
+  { id:"karaganda", name:"Карагандинская", fullName:"Карагандинская",         capital:"Қарағанды",          value:167, points:"274,152 633,152 633,319 274,319",                       lx:418, ly:238 },
+  { id:"wko",       name:"ЗКО",           fullName:"Западно-Казахстанская",   capital:"Уральск",            value:54,  points:"32,111 53,55 148,42 148,208 21,208",                   lx:72,  ly:138 },
+  { id:"atyrau",    name:"Атырауская",    fullName:"Атырауская",              capital:"Атырау",             value:61,  points:"21,208 148,208 148,263 84,319 21,319",                 lx:72,  ly:258 },
+  { id:"mangystau", name:"Мангистауская", fullName:"Мангистауская",           capital:"Актау",              value:37,  points:"21,319 84,319 148,263 148,402 21,402",                 lx:68,  ly:356 },
+  { id:"aktobe",    name:"Актюбинская",   fullName:"Актюбинская",             capital:"Актобе",             value:143, points:"148,97 274,97 274,208 148,208",                        lx:211, ly:152 },
+  { id:"kostanay",  name:"Костанайская",  fullName:"Костанайская",            capital:"Қостанай",           value:93,  points:"148,42 380,14 380,97 148,97",                          lx:258, ly:65  },
+  { id:"nko",       name:"СКО",           fullName:"Северо-Казахстанская",    capital:"Петропавловск",      value:44,  points:"380,14 464,14 464,97 380,97",                          lx:422, ly:60  },
+  { id:"akmola",    name:"Акмолинская",   fullName:"Акмолинская",             capital:"Кокшетау",           value:87,  points:"274,97 464,97 464,152 274,152",                        lx:369, ly:127 },
+  { id:"pavlodar",  name:"Павлодарская",  fullName:"Павлодарская",            capital:"Павлодар",           value:71,  points:"464,14 633,55 633,152 464,152",                        lx:546, ly:100 },
+  { id:"ekz",       name:"ВКО",           fullName:"Восточно-Казахстанская",  capital:"Өскемен",            value:98,  points:"633,55 781,152 781,236 633,236",                       lx:700, ly:168 },
+  { id:"abay",      name:"Абайская",      fullName:"Абайская",                capital:"Семей",              value:62,  points:"464,152 633,152 633,236 464,236",                      lx:548, ly:197 },
+  { id:"ulytau",    name:"Ұлытау",        fullName:"Ұлытау",                  capital:"Жезқазған",          value:43,  points:"148,208 274,208 274,319 148,319",                      lx:211, ly:264 },
+  { id:"kyzylorda", name:"Қызылорда",     fullName:"Қызылординская",          capital:"Қызылорда",          value:48,  points:"148,319 274,319 274,402 148,402",                      lx:211, ly:362 },
+  { id:"turkestan", name:"Туркестан",     fullName:"Туркестанская",           capital:"Туркестан",          value:134, points:"274,319 447,319 447,402 274,402",                      lx:361, ly:362 },
+  { id:"jambyl",    name:"Жамбылская",    fullName:"Жамбылская",              capital:"Тараз",              value:76,  points:"447,236 549,236 549,402 447,402",                      lx:498, ly:338 },
+  { id:"almaty",    name:"Алматинская",   fullName:"Алматинская",             capital:"Қонаев",             value:212, points:"549,236 633,236 633,402 549,402",                      lx:591, ly:338 },
+  { id:"zhetisu",   name:"Жетісу",        fullName:"Жетісу",                  capital:"Талдықорған",        value:58,  points:"633,236 781,236 781,402 633,402",                       lx:700, ly:330 },
+];
+
+const KZ_CITIES = [
+  { name:"Астана",  x:453, y:120, capital:true,  value:198 },
+  { name:"Алматы",  x:568, y:339, capital:false, value:312 },
+  { name:"Шымкент", x:414, y:365, capital:false, value:155 },
+];
+
+function oblastColor(_id: string): { fill: string; stroke: string } {
+  return { fill: "#e8eaed", stroke: "#c4c9d1" };
+}
+
+/* ── Kazakhstan detailed SVG map ────────────────────────────── */
+function KazakhstanMap() {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; oblast: Oblast } | null>(null);
+
+  const handleEnter = (e: React.MouseEvent<SVGElement>, oblast: Oblast) => {
+    setHovered(oblast.id);
+    const rect = (e.currentTarget.closest("svg") as SVGElement).getBoundingClientRect();
+    setTooltip({ x: e.clientX - rect.left, y: e.clientY - rect.top, oblast });
+  };
+  const handleMove = (e: React.MouseEvent<SVGElement>) => {
+    const rect = (e.currentTarget.closest("svg") as SVGElement).getBoundingClientRect();
+    setTooltip(prev => prev ? { ...prev, x: e.clientX - rect.left, y: e.clientY - rect.top } : prev);
+  };
+  const handleLeave = () => { setHovered(null); setTooltip(null); };
+
+  return (
+    <div className="relative w-full h-full rounded-lg overflow-hidden" style={{ background: "#f7f8fa" }}>
+      <svg className="absolute inset-0 w-full h-full" viewBox="-15 -10 810 440" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <clipPath id="kz-outer">
+            <path d={KZ_OUTER} />
+          </clipPath>
+          <filter id="region-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#00000022" />
+          </filter>
+        </defs>
+
+        <rect x="-15" y="-10" width="825" height="450" fill="#f7f8fa" />
+
+        <text x="-4" y="270" textAnchor="middle" fill="#aab0bb" fontSize="7" fontStyle="italic"
+          transform="rotate(-90,-4,270)">КАСПИЙСКОЕ МОРЕ</text>
+
+        <path d={KZ_OUTER} fill="#e8eaed" stroke="none" />
+
+        <g clipPath="url(#kz-outer)">
+          {OBLASTS.map(ob => {
+            const { fill, stroke } = oblastColor(ob.id);
+            const isHov = hovered === ob.id;
+            return (
+              <polygon
+                key={ob.id}
+                points={ob.points}
+                fill={isHov ? "#d0d4da" : fill}
+                stroke="#c4c9d1"
+                strokeWidth={isHov ? "1.5" : "0.7"}
+                strokeLinejoin="round"
+                style={{ cursor: "pointer", transition: "fill 0.12s" }}
+                onMouseEnter={e => handleEnter(e, ob)}
+                onMouseMove={handleMove}
+                onMouseLeave={handleLeave}
+              />
+            );
+          })}
+
+          <path d="M 487,243 L 502,238 L 525,236 L 552,237 L 578,241 L 601,247 L 610,254 L 598,260 L 572,263 L 544,262 L 516,258 L 495,253 Z"
+            fill="#d4dfe8" stroke="#b8c8d8" strokeWidth="0.7" style={{ pointerEvents:"none" }} />
+          <text x="548" y="254" textAnchor="middle" fill="#8fa8bc" fontSize="6" fontStyle="italic" style={{ pointerEvents:"none" }}>оз. Балхаш</text>
+
+          <ellipse cx="212" cy="286" rx="16" ry="9" fill="#d4dfe8" stroke="#b8c8d8" strokeWidth="0.7" style={{ pointerEvents:"none" }} />
+          <text x="212" y="290" textAnchor="middle" fill="#8fa8bc" fontSize="5.5" fontStyle="italic" style={{ pointerEvents:"none" }}>Арал</text>
+        </g>
+
+        <path d={KZ_OUTER} fill="none" stroke="#9aa3b0" strokeWidth="1.2" strokeLinejoin="round" />
+
+        {OBLASTS.map(ob => (
+          <text key={ob.id + "_lbl"} x={ob.lx} y={ob.ly} textAnchor="middle"
+            fill="#7a8494" fontSize="6.5" fontWeight="600"
+            style={{ pointerEvents:"none", letterSpacing:"0.03em" }}>
+            {ob.name}
+          </text>
+        ))}
+
+        {KZ_CITIES.map(c => (
+          <g key={c.name} style={{ pointerEvents:"none" }}>
+            <circle cx={c.x} cy={c.y} r={c.capital ? 3.5 : 2.5}
+              fill={c.capital ? "#374151" : "#6b7280"}
+              stroke="white" strokeWidth="1.2" />
+            {c.capital && <text x={c.x + 6} y={c.y - 4} fill="#1f2937" fontSize="7" fontWeight="700">★ {c.name}</text>}
+            {!c.capital && <text x={c.x + 5} y={c.y + 3} fill="#4b5563" fontSize="6" fontWeight="500">{c.name}</text>}
+          </g>
+        ))}
+
+      </svg>
+
+      {tooltip && (
+        <div
+          className="absolute pointer-events-none bg-white border border-[#e2e8f0] rounded-lg shadow-xl px-3 py-2"
+          style={{ left: Math.min(tooltip.x + 14, 999), top: tooltip.y - 55, minWidth: 155, zIndex: 20 }}
+        >
+          <div className="text-[11px] font-semibold text-[#0f172a] mb-0.5">{tooltip.oblast.fullName}</div>
+          <div className="text-[10px] text-[#64748b]">Область: <span className="font-medium text-[#1e293b]">{tooltip.oblast.name}</span></div>
+          <div className="text-[10px] text-[#64748b]">Центр: <span className="font-medium text-[#1e293b]">{tooltip.oblast.capital}</span></div>
+          <div className="text-[10px] text-[#64748b] mt-1">
+            Просрочено: <span className="font-bold text-[#ef4444]">{tooltip.oblast.value} шт</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function VideoButton() {
   const [showVideo, setShowVideo] = useState(false);
   return (
     <>
@@ -3836,59 +240,286 @@ function Container26() {
         type="button"
         onClick={() => setShowVideo(true)}
         aria-label="Смотреть видео — Обзор для руководства"
-        className="group bg-white content-stretch flex flex-[944.021_0_0] flex-col h-full items-start min-w-px overflow-clip p-[16px] relative rounded-[12px] text-left shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-        data-name="Container"
+        className="group absolute bottom-[12px] right-[12px] z-20 flex cursor-pointer items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 hover:scale-[1.05] hover:bg-white/90 hover:text-[#0d1117] hover:ring-white/60 outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
-        <Container27 />
-        <ContainerMargin3 />
-        <ContainerMargin4 />
-        <ContainerMargin5 />
-        <span className="pointer-events-none absolute bottom-[16px] left-[16px] z-20 flex items-center gap-[10px] rounded-full bg-black/55 pl-[14px] pr-[18px] py-[12px] text-white/95 ring-1 ring-white/30 backdrop-blur-md transition-all duration-300 group-hover:scale-[1.05] group-hover:bg-white/90 group-hover:text-[#0d0f16] group-hover:ring-white/60">
-          <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
-            <path d="M8 5.14v13.72L19 12 8 5.14z" />
-          </svg>
-          <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">Смотреть видео</span>
+        <svg viewBox="0 0 24 24" className="size-5 fill-current" aria-hidden>
+          <path d="M8 5.14v13.72L19 12 8 5.14z" />
+        </svg>
+        <span className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[15px] leading-none whitespace-nowrap">
+          Смотреть видео
         </span>
       </button>
-      {showVideo && (
-        <VideoModal src="/videos/ai%20sovetnik.webm" title="AI-Советник — обзор для руководства" onClose={() => setShowVideo(false)} large />
-      )}
+      {showVideo &&
+        createPortal(
+          <VideoModal
+            src="/videos/ai%20sovetnik.webm"
+            title="AI-Советник — обзор для руководства"
+            onClose={() => setShowVideo(false)}
+            large
+          />,
+          document.body,
+        )}
     </>
   );
 }
 
-function Container10() {
+/* ── Dashboard ─────────────────────────────────────────────── */
+function DashboardBody() {
+  const [activeItem, setActiveItem] = useState("digest-today");
+  const [chatInput, setChatInput] = useState("");
+  const [messages, setMessages] = useState(INITIAL_MESSAGES);
+  const [chatMode, setChatMode] = useState("chat");
+
+  const CHAT_MODES = [
+    { id: "deep",  label: "Deep Research", icon: "🔬" },
+    { id: "web",   label: "Веб поиск",     icon: "🌐" },
+    { id: "debate",label: "Дебаты",        icon: "⚖️" },
+    { id: "chat",  label: "Чат",           icon: "💬" },
+    { id: "docs",  label: "Документы",     icon: "📄" },
+  ];
+
+  const handleSend = () => {
+    if (!chatInput.trim()) return;
+    const userMsg = { id: messages.length + 1, role: "user" as const, text: chatInput };
+    setMessages((prev) => [...prev, userMsg]);
+    setChatInput("");
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          role: "bot" as const,
+          text: "Анализирую запрос и подготавливаю ответ...",
+        },
+      ]);
+    }, 600);
+  };
+
   return (
-    <div className="content-stretch flex flex-[1308.013_0_0] gap-[12px] h-full items-start min-w-px overflow-clip relative" data-name="Container">
-      <Container11 />
-      <Container26 />
+    <div
+      className="w-[1540px] h-[830px] flex flex-col overflow-hidden"
+      style={{ background: "#0d1117" }}
+    >
+      {/* ── Top header ────────────────────────────────────── */}
+      <div className="px-[12px] pt-[12px]">
+        <div className="flex items-center justify-between px-[16px] py-[8px] rounded-xl drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.1)]">
+          <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold text-[#d3af83] text-[22px] leading-[24px] whitespace-nowrap">
+            AI-Советник{" "}
+            <span className="font-['Inter:Regular',sans-serif] font-normal">(AI ассистент руководителя, AI планирование, AI культура)</span>
+          </p>
+          <button className="bg-[#155dfc] text-white text-[12px] font-['Inter:Medium',sans-serif] font-medium px-[12px] py-[6px] rounded cursor-pointer hover:bg-[#1a6aff] transition-colors shrink-0">
+            Обновить данные
+          </button>
+        </div>
+      </div>
+
+      {/* ── Subtitle ──────────────────────────────────────── */}
+      <div className="pl-[24px] pr-[16px] py-[8px]">
+        <span className="font-['Inter:Regular',sans-serif] font-normal text-[#ffefd9] text-[16px] leading-[16px] tracking-[0.3px]">
+          Контролируйте исполнение документов —
+        </span>
+        <span className="font-['Inter:Regular',sans-serif] font-normal text-[#d3af83] text-[16px] leading-[16px] tracking-[0.3px]">
+          {" "}без ручной аналитики
+        </span>
+      </div>
+
+      {/* ── Main content row ──────────────────────────────── */}
+      <div className="flex gap-[9.4px] flex-1 min-h-0 px-[9.4px] pb-[9.4px] overflow-hidden">
+
+        {/* ── Left sidebar ────────────────────────────────── */}
+        <div
+          className="bg-white rounded-xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden"
+          style={{ width: 150, minWidth: 150 }}
+        >
+          {/* Search */}
+          <div className="p-[6.3px]">
+            <div className="border border-[#e5e7eb] rounded px-[6px] py-[4.5px]">
+              <span className="font-['Inter:Regular',sans-serif] font-normal text-[#99a1af] text-[9.4px]">
+                Поиск...
+              </span>
+            </div>
+          </div>
+
+          {/* Новый чат */}
+          <div className="px-[6.3px] pb-[5px]">
+            <button className="w-full bg-[#155dfc] hover:bg-[#1a6aff] transition-colors text-white text-[8.5px] font-['Inter:Medium',sans-serif] font-medium rounded py-[5px] flex items-center justify-center gap-[4px]">
+              <span className="text-[10px] leading-none">＋</span> Новый чат
+            </button>
+          </div>
+
+          {/* Active pill */}
+          <div className="px-[6.3px] pb-[6.3px]">
+            <div className="bg-[#eff6ff] border border-[#bedbff] rounded flex gap-[4.7px] items-center px-[6px] py-[4.5px]">
+              <span className="text-[#1447e6] text-[9.4px] font-['Inter:Medium',sans-serif] font-medium">🌡️</span>
+              <span className="text-[#1447e6] text-[9.4px] font-['Inter:Medium',sans-serif] font-medium">Тепловая карта</span>
+            </div>
+          </div>
+
+          {/* Menu sections */}
+          <div className="flex-1 overflow-y-auto px-[6.3px] pb-[6.3px]">
+            {MENU_SECTIONS.map((section) => (
+              <div key={section.id} className="mb-[8px]">
+                <div className="font-['Inter:Bold',sans-serif] font-semibold text-[#99a1af] text-[7.8px] tracking-[0.4px] leading-[11.2px] mb-[3px]">
+                  {section.label}
+                </div>
+                {section.items.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveItem(item.id)}
+                    className={`flex gap-[4.7px] items-center w-full px-[4.7px] py-[3.1px] rounded text-left transition-colors ${
+                      activeItem === item.id
+                        ? "bg-[#dbeafe]"
+                        : "hover:bg-[#f9fafb]"
+                    }`}
+                  >
+                    <span
+                      className={`text-[8.6px] font-['Inter:Regular',sans-serif] shrink-0 ${
+                        activeItem === item.id ? "text-[#193cb8]" : "text-[#4a5565]"
+                      }`}
+                    >
+                      ◆
+                    </span>
+                    <span
+                      className={`text-[9.4px] font-['Inter:Regular',sans-serif] truncate leading-[12.5px] ${
+                        activeItem === item.id
+                          ? "text-[#193cb8] font-['Inter:Medium',sans-serif] font-medium"
+                          : "text-[#4a5565]"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Digest cards column ─────────────────────────── */}
+        <div
+          className="bg-white rounded-xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden"
+          style={{ width: 220 }}
+        >
+          <div className="border-b border-[#f3f4f6] px-[10px] pt-[9.4px] pb-[8px] shrink-0">
+            <div className="font-['Inter:Bold',sans-serif] font-semibold text-[#364153] text-[10.5px] leading-[15px]">
+              Дайджесты и документы
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto p-[8px] flex flex-col gap-[7px]">
+            {DIGESTS.map((doc) => (
+              <div key={doc.id} className="bg-white border border-[#e5e7eb] rounded-lg p-[9px]">
+                <div className="flex items-center justify-between mb-[6px]">
+                  <span className="text-[9px] text-[#99a1af] font-['Inter:Regular',sans-serif]">{doc.date}</span>
+                  <span
+                    className="text-[8px] px-[6px] py-[2px] rounded-full border font-['Inter:Medium',sans-serif]"
+                    style={{ background: doc.badgeColor, borderColor: doc.badgeBorder, color: doc.badgeText }}
+                  >
+                    {doc.badge}
+                  </span>
+                </div>
+                <div className="text-[9.5px] font-['Inter:Bold',sans-serif] text-[#101828] mb-[5px] leading-[13px]">{doc.title}</div>
+                <ul className="space-y-[3px]">
+                  {doc.items.map((item, i) => (
+                    <li key={i} className="flex gap-[5px] items-start">
+                      <span className="text-[#d3af83] text-[7px] mt-[1px] shrink-0">◆</span>
+                      <span className="text-[8px] text-[#4a5565] font-['Inter:Regular',sans-serif] leading-[1.35]">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Main content area ───────────────────────────── */}
+        <div className="flex-1 bg-white rounded-xl shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] flex flex-col overflow-hidden min-w-0">
+          {/* Header */}
+          <div className="flex items-center justify-between px-[12.5px] pt-[9.4px] pb-0 shrink-0">
+            <div className="flex flex-col">
+              <div className="flex gap-[6.3px] items-center">
+                <span className="text-[12.5px]">📊</span>
+                <span className="font-['Inter:Bold',sans-serif] font-semibold text-[#101828] text-[12.5px] leading-[18.8px]">
+                  Карта исполнения по регионам Казахстана
+                </span>
+                <span className="text-[#99a1af] text-[9.4px]">ⓘ</span>
+              </div>
+              <span className="text-[#6a7282] text-[8.6px] font-['Inter:Regular',sans-serif] leading-[12.3px]">
+                Распределение просроченных документов по областям Казахстана
+              </span>
+            </div>
+            <button className="border border-[#d1d5dc] text-[#4a5565] text-[9.4px] font-['Inter:Regular',sans-serif] px-[9.2px] py-[4px] rounded hover:bg-[#f9fafb] transition-colors">
+              Export Excel
+            </button>
+          </div>
+
+          {/* Map + floating chat overlay + input */}
+          <div className="px-[12.5px] pt-[9.4px] pb-[9.4px] flex-1 min-h-0 flex flex-col gap-[7px] overflow-hidden">
+            {/* Map — full remaining height, relative for overlay */}
+            <div className="relative rounded-lg overflow-hidden border border-[#e5e7eb] flex-1 min-h-0">
+              <KazakhstanMap />
+              <VideoButton />
+
+              {/* Chat messages float over the map */}
+              {messages.length > 0 && (
+                <div className="absolute bottom-[8px] right-[8px] flex flex-col gap-[5px] items-end" style={{ maxWidth: 260, maxHeight: "60%", overflowY: "auto" }}>
+                  {messages.slice(-6).map((msg) => (
+                    <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} w-full`}>
+                      <div className={`px-[8px] py-[5px] rounded-xl text-[8.5px] font-['Inter:Regular',sans-serif] leading-[13px] max-w-[90%] whitespace-pre-line shadow-md ${
+                        msg.role === "user"
+                          ? "bg-[#155dfc] text-white"
+                          : "bg-white/90 text-[#1e2939] border border-[#e5e7eb] backdrop-blur-sm"
+                      }`}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mode buttons — from Figma design */}
+            <div className="shrink-0 flex gap-[4px] items-center">
+              {CHAT_MODES.map(m => (
+                <button
+                  key={m.id}
+                  onClick={() => setChatMode(m.id)}
+                  className={`flex items-center gap-[3px] px-[8px] py-[4px] rounded-full border font-['Inter:Medium',sans-serif] transition-all ${
+                    chatMode === m.id
+                      ? "bg-[#155dfc] border-[#155dfc] text-white drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.1)]"
+                      : "bg-white border-[#e5e7eb] text-[#4a5565] hover:border-[#155dfc] hover:text-[#155dfc]"
+                  }`}
+                >
+                  <span className="text-[9px] font-['Inter:Medium',sans-serif] leading-[13.5px]">{m.icon}</span>
+                  <span className="text-[8px] leading-[12px]">{m.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Chat input */}
+            <div className="shrink-0 flex gap-[6px] items-center">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                placeholder={`Спросите AI-Советника (${CHAT_MODES.find(m => m.id === chatMode)?.label})...`}
+                className="flex-1 border border-[#e5e7eb] rounded-[8px] px-[10px] py-[6px] text-[9px] font-['Inter:Regular',sans-serif] bg-white text-[rgba(0,0,0,0.4)] outline-none focus:text-[rgba(0,0,0,0.8)] focus:border-[#155dfc] transition-colors shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)]"
+              />
+              <button onClick={handleSend} className="bg-[#155dfc] text-white text-[8.5px] font-['Inter:Medium',sans-serif] px-[11px] py-[6px] rounded-[8px] hover:bg-[#1a6aff] transition-colors shrink-0 drop-shadow-[0px_1px_1.5px_rgba(0,0,0,0.1)]">
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Container1() {
+function Notes() {
   return (
-    <div className="content-stretch flex gap-[12px] h-[723px] items-start overflow-clip pt-[12px] px-[12px] relative shrink-0 w-full" data-name="Container">
-      <Sidebar />
-      <Container10 />
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div className="bg-[#0d1117] content-stretch flex flex-col h-[830px] items-start relative shrink-0 w-full" data-name="App">
-      <HeaderMargin />
-      <Container />
-      <Container1 />
-    </div>
-  );
-}
-
-function Group163() {
-  return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div className="[word-break:break-word] col-1 font-['Inter:Regular',sans-serif] font-normal ml-0 mt-0 not-italic relative row-1 text-[20px] text-white w-[1233px] whitespace-pre-wrap">
+    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative">
+      <div className="[word-break:break-word] col-1 font-['Inter:Regular',sans-serif] font-normal ml-0 mt-[32px] not-italic relative row-1 text-[20px] text-white w-[1233px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">Как работает ассистент — коротко для руководства</p>
         <p className="leading-[normal] mb-0">Ассистент помогает руководителю готовить решения и учится на них. Цикл из шести шагов:</p>
         <p className="leading-[normal] mb-0">1. Вопрос — руководитель спрашивает своими словами («рост цен на сырьё — как защитить маржу?»)</p>
@@ -3905,8 +536,8 @@ function Group163() {
 export default function Component() {
   return (
     <div className="bg-black content-stretch flex flex-col items-start relative size-full" data-name="Модуль 5">
-      <App />
-      <Group163 />
+      <DashboardBody />
+      <Notes />
     </div>
   );
 }
