@@ -851,6 +851,122 @@ function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => vo
   );
 }
 
+const CONTACTS = {
+  email: "info@governance.kz",
+  phoneDisplay: "+7 (701) 000-00-00",
+  phoneHref: "+77010000000",
+};
+
+function MeetingModal({ onClose }: { onClose: () => void }) {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [question, setQuestion] = useState("");
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  const message = [
+    question.trim() || "Здравствуйте! Хочу записаться на встречу.",
+    name.trim() ? `Имя: ${name.trim()}` : "",
+    contact.trim() ? `Контакт для связи: ${contact.trim()}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const send = () => {
+    window.location.href = `mailto:${CONTACTS.email}?subject=${encodeURIComponent(
+      "Записаться на встречу — Governance.kz"
+    )}&body=${encodeURIComponent(message)}`;
+  };
+
+  const inputClass =
+    "w-full rounded-[10px] border border-[#e6e8ee] bg-[#f6f7fb] px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-[#0d0f16] outline-none transition-colors focus:border-[#2242d6] focus:bg-white placeholder:text-[#9aa0ad]";
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/60 p-4 backdrop-blur-[3px] animate-[imgmodal-fade_.18s_ease-out]"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Записаться на встречу"
+    >
+      <div
+        className="relative w-full max-w-[560px] rounded-[24px] bg-white p-[32px] shadow-[0_40px_80px_rgba(13,15,22,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Закрыть"
+          className="absolute right-6 top-5 text-[26px] leading-none text-[#5a606e] transition-colors hover:text-[#0d0f16] cursor-pointer"
+        >
+          ×
+        </button>
+
+        <h2
+          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Записаться на встречу
+        </h2>
+        <p className="mt-[8px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-[#5a606e]">
+          Опишите ваш вопрос — и мы свяжемся с вами.
+        </p>
+
+        <div className="mt-[22px] flex flex-col gap-[14px]">
+          <textarea
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            rows={3}
+            placeholder="Ваш вопрос / тема встречи"
+            className={`${inputClass} resize-none`}
+          />
+          <div className="flex flex-col gap-[14px] sm:flex-row">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Как к вам обращаться"
+              className={inputClass}
+            />
+            <input
+              type="text"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              placeholder="Email или телефон"
+              className={inputClass}
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={send}
+          className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-[#2242d6] px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-[#1a35ad]"
+        >
+          <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+            <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z" />
+          </svg>
+          Отправить заявку
+        </button>
+        <p className="mt-[12px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#9aa0ad]">
+          Заявка откроется в вашем почтовом клиенте на {CONTACTS.email}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function InfoModal({ title, description, onClose }: { title: string; description: React.ReactNode; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
@@ -1022,7 +1138,8 @@ function Container18() {
   );
 }
 function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const [modal, setModal] = useState<{title: string; description: React.ReactNode} | null>(null);
+  const [showMeeting, setShowMeeting] = useState(false);
+  const [showNote, setShowNote] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -1098,13 +1215,26 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
             </div>
 
             {/* Buttons */}
-            <Container12 onMeetingClick={() => setModal({title: "Записаться на встречу", description: "Описание встречи"})} onNoteClick={() => setModal({title: "Аналитическая записка", description: "Описание записки"})} />
+            <Container12 onMeetingClick={() => setShowMeeting(true)} onNoteClick={() => setShowNote(true)} />
           </div>
         </div>
       </div>
 
-      {/* Modal */}
-      {modal && <InfoModal title={modal.title} description={modal.description} onClose={() => setModal(null)} />}
+      {/* Modals */}
+      {showMeeting && <MeetingModal onClose={() => setShowMeeting(false)} />}
+      {showNote && (
+        <InfoModal
+          title="Аналитическая записка"
+          onClose={() => setShowNote(false)}
+          description={
+            <>
+              <p>Аналитическая записка представляет ключевые выводы и советы по развитию управления.</p>
+              <p>Она поможет понять текущие риски, возможности оптимизации и пути улучшения процессов.</p>
+              <p>Документ включает краткий обзор модели, дорожную карту внедрения и ожидаемые результаты.</p>
+            </>
+          }
+        />
+      )}
     </div>
   );
 }
@@ -1632,7 +1762,7 @@ function Container48() {
   );
 }
 
-function Group6({ onPlayClick }: { onPlayClick: () => void }) {
+function Group6() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
       <div className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]" data-name="image 55">
@@ -1643,23 +1773,6 @@ function Group6({ onPlayClick }: { onPlayClick: () => void }) {
         <p className="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p>
         <p className="leading-[normal]">вычислительных мощностей.</p>
       </div>
-      <button
-        type="button"
-        onClick={onPlayClick}
-        aria-label="Смотреть видео"
-        className="group col-1 row-1 relative z-10 flex items-center justify-center gap-[10px] rounded-full bg-white/90 backdrop-blur-sm px-[20px] py-[12px] transition-all duration-300 hover:bg-[#2242d6] outline-none cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-        style={{ marginLeft: 905, marginTop: 110 }}
-      >
-        <svg viewBox="0 0 24 24" className="size-5 fill-[#2242d6] group-hover:fill-white transition-colors" aria-hidden>
-          <path d="M8 5.14v13.72L19 12 8 5.14z" />
-        </svg>
-        <span
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] group-hover:text-white whitespace-nowrap transition-colors"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          Смотреть видео
-        </span>
-      </button>
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
@@ -1693,30 +1806,26 @@ function Group5() {
   );
 }
 
-function Heading6({ onPlayClick }: { onPlayClick: () => void }) {
+function Heading6() {
   return (
     <div className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Стратегический фундамент: Почему Казахстан?</p>
       </div>
-      <Group6 onPlayClick={onPlayClick} />
+      <Group6 />
       <Group5 />
     </div>
   );
 }
 
 function BackgroundHorizontalBorder3() {
-  const [showProcessVideo, setShowProcessVideo] = useState(false);
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
         <Container48 />
-        <Heading6 onPlayClick={() => setShowProcessVideo(true)} />
+        <Heading6 />
       </div>
-      {showProcessVideo && (
-        <VideoModal src="/videos/process.mp4" title="Стратегический фундамент" onClose={() => setShowProcessVideo(false)} />
-      )}
     </div>
   );
 }
@@ -2046,11 +2155,11 @@ function Group9() {
   return (
     <div className="relative w-full h-[321.121px]" data-name="image 58">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
-      <div className="absolute left-[6%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+      <div className="absolute left-[6%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="mb-0">Спрятанный</p>
         <p>барьер</p>
       </div>
-      <div className="absolute left-[44%] top-[68%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+      <div className="absolute left-[44%] top-[74%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="leading-[normal]">Проактивный формат</p>
       </div>
     </div>
@@ -2061,11 +2170,11 @@ function Group10() {
   return (
     <div className="relative w-full max-w-[723.175px]">
       <Group9 />
-      <div className="absolute left-[48%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+      <div className="absolute left-[48%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="mb-0">Лишний</p>
         <p>документ</p>
       </div>
-      <div className="absolute left-[80%] top-[37%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
+      <div className="absolute left-[80%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="mb-0">Потеря</p>
         <p>времени</p>
       </div>
@@ -2335,7 +2444,7 @@ function Container65() {
 function Heading11() {
   return (
     <div className="content-stretch flex flex-col items-start max-w-[448.79998779296875px] relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[34px] text-white tracking-[-0.68px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[24px] text-white tracking-[-0.24px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal] mb-0">Готовы показать модель на</p>
         <p className="leading-[normal]">ваших данных</p>
       </div>
@@ -2348,30 +2457,64 @@ function Container64() {
     <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[440px]" data-name="Container">
       <Container65 />
       <Heading11 />
+      <div className="mt-[10px] flex flex-wrap gap-x-[48px] gap-y-[16px]">
+        <ContactChannel label="ПОЧТА" value={CONTACTS.email} href={`mailto:${CONTACTS.email}`} />
+        <ContactChannel label="ТЕЛЕФОН" value={CONTACTS.phoneDisplay} href={`tel:${CONTACTS.phoneHref}`} />
+      </div>
     </div>
   );
 }
 
-function Background8() {
+function Background8({ onClick }: { onClick: () => void }) {
   return (
-    <div className="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 transition-colors hover:bg-[#1a35ad]" data-name="Background">
+    <button
+      type="button"
+      onClick={onClick}
+      className="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      data-name="Background"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
-    </div>
+    </button>
+  );
+}
+
+function ContactChannel({ label, value, href, external }: { label: string; value: string; href: string; external?: boolean }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className="group flex flex-col gap-[8px] no-underline"
+    >
+      <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[1.2px] text-[#8fa6ff] transition-colors group-hover:text-white">
+        {label}
+      </span>
+      <span
+        className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[16px] text-white transition-colors group-hover:text-[#8fa6ff]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
+        {value}
+      </span>
+    </a>
   );
 }
 
 function Background7() {
+  const [showMeeting, setShowMeeting] = useState(false);
   return (
-    <div className="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background">
-      <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex justify-between items-center px-[20px] sm:px-[44px] py-[56px] relative size-full gap-[32px] flex-col sm:flex-row items-start sm:items-center">
-          <Container64 />
-          <Background8 />
+    <>
+      <div className="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background">
+        <div className="flex flex-row items-center size-full">
+          <div className="content-stretch flex justify-between items-start sm:items-center px-[20px] sm:px-[44px] py-[56px] relative size-full gap-[36px] flex-col sm:flex-row">
+            <Container64 />
+            <Background8 onClick={() => setShowMeeting(true)} />
+          </div>
         </div>
       </div>
-    </div>
+      {showMeeting && <MeetingModal onClose={() => setShowMeeting(false)} />}
+    </>
   );
 }
 
@@ -2385,23 +2528,12 @@ function Container67() {
   );
 }
 
-function Container68() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8990a0] text-[11.5px] whitespace-nowrap">
-        <p className="leading-[normal]">ЛАБОРАТОРИЯ ИИ · КАЗАХСТАН · 2026</p>
-      </div>
-    </div>
-  );
-}
-
 function Container66() {
   return (
     <div className="h-[59px] relative shrink-0 w-full" data-name="Container">
       <div className="flex flex-row justify-center size-full">
         <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[22px] relative size-full">
           <Container67 />
-          <Container68 />
         </div>
       </div>
     </div>
@@ -2849,7 +2981,6 @@ function DemkaSection() {
 }
 
 function Background() {
-  const [modal, setModal] = useState<"meeting" | "note" | null>(null);
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey | null>(null);
   const [language, setLanguage] = useState<Language>("RU");
@@ -2943,32 +3074,6 @@ function Background() {
           <Container66 />
         </div>
         </>
-      )}
-      {modal === "meeting" && (
-        <InfoModal
-          title="Записаться на встречу"
-          onClose={() => setModal(null)}
-          description={
-            <>
-              <p>Оставьте заявку на встречу с командой Governance.kz.</p>
-              <p>Мы свяжемся с вами в ближайшее время и подготовим план цифровой трансформации.</p>
-              <p>Для бронирования встречи укажите ваше имя, организацию и удобное время.</p>
-            </>
-          }
-        />
-      )}
-      {modal === "note" && (
-        <InfoModal
-          title="Аналитическая записка"
-          onClose={() => setModal(null)}
-          description={
-            <>
-              <p>Аналитическая записка представляет ключевые выводы и советы по развитию управления.</p>
-              <p>Она поможет понять текущие риски, возможности оптимизации и пути улучшения процессов.</p>
-              <p>Документ включает краткий обзор модели, дорожную карту внедрения и ожидаемые результаты.</p>
-            </>
-          }
-        />
       )}
       {imageModal && (
         <ImageModal
