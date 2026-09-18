@@ -2914,8 +2914,11 @@ function Background() {
           </div>
         </>
       ) : (
-        <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
+        <>
+        <div className="bg-white w-full">
           <HorizontalBorder onTabClick={handleTabChange} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
+        </div>
+        <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
           {activeTab ? (
             <TabPage tabKey={activeTab} onBack={handleBack} />
           ) : (
@@ -2939,6 +2942,7 @@ function Background() {
           )}
           <Container66 />
         </div>
+        </>
       )}
       {modal === "meeting" && (
         <InfoModal

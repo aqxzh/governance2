@@ -17,7 +17,7 @@ type SlideDef = { Component: React.ComponentType; height: number; minW?: number 
  */
 const SLIDES: SlideDef[] = [
   { Component: Module1, height: 1020 },
-  { Component: Module2, height: 1250 },
+  { Component: Module2, height: 1420 },
   { Component: Module3, height: 1300, minW: 1520 },
   { Component: Module4, height: 1250 },
   { Component: Module5, height: 1350 },
