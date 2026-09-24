@@ -1774,40 +1774,25 @@ function Frame5() {
   );
 }
 
-function Frame6({ src }: { src: string }) {
+function InfographicDuo() {
+  const cards = [
+    { src: imgBefore, alt: "Схема процесса оказания услуги, шаги 1–9" },
+    { src: imgAfter, alt: "Схема процесса оказания услуги, шаги 10–17" },
+  ];
   return (
-    <div className="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[40px] row-1 w-[437.528px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
-        <img alt="" className="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-rotate-[0.5deg]" src={src} />
-      </div>
-    </div>
-  );
-}
-
-function Group3({ src }: { src: string }) {
-  return (
-    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
-      <Frame6 src={src} />
-    </div>
-  );
-}
-
-function Frame8({ src }: { src: string }) {
-  return (
-    <div className="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[40px] row-1 w-[437.398px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
-        <img alt="" className="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:rotate-[0.5deg]" src={src} />
-      </div>
-    </div>
-  );
-}
-
-function Group2({ src }: { src: string }) {
-  return (
-    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
-      <Frame8 src={src} />
+    <div className="col-1 row-1 ml-0 mt-[128px] flex w-full max-w-[1082px] gap-[24px]" data-name="InfographicDuo">
+      {cards.map((c) => (
+        <div
+          key={c.alt}
+          className="group flex-1 overflow-hidden rounded-[40px] border-[0.75px] border-[#dbe2ec] border-solid bg-white p-[10px] transition-colors duration-300 hover:border-[#2242d6]"
+        >
+          <img
+            alt={c.alt}
+            src={c.src}
+            className="block aspect-[3/2] w-full rounded-[30px] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          />
+        </div>
+      ))}
     </div>
   );
 }
@@ -1818,8 +1803,7 @@ function Group4() {
       <Frame3 />
       <Frame4 />
       <Frame5 />
-      <Group2 src={imgBefore} />
-      <Group3 src={imgAfter} />
+      <InfographicDuo />
     </div>
   );
 }
