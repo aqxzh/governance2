@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { CONTACT_EMAIL, sendApplication } from "../lib/sendApplication"
 import {
   tabData,
   productImages,
@@ -1306,7 +1307,7 @@ function HomeFeed({
   toggleFav: (item: FavItem) => void
   share: () => void
 }) {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
   const [name, setName] = useState("")
   const [org, setOrg] = useState("")
   const [comment, setComment] = useState("")
@@ -1775,7 +1776,7 @@ function HomeFeed({
             вами в ближайшее время и подготовим план цифровой трансформации.
           </p>
 
-          {sent ? (
+          {status === "sent" ? (
             <div className="mt-6 flex flex-col items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-6 py-8 text-center">
               <span className="grid size-14 place-items-center rounded-full bg-[#2242d6] text-white">
                 <svg
@@ -1793,15 +1794,28 @@ function HomeFeed({
                 Спасибо! Мы свяжемся с вами в ближайшее время.
               </p>
               <p className="font-['IBM_Plex_Mono',monospace] text-[11px] tracking-[0.6px] text-white/40">
-                ДЕМО-РЕЖИМ · ПРОТОТИП
+                Заявка отправлена на {CONTACT_EMAIL}
               </p>
             </div>
           ) : (
             <form
               className="mt-6 flex flex-col gap-4"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault()
-                setSent(true)
+                setStatus("sending")
+                try {
+                  await sendApplication({
+                    subject: "Записаться на встречу — Governance.kz (моб.)",
+                    message:
+                      comment.trim() ||
+                      "Здравствуйте! Хочу записаться на встречу.",
+                    name: name.trim() || undefined,
+                    organization: org.trim() || undefined,
+                  })
+                  setStatus("sent")
+                } catch {
+                  setStatus("error")
+                }
               }}
             >
               <label className="flex flex-col gap-2">
@@ -1841,10 +1855,16 @@ function HomeFeed({
                 />
               </label>
               <TouchButton type="submit" variant="primary">
-                Записаться на встречу →
+                {status === "sending" ? "Отправляем…" : "Записаться на встречу →"}
               </TouchButton>
-              <p className="text-center font-['IBM_Plex_Mono',monospace] text-[11px] tracking-[0.6px] text-white/40">
-                ДЕМО-РЕЖИМ · ПРОТОТИП
+              {status === "error" && (
+                <p className="text-center font-['IBM_Plex_Sans',sans-serif] text-[13px] leading-[1.6] text-[#ff9d9d]">
+                  Не удалось отправить заявку. Попробуйте ещё раз или напишите
+                  на {CONTACT_EMAIL}
+                </p>
+              )}
+              <p className="font-['IBM_Plex_Mono',monospace] text-[11px] tracking-[0.6px] text-white/40">
+                Заявка отправится на {CONTACT_EMAIL}
               </p>
             </form>
           )}

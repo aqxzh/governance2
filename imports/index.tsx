@@ -37,6 +37,7 @@ import imgSolutionBotAssistants from "./bot-assistants.png";
 import imgSolutionIndustryBank from "./industry-bank.png";
 import imgSolutionAnticorruptionMonitoring from "./anticorruption-monitoring.png";
 import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png";
+import { CONTACT_EMAIL, sendApplication } from "../src/lib/sendApplication";
 
 import imgTabDiagnostics from "./tab-diagnostics.png";
 import imgTabCoordination from "./tab-coordination.png";
@@ -855,7 +856,7 @@ function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => vo
 }
 
 const CONTACTS = {
-  email: "info@governance.kz",
+  email: CONTACT_EMAIL,
   phoneDisplay: "+7 (701) 000-00-00",
   phoneHref: "+77010000000",
 };
@@ -864,6 +865,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [question, setQuestion] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -878,18 +880,19 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
     };
   }, [onClose]);
 
-  const message = [
-    question.trim() || "Здравствуйте! Хочу записаться на встречу.",
-    name.trim() ? `Имя: ${name.trim()}` : "",
-    contact.trim() ? `Контакт для связи: ${contact.trim()}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  const send = () => {
-    window.location.href = `mailto:${CONTACTS.email}?subject=${encodeURIComponent(
-      "Записаться на встречу — Governance.kz"
-    )}&body=${encodeURIComponent(message)}`;
+  const send = async () => {
+    setStatus("sending");
+    try {
+      await sendApplication({
+        subject: "Записаться на встречу — Governance.kz",
+        message: question.trim() || "Здравствуйте! Хочу записаться на встречу.",
+        name: name.trim() || undefined,
+        contact: contact.trim() || undefined,
+      });
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputClass =
@@ -952,19 +955,39 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={send}
-          className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-[#2242d6] px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-[#1a35ad]"
-        >
-          <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
-            <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z" />
-          </svg>
-          Отправить заявку
-        </button>
-        <p className="mt-[12px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#9aa0ad]">
-          Заявка откроется в вашем почтовом клиенте на {CONTACTS.email}
-        </p>
+        {status === "sent" ? (
+          <div className="mt-[26px] flex flex-col items-center gap-[8px] rounded-[14px] border border-[#d7f0dd] bg-[#effaf2] px-[22px] py-[18px] text-center">
+            <span className="font-['IBM_Plex_Sans:Bold',sans-serif] text-[16px] text-[#137333]">
+              Заявка отправлена
+            </span>
+            <span className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#41754d]">
+              Спасибо! Мы свяжемся с вами в ближайшее время.
+            </span>
+          </div>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={send}
+              disabled={status === "sending"}
+              className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-[#2242d6] px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-[#1a35ad] disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z" />
+              </svg>
+              {status === "sending" ? "Отправляем…" : "Отправить заявку"}
+            </button>
+            {status === "error" && (
+              <p className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#c5221f]">
+                Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую на{" "}
+                {CONTACTS.email}.
+              </p>
+            )}
+            <p className="mt-[12px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#9aa0ad]">
+              Заявка отправится на {CONTACTS.email}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
@@ -1250,11 +1273,100 @@ function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   );
 }
 
+const teamMembers = [
+  { name: "Имя Фамилия", role: "Руководитель лаборатории", focus: "Отвечает за результат пилота: от первой встречи до работающего решения" },
+  { name: "Имя Фамилия", role: "Эксперт по госуправлению", focus: "Знает аппарат изнутри: функции, кадры, услуги и скрытые барьеры" },
+  { name: "Имя Фамилия", role: "Продуктовый аналитик", focus: "Переводит задачу ведомства в сценарий, метрики и критерии результата" },
+  { name: "Имя Фамилия", role: "Инженер ИИ / ML", focus: "Строит модели, ИИ-агентов и симуляторы" },
+  { name: "Имя Фамилия", role: "Инженер данных", focus: "Собирает контуры данных и интеграции с системами ведомств" },
+  { name: "Имя Фамилия", role: "Дизайнер интерфейсов", focus: "Делает данные читаемыми с первого экрана" },
+];
+
+function TeamSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollTeam = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
+  };
+  return (
+    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
+      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[20px] sm:px-[44px] relative size-full">
+        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+          <p className="leading-[normal]">03 / КОМАНДА</p>
+        </div>
+        <h2
+          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Кто делает эту работу
+        </h2>
+        <p
+          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-[#5a606e] max-w-[620px]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Все продукты лаборатории создаёт компактная команда — без длинных подрядных цепочек.
+        </p>
+
+        <div
+          ref={trackRef}
+          className="mt-[20px] flex w-full snap-x gap-[20px] overflow-x-auto pb-[8px] [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {teamMembers.map((m, i) => (
+            <div key={i} className="w-[calc((100%-20px)/2)] shrink-0 snap-start border-t-2 border-[#0d0f16] border-solid pt-[12px] sm:w-[calc((100%-60px)/4)]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-[#2242d6]">
+                {`0${i + 1}`}
+              </span>
+              <div
+                className="mt-[8px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[17px] leading-[1.3] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {m.name}
+              </div>
+              <div
+                className="mt-[2px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] leading-[1.45] text-[#3a4050]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {m.role}
+              </div>
+              <div
+                className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13.5px] leading-[1.5] text-[#5a606e]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                {m.focus}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-[20px] flex w-full items-center justify-between">
+          <button
+            type="button"
+            onClick={() => scrollTeam(-1)}
+            aria-label="Листать команду назад"
+            className="grid size-[38px] cursor-pointer place-items-center rounded-full border border-[#0d0f16] text-[18px] leading-none text-[#0d0f16] transition-colors hover:bg-[#0d0f16] hover:text-white"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollTeam(1)}
+            aria-label="Листать команду вперёд"
+            className="grid size-[38px] cursor-pointer place-items-center rounded-full border border-[#0d0f16] text-[18px] leading-none text-[#0d0f16] transition-colors hover:bg-[#0d0f16] hover:text-white"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Container26() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">03 / ПРОДУКТЫ</p>
+        <p className="leading-[normal]">04 / ПРОДУКТЫ</p>
       </div>
     </div>
   );
@@ -1621,7 +1733,7 @@ function Container47() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ИНФОГРАФИКА</p>
+        <p className="leading-[normal]">05 / ИНФОГРАФИКА</p>
       </div>
     </div>
   );
@@ -1759,7 +1871,7 @@ function Container48() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">05 / СТРАТЕГИЯ</p>
+        <p className="leading-[normal]">06 / СТРАТЕГИЯ</p>
       </div>
     </div>
   );
@@ -1837,7 +1949,7 @@ function Container49() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">06 / AI-АССЕССМЕНТ</p>
+        <p className="leading-[normal]">07 / AI-АССЕССМЕНТ</p>
       </div>
     </div>
   );
@@ -1924,7 +2036,7 @@ function Container50() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">07 / EXECASSIST</p>
+        <p className="leading-[normal]">08 / EXECASSIST</p>
       </div>
     </div>
   );
@@ -2122,7 +2234,7 @@ function Container51() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">08 / SERVICEFLOW</p>
+        <p className="leading-[normal]">09 / SERVICEFLOW</p>
       </div>
     </div>
   );
@@ -2193,7 +2305,7 @@ function BackgroundHorizontalBorder6() {
         <div className="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
           <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
             <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-              <p className="leading-[normal]">08 / SERVICEFLOW</p>
+              <p className="leading-[normal]">09 / SERVICEFLOW</p>
             </div>
           </div>
           <Heading9 />
@@ -2213,7 +2325,7 @@ function Container52() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">09 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
+        <p className="leading-[normal]">10 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
       </div>
     </div>
   );
@@ -2688,7 +2800,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
       {/* Registry table */}
       <div className="content-stretch flex flex-col px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
-        {/* Registry table — same columns as "03 / ПРОДУКТЫ" */}
+        {/* Registry table — same columns as "04 / ПРОДУКТЫ" */}
         <div className="relative w-full">
           <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
           <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
@@ -3064,6 +3176,7 @@ function Background() {
                 <Border2 />
                 <Container18 />
               </div>
+              <TeamSection />
               <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
               <BackgroundHorizontalBorder2 />
               <BackgroundHorizontalBorder3 />
