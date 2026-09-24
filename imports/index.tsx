@@ -1784,22 +1784,11 @@ function Frame6({ src }: { src: string }) {
   );
 }
 
-function Frame7() {
-  return (
-    <div className="col-1 h-[19.654px] ml-[11.05px] mt-[5.2px] relative row-1 w-[49.772px]" data-name="Frame">
-      <div className="absolute h-[31.5px] left-0 top-0 w-[77.023px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[77.023px]">Стало</p>
-    </div>
-  );
-}
-
 function Group3({ src }: { src: string }) {
   return (
     <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[100.58px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
       <Frame6 src={src} />
-      <div className="bg-[#2242d6] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
-      <Frame7 />
     </div>
   );
 }
@@ -1814,30 +1803,11 @@ function Frame8({ src }: { src: string }) {
   );
 }
 
-function Frame9() {
-  return (
-    <div className="bg-[#2242d6] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Frame">
-      <div className="absolute h-[31.5px] left-0 top-0 w-[68.625px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p>
-    </div>
-  );
-}
-
-function Group1() {
-  return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="bg-[#2242d6] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
-      <Frame9 />
-    </div>
-  );
-}
-
 function Group2({ src }: { src: string }) {
   return (
     <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[101.703px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
       <Frame8 src={src} />
-      <Group1 />
     </div>
   );
 }
