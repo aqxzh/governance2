@@ -1305,7 +1305,7 @@ function TeamSection() {
           className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-[#5a606e] max-w-[620px]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Все продукты лаборатории создаёт компактная команда — без длинных подрядных цепочек.
+          Команда ИИ-лаборатории: аналитики, инженеры и отраслевые эксперты.
         </p>
 
         <div
