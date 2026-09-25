@@ -1781,16 +1781,19 @@ function InfographicDuo() {
   ];
   return (
     <div className="col-1 row-1 ml-0 mt-[128px] flex w-full max-w-[1082px] gap-[24px]" data-name="InfographicDuo">
-      {cards.map((c) => (
+      {cards.map((c, i) => (
         <div
           key={c.alt}
           className="group flex-1 overflow-hidden rounded-[40px] border-[0.75px] border-[#dbe2ec] border-solid bg-white p-[10px] transition-colors duration-300 hover:border-[#2242d6]"
         >
-          <img
-            alt={c.alt}
-            src={c.src}
-            className="block aspect-[3/2] w-full rounded-[30px] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          />
+          <div className="relative overflow-hidden rounded-[30px]">
+            <img
+              alt={c.alt}
+              src={c.src}
+              className={`block aspect-[3/2] w-full object-cover transition-transform duration-500 ease-out ${i === 1 ? "scale-[1.07] group-hover:scale-[1.1]" : "group-hover:scale-[1.03]"}`}
+            />
+            <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[30px] ring-1 ring-inset ring-white/60" />
+          </div>
         </div>
       ))}
     </div>
