@@ -1380,7 +1380,7 @@ function TeamOrbit() {
       {teamOrbitNodes.map((n) => (
         <span
           key={n.key}
-          className={`absolute ${n.pos} flex items-center gap-[8px] rounded-full border border-[#e4e8f4] bg-white py-[8px] pl-[10px] pr-[16px] shadow-[0_6px_18px_rgba(34,66,214,0.10)]`}
+          className={`absolute ${n.pos} flex items-center gap-[8px] rounded-full border border-[#e6e8ee] bg-white py-[8px] pl-[10px] pr-[16px]`}
         >
           <span className="text-[#2242d6]">
             <TeamIcon name={n.icon} />
@@ -1400,11 +1400,11 @@ function TeamFlowMini() {
       aria-hidden
       className="relative flex items-center justify-between rounded-[10px] bg-[radial-gradient(#d5dcf2_1px,transparent_1px)] bg-[size:12px_12px] px-[18px] py-[14px]"
     >
-      <span className="grid size-[44px] place-items-center rounded-full border border-[#e0e6f7] bg-white text-[#2242d6] shadow-[0_4px_12px_rgba(34,66,214,0.12)]">
+      <span className="grid size-[44px] place-items-center rounded-full border border-[#e6e8ee] bg-white text-[#2242d6]">
         <TeamIcon name="list" />
       </span>
       <span className="h-px flex-1 bg-[#2242d6]/40" />
-      <span className="mx-[10px] w-[104px] shrink-0 rounded-[10px] border border-[#e0e6f7] bg-white p-[10px] shadow-[0_8px_20px_rgba(34,66,214,0.14)]">
+      <span className="mx-[10px] w-[104px] shrink-0 rounded-[10px] border border-[#e6e8ee] bg-white p-[10px]">
         {[62, 80, 48].map((w, i) => (
           <span key={i} className="mb-[7px] flex items-center gap-[6px] last:mb-0">
             <span className="grid size-[14px] shrink-0 place-items-center rounded-full bg-[#2242d6] text-white">
@@ -1415,7 +1415,7 @@ function TeamFlowMini() {
         ))}
       </span>
       <span className="h-px flex-1 bg-[#2242d6]/40" />
-      <span className="grid size-[44px] place-items-center rounded-full border border-[#e0e6f7] bg-white text-[#2242d6] shadow-[0_4px_12px_rgba(34,66,214,0.12)]">
+      <span className="grid size-[44px] place-items-center rounded-full border border-[#e6e8ee] bg-white text-[#2242d6]">
         <TeamIcon name="minichart" />
       </span>
       <span className="absolute left-[62px] top-1/2 size-[7px] -translate-y-1/2 rounded-full bg-[#2242d6]" />
@@ -1453,17 +1453,10 @@ function TeamInfinity() {
   );
 }
 
-const teamWorkSteps = [
-  { num: "01", title: "Погружаемся", text: "Изучаем задачу, контекст и цели бизнеса." },
-  { num: "02", title: "Собираем систему", text: "Предлагаем решение, проектируем архитектуру и план." },
-  { num: "03", title: "Запускаем", text: "Реализуем, тестируем и выводим в продакшн." },
-  { num: "04", title: "Развиваем", text: "Анализируем результаты, улучшаем и масштабируем." },
-];
-
 function TeamCardShell({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-[14px] border border-[#e2e6f0] bg-gradient-to-b from-white to-[#f7f9ff] p-[20px] shadow-[0_1px_2px_rgba(16,24,64,0.05)] sm:p-[22px] ${className ?? ""}`}
+      className={`rounded-[12px] border border-[#e6e8ee] bg-white p-[20px] transition-all hover:-translate-y-[2px] hover:border-[#0d0f16] hover:shadow-[0_12px_32px_rgba(13,15,22,0.08)] sm:p-[22px] ${className ?? ""}`}
     >
       {children}
     </div>
@@ -1609,40 +1602,6 @@ function TeamSection() {
               Остаёмся рядом после запуска: развиваем продукт, масштабируем и адаптируем под новые задачи.
             </div>
           </TeamCardShell>
-        </div>
-
-        <div className="mt-[30px] w-full">
-          <div className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[12px] font-medium tracking-[1.2px] text-[#2242d6]">
-            КАК МЫ РАБОТАЕМ
-          </div>
-          <div className="mt-[10px] grid w-full grid-cols-2 gap-x-[16px] gap-y-[18px] lg:grid-cols-4">
-            {teamWorkSteps.map((s, i) => (
-              <div key={s.num} className="relative pt-[16px]">
-                <div aria-hidden className="absolute left-0 right-0 top-[5px] flex items-center">
-                  <span className="size-[10px] shrink-0 rounded-full bg-[#2242d6]" />
-                  <span className="h-px flex-1 bg-[#c9d4f7]" />
-                  {i === teamWorkSteps.length - 1 && (
-                    <span className="size-[10px] shrink-0 rounded-full border-2 border-[#2242d6] bg-white" />
-                  )}
-                </div>
-                <div className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[0.8px] text-[#8a90a3]">
-                  ШАГ {s.num}
-                </div>
-                <div
-                  className="mt-[4px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[15px] font-bold leading-[1.25] text-[#0d0f16]"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  {s.title}
-                </div>
-                <div
-                  className="mt-[3px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[12.5px] font-normal leading-[1.5] text-[#5a606e]"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  {s.text}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -2063,8 +2022,8 @@ function Frame5() {
 
 function Frame6({ src }: { src: string }) {
   return (
-    <div className="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[40px] row-1 w-[437.528px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
+    <div className="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[14px] row-1 w-[437.528px]" data-name="Frame">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[14px]">
         <img alt="" className="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-rotate-[0.5deg]" src={src} />
       </div>
     </div>
@@ -2083,7 +2042,7 @@ function Frame7() {
 function Group3({ src }: { src: string }) {
   return (
     <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[20px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
       <Frame6 src={src} />
       <div className="bg-[#2242d6] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
       <Frame7 />
@@ -2093,8 +2052,8 @@ function Group3({ src }: { src: string }) {
 
 function Frame8({ src }: { src: string }) {
   return (
-    <div className="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[40px] row-1 w-[437.398px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[40px]">
+    <div className="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[14px] row-1 w-[437.398px]" data-name="Frame">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[14px]">
         <img alt="" className="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:rotate-[0.5deg]" src={src} />
       </div>
     </div>
@@ -2122,7 +2081,7 @@ function Group1() {
 function Group2({ src }: { src: string }) {
   return (
     <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[64px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
+      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[20px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
       <Frame8 src={src} />
       <Group1 />
     </div>
