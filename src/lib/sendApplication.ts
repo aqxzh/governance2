@@ -1,24 +1,22 @@
-export const CONTACT_EMAIL = "altynbekus@gmail.com";
+export const CONTACT_EMAIL = "akbota.akylbek07@gmail.com";
 
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 export type ApplicationPayload = {
-  subject: string;
-  message: string;
   name?: string;
   contact?: string;
-  organization?: string;
+  phone?: string;
+  message?: string;
 };
 
 export async function sendApplication(payload: ApplicationPayload): Promise<void> {
   const body = {
-    _subject: payload.subject,
+    _subject: "Новая заявка с сайта Governance.kz",
     _template: "table",
     _captcha: "false",
-    Сообщение: payload.message,
-    ...(payload.name ? { Имя: payload.name } : {}),
-    ...(payload.contact ? { Контакт: payload.contact } : {}),
-    ...(payload.organization ? { Организация: payload.organization } : {}),
+    Имя: payload.name ?? "—",
+    Телефон: payload.phone ?? payload.contact ?? "—",
+    "Вопрос / тема встречи": payload.message ?? "—",
   };
 
   const response = await fetch(FORMSUBMIT_ENDPOINT, {

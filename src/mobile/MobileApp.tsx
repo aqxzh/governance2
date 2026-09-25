@@ -1309,11 +1309,11 @@ function HomeFeed({
 }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
   const [name, setName] = useState("")
-  const [org, setOrg] = useState("")
-  const [comment, setComment] = useState("")
+  const [phone, setPhone] = useState("")
+  const [question, setQuestion] = useState("")
 
   const inputClass =
-    "min-h-[48px] w-full rounded-[8px] border border-[#39406b] bg-white/[0.06] px-4 py-3 font-['IBM_Plex_Sans',sans-serif] text-[15px] text-[#0d0f16] placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#8fa6ff]"
+    "min-h-[48px] w-full rounded-[8px] border border-[#39406b] bg-white/[0.06] px-4 py-3 font-['IBM_Plex_Sans',sans-serif] text-[15px] text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#8fa6ff]"
 
   return (
     <div className="flex flex-col">
@@ -1777,25 +1777,13 @@ function HomeFeed({
           </p>
 
           {status === "sent" ? (
-            <div className="mt-6 flex flex-col items-center gap-3 rounded-[14px] border border-white/10 bg-white/[0.04] px-6 py-8 text-center">
-              <span className="grid size-14 place-items-center rounded-full bg-[#2242d6] text-white">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="size-6 fill-current"
-                  aria-hidden
-                >
-                  <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
-                </svg>
-              </span>
-              <h3 className="font-['IBM_Plex_Sans',sans-serif] font-bold text-[19px] text-white">
+            <div className="mt-6 flex flex-col items-center gap-2 rounded-[14px] border border-white/10 bg-white/[0.04] px-6 py-7 text-center">
+              <span className="font-['IBM_Plex_Sans',sans-serif] font-bold text-[17px] text-white">
                 Заявка принята
-              </h3>
-              <p className="font-['IBM_Plex_Sans',sans-serif] text-[14px] leading-[1.6] text-white/60">
+              </span>
+              <span className="font-['IBM_Plex_Sans',sans-serif] text-[13px] leading-[1.6] text-white/60">
                 Спасибо! Мы свяжемся с вами в ближайшее время.
-              </p>
-              <p className="font-['IBM_Plex_Mono',monospace] text-[11px] tracking-[0.6px] text-white/40">
-                Заявка отправлена на {CONTACT_EMAIL}
-              </p>
+              </span>
             </div>
           ) : (
             <form
@@ -1805,12 +1793,9 @@ function HomeFeed({
                 setStatus("sending")
                 try {
                   await sendApplication({
-                    subject: "Записаться на встречу — Governance.kz (моб.)",
-                    message:
-                      comment.trim() ||
-                      "Здравствуйте! Хочу записаться на встречу.",
                     name: name.trim() || undefined,
-                    organization: org.trim() || undefined,
+                    phone: phone.trim() || undefined,
+                    message: question.trim() || undefined,
                   })
                   setStatus("sent")
                 } catch {
@@ -1818,44 +1803,30 @@ function HomeFeed({
                 }
               }}
             >
-              <label className="flex flex-col gap-2">
-                <span className="font-['IBM_Plex_Sans',sans-serif] font-semibold text-[13px] text-white">
-                  Ваше имя
-                </span>
-                <input
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Иванов Иван"
-                  className={inputClass}
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                <span className="font-['IBM_Plex_Sans',sans-serif] font-semibold text-[13px] text-white">
-                  Организация
-                </span>
-                <input
-                  required
-                  value={org}
-                  onChange={(e) => setOrg(e.target.value)}
-                  placeholder="Министерство, агентство или компания"
-                  className={inputClass}
-                />
-              </label>
-              <label className="flex flex-col gap-2">
-                <span className="font-['IBM_Plex_Sans',sans-serif] font-semibold text-[13px] text-white">
-                  Комментарий
-                </span>
-                <textarea
-                  rows={3}
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  placeholder="Удобное время для встречи, вопросы о пилоте…"
-                  className="w-full resize-none rounded-[8px] border border-[#39406b] bg-white/[0.06] px-4 py-3 font-['IBM_Plex_Sans',sans-serif] text-[15px] text-[#0d0f16] placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#8fa6ff]"
-                />
-              </label>
+              <input
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Как к вам обращаться"
+                className={inputClass}
+              />
+              <input
+                required
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Телефон"
+                className={inputClass}
+              />
+              <textarea
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                rows={3}
+                placeholder="Ваш вопрос / тема встречи"
+                className={`${inputClass} min-h-[88px] resize-none`}
+              />
               <TouchButton type="submit" variant="primary">
-                {status === "sending" ? "Отправляем…" : "Записаться на встречу →"}
+                {status === "sending" ? "Отправляем…" : "Отправить заявку →"}
               </TouchButton>
               {status === "error" && (
                 <p className="text-center font-['IBM_Plex_Sans',sans-serif] text-[13px] leading-[1.6] text-[#ff9d9d]">
@@ -1864,7 +1835,7 @@ function HomeFeed({
                 </p>
               )}
               <p className="font-['IBM_Plex_Mono',monospace] text-[11px] tracking-[0.6px] text-white/40">
-                Заявка отправится на {CONTACT_EMAIL}
+                Заявка придёт на {CONTACT_EMAIL}
               </p>
             </form>
           )}

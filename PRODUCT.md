@@ -16,7 +16,7 @@ web
 
 ## Product Purpose
 
-Governance.kz is the public landing surface for the **Laboratory of Artificial Intelligence · Government Service of the Republic of Kazakhstan**. It explains the applied center for digital transformation of governance and converts qualified government interest into meetings and document downloads.
+Governance.kz is the public landing surface for the **Artificial Intelligence · Government Service of the Republic of Kazakhstan**. It explains the applied center for digital transformation of governance and converts qualified government interest into meetings and document downloads.
 
 **Success means:** a ЛПР visitor understands the offering, trusts the institutional positioning, and completes a primary CTA (meeting request or analytical note download).
 
