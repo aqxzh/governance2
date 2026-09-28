@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+::selection {
+  background: #2242d6;
+  color: #fff;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;

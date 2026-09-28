@@ -1272,336 +1272,270 @@ function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   );
 }
 
-const teamOrbitNodes = [
-  { key: "analytics", label: "Аналитика", icon: "analytics", pos: "left-[6%] top-[15%]" },
-  { key: "dev", label: "Разработка", icon: "cube", pos: "right-[4%] top-[19%]" },
-  { key: "strategy", label: "Стратегия", icon: "compass", pos: "left-[1%] top-[52%]" },
-  { key: "design", label: "Дизайн", icon: "pen", pos: "right-[2%] top-[56%]" },
-  { key: "launch", label: "Запуск", icon: "rocket", pos: "bottom-[5%] left-1/2 -translate-x-1/2" },
+const teamStages = [
+  {
+    n: "01",
+    phase: "Диагностика",
+    role: "Аналитики управления",
+    does: "Разбирают аппарат на функции и нагрузку — вскрывают дублирования и барьеры.",
+    method: "функциональный анализ, регламенты против факта",
+    artifact: "Карта функций и матрица дублирования",
+  },
+  {
+    n: "02",
+    phase: "Проектирование",
+    role: "Проектировщики услуг",
+    does: "Пересобирают услугу так, чтобы она приходила человеку до его обращения.",
+    method: "проектирование от ситуации человека",
+    artifact: "Целевой регламент и проактивная услуга",
+  },
+  {
+    n: "03",
+    phase: "Люди",
+    role: "HR-эксперты",
+    does: "Определяют, какие компетенции нужны новому процессу.",
+    method: "профили компетенций, онлайн-ассессмент",
+    artifact: "Модель компетенций и работающий отбор",
+  },
+  {
+    n: "04",
+    phase: "Инженерия",
+    role: "Инженеры данных и ИИ",
+    does: "Соединяют данные ведомств и запускают модели в закрытом контуре.",
+    method: "онтологии, графовый анализ, LLM-контур",
+    artifact: "Работающая система на ваших данных",
+  },
 ] as const;
 
-type TeamIconName =
-  | "analytics" | "cube" | "compass" | "pen" | "rocket"
-  | "arrow" | "user" | "eye" | "trend" | "check" | "list" | "minichart";
+const teamOwner = {
+  n: "05",
+  role: "Руководитель внедрения",
+  does: "Ведёт пилот через все этапы — отвечает за срок и результат.",
+  artifact: "Отчёт пилота и решение о масштабировании",
+} as const;
 
-function TeamIcon({ name, className }: { name: TeamIconName; className?: string }) {
-  const cls = className ?? "size-[18px]";
-  const common = {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.8,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    className: cls,
-    "aria-hidden": true,
-  } as const;
-  switch (name) {
-    case "analytics":
-      return (
-        <svg {...common}><path d="M4 20h16" /><path d="M7 20v-6" /><path d="M12 20V8" /><path d="M17 20v-9" /></svg>
-      );
-    case "cube":
-      return (
-        <svg {...common}><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" /><path d="M12 12l8-4.5" /><path d="M12 12v9" /><path d="M12 12L4 7.5" /></svg>
-      );
-    case "compass":
-      return (
-        <svg {...common}><circle cx="12" cy="12" r="8.5" /><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" /></svg>
-      );
-    case "pen":
-      return (
-        <svg {...common}><path d="M4 20l1-4.5L16.5 4a2.12 2.12 0 013 3L8 18.5 4 20z" /><path d="M14.5 6l3 3" /></svg>
-      );
-    case "rocket":
-      return (
-        <svg {...common}><path d="M5 19c0-5.5 3.5-10.5 10-13.5C14 11 10.5 15.5 5 19z" /><circle cx="12" cy="11" r="1.6" /><path d="M5 19l-2 2" /><path d="M7 17L4.5 17" /></svg>
-      );
-    case "arrow":
-      return (
-        <svg {...common}><path d="M7 17L17 7" /><path d="M9 7h8v8" /></svg>
-      );
-    case "user":
-      return (
-        <svg {...common}><circle cx="12" cy="8" r="3.5" /><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5" /></svg>
-      );
-    case "eye":
-      return (
-        <svg {...common}><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6S2.5 12 2.5 12z" /><circle cx="12" cy="12" r="2.5" /></svg>
-      );
-    case "trend":
-      return (
-        <svg {...common}><path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" /></svg>
-      );
-    case "check":
-      return (
-        <svg {...common}><path d="M4.5 12.5l5 5L19.5 7" /></svg>
-      );
-    case "list":
-      return (
-        <svg {...common}><path d="M8 6h12" /><path d="M8 12h12" /><path d="M8 18h12" /><path d="M4 6h.5" /><path d="M4 12h.5" /><path d="M4 18h.5" /></svg>
-      );
-    case "minichart":
-      return (
-        <svg {...common}><path d="M4 20h16" /><path d="M8 20v-4" /><path d="M12 20v-7" /><path d="M16 20V9" /></svg>
-      );
-  }
-}
+const teamSeal = [
+  "Работаете напрямую с теми, кто делает",
+  "Данные остаются в вашем контуре",
+  "Решения остаются за людьми",
+] as const;
 
-function TeamOrbit() {
+const teamMonoLabel =
+  "font-['IBM_Plex_Mono:Regular',sans-serif] not-italic";
+
+function TeamNode({ n }: { n: string }) {
   return (
-    <div className="relative w-full">
-      <svg viewBox="0 0 440 400" className="block h-auto w-full" fill="none" aria-hidden>
-        <defs>
-          <radialGradient id="teamCore" cx="38%" cy="32%" r="80%">
-            <stop offset="0%" stopColor="#5b86ff" />
-            <stop offset="55%" stopColor="#2b56f0" />
-            <stop offset="100%" stopColor="#1c3ec4" />
-          </radialGradient>
-        </defs>
-        <circle cx="220" cy="188" r="152" stroke="#c2cdf3" strokeWidth="1.5" strokeDasharray="5 6" />
-        <circle cx="220" cy="188" r="120" stroke="#dde3f3" strokeWidth="1.5" />
-        <circle cx="220" cy="188" r="88" stroke="#c2cdf3" strokeWidth="1.5" strokeDasharray="4 5" />
-        {[
-          [318, 78], [352, 188], [300, 300], [140, 300], [88, 188], [122, 78],
-          [262, 82], [178, 292],
-        ].map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="4" fill="#2242d6" />
-        ))}
-        <circle cx="352" cy="188" r="8" fill="#fff" stroke="#2242d6" strokeWidth="2" />
-        <circle cx="352" cy="188" r="3" fill="#2242d6" />
-        <circle cx="88" cy="188" r="8" fill="#fff" stroke="#2242d6" strokeWidth="2" />
-        <circle cx="88" cy="188" r="3" fill="#2242d6" />
-        <circle cx="220" cy="188" r="64" fill="url(#teamCore)" />
-        <circle cx="220" cy="188" r="64" stroke="#16298a" strokeWidth="1" opacity="0.35" />
-        <text x="220" y="183" textAnchor="middle" fill="#fff" fontSize="14.5" fontWeight="700" fontFamily="'IBM Plex Sans',sans-serif" letterSpacing="1">ПРОДУКТ</text>
-        <text x="220" y="202" textAnchor="middle" fill="#fff" fontSize="14.5" fontWeight="700" fontFamily="'IBM Plex Sans',sans-serif" letterSpacing="1">И РЕЗУЛЬТАТ</text>
-      </svg>
-      {teamOrbitNodes.map((n) => (
-        <span
-          key={n.key}
-          className={`absolute ${n.pos} flex items-center gap-[8px] rounded-full border border-[#e6e8ee] bg-white py-[8px] pl-[10px] pr-[16px]`}
-        >
-          <span className="text-[#2242d6]">
-            <TeamIcon name={n.icon} />
-          </span>
-          <span className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[12.5px] font-medium text-[#0d0f16]">
-            {n.label}
-          </span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function TeamFlowMini() {
-  return (
-    <div
-      aria-hidden
-      className="relative flex items-center justify-between rounded-[10px] bg-[radial-gradient(#d5dcf2_1px,transparent_1px)] bg-[size:12px_12px] px-[18px] py-[14px]"
+    <span
+      className={`${teamMonoLabel} grid size-[34px] shrink-0 place-items-center border-[1.5px] border-[#0d0f16] bg-white text-[13px] tabular-nums text-[#0d0f16]`}
     >
-      <span className="grid size-[44px] place-items-center rounded-full border border-[#e6e8ee] bg-white text-[#2242d6]">
-        <TeamIcon name="list" />
-      </span>
-      <span className="h-px flex-1 bg-[#2242d6]/40" />
-      <span className="mx-[10px] w-[104px] shrink-0 rounded-[10px] border border-[#e6e8ee] bg-white p-[10px]">
-        {[62, 80, 48].map((w, i) => (
-          <span key={i} className="mb-[7px] flex items-center gap-[6px] last:mb-0">
-            <span className="grid size-[14px] shrink-0 place-items-center rounded-full bg-[#2242d6] text-white">
-              <TeamIcon name="check" className="size-[9px]" />
-            </span>
-            <span className="h-[6px] rounded-full bg-[#dfe5f5]" style={{ width: `${w}%` }} />
-          </span>
-        ))}
-      </span>
-      <span className="h-px flex-1 bg-[#2242d6]/40" />
-      <span className="grid size-[44px] place-items-center rounded-full border border-[#e6e8ee] bg-white text-[#2242d6]">
-        <TeamIcon name="minichart" />
-      </span>
-      <span className="absolute left-[62px] top-1/2 size-[7px] -translate-y-1/2 rounded-full bg-[#2242d6]" />
-      <span className="absolute right-[62px] top-1/2 size-[7px] -translate-y-1/2 rounded-full bg-[#2242d6]" />
-    </div>
+      {n}
+    </span>
   );
 }
 
-function TeamInfinity() {
+function TeamPort({ label }: { label: string }) {
   return (
-    <svg viewBox="0 0 220 120" className="h-[64px] w-[150px] sm:h-[78px] sm:w-[180px]" fill="none" aria-hidden>
-      <defs>
-        <linearGradient id="teamInf" x1="0" y1="0" x2="220" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#6f93ff" />
-          <stop offset="50%" stopColor="#2242d6" />
-          <stop offset="100%" stopColor="#3b63ff" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M198 60L197.8 64 197.2 67.9 196.2 71.7 194.8 75.3 193.1 78.7 191.1 81.8 188.9 84.6 186.4 87.1 183.7 89.3 180.9 91.2 178 92.7 175 93.9 172 94.8 168.9 95.4 165.9 95.7 162.9 95.8 160 95.6 157.1 95.2 154.2 94.5 151.5 93.7 148.8 92.8 146.2 91.7 143.7 90.4 141.3 89.1 138.9 87.6 136.6 86.1 134.4 84.5 132.3 82.8 130.2 81.1 128.2 79.3 126.2 77.5 124.3 75.6 122.4 73.7 120.6 71.8 118.8 69.9 117 67.9 115.2 65.9 113.5 64 111.7 62 110 60 108.3 58 106.5 56 104.8 54.1 103 52.1 101.2 50.1 99.4 48.2 97.6 46.3 95.7 44.4 93.8 42.5 91.8 40.7 89.8 38.9 87.7 37.2 85.6 35.5 83.4 33.9 81.1 32.4 78.7 30.9 76.3 29.6 73.8 28.3 71.2 27.2 68.5 26.3 65.8 25.5 62.9 24.8 60 24.4 57.1 24.2 54.1 24.3 51.1 24.6 48 25.2 45 26.1 42 27.3 39.1 28.8 36.3 30.7 33.6 32.9 31.1 35.4 28.9 38.2 26.9 41.3 25.2 44.7 23.8 48.3 22.8 52.1 22.2 56 22 60 22.2 64 22.8 67.9 23.8 71.7 25.2 75.3 26.9 78.7 28.9 81.8 31.1 84.6 33.6 87.1 36.3 89.3 39.1 91.2 42 92.7 45 93.9 48 94.8 51.1 95.4 54.1 95.7 57.1 95.8 60 95.6 62.9 95.2 65.8 94.5 68.5 93.7 71.2 92.8 73.8 91.7 76.3 90.4 78.7 89.1 81.1 87.6 83.4 86.1 85.6 84.5 87.7 82.8 89.8 81.1 91.8 79.3 93.8 77.5 95.7 75.6 97.6 73.7 99.4 71.8 101.2 69.9 103 67.9 104.8 65.9 106.5 64 108.3 62 110 60 111.7 58 113.5 56 115.2 54.1 117 52.1 118.8 50.1 120.6 48.2 122.4 46.3 124.3 44.4 126.2 42.5 128.2 40.7 130.2 38.9 132.3 37.2 134.4 35.5 136.6 33.9 138.9 32.4 141.3 30.9 143.7 29.6 146.2 28.3 148.8 27.2 151.5 26.3 154.2 25.5 157.1 24.8 160 24.4 162.9 24.2 165.9 24.3 168.9 24.6 172 25.2 175 26.1 178 27.3 180.9 28.8 183.7 30.7 186.4 32.9 188.9 35.4 191.1 38.2 193.1 41.3 194.8 44.7 196.2 48.3 197.2 52.1 197.8 56 198 60Z"
-        stroke="#2242d6"
-        strokeWidth="10"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        opacity="0.18"
-      />
-      <path
-        d="M198 60L197.8 64 197.2 67.9 196.2 71.7 194.8 75.3 193.1 78.7 191.1 81.8 188.9 84.6 186.4 87.1 183.7 89.3 180.9 91.2 178 92.7 175 93.9 172 94.8 168.9 95.4 165.9 95.7 162.9 95.8 160 95.6 157.1 95.2 154.2 94.5 151.5 93.7 148.8 92.8 146.2 91.7 143.7 90.4 141.3 89.1 138.9 87.6 136.6 86.1 134.4 84.5 132.3 82.8 130.2 81.1 128.2 79.3 126.2 77.5 124.3 75.6 122.4 73.7 120.6 71.8 118.8 69.9 117 67.9 115.2 65.9 113.5 64 111.7 62 110 60 108.3 58 106.5 56 104.8 54.1 103 52.1 101.2 50.1 99.4 48.2 97.6 46.3 95.7 44.4 93.8 42.5 91.8 40.7 89.8 38.9 87.7 37.2 85.6 35.5 83.4 33.9 81.1 32.4 78.7 30.9 76.3 29.6 73.8 28.3 71.2 27.2 68.5 26.3 65.8 25.5 62.9 24.8 60 24.4 57.1 24.2 54.1 24.3 51.1 24.6 48 25.2 45 26.1 42 27.3 39.1 28.8 36.3 30.7 33.6 32.9 31.1 35.4 28.9 38.2 26.9 41.3 25.2 44.7 23.8 48.3 22.8 52.1 22.2 56 22 60 22.2 64 22.8 67.9 23.8 71.7 25.2 75.3 26.9 78.7 28.9 81.8 31.1 84.6 33.6 87.1 36.3 89.3 39.1 91.2 42 92.7 45 93.9 48 94.8 51.1 95.4 54.1 95.7 57.1 95.8 60 95.6 62.9 95.2 65.8 94.5 68.5 93.7 71.2 92.8 73.8 91.7 76.3 90.4 78.7 89.1 81.1 87.6 83.4 86.1 85.6 84.5 87.7 82.8 89.8 81.1 91.8 79.3 93.8 77.5 95.7 75.6 97.6 73.7 99.4 71.8 101.2 69.9 103 67.9 104.8 65.9 106.5 64 108.3 62 110 60 111.7 58 113.5 56 115.2 54.1 117 52.1 118.8 50.1 120.6 48.2 122.4 46.3 124.3 44.4 126.2 42.5 128.2 40.7 130.2 38.9 132.3 37.2 134.4 35.5 136.6 33.9 138.9 32.4 141.3 30.9 143.7 29.6 146.2 28.3 148.8 27.2 151.5 26.3 154.2 25.5 157.1 24.8 160 24.4 162.9 24.2 165.9 24.3 168.9 24.6 172 25.2 175 26.1 178 27.3 180.9 28.8 183.7 30.7 186.4 32.9 188.9 35.4 191.1 38.2 193.1 41.3 194.8 44.7 196.2 48.3 197.2 52.1 197.8 56 198 60Z"
-        stroke="url(#teamInf)"
-        strokeWidth="5"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function TeamCardShell({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div
-      className={`rounded-[12px] border border-[#e6e8ee] bg-white p-[20px] transition-all hover:-translate-y-[2px] hover:border-[#0d0f16] hover:shadow-[0_12px_32px_rgba(13,15,22,0.08)] sm:p-[22px] ${className ?? ""}`}
+    <span
+      className={`${teamMonoLabel} shrink-0 whitespace-nowrap border border-[#c3cad9] bg-white px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-[#5a606e]`}
     >
-      {children}
-    </div>
-  );
-}
-
-function TeamCardHead({ eyebrow, eyebrowBlue, icon }: { eyebrow: string; eyebrowBlue?: boolean; icon: TeamIconName }) {
-  return (
-    <div className="flex items-start justify-between gap-[12px]">
-      <div className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[11px] font-medium tracking-[1.1px] text-[#2242d6]">
-        {eyebrow}
-      </div>
-      <span className="grid size-[36px] shrink-0 place-items-center rounded-full bg-[#e9efff] text-[#2242d6]">
-        <TeamIcon name={icon} className="size-[18px]" />
-      </span>
-    </div>
+      {label}
+    </span>
   );
 }
 
 function TeamSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStarted(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const step = (i: number) => ({
+    opacity: started ? 1 : 0,
+    transform: started ? "none" : "translateY(10px)",
+    transition: `opacity .55s cubic-bezier(0.2,0.8,0.2,1) ${i * 90}ms, transform .55s cubic-bezier(0.2,0.8,0.2,1) ${i * 90}ms`,
+  });
+
   return (
     <div className="relative w-full shrink-0 bg-white" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute inset-0 border-b border-solid border-[#e6e8ee] pointer-events-none" />
-      <div className="relative mx-auto flex w-full max-w-[1200px] flex-col items-start px-[20px] pb-[53px] pt-[52px] sm:px-[44px]">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+      <style>{`
+        .team-rail { background-image: repeating-linear-gradient(to right, #b9c0d0 0 3px, transparent 3px 6px); }
+        @keyframes team-rail-move { to { background-position-x: -6px; } }
+        @media (prefers-reduced-motion: no-preference) {
+          .team-rail { animation: team-rail-move 1.1s linear infinite; }
+        }
+      `}</style>
+      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch relative flex size-full w-full flex-col items-start gap-[8px] px-[20px] pb-[53px] pt-[52px] sm:px-[44px]">
+        {/* label */}
+        <div className="[word-break:break-word] flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[12px] tracking-[1.2px] text-[#2242d6]">
           <p className="leading-[normal]">03 / КОМАНДА</p>
         </div>
         <h2
-          className="mt-[10px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[32px] sm:text-[44px] tracking-[-0.8px] w-full leading-[1.08]"
+          className="w-full font-['IBM_Plex_Sans:Bold',sans-serif] text-[30px] font-bold leading-[1.1] tracking-[-0.3px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Те, кто превращают сложное в рабочее<span className="text-[#2242d6]">.</span>
         </h2>
         <p
-          className="mt-[10px] w-full font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] sm:text-[16px] leading-[1.6] text-[#6b7280]"
+          className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.55] text-[#5a606e] sm:text-[17px] xl:whitespace-nowrap"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Междисциплинарная команда, которая разбирается в задаче, выстраивает систему и доводит продукт до результата.
+          Задача не переходит из кабинета в кабинет — она проходит по цепочке профилей: от диагностики аппарата до работающей системы.
         </p>
 
-        <div className="mt-[26px] grid w-full grid-cols-1 gap-[14px] sm:grid-cols-2 lg:grid-cols-[1.12fr_1fr_1fr]">
-          <TeamCardShell className="flex flex-col sm:col-span-2 lg:col-span-1 lg:row-span-2">
-            <div className="flex-1">
-              <TeamOrbit />
+        {/* mechanism */}
+        <div ref={ref} className="mt-[24px] flex w-full flex-col">
+          {/* input port on narrow screens */}
+          <div className="lg:hidden" style={step(0)}>
+            <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
+          </div>
+
+          {/* desktop track: rail with numbered nodes from ВХОД to ВЫХОД */}
+          <div className="hidden items-start gap-[10px] lg:flex" style={step(0)}>
+            <div className="pt-[3px]">
+              <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
             </div>
-            <div className="mt-[18px]">
-              <div aria-hidden className="h-[3px] w-[26px] bg-[#2242d6]" />
-              <div
-                className="mt-[12px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[23px] font-bold leading-[1.15] text-[#0d0f16]"
+            <div className="relative flex-1">
+              <span aria-hidden className="team-rail absolute -left-[10px] -right-[10px] top-[16px] h-px" />
+              <div className="relative grid grid-cols-4 gap-[26px]">
+                {teamStages.map((s) => (
+                  <div key={s.n} className="flex flex-col items-center">
+                    <TeamNode n={s.n} />
+                    <span aria-hidden className="h-[12px] w-0 border-l border-dashed border-[#c3cad9]" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="pt-[3px]">
+              <TeamPort label="ВЫХОД · РАБОЧИЙ РЕЗУЛЬТАТ" />
+            </div>
+          </div>
+
+          {/* stages */}
+          <div className="relative mt-[14px] lg:mt-0">
+            <span aria-hidden className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[#c3cad9] lg:hidden" />
+            <ol className="flex flex-col gap-[20px] lg:grid lg:grid-cols-4 lg:gap-[26px]">
+              {teamStages.map((s, i) => (
+                <li
+                  key={s.n}
+                  className="group relative ml-[48px] flex flex-col border border-[#e0e4ee] bg-white p-[16px] transition-colors duration-200 hover:border-[#0d0f16] lg:ml-0"
+                  style={step(i + 1)}
+                >
+                  <span aria-hidden className="absolute -left-[48px] top-[14px] lg:hidden">
+                    <TeamNode n={s.n} />
+                  </span>
+                  <h3
+                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {s.phase}
+                  </h3>
+                  <p
+                    className="mt-[2px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[15px] font-medium leading-[1.35] text-[#2242d6]"
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {s.role}
+                  </p>
+                  <p
+                    className="mt-[8px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#3a4050]"
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {s.does}
+                  </p>
+                  <p className={`${teamMonoLabel} mt-[8px] text-[12px] leading-[1.4] text-[#6a7080]`}>{s.method}</p>
+                  <div className="mt-auto pt-[14px]">
+                    <div className="border-t border-[#eceff5] pt-[10px]">
+                      <p className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}>Артефакт</p>
+                      <p className="mt-[3px] flex items-start gap-[8px]">
+                        <span
+                          aria-hidden
+                          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold leading-[1.45] text-[#2242d6]"
+                        >
+                          →
+                        </span>
+                        <span
+                          className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
+                          style={{ fontVariationSettings: '"wdth" 100' }}
+                        >
+                          {s.artifact}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* owner bar spanning all stages */}
+          <div style={step(5)}>
+            <div aria-hidden className="hidden h-[26px] w-full lg:grid lg:grid-cols-4 lg:gap-[26px]">
+              {teamStages.map((s) => (
+                <span key={s.n} className="mx-auto w-0 border-l border-dashed border-[#c3cad9]" />
+              ))}
+            </div>
+            <div className="flex flex-col gap-[8px] border border-[#d8dde8] bg-white px-[16px] py-[13px] transition-colors duration-200 hover:border-[#0d0f16] lg:flex-row lg:items-center lg:gap-[20px] lg:px-[20px]">
+              <div className="flex shrink-0 items-center gap-[12px]">
+                <TeamNode n={teamOwner.n} />
+                <h3
+                  className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {teamOwner.role}
+                </h3>
+              </div>
+              <p
+                className="flex-1 font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
-                Полный цикл
-              </div>
-              <div
-                className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px] font-normal leading-[1.55] text-[#6b7280]"
-                style={{ fontVariationSettings: '"wdth" 100' }}
-              >
-                Стратегия, аналитика, дизайн, разработка и запуск работают как одна система.
-              </div>
+                {teamOwner.does}
+              </p>
+              <p className="shrink-0 lg:text-right">
+                <span className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}>Артефакт · </span>
+                <span
+                  className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {teamOwner.artifact}
+                </span>
+              </p>
             </div>
-          </TeamCardShell>
+          </div>
 
-          <TeamCardShell>
-            <TeamCardHead eyebrow="УРОВЕНЬ КОМАНДЫ" eyebrowBlue icon="arrow" />
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[58px] sm:text-[64px] font-bold leading-[1] tracking-[-2px] text-[#2242d6]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Senior
-            </div>
-            <div aria-hidden className="mt-[12px] border-t border-dashed border-[#dfe4f0]" />
-            <div
-              className="mt-[12px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[19px] font-bold leading-[1.2] text-[#0d0f16]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Сильная экспертиза
-            </div>
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13.5px] font-normal leading-[1.55] text-[#5a606e]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              В команде только опытные специалисты с подтверждённой экспертизой в своих областях.
-            </div>
-          </TeamCardShell>
+          {/* output port on narrow screens */}
+          <div className="mt-[14px] lg:hidden" style={step(6)}>
+            <TeamPort label="ВЫХОД · РАБОЧИЙ РЕЗУЛЬТАТ" />
+          </div>
+        </div>
 
-          <TeamCardShell>
-            <TeamCardHead eyebrow="БЕЗ БЮРОКРАТИИ" icon="user" />
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[58px] sm:text-[64px] font-bold leading-[1] tracking-[-2px] text-[#2242d6]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              0
-            </div>
-            <div aria-hidden className="mt-[12px] border-t border-dashed border-[#dfe4f0]" />
-            <div
-              className="mt-[12px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[19px] font-bold leading-[1.2] text-[#0d0f16]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Без лишних слоёв
-            </div>
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13.5px] font-normal leading-[1.55] text-[#5a606e]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Прямое взаимодействие с командой, быстрые решения и никаких ненужных согласований.
-            </div>
-          </TeamCardShell>
-
-          <TeamCardShell>
-            <TeamCardHead eyebrow="ПРОЗРАЧНОСТЬ" icon="eye" />
-            <div className="mt-[10px]">
-              <TeamFlowMini />
-            </div>
-            <div
-              className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[19px] font-bold leading-[1.2] text-[#0d0f16]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Прозрачный процесс
-            </div>
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13.5px] font-normal leading-[1.55] text-[#5a606e]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Понятные этапы, видимые результаты и регулярная коммуникация.
-            </div>
-          </TeamCardShell>
-
-          <TeamCardShell>
-            <TeamCardHead eyebrow="ДОЛГАЯ ПЕРСПЕКТИВА" icon="trend" />
-            <div className="mt-[10px] flex justify-center">
-              <TeamInfinity />
-            </div>
-            <div
-              className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[19px] font-bold leading-[1.2] text-[#0d0f16]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Поддержка и развитие
-            </div>
-            <div
-              className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13.5px] font-normal leading-[1.55] text-[#5a606e]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              Остаёмся рядом после запуска: развиваем продукт, масштабируем и адаптируем под новые задачи.
-            </div>
-          </TeamCardShell>
+        {/* seal */}
+        <div className="mt-[18px] w-full" style={step(7)}>
+          <ul className="flex w-full flex-col divide-y divide-[#e4e8f0] border border-[#d8dde8] bg-white sm:flex-row sm:divide-x sm:divide-y-0">
+            {teamSeal.map((s, i) => (
+              <li key={s} className="flex flex-1 items-baseline gap-[10px] px-[16px] py-[11px]">
+                <span className={`${teamMonoLabel} text-[11.5px] tabular-nums tracking-[1px] text-[#2242d6]`}>0{i + 1}</span>
+                <span className="text-[15px] font-medium leading-[1.45] text-[#0d0f16]">{s}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
