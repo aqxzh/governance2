@@ -562,10 +562,9 @@ function ContoursSection({ onOpenSimulator }: { onOpenSimulator: () => void }) {
 
   return (
     <section id="contours" className="relative w-full">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[10px] items-start pb-[56px] pt-[52px] px-[20px] sm:px-[44px] relative size-full w-full max-w-[1170px] mx-auto">
+      <div className="content-stretch flex flex-col gap-[10px] items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
         <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-          <p className="leading-[normal]">02 / КОНТУРЫ</p>
+          <p className="leading-[normal]">01 / КОНТУРЫ</p>
         </div>
         <h2
           className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
@@ -788,7 +787,7 @@ function HorizontalBorder({ onTabClick, onHomeClick, language, onLanguageChange 
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[44px] relative size-full gap-[24px]">
+        <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[28px] relative size-full gap-[24px]">
           <Container2 onHomeClick={onHomeClick} />
           <div className="flex flex-row items-center gap-[16px]">
             <HeroTabs onTabClick={onTabClick} />
@@ -859,8 +858,8 @@ function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => vo
 
 const CONTACTS = {
   email: CONTACT_EMAIL,
-  phoneDisplay: "+7 (701) 000-00-00",
-  phoneHref: "+77010000000",
+  phoneDisplay: "+7 (776) 173-82-91",
+  phoneHref: "+777761738291",
 };
 
 function MeetingModal({ onClose }: { onClose: () => void }) {
@@ -1143,7 +1142,7 @@ function Container16() {
 
 function Border2() {
   return (
-    <div className="content-stretch flex h-[103px] items-start justify-center p-px relative w-full max-w-[1112px] mx-auto" data-name="Border">
+    <div className="content-stretch flex h-[103px] items-start justify-center p-px relative w-full" data-name="Border">
       <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
       <VerticalBorder />
       <VerticalBorder1 />
@@ -1155,7 +1154,7 @@ function Border2() {
 
 function Container18() {
   return (
-    <div className="content-stretch flex flex-col items-start mt-[14px] w-full max-w-[1112px] mx-auto" data-name="Container">
+    <div className="content-stretch flex flex-col items-start mt-[14px] w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-black w-full">
         <p className="leading-[normal]">{`// плейсхолдеры — подставить фактические показатели`}</p>
       </div>
@@ -1210,10 +1209,10 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
       </div>
 
       {/* Контент поверх фона */}
-      <div className="relative z-10 px-[20px] sm:px-[44px] py-[48px] sm:py-[64px]">
+      <div className="relative z-10 px-[20px] sm:px-[28px] py-[48px] sm:py-[64px]">
         {/* Label */}
         <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white mb-[24px]">
-          <p className="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
+          <p className="leading-[normal]">ИИ ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
         </div>
 
         {/* Hero content: text left, image and buttons right */}
@@ -1221,14 +1220,14 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
           <div className="flex-1">
             {/* Main heading */}
             <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-white text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-              <p className="mb-0">Государство и бизнес,</p>
+              <p className="mb-0">Организации,</p>
               <p className="mb-0">которые видят свои</p>
               <p>процессы целиком</p>
             </div>
 
             {/* Description text only */}
             <div className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[28.8px] text-white/75" style={{ fontVariationSettings: '"wdth" 100' }}>
-              <p>Governance.kz — прикладной центр цифровой трансформации управления. ИИ анализирует функции, кадры, услуги и нагрузку в единой логике данных: находит дублирования, барьеры и аномалии — а решения остаются за людьми.</p>
+              <p>Governance.kz — прикладной центр цифровой трансформации управления. ИИ анализирует кадры, услуги и нагрузку в единой логике данных.</p>
             </div>
           </div>
 
@@ -1336,7 +1335,7 @@ function TeamNode({ n }: { n: string }) {
 function TeamPort({ label }: { label: string }) {
   return (
     <span
-      className={`${teamMonoLabel} shrink-0 whitespace-nowrap border border-[#c3cad9] bg-white px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-[#5a606e]`}
+      className={`${teamMonoLabel} shrink-0 whitespace-nowrap bg-white px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-[#5a606e]`}
     >
       {label}
     </span>
@@ -1374,7 +1373,7 @@ function TeamSection() {
   });
 
   return (
-    <div className="relative w-full shrink-0 bg-white" data-name="HorizontalBorder">
+    <div className="relative w-full shrink-0 bg-white border-t border-[#e6e8ee]" data-name="HorizontalBorder">
       <style>{`
         .team-rail { background-image: repeating-linear-gradient(to right, #b9c0d0 0 3px, transparent 3px 6px); }
         @keyframes team-rail-move { to { background-position-x: -6px; } }
@@ -1382,11 +1381,10 @@ function TeamSection() {
           .team-rail { animation: team-rail-move 1.1s linear infinite; }
         }
       `}</style>
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch relative flex size-full w-full flex-col items-start gap-[8px] px-[20px] pb-[53px] pt-[52px] sm:px-[44px]">
+      <div className="content-stretch relative flex size-full w-full flex-col items-start gap-[8px] px-[20px] pb-[68px] pt-[66px] sm:px-[28px]">
         {/* label */}
         <div className="[word-break:break-word] flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[12px] tracking-[1.2px] text-[#2242d6]">
-          <p className="leading-[normal]">03 / КОМАНДА</p>
+          <p className="leading-[normal]">02 / КОМАНДА</p>
         </div>
         <h2
           className="w-full font-['IBM_Plex_Sans:Bold',sans-serif] text-[30px] font-bold leading-[1.1] tracking-[-0.3px] text-[#0d0f16]"
@@ -1542,378 +1540,11 @@ function TeamSection() {
   );
 }
 
-function Container26() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ПРОДУКТЫ</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading4() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Реестр решений</p>
-      </div>
-    </div>
-  );
-}
-
-function Container27() {
-  return (
-    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-          <p className="leading-[normal]">№</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container28() {
-  return (
-    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-          <p className="leading-[normal]">РЕШЕНИЕ</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container29() {
-  return (
-    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-          <p className="leading-[normal]">ЧТО ДЕЛАЕТ</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container30() {
-  return (
-    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-          <p className="leading-[normal]">ОСОБЕННОСТЬ</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Background6() {
-  return (
-    <div className="bg-[#0d0f16] grid grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[_39px] h-[39px] relative shrink-0 w-full" data-name="Background">
-      <Container27 />
-      <Container28 />
-      <Container29 />
-      <Container30 />
-    </div>
-  );
-}
-
-function Container31() {
-  return (
-    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
-          <p className="leading-[normal]">01</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container32() {
-  return (
-    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Smart HR</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container33() {
-  return (
-    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[21px] mb-0">Диалоговый помощник KZ/RU/EN, фильтр профилей, аналитика</p>
-          <p className="leading-[21px]">кандидатов</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container34() {
-  return (
-    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">3 модуля</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function HorizontalBorder8({ onClick }: { onClick: () => void }) {
-  return (
-    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]">
-        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-        <Container31 />
-        <Container32 />
-        <Container33 />
-        <Container34 />
-      </div>
-    </div>
-  );
-}
-
-function Container35() {
-  return (
-    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
-          <p className="leading-[normal]">02</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container36() {
-  return (
-    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Онлайн-ассессмент</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container37() {
-  return (
-    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[21px]">Компьютерное зрение, анализ видео/аудио, поведенческие паттерны</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container38() {
-  return (
-    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Human-in-the-loop</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BackgroundHorizontalBorder({ onClick }: { onClick: () => void }) {
-  return (
-    <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white">
-        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-        <Container35 />
-        <Container36 />
-        <Container37 />
-        <Container38 />
-      </div>
-    </div>
-  );
-}
-
-function Container39() {
-  return (
-    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
-          <p className="leading-[normal]">03</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container40() {
-  return (
-    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Помощник руководителя</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container41() {
-  return (
-    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[21px]">Интеграция ЭДО, нагрузка, узкие места, управленческий сигнал</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container42() {
-  return (
-    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Для ЛПР</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function HorizontalBorder9({ onClick }: { onClick: () => void }) {
-  return (
-    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-[#f6f7fb]">
-        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-        <Container39 />
-        <Container40 />
-        <Container41 />
-        <Container42 />
-      </div>
-    </div>
-  );
-}
-
-function Container43() {
-  return (
-    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[14px] whitespace-nowrap">
-          <p className="leading-[normal]">04</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container44() {
-  return (
-    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Цифровой суверенитет</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container45() {
-  return (
-    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[14px] whitespace-normal" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[21px] mb-0">Закрытый контур, суперкомпьютер и локальные сервера, защита</p>
-          <p className="leading-[21px]">данных РК</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container46() {
-  return (
-    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[14px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-          <p className="leading-[normal]">Инфраструктура</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BackgroundHorizontalBorder1({ onClick }: { onClick: () => void }) {
-  return (
-    <div className="bg-[#f6f7fb] relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-      <div onClick={onClick} className="group grid cursor-pointer grid-cols-[____60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors hover:bg-white">
-        <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-        <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-        <Container43 />
-        <Container44 />
-        <Container45 />
-        <Container46 />
-      </div>
-    </div>
-  );
-}
-
-function Border3({ onImageClick }: { onImageClick: (id: ProductImageKey) => void }) {
-  return (
-    <div className="relative shrink-0 w-full" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10" />
-      <div className="content-stretch flex flex-col items-start relative size-full">
-        <Background6 />
-        <HorizontalBorder8 onClick={() => onImageClick("smarthr")} />
-        <BackgroundHorizontalBorder onClick={() => onImageClick("assessment")} />
-        <HorizontalBorder9 onClick={() => onImageClick("assistant")} />
-        <BackgroundHorizontalBorder1 onClick={() => onImageClick("sovereignty")} />
-      </div>
-    </div>
-  );
-}
-
-function HorizontalBorder7({ onImageClick }: { onImageClick: (id: ProductImageKey) => void }) {
-  return (
-    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[8px] items-start pb-[53px] pt-[52px] px-[20px] sm:px-[44px] relative size-full">
-        <Container26 />
-        <Heading4 />
-        <div className="w-full overflow-x-auto">
-          <Border3 onImageClick={onImageClick} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Container47() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">05 / ИНФОГРАФИКА</p>
+        <p className="leading-[normal]">04 / ИНФОГРАФИКА</p>
       </div>
     </div>
   );
@@ -2125,8 +1756,8 @@ function SchemeExplorer() {
 function BackgroundHorizontalBorder2() {
   return (
     <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
+      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-t border-solid inset-0 pointer-events-none" />
+      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container47 />
         <Heading5 />
         <Group4 />
@@ -2140,7 +1771,7 @@ function Container48() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">06 / СТРАТЕГИЯ</p>
+        <p className="leading-[normal]">05 / СТРАТЕГИЯ</p>
       </div>
     </div>
   );
@@ -2194,7 +1825,7 @@ function Heading6() {
   return (
     <div className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Стратегический фундамент: Почему Казахстан?</p>
+        <p className="leading-[normal]">Стратегический фундамент</p>
       </div>
       <Group6 />
       <Group5 />
@@ -2206,7 +1837,7 @@ function BackgroundHorizontalBorder3() {
   return (
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full">
+      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container48 />
         <Heading6 />
       </div>
@@ -2218,7 +1849,7 @@ function Container49() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">07 / AI-АССЕССМЕНТ</p>
+        <p className="leading-[normal]">06 / AI-АССЕССМЕНТ</p>
       </div>
     </div>
   );
@@ -2291,7 +1922,7 @@ function BackgroundHorizontalBorder4({ onImageClick }: { onImageClick: () => voi
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
           <Container49 />
           <Heading7 />
           <Group8 onImageClick={onImageClick} />
@@ -2305,7 +1936,7 @@ function Container50() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">08 / EXECASSIST</p>
+        <p className="leading-[normal]">07 / EXECASSIST</p>
       </div>
     </div>
   );
@@ -2325,7 +1956,7 @@ function BackgroundHorizontalBorder5() {
   return (
     <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[20px] items-start pb-[53px] pt-[52px] px-[44px] relative size-full max-w-[1170px] mx-auto">
+      <div className="content-stretch flex flex-col gap-[20px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full max-w-[1170px] mx-auto">
         <Container50 />
         <Heading8 />
         <Frame22 />
@@ -2503,7 +2134,7 @@ function Container51() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">09 / SERVICEFLOW</p>
+        <p className="leading-[normal]">08 / SERVICEFLOW</p>
       </div>
     </div>
   );
@@ -2519,25 +2150,9 @@ function Heading9() {
   );
 }
 
-function ServiceFlowText() {
-  return (
-    <div className="flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center not-italic relative shrink-0 text-[#0d0f16] text-[0px] w-full max-w-[350px]" data-name="ServiceFlow Text">
-      <p className="mb-0 text-[26px]">
-        <span className="leading-[normal]">{`Проанализировано `}</span>
-        <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">1 500</span>
-        <span className="leading-[normal]">{` государственных услуг`}</span>
-      </p>
-      <p className="leading-[normal] mb-0 text-[26px]">с помощью ИИ.</p>
-      <p className="leading-[normal] mb-0 text-[26px]">Выявление аномалий,</p>
-      <p className="leading-[normal] mb-0 text-[26px]">скрытых офлайн-процессов</p>
-      <p className="leading-[normal] text-[26px]">и нормативных барьеров.</p>
-    </div>
-  );
-}
-
 function Group9() {
   return (
-    <div className="relative w-full h-[321.121px]" data-name="image 58">
+    <div className="relative w-full h-[420px]" data-name="image 58">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
       <div className="absolute left-[6%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="mb-0">Спрятанный</p>
@@ -2552,7 +2167,7 @@ function Group9() {
 
 function Group10() {
   return (
-    <div className="relative w-full max-w-[723.175px]">
+    <div className="relative w-full">
       <Group9 />
       <div className="absolute left-[48%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
         <p className="mb-0">Лишний</p>
@@ -2571,16 +2186,15 @@ function BackgroundHorizontalBorder6() {
     <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-col items-start justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
           <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
             <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-              <p className="leading-[normal]">09 / SERVICEFLOW</p>
+              <p className="leading-[normal]">08 / SERVICEFLOW</p>
             </div>
           </div>
           <Heading9 />
-          <div className="flex flex-col lg:flex-row items-start gap-[40px] w-full">
-            <ServiceFlowText />
-            <div className="w-full lg:flex-1 lg:min-w-0">
+          <div className="flex flex-col items-center gap-[40px] w-full">
+            <div className="w-full">
               <Group10 />
             </div>
           </div>
@@ -2594,7 +2208,7 @@ function Container52() {
   return (
     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">10 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
+        <p className="leading-[normal]">09 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
       </div>
     </div>
   );
@@ -2804,7 +2418,7 @@ function HorizontalBorder10() {
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
       <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[8px] items-center justify-center pb-[53px] pt-[52px] px-[44px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[8px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
           <Container52 />
           <Heading10 />
           <Container53 />
@@ -2891,7 +2505,7 @@ function Background7() {
     <>
       <div className="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background">
         <div className="flex flex-row items-center size-full">
-          <div className="content-stretch flex justify-between items-start sm:items-center px-[20px] sm:px-[44px] py-[56px] relative size-full gap-[36px] flex-col sm:flex-row">
+          <div className="content-stretch flex justify-between items-start sm:items-center px-[20px] sm:px-[28px] py-[56px] relative size-full gap-[36px] flex-col sm:flex-row">
             <Container64 />
             <Background8 onClick={() => setShowMeeting(true)} />
           </div>
@@ -2916,7 +2530,7 @@ function Container66() {
   return (
     <div className="h-[59px] relative shrink-0 w-full" data-name="Container">
       <div className="flex flex-row justify-center size-full">
-        <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[44px] py-[22px] relative size-full">
+        <div className="content-stretch flex items-start justify-between px-[20px] sm:px-[28px] py-[22px] relative size-full">
           <Container67 />
         </div>
       </div>
@@ -3071,7 +2685,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
       <div className="content-stretch flex flex-col px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
         {/* Registry table — same columns as "04 / ПРОДУКТЫ" */}
         <div className="relative w-full">
-          <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
           <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
             {/* Header */}
             <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
@@ -3214,16 +2828,17 @@ function DemkaSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white py-[80px]"
+      className="relative w-full bg-white pt-[66px] pb-[68px] border-t border-[#e6e8ee]"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(24px)",
         transition: "opacity .6s ease, transform .6s cubic-bezier(0.2,0.8,0.2,1)",
       }}
     >
-      <div className="mx-auto w-full max-w-[1112px] px-[20px] sm:px-[44px] flex flex-col items-center gap-[28px]">
+      <div className="w-full px-[20px] sm:px-[28px] flex flex-col items-center gap-[28px]">
         {/* Заголовок */}
         <div className="flex w-full flex-col gap-[6px]">
+          <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] not-italic leading-[normal] tracking-[1.2px] text-[#2242d6]">03 / ПРОЦЕСС РАБОТЫ</p>
           <h3
             className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[34px] sm:text-[42px] tracking-[-0.34px] leading-[1.1]"
             style={{ fontVariationSettings: '"wdth" 100' }}
@@ -3234,7 +2849,7 @@ function DemkaSection() {
       </div>
 
       {/* Превью / встроенное видео */}
-      <div className="w-full px-[20px] sm:px-[44px] mt-[28px]">
+      <div className="w-full px-[20px] sm:px-[28px] mt-[28px]">
         <div
           className="relative block w-full max-w-[1600px] mx-auto overflow-hidden rounded-[14px] outline-none"
         >
@@ -3324,7 +2939,7 @@ function DemkaSection() {
       </div>
 
       {/* Подзаголовок */}
-      <div className="w-full px-[20px] sm:px-[44px] mt-[28px]">
+      <div className="w-full px-[20px] sm:px-[28px] mt-[28px]">
         <p
           className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center mx-auto"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -3334,8 +2949,8 @@ function DemkaSection() {
       </div>
 
       {/* Шаги — выровнены по границам статистики */}
-      <div className="w-full px-[20px] sm:px-[44px]">
-        <div className="grid w-full max-w-[1112px] mx-auto grid-cols-1 gap-px overflow-hidden border border-[#0d0f16] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="w-full px-[20px] sm:px-[28px]">
+        <div className="grid w-full grid-cols-1 gap-px overflow-hidden border border-[#0d0f16] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <div
               key={s.num}
@@ -3439,14 +3054,13 @@ function Background() {
           ) : (
             <>
               <Frame21 onTabClick={handleTabChange} />
-              <DemkaSection />
               <ContoursSection onOpenSimulator={() => handleTabChange("simulator")} />
-              <div className="w-full px-[20px] sm:px-[44px] py-[40px]">
+              <div className="w-full px-[20px] sm:px-[28px] py-[40px]">
                 <Border2 />
                 <Container18 />
               </div>
               <TeamSection />
-              <HorizontalBorder7 onImageClick={(id) => setImageModal(id)} />
+              <DemkaSection />
               <BackgroundHorizontalBorder2 />
               <BackgroundHorizontalBorder3 />
               <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
