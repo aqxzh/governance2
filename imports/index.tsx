@@ -3055,10 +3055,6 @@ function Background() {
             <>
               <Frame21 onTabClick={handleTabChange} />
               <ContoursSection onOpenSimulator={() => handleTabChange("simulator")} />
-              <div className="w-full px-[20px] sm:px-[28px] py-[40px]">
-                <Border2 />
-                <Container18 />
-              </div>
               <TeamSection />
               <DemkaSection />
               <BackgroundHorizontalBorder2 />
