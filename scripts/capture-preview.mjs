@@ -48,6 +48,22 @@ try {
 					.evaluate((section) => section.scrollIntoView({ block: 'start' }));
 				await page.screenshot({ path: `${directory}/contours-${locale}-${id}-${width}.png` });
 			}
+			await page.locator('#team').evaluate((section) => section.scrollIntoView({ block: 'start' }));
+			const teamClip = await page.locator('#team').evaluate((section) => {
+				const bounds = section.getBoundingClientRect();
+				return {
+					x: bounds.x + scrollX,
+					y: bounds.y + scrollY,
+					width: bounds.width,
+					height: bounds.height
+				};
+			});
+			// Page clip avoids offscreen fixed skip-links appearing in a tall element screenshot.
+			await page.screenshot({
+				path: `${directory}/team-${locale}-${width}.png`,
+				fullPage: true,
+				clip: teamClip
+			});
 			results.push({
 				locale,
 				width,

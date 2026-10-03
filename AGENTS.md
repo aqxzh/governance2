@@ -4,7 +4,7 @@
 
 This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
 The original React reference remains in `/home/marinadec/projects/website` on port 8443.
-Implemented: header, hero, contact/PDF dialogs, language switching, and the real three-tab contour section with all 18 solutions, image previews and local video dialogs. The next landing block is TeamSection. Remaining landing sections, standalone contour pages, simulator modules and FoodFlow are NOT migrated yet.
+Implemented: header, hero, contact/PDF dialogs, language switching, and the real three-tab contour section with all 18 solutions, image previews and local video dialogs. TeamSection is also migrated: four stages, an implementation owner and three principles, all visible in static HTML. Next is the work-process block (React DemkaSection). Remaining landing sections, standalone contour pages, simulator modules and FoodFlow are NOT migrated yet.
 
 Read `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
 
