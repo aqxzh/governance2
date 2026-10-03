@@ -11,7 +11,7 @@
 - Мобильное меню на Sheet, модалки на Dialog, локализованное закрытие, Escape/возврат фокуса.
 - Переключатель языка — глобус в правом углу шапки на DropdownMenu. Меню показывает полные имена RU/KZ/EN и отметку текущего языка; поддерживает клавиатуру. Без JavaScript доступны обычные ссылки в noscript. Дублирующий переключатель из мобильного Sheet удалён.
 - Контактный Dialog не отправляет данные. PDF отсутствует, это явно указано.
-- Hero-видео запускается только явно по кнопке и может быть остановлено; автоматического движения при reduced-motion нет.
+- По принятой визуальной обратной связи hero-видео автоматически запускается без звука после гидратации; кнопка позволяет остановить и снова включить его. При prefers-reduced-motion остаётся статичный постер и ручной запуск.
 - Title/description, canonical, hreflang, Open Graph, robots.txt, sitemap для реализованных главных страниц.
 
 ## Технические уточнения, найденные проверками
@@ -36,7 +36,7 @@ magick ../website/imports/team-main.png -resize 516x -quality 85 static/images/t
 ffmpeg -ss 1 -i ../website/public/videos/graphs.mp4 -frames:v 1 -vf 'scale=1170:-1' -update 1 static/images/graphs-poster.webp
 ```
 
-Hero PNG: 696 KiB → WebP 33/89 KiB; фоновый poster ~8 KiB. Изображения имеют width/height, srcset/sizes; видео не загружается автоматически.
+Hero PNG: 696 KiB → WebP 33/89 KiB; фоновый poster ~8 KiB. Изображения имеют width/height, srcset/sizes; видео загружается при автозапуске после гидратации, а при reduced-motion — только после ручного включения.
 
 Эталон: 15 скриншотов пяти основных входов на 390/768/1440px в `/tmp/governance-baseline/`. Новый образец: 9 снимков трёх языков на тех же ширинах в `.artifacts/preview/`, плюс viewport-снимки hero. Артефакты локальные и не коммитятся.
 
@@ -44,12 +44,12 @@ GLM-5.3-flash сравнил desktop/mobile с исходником. По зам
 
 ## Проверки
 
-Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 33 browser-теста (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
+Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 35 browser-тестов (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
 
 - svelte-check и Svelte MCP autofixer для авторских/изменённых компонентов.
 - ESLint и Prettier.
 - Unit: полнота переводов, реальные различия сообщений, kk/KZ, URL-стратегия (включая порты и вложенные пути).
-- Playwright: locale/SEO, локальные шрифты с казахскими буквами, отсутствие browser errors, refresh/history, работа HTML/ссылок без JavaScript, Dialog/Sheet, reduced motion, opt-in video, отсутствие POST, отсутствие overflow на 320/390/768/1440px, настоящий 404.
+- Playwright: locale/SEO, локальные шрифты с казахскими буквами, отсутствие browser errors, refresh/history, работа HTML/ссылок без JavaScript, Dialog/Sheet, reduced motion, muted autoplay/остановка/повторный запуск видео, отсутствие POST, отсутствие overflow на 320/390/768/1440px, настоящий 404.
 - Axe: автоматические WCAG A/AA проверки главной и открытого контактного Dialog. Это не полная сертификация WCAG.
 - Проверка единой палитры: фактические primary/CTA/meta theme-color совпадают, input/border одинаковы, радиусы кнопки/Card/Dialog следуют стандартной шкале.
 - Отдельная проверка сборки: HTML всех локалей, один H1, canonical/hreflang, robots, локальные шрифты, отсутствие Figma CDN и временных prerender-origin в ссылках.

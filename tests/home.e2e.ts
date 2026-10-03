@@ -49,7 +49,7 @@ for (const locale of ['ru', 'kk', 'en'] as const) {
 		expect(
 			await hero.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
 		).toBe(true);
-		await expect(page.locator('video')).toHaveCount(0);
+		await expect(page.locator('video')).toHaveCount(1);
 		await page.waitForTimeout(200);
 		expect(errors).toEqual([]);
 	});
@@ -187,9 +187,28 @@ test('the missing PDF is communicated honestly', async ({ page }) => {
 	await expect(dialog).not.toBeVisible();
 });
 
-test('background video is opt-in and can be stopped with reduced motion enabled', async ({
-	page
-}) => {
+test('background video autoplays muted and can be stopped and restarted', async ({ page }) => {
+	await page.emulateMedia({ reducedMotion: 'no-preference' });
+	await page.goto('/en/');
+	const video = page.locator('video');
+	await expect(video).toHaveCount(1);
+	await expect
+		.poll(() =>
+			video.evaluate(
+				(element: HTMLVideoElement) => element.muted && !element.paused && element.readyState >= 2
+			)
+		)
+		.toBe(true);
+	await page.getByRole('button', { name: 'Pause background video' }).click();
+	await expect(video).toHaveCount(0);
+	await page.getByRole('button', { name: 'Play background video' }).click();
+	await expect(video).toHaveCount(1);
+	await expect
+		.poll(() => video.evaluate((element: HTMLVideoElement) => element.muted && !element.paused))
+		.toBe(true);
+});
+
+test('background video remains opt-in with reduced motion enabled', async ({ page }) => {
 	await page.emulateMedia({ reducedMotion: 'reduce' });
 	await page.goto('/en/');
 	await expect(page.locator('video')).toHaveCount(0);

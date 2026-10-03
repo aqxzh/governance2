@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import PlayIcon from '@lucide/svelte/icons/play';
 	import PauseIcon from '@lucide/svelte/icons/pause';
 	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
@@ -9,6 +10,10 @@
 	import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '#lib/site.js';
 
 	let backgroundPlaying = $state(false);
+
+	onMount(() => {
+		backgroundPlaying = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	});
 </script>
 
 <section
