@@ -1,17 +1,32 @@
-node_modules/
-dist/
-build/
-.cache/
-.env*
-.vite/
-vite.config.*.timestamp-*
-*.tsbuildinfo
-*-debug.log*
-logs/
-*.log
-.claude-replay.*
-.tmp-*
-.DS_Store
+node_modules
 
-# локальные бэкапы видео — не для репозитория
-_video-originals/
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+# Local visual evidence
+.artifacts/
+
+# Playwright
+playwright-report/
+test-results
+# Paraglide
+src/lib/paraglide
+project.inlang/cache/

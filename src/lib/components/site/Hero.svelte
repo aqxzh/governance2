@@ -1,0 +1,152 @@
+<script lang="ts">
+	import PlayIcon from '@lucide/svelte/icons/play';
+	import PauseIcon from '@lucide/svelte/icons/pause';
+	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
+	import { asset } from '$app/paths';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Dialog from '#lib/components/ui/dialog/index.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '#lib/site.js';
+
+	let backgroundPlaying = $state(false);
+</script>
+
+<section
+	aria-labelledby="hero-title"
+	class="relative isolate site-container overflow-hidden bg-hero-surface"
+>
+	<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+		<img
+			src={asset('/images/graphs-poster.webp')}
+			alt=""
+			class="size-full scale-[1.12] object-cover blur-[2px]"
+			width="1170"
+			height="658"
+		/>
+		{#if backgroundPlaying}
+			<video
+				src={asset('/videos/graphs.mp4')}
+				autoplay
+				muted
+				loop
+				playsinline
+				class="absolute inset-0 size-full scale-[1.12] object-cover blur-[2px]"
+			></video>
+		{/if}
+		<div class="absolute inset-0 bg-foreground/75"></div>
+		<div
+			class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background sm:h-24"
+		></div>
+	</div>
+
+	<div class="px-5 pt-10 pb-16 sm:px-7 sm:pt-16 sm:pb-24">
+		<p
+			class="mb-7 font-mono text-[11px] leading-relaxed tracking-widest text-white uppercase sm:mb-8 sm:text-xs"
+		>
+			{m.hero_eyebrow()}
+		</p>
+		<div class="grid items-start gap-7 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,516px)]">
+			<div class="min-w-0">
+				<h1
+					id="hero-title"
+					class="mb-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.07] font-bold tracking-tight text-balance text-white sm:mb-6"
+				>
+					{m.hero_title()}
+				</h1>
+				<p class="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+					{m.hero_description()}
+				</p>
+			</div>
+			<div class="flex min-w-0 flex-col gap-5 sm:gap-6">
+				<img
+					src={asset('/images/team-main.webp')}
+					srcset={`${asset('/images/team-main-small.webp')} 516w, ${asset('/images/team-main.webp')} 1032w`}
+					sizes="(min-width: 1024px) 516px, (min-width: 768px) 700px, calc(100vw - 40px)"
+					alt={m.hero_image_alt()}
+					width="1032"
+					height="590"
+					fetchpriority="high"
+					class="w-full rounded-lg bg-muted object-cover"
+				/>
+				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+					<Dialog.Root>
+						<Dialog.Trigger>
+							{#snippet child({ props })}
+								<Button
+									{...props}
+									class="h-auto min-h-11 rounded-sm px-5 py-3 font-semibold whitespace-normal shadow-none"
+								>
+									{m.meeting_cta()}
+									<ArrowRightIcon aria-hidden="true" />
+								</Button>
+							{/snippet}
+						</Dialog.Trigger>
+						<Dialog.Content closeLabel={m.close_label()} class="sm:max-w-lg">
+							<Dialog.Header>
+								<Dialog.Title>{m.meeting_cta()}</Dialog.Title>
+								<Dialog.Description>{m.meeting_description()}</Dialog.Description>
+							</Dialog.Header>
+							<dl class="grid gap-4">
+								<div>
+									<dt class="mb-1 section-eyebrow">{m.contact_email()}</dt>
+									<dd>
+										<a
+											class="break-all text-primary underline underline-offset-4"
+											href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
+										>
+									</dd>
+								</div>
+								<div>
+									<dt class="mb-1 section-eyebrow">{m.contact_phone()}</dt>
+									<dd>
+										<a
+											class="text-primary underline underline-offset-4"
+											href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE_DISPLAY}</a
+										>
+									</dd>
+								</div>
+							</dl>
+							<p class="rounded-md bg-muted p-4 text-sm leading-relaxed text-muted-foreground">
+								{m.meeting_preview()}
+							</p>
+						</Dialog.Content>
+					</Dialog.Root>
+					<Dialog.Root>
+						<Dialog.Trigger>
+							{#snippet child({ props })}
+								<Button
+									{...props}
+									variant="outline"
+									class="h-auto min-h-11 rounded-sm border-foreground px-5 py-3 font-semibold whitespace-normal shadow-none"
+									>{m.note_cta()}</Button
+								>
+							{/snippet}
+						</Dialog.Trigger>
+						<Dialog.Content closeLabel={m.close_label()}>
+							<Dialog.Header>
+								<Dialog.Title>{m.note_cta()}</Dialog.Title>
+								<Dialog.Description>{m.note_description()}</Dialog.Description>
+							</Dialog.Header>
+							<Button
+								href={`mailto:${CONTACT_EMAIL}`}
+								class="h-auto min-h-11 px-4 py-3 whitespace-normal">{m.note_contact()}</Button
+							>
+						</Dialog.Content>
+					</Dialog.Root>
+				</div>
+			</div>
+		</div>
+		<Button
+			variant="ghost"
+			size="sm"
+			aria-pressed={backgroundPlaying}
+			onclick={() => (backgroundPlaying = !backgroundPlaying)}
+			class="mt-7 h-auto min-h-9 gap-2 rounded-sm bg-foreground/60 px-3 text-xs whitespace-normal text-white/90 hover:bg-foreground/80 hover:text-white"
+		>
+			{#if backgroundPlaying}<PauseIcon aria-hidden="true" />{:else}<PlayIcon
+					aria-hidden="true"
+				/>{/if}
+			{backgroundPlaying ? m.background_pause() : m.background_play()}
+		</Button>
+	</div>
+</section>

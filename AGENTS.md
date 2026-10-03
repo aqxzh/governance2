@@ -1,35 +1,40 @@
-# figma-make-app
+# Governance.kz — SvelteKit migration
 
-React + Vite + Tailwind CSS project running inside Figma Make.
+## Scope and status
 
-## Development Server
+This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
+The original React reference remains in `/home/marinadec/projects/website` on port 8443.
+The first checkpoint implements the header, hero, translated contact/PDF dialogs, language switching and a temporary contour overview. Full landing sections, contour pages, simulator modules and FoodFlow are NOT migrated yet.
 
-A Vite development server is **already running** on `$PORT` (default 8443). You don't need to start it manually.
+Read `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
 
-- Preview URL: The user can access the running app through the preview panel
-- Hot reload: Changes to source files are reflected immediately
+## Stack and conventions
 
-## Project Structure
+- Svelte 5 runes, SvelteKit 2, TypeScript strict, Vite 8, adapter-static with prerendering.
+- Use shadcn-svelte components in `src/lib/components/ui/`. Do not reimplement Dialog, Sheet, focus management, inputs or buttons from scratch.
+- Brand styling lives in `src/routes/layout.css`: semantic shadcn variables + Tailwind v4; primary #2242D6. Avoid duplicated hex values in application components.
+- Imports use the `#lib/*` package alias. Framework imports use `$app/*`.
+- Use Paraglide JS for messages. Locale codes are ru, kk, en; the visible Kazakh switcher label is KZ. No hand-written translation runtime.
+- Paraglide URL patterns must support ports, the root URL and nested pages. Preserve request isolation during prerendering.
+- All published routes must have prerendered HTML with matching locale, metadata and content. The site is hosted at the domain root; `paths.relative: false` prevents temporary prerender origins leaking into links.
+- Local fonts come from Fontsource (no Figma CDN).
+- No fictitious PDFs, metrics, successful submissions or completed demoes. Mark drafts and unfinished sections honestly.
+- Never send real email/lead submissions in tests. Current Dialog is contact-only; delivery integration is deliberately not enabled.
+- Do not change the VPS, nginx, SSL or the second site during local work.
 
-This is the canonical project structure. Start with task-relevant files below. Only follow imports or inspect other files when required, when a documented path is missing, or when the repository contradicts this guide.
+## Commands
 
-- `src/main.tsx` - React entrypoint; imports `src/index.css` and mounts `src/App.tsx` into the `#root` element
-- `src/App.tsx` - Primary application component and the usual starting point for UI work
-- `src/index.css` - Global CSS entrypoint and Tailwind CSS v4 import
-- `index.html` - Vite HTML shell containing the `#root` element and loading `src/main.tsx`
-- `package.json` - Project dependencies and the Vite build, development, preview, and formatting scripts
-- `vite.config.ts` - Vite configuration with React, Tailwind CSS v4, and Figma Make plugins plus the `@` alias for `src`
-- `.mise.toml` - Toolchain versions for Node.js and pnpm
+Node 24.19.0, pnpm 10.34.3 (`packageManager`, `.mise.toml`).
 
-## Dependencies
+```sh
+pnpm install --frozen-lockfile
+pnpm dev --host 127.0.0.1 --port 5174 --strictPort
+pnpm format
+pnpm verify
+```
 
-- Runtime: React 19 and React DOM 19
-- Styling: Tailwind CSS v4 with the `@tailwindcss/vite` plugin
-- Build tooling: Vite 8, TypeScript 5.7, and `@vitejs/plugin-react`
-- Formatting: oxfmt
+`pnpm verify` runs types, lint/format, unit tests, a production build + browser tests, and checks generated HTML. Playwright Chromium is installed separately using `pnpm exec playwright install chromium`.
 
-## Styling
+Generated Paraglide output is ignored; `prepare` and `check` compile it. Do not edit generated messages/runtime. Screenshot evidence goes to ignored `.artifacts/preview/` via `node scripts/capture-preview.mjs` while dev is running.
 
-This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin configured in `vite.config.ts`. `src/index.css` imports Tailwind with `@import 'tailwindcss';`. Use Tailwind utility classes directly in JSX and put global CSS or Tailwind v4 theme customization in `src/index.css`. This scaffold does not need a Tailwind config file or PostCSS config.
-
-`src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
+Use the Svelte MCP autofixer for authored/modified Svelte components. Vision comparisons may use SuperPC/glm-5.3-flash; verify suggested behaviours with DOM, source and browser tests, not screenshots alone.

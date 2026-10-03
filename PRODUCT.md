@@ -67,15 +67,15 @@ Governance.kz analyzes government functions, staff, services, and workload in a 
 
 ## Evidence on Hand
 
-| Asset | Location / status |
-|---|---|
-| Figma-export landing implementation | `imports/index.tsx` (primary UI source) |
-| Product copy (Russian) | Embedded throughout `imports/index.tsx` |
-| Infographic & section images | `imports/*.png` |
-| Demo video slots | `public/videos/` — README lists expected `.mov` files; files not verified in repo |
-| Hero statistics | Placeholders only — must not publish as factual until replaced |
-| Analytical note PDF | Not present — must not invent content |
-| Testimonials / press / case studies | None in repo — must not fabricate |
+| Asset                               | Location / status                                                                 |
+| ----------------------------------- | --------------------------------------------------------------------------------- |
+| Figma-export landing implementation | `imports/index.tsx` (primary UI source)                                           |
+| Product copy (Russian)              | Embedded throughout `imports/index.tsx`                                           |
+| Infographic & section images        | `imports/*.png`                                                                   |
+| Demo video slots                    | `public/videos/` — README lists expected `.mov` files; files not verified in repo |
+| Hero statistics                     | Placeholders only — must not publish as factual until replaced                    |
+| Analytical note PDF                 | Not present — must not invent content                                             |
+| Testimonials / press / case studies | None in repo — must not fabricate                                                 |
 
 ## Product Principles
 

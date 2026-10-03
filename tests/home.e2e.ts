@@ -1,0 +1,202 @@
+import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+const headings = {
+	ru: 'Организации, которые видят свои процессы целиком',
+	kk: 'Өз үдерістерін тұтас көретін ұйымдар',
+	en: 'Organisations that see their processes as a whole'
+};
+
+for (const locale of ['ru', 'kk', 'en'] as const) {
+	test(`${locale}: translated content, SEO, local fonts and no browser errors`, async ({
+		page
+	}) => {
+		const errors: string[] = [];
+		page.on('pageerror', (error) => errors.push(error.message));
+		page.on('console', (msg) => {
+			if (
+				msg.type() === 'error' ||
+				/hydration_mismatch|hydration_attribute_changed/.test(msg.text())
+			)
+				errors.push(msg.text());
+		});
+		const response = await page.goto(`/${locale}/`);
+		expect(response?.status()).toBe(200);
+		await expect(page.locator('html')).toHaveAttribute('lang', locale);
+		await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings[locale]);
+		await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+			'href',
+			`https://governance.kz/${locale}/`
+		);
+		await expect(
+			page
+				.getByRole('link', {
+					name: locale === 'ru' ? 'Русский' : locale === 'kk' ? 'Қазақша' : 'English',
+					exact: true
+				})
+				.first()
+		).toHaveAttribute('aria-current', 'page');
+		await page.evaluate(async () => {
+			await document.fonts.load('400 16px "IBM Plex Sans Variable"', 'ӘҒҚҢӨҰҮҺІ');
+			await document.fonts.ready;
+		});
+		expect(
+			await page.evaluate(() =>
+				document.fonts.check('400 16px "IBM Plex Sans Variable"', 'ӘҒҚҢӨҰҮҺІ')
+			)
+		).toBe(true);
+		const hero = page.locator('img[fetchpriority="high"]');
+		expect(
+			await hero.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)
+		).toBe(true);
+		await expect(page.locator('video')).toHaveCount(0);
+		await page.waitForTimeout(200);
+		expect(errors).toEqual([]);
+	});
+}
+
+test.describe('static HTML without JavaScript', () => {
+	test.use({ javaScriptEnabled: false });
+	for (const locale of ['ru', 'kk', 'en'] as const) {
+		test(`${locale}: content and links work before hydration`, async ({ page }) => {
+			await page.goto(`/${locale}/`);
+			await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings[locale]);
+			await expect(page.locator('header a[aria-label]').first()).toHaveAttribute(
+				'href',
+				`/${locale}/`
+			);
+			await page.locator('header').getByRole('link', { name: 'English', exact: true }).click();
+			await expect(page).toHaveURL(/\/en\/$/);
+			await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.en);
+		});
+	}
+});
+
+test('languages preserve the anchor and survive refresh and browser history', async ({ page }) => {
+	await page.goto('/ru/');
+	await page.locator('header').getByRole('link', { name: 'Қазақша', exact: true }).click();
+	await expect(page).toHaveURL(/\/kk\/$/);
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.kk);
+	await page.reload();
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.kk);
+	await page.goBack();
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.ru);
+	await page.evaluate(() => {
+		window.location.hash = '#diagnostics';
+	});
+	await page.locator('header').getByRole('link', { name: 'English', exact: true }).click();
+	await expect(page).toHaveURL(/\/en\/#diagnostics$/);
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.en);
+});
+
+test('meeting Dialog closes on Escape and restores focus without sending data', async ({
+	page
+}) => {
+	const posts: string[] = [];
+	page.on('request', (request) => {
+		if (request.method() === 'POST') posts.push(request.url());
+	});
+	await page.goto('/ru/');
+	const trigger = page.getByRole('button', { name: 'Записаться на встречу' });
+	await trigger.click();
+	const dialog = page.getByRole('dialog', { name: 'Записаться на встречу' });
+	await expect(dialog).toBeVisible();
+	await expect(dialog.getByRole('link', { name: 'akbota.akylbek07@gmail.com' })).toHaveAttribute(
+		'href',
+		'mailto:akbota.akylbek07@gmail.com'
+	);
+	await expect(dialog).toContainText('персональные данные не отправляются');
+	await page.keyboard.press('Escape');
+	await expect(dialog).not.toBeVisible();
+	await expect(trigger).toBeFocused();
+	expect(posts).toEqual([]);
+});
+
+test('the missing PDF is communicated honestly', async ({ page }) => {
+	await page.goto('/en/');
+	await page.getByRole('button', { name: 'Analytical brief', exact: true }).click();
+	const dialog = page.getByRole('dialog', { name: 'Analytical brief' });
+	await expect(dialog).toContainText('has not been provided');
+	await expect(dialog.locator('[download]')).toHaveCount(0);
+	await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+	await expect(dialog).not.toBeVisible();
+});
+
+test('background video is opt-in and can be stopped with reduced motion enabled', async ({
+	page
+}) => {
+	await page.emulateMedia({ reducedMotion: 'reduce' });
+	await page.goto('/en/');
+	await expect(page.locator('video')).toHaveCount(0);
+	await page.getByRole('button', { name: 'Play background video' }).click();
+	await expect(page.locator('video')).toHaveCount(1);
+	await expect(page.getByRole('button', { name: 'Pause background video' })).toHaveAttribute(
+		'aria-pressed',
+		'true'
+	);
+	await page.getByRole('button', { name: 'Pause background video' }).click();
+	await expect(page.locator('video')).toHaveCount(0);
+});
+
+test('mobile Sheet has translated labels, keyboard close and working anchors', async ({
+	page,
+	isMobile
+}) => {
+	test.skip(!isMobile, 'Sheet is only visible on narrow screens');
+	await page.goto('/kk/');
+	const trigger = page.getByRole('button', { name: 'Мәзірді ашу' });
+	await trigger.click();
+	const sheet = page.getByRole('dialog', { name: 'Навигация' });
+	await expect(sheet).toBeVisible();
+	await expect(sheet.getByRole('button', { name: 'Жабу', exact: true })).toBeVisible();
+	await page.keyboard.press('Escape');
+	await expect(sheet).not.toBeVisible();
+	await expect(trigger).toBeFocused();
+	await trigger.click();
+	await sheet.getByRole('link', { name: /Диагностика/ }).click();
+	await expect(sheet).not.toBeVisible();
+	await expect(page).toHaveURL(/\/kk\/#diagnostics$/);
+});
+
+test('no horizontal overflow across supported widths and languages', async ({ page }) => {
+	for (const width of [320, 390, 768, 1440]) {
+		await page.setViewportSize({ width, height: 900 });
+		for (const locale of ['ru', 'kk', 'en']) {
+			await page.goto(`/${locale}/`);
+			await page.evaluate(() => document.fonts.ready);
+			expect(
+				await page.evaluate(() => document.documentElement.scrollWidth),
+				`${locale}, ${width}px`
+			).toBeLessThanOrEqual(width);
+		}
+	}
+});
+
+test('root entry works and unknown routes return a real 404', async ({ page }) => {
+	await page.goto('/');
+	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.ru);
+	const response = await page.goto('/ru/not-a-page/');
+	expect(response?.status()).toBe(404);
+});
+
+test('automated WCAG AA checks pass on the home page and open meeting Dialog', async ({ page }) => {
+	await page.goto('/ru/');
+	await page.evaluate(() => document.fonts.ready);
+	expect(
+		(await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
+			.violations
+	).toEqual([]);
+	await page.getByRole('button', { name: 'Записаться на встречу' }).click();
+	expect(
+		(await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
+			.violations
+	).toEqual([]);
+});
+
+test('preview explicitly marks unfinished sections and draft translations', async ({ page }) => {
+	await page.goto('/en/');
+	await expect(page.locator('footer')).toContainText('translation draft');
+	const references = page.getByRole('link', { name: 'Open the React reference' });
+	await expect(references).toHaveCount(3);
+	await expect(references.first()).toHaveAttribute('href', 'http://localhost:8443/#simulator');
+});
