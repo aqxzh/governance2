@@ -105,6 +105,11 @@
 	a {
 		-webkit-tap-highlight-color: transparent;
 	}
+	@media (scripting: none) {
+		[data-language-trigger] {
+			display: none;
+		}
+	}
 	@media (prefers-reduced-motion: reduce) {
 		*,
 		*::before,

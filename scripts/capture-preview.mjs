@@ -27,6 +27,11 @@ try {
 			await page.screenshot({ path: `${directory}/${locale}-${width}.png`, fullPage: true });
 			if (locale === 'ru') await page.screenshot({ path: `${directory}/hero-${width}.png` });
 			if (locale === 'ru' && width !== 768) {
+				await page.locator('header [data-language-trigger]').click();
+				await page.getByRole('menu').waitFor();
+				await page.screenshot({ path: `${directory}/languages-${width}.png` });
+				await page.keyboard.press('Escape');
+				await page.getByRole('menu').waitFor({ state: 'hidden' });
 				if (width === 390) await page.locator('header button[aria-haspopup="dialog"]').click();
 				else await page.getByRole('button', { name: 'Записаться на встречу', exact: true }).click();
 				await page.getByRole('dialog').waitFor();

@@ -4,11 +4,12 @@
 
 - Отдельный worktree `../website-svelte`, ветка `migration/sveltekit`; React остаётся в `../website`.
 - Svelte 5 + SvelteKit 2 + TypeScript strict + adapter-static/SSG; pnpm и lockfile.
-- Официальные компоненты shadcn-svelte: Button, Sheet, Dialog, Card; Input, Label, Textarea, Separator установлены для следующего этапа.
+- Официальные компоненты shadcn-svelte: Button, Sheet, Dialog, Card, DropdownMenu; Input, Label, Textarea, Separator установлены для следующего этапа.
 - Тема на Tailwind v4 и semantic tokens shadcn, контейнер 1170px, IBM Plex Sans/Mono с локальным хостингом. По визуальной обратной связи стандартизирована на готовых палитрах Zinc + Blue и стиле Vega; локальные радиусы/тени/обводки примитивов убраны. Правила — в `design-system.md`.
 - Перенесены бренд/шапка/hero. Нумерованные ссылки пока ведут к временному обзору контуров; из него есть явные ссылки на React-эталон. Это не полный перенос соответствующих страниц.
 - RU/KK/EN через Paraglide: тексты, подписи, alt, модалки, SEO. Язык задаётся URL; переключение сохраняет путь/фрагмент и загружает предрендеренный HTML целевой локали.
 - Мобильное меню на Sheet, модалки на Dialog, локализованное закрытие, Escape/возврат фокуса.
+- Переключатель языка — глобус в правом углу шапки на DropdownMenu. Меню показывает полные имена RU/KZ/EN и отметку текущего языка; поддерживает клавиатуру. Без JavaScript доступны обычные ссылки в noscript. Дублирующий переключатель из мобильного Sheet удалён.
 - Контактный Dialog не отправляет данные. PDF отсутствует, это явно указано.
 - Hero-видео запускается только явно по кнопке и может быть остановлено; автоматического движения при reduced-motion нет.
 - Title/description, canonical, hreflang, Open Graph, robots.txt, sitemap для реализованных главных страниц.
@@ -20,7 +21,7 @@
 - Параметры query/hash нельзя читать при предрендеринге. Суффикс переключателя учитывается только в браузере.
 - `paths.relative: false` предотвращает утечку временного origin `sveltekit-prerender` в ссылки. Корректность статического HTML проверяется отдельно, включая работу без JS.
 - Для доступности добавлен prop `closeLabel` в установленные Sheet.Content/Dialog.Content. Поведение фокуса и закрытия остаётся штатным Bits UI.
-- Правило ESLint `svelte/no-navigation-without-resolve` отключено только внутри универсального shadcn Button: href уже разрешает вызывающий код, это также может быть mailto/tel/внешняя ссылка.
+- Правило ESLint `svelte/no-navigation-without-resolve` отключено внутри универсального shadcn Button (href разрешает вызывающий код) и для ссылок LanguageSwitcher: Paraglide разрешает виртуальные locale-пути, не являющиеся route ID SvelteKit. Небезопасные приведения типов для resolve() не используются.
 - Телефонная ссылка нормализована из отображаемого номера исходника `+7 (776) 173-82-91`. Исходный React href содержал несовпадающую последовательность цифр; отображаемый номер не изменён.
 
 ## Медиа и визуальная проверка
@@ -43,7 +44,7 @@ GLM-5.3-flash сравнил desktop/mobile с исходником. По зам
 
 ## Проверки
 
-Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 31 browser-тест (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
+Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 33 browser-теста (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
 
 - svelte-check и Svelte MCP autofixer для авторских/изменённых компонентов.
 - ESLint и Prettier.

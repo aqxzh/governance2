@@ -42,7 +42,6 @@
 				</Button>
 			{/each}
 		</nav>
-		<LanguageSwitcher />
 		<Sheet.Root bind:open={menuOpen}>
 			<Sheet.Trigger>
 				{#snippet child({ props })}
@@ -76,8 +75,8 @@
 						</Button>
 					{/each}
 				</nav>
-				<LanguageSwitcher onNavigate={() => (menuOpen = false)} />
 			</Sheet.Content>
 		</Sheet.Root>
+		<LanguageSwitcher />
 	</div>
 </header>

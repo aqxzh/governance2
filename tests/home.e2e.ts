@@ -28,14 +28,14 @@ for (const locale of ['ru', 'kk', 'en'] as const) {
 			'href',
 			`https://governance.kz/${locale}/`
 		);
+		await page.locator('header [data-language-trigger]').click();
 		await expect(
-			page
-				.getByRole('link', {
-					name: locale === 'ru' ? 'Русский' : locale === 'kk' ? 'Қазақша' : 'English',
-					exact: true
-				})
-				.first()
+			page.getByRole('menuitem', {
+				name: locale === 'ru' ? 'Русский' : locale === 'kk' ? 'Қазақша' : 'English',
+				exact: true
+			})
 		).toHaveAttribute('aria-current', 'page');
+		await page.keyboard.press('Escape');
 		await page.evaluate(async () => {
 			await document.fonts.load('400 16px "IBM Plex Sans Variable"', 'ӘҒҚҢӨҰҮҺІ');
 			await document.fonts.ready;
@@ -117,19 +117,41 @@ test('shared palette and primitive radii stay consistent', async ({ page }) => {
 
 test('languages preserve the anchor and survive refresh and browser history', async ({ page }) => {
 	await page.goto('/ru/');
-	await page.locator('header').getByRole('link', { name: 'Қазақша', exact: true }).click();
+	await page.locator('header [data-language-trigger]').click();
+	await page.getByRole('menuitem', { name: 'Қазақша', exact: true }).click();
 	await expect(page).toHaveURL(/\/kk\/$/);
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.kk);
 	await page.reload();
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.kk);
 	await page.goBack();
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.ru);
-	await page.evaluate(() => {
-		window.location.hash = '#diagnostics';
-	});
-	await page.locator('header').getByRole('link', { name: 'English', exact: true }).click();
-	await expect(page).toHaveURL(/\/en\/#diagnostics$/);
+	await page.goto('/ru/?source=preview#diagnostics');
+	await page.locator('header [data-language-trigger]').click();
+	await page.getByRole('menuitem', { name: 'English', exact: true }).click();
+	await expect(page).toHaveURL(/\/en\/\?source=preview#diagnostics$/);
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.en);
+});
+
+test('globe menu supports keyboard, focus return and accessible language links', async ({
+	page
+}) => {
+	await page.goto('/ru/');
+	const trigger = page.getByRole('button', { name: 'Язык сайта', exact: true });
+	await expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+	await trigger.focus();
+	await trigger.press('Enter');
+	const menu = page.getByRole('menu');
+	await expect(menu).toBeVisible();
+	await expect(menu.getByRole('menuitem')).toHaveCount(3);
+	await page.keyboard.press('End');
+	await expect(menu.getByRole('menuitem', { name: 'English', exact: true })).toBeFocused();
+	const violations = await new AxeBuilder({ page })
+		.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+		.analyze();
+	expect(violations.violations).toEqual([]);
+	await page.keyboard.press('Escape');
+	await expect(menu).not.toBeVisible();
+	await expect(trigger).toBeFocused();
 });
 
 test('meeting Dialog closes on Escape and restores focus without sending data', async ({
