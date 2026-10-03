@@ -41,6 +41,13 @@ try {
 				await page.keyboard.press('Escape');
 				await page.getByRole('dialog').waitFor({ state: 'hidden' });
 			}
+			for (const id of ['simulator', 'diagnostics', 'coordination']) {
+				await page.locator(`[role="tab"][data-value="${id}"]`).click();
+				await page
+					.locator('#contours')
+					.evaluate((section) => section.scrollIntoView({ block: 'start' }));
+				await page.screenshot({ path: `${directory}/contours-${locale}-${id}-${width}.png` });
+			}
 			results.push({
 				locale,
 				width,

@@ -106,8 +106,13 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 	@media (scripting: none) {
-		[data-language-trigger] {
-			display: none;
+		[data-language-trigger],
+		[data-contour-tabs] {
+			display: none !important;
+		}
+		/* Override Tailwind preflight's [hidden] rule only for the no-JS register. */
+		[data-contour-panel][hidden] {
+			display: block !important;
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {

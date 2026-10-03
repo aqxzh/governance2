@@ -4,7 +4,7 @@
 
 This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
 The original React reference remains in `/home/marinadec/projects/website` on port 8443.
-The first checkpoint implements the header, hero, translated contact/PDF dialogs, language switching and a temporary contour overview. Full landing sections, contour pages, simulator modules and FoodFlow are NOT migrated yet.
+Implemented: header, hero, contact/PDF dialogs, language switching, and the real three-tab contour section with all 18 solutions, image previews and local video dialogs. The next landing block is TeamSection. Remaining landing sections, standalone contour pages, simulator modules and FoodFlow are NOT migrated yet.
 
 Read `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
 
@@ -37,4 +37,4 @@ pnpm verify
 
 Generated Paraglide output is ignored; `prepare` and `check` compile it. Do not edit generated messages/runtime. Screenshot evidence goes to ignored `.artifacts/preview/` via `node scripts/capture-preview.mjs` while dev is running.
 
-Use the Svelte MCP autofixer for authored/modified Svelte components. Vision comparisons may use SuperPC/glm-5.3-flash; verify suggested behaviours with DOM, source and browser tests, not screenshots alone.
+Use the Svelte MCP autofixer for authored/modified Svelte components. Inspect screenshots directly with the current vision-capable agent (per user instruction); use a separate vision model only if direct image access is unavailable. Verify behaviours with DOM, source and browser tests, not screenshots alone.

@@ -281,6 +281,6 @@ test('preview explicitly marks unfinished sections and draft translations', asyn
 	await page.goto('/en/');
 	await expect(page.locator('footer')).toContainText('translation draft');
 	const references = page.getByRole('link', { name: 'Open the React reference' });
-	await expect(references).toHaveCount(3);
+	await expect(references).toHaveCount(1);
 	await expect(references.first()).toHaveAttribute('href', 'http://localhost:8443/#simulator');
 });
