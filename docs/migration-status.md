@@ -5,7 +5,7 @@
 - Отдельный worktree `../website-svelte`, ветка `migration/sveltekit`; React остаётся в `../website`.
 - Svelte 5 + SvelteKit 2 + TypeScript strict + adapter-static/SSG; pnpm и lockfile.
 - Официальные компоненты shadcn-svelte: Button, Sheet, Dialog, Card; Input, Label, Textarea, Separator установлены для следующего этапа.
-- Тема на Tailwind v4 и semantic tokens shadcn, контейнер 1170px, IBM Plex Sans/Mono с локальным хостингом.
+- Тема на Tailwind v4 и semantic tokens shadcn, контейнер 1170px, IBM Plex Sans/Mono с локальным хостингом. По визуальной обратной связи стандартизирована на готовых палитрах Zinc + Blue и стиле Vega; локальные радиусы/тени/обводки примитивов убраны. Правила — в `design-system.md`.
 - Перенесены бренд/шапка/hero. Нумерованные ссылки пока ведут к временному обзору контуров; из него есть явные ссылки на React-эталон. Это не полный перенос соответствующих страниц.
 - RU/KK/EN через Paraglide: тексты, подписи, alt, модалки, SEO. Язык задаётся URL; переключение сохраняет путь/фрагмент и загружает предрендеренный HTML целевой локали.
 - Мобильное меню на Sheet, модалки на Dialog, локализованное закрытие, Escape/возврат фокуса.
@@ -43,13 +43,14 @@ GLM-5.3-flash сравнил desktop/mobile с исходником. По зам
 
 ## Проверки
 
-Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 29 browser-тестов (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
+Итоговый `pnpm verify` прошёл: 0 ошибок/предупреждений svelte-check, lint/format OK, 12 unit-тестов, 31 browser-тест (один desktop-запуск mobile-only сценария пропущен намеренно), production build и static HTML checks OK. Финальные dev-скриншоты всех трёх языков на 390/768/1440px — без console/page errors, предупреждений гидратации и горизонтального overflow.
 
 - svelte-check и Svelte MCP autofixer для авторских/изменённых компонентов.
 - ESLint и Prettier.
 - Unit: полнота переводов, реальные различия сообщений, kk/KZ, URL-стратегия (включая порты и вложенные пути).
 - Playwright: locale/SEO, локальные шрифты с казахскими буквами, отсутствие browser errors, refresh/history, работа HTML/ссылок без JavaScript, Dialog/Sheet, reduced motion, opt-in video, отсутствие POST, отсутствие overflow на 320/390/768/1440px, настоящий 404.
 - Axe: автоматические WCAG A/AA проверки главной и открытого контактного Dialog. Это не полная сертификация WCAG.
+- Проверка единой палитры: фактические primary/CTA/meta theme-color совпадают, input/border одинаковы, радиусы кнопки/Card/Dialog следуют стандартной шкале.
 - Отдельная проверка сборки: HTML всех локалей, один H1, canonical/hreflang, robots, локальные шрифты, отсутствие Figma CDN и временных prerender-origin в ссылках.
 
 ## Следующие шаги после согласования образца

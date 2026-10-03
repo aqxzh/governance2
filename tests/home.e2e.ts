@@ -72,6 +72,49 @@ test.describe('static HTML without JavaScript', () => {
 	}
 });
 
+test('shared palette and primitive radii stay consistent', async ({ page }) => {
+	await page.goto('/ru/');
+	const meeting = page.getByRole('button', { name: 'Записаться на встречу', exact: true });
+	const colors = await meeting.evaluate((button) => {
+		const root = getComputedStyle(document.documentElement);
+		const canvas = document.createElement('canvas');
+		canvas.width = canvas.height = 1;
+		const context = canvas.getContext('2d')!;
+		const rgb = (color: string) => {
+			context.clearRect(0, 0, 1, 1);
+			context.fillStyle = color;
+			context.fillRect(0, 0, 1, 1);
+			return Array.from(context.getImageData(0, 0, 1, 1).data).slice(0, 3);
+		};
+		return {
+			primary: rgb(root.getPropertyValue('--primary')),
+			blue: rgb(root.getPropertyValue('--color-blue-700')),
+			button: rgb(getComputedStyle(button).backgroundColor),
+			meta: rgb(document.querySelector('meta[name="theme-color"]')!.getAttribute('content')!),
+			border: root.getPropertyValue('--border').trim(),
+			input: root.getPropertyValue('--input').trim(),
+			radius: getComputedStyle(button).borderRadius
+		};
+	});
+	expect(colors.primary).toEqual(colors.blue);
+	expect(colors.button).toEqual(colors.primary);
+	colors.meta.forEach((value, index) =>
+		expect(Math.abs(value - colors.primary[index])).toBeLessThanOrEqual(1)
+	);
+	expect(colors.input).toEqual(colors.border);
+	expect(colors.radius).toBe('6px');
+	const cardRadius = await page
+		.locator('[data-slot="card"]')
+		.first()
+		.evaluate((card) => getComputedStyle(card).borderRadius);
+	await meeting.click();
+	const dialogRadius = await page
+		.getByRole('dialog')
+		.evaluate((dialog) => getComputedStyle(dialog).borderRadius);
+	expect(cardRadius).toBe('12px');
+	expect(dialogRadius).toBe(cardRadius);
+});
+
 test('languages preserve the anchor and survive refresh and browser history', async ({ page }) => {
 	await page.goto('/ru/');
 	await page.locator('header').getByRole('link', { name: 'Қазақша', exact: true }).click();

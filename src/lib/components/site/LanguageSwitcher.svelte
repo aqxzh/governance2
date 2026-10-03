@@ -16,7 +16,7 @@
 		<Button
 			variant="ghost"
 			size="icon-sm"
-			class="size-6 font-mono text-[11px] shadow-none aria-[current=page]:bg-accent aria-[current=page]:font-semibold aria-[current=page]:text-primary min-[360px]:size-7"
+			class="size-6 font-mono text-[11px] aria-[current=page]:bg-accent aria-[current=page]:font-semibold aria-[current=page]:text-primary min-[360px]:size-7"
 			href={localizeHref(page.url.pathname, { locale: language.locale }) + suffix}
 			aria-label={language.name}
 			aria-current={getLocale() === language.locale ? 'page' : undefined}

@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale, deLocalizeUrl, localizeHref } from '#lib/paraglide/runtime.js';
-	import { SITE_ORIGIN, languages } from '#lib/site.js';
+	import { SITE_ORIGIN, THEME_COLOR, languages } from '#lib/site.js';
 
 	const canonical = $derived(
 		new URL(localizeHref(deLocalizeUrl(page.url).pathname), SITE_ORIGIN).href
@@ -40,5 +40,5 @@
 	/>
 	<meta property="og:image" content={SITE_ORIGIN + '/images/team-main.webp'} />
 	<meta property="og:image:alt" content={m.hero_image_alt()} />
-	<meta name="theme-color" content="#2242d6" />
+	<meta name="theme-color" content={THEME_COLOR} />
 </svelte:head>

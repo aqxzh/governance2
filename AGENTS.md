@@ -12,7 +12,7 @@ Read `docs/migration-plan.md` and `docs/migration-status.md` before extending th
 
 - Svelte 5 runes, SvelteKit 2, TypeScript strict, Vite 8, adapter-static with prerendering.
 - Use shadcn-svelte components in `src/lib/components/ui/`. Do not reimplement Dialog, Sheet, focus management, inputs or buttons from scratch.
-- Brand styling lives in `src/routes/layout.css`: semantic shadcn variables + Tailwind v4; primary #2242D6. Avoid duplicated hex values in application components.
+- Read `docs/design-system.md`: use standard shadcn Vega + Zinc neutrals + Blue accent. Theme lives in `src/routes/layout.css`; primary is Tailwind blue-700, not the legacy #2242D6. Components consume semantic tokens only. Keep standard shadcn radii, borders, shadows and variant styling; don't add local cosmetic overrides.
 - Imports use the `#lib/*` package alias. Framework imports use `$app/*`.
 - Use Paraglide JS for messages. Locale codes are ru, kk, en; the visible Kazakh switcher label is KZ. No hand-written translation runtime.
 - Paraglide URL patterns must support ports, the root URL and nested pages. Preserve request isolation during prerendering.

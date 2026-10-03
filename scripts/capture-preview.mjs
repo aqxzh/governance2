@@ -9,7 +9,10 @@ const results = [];
 try {
 	for (const width of [390, 768, 1440]) {
 		for (const locale of ['ru', 'kk', 'en']) {
-			const page = await browser.newPage({ viewport: { width, height: 900 } });
+			const page = await browser.newPage({
+				viewport: { width, height: 900 },
+				reducedMotion: 'reduce'
+			});
 			const errors = [];
 			page.on('pageerror', (error) => errors.push(error.message));
 			page.on('console', (message) => {
@@ -23,6 +26,16 @@ try {
 			await page.evaluate(() => document.fonts.ready);
 			await page.screenshot({ path: `${directory}/${locale}-${width}.png`, fullPage: true });
 			if (locale === 'ru') await page.screenshot({ path: `${directory}/hero-${width}.png` });
+			if (locale === 'ru' && width !== 768) {
+				if (width === 390) await page.locator('header button[aria-haspopup="dialog"]').click();
+				else await page.getByRole('button', { name: 'Записаться на встречу', exact: true }).click();
+				await page.getByRole('dialog').waitFor();
+				await page.screenshot({
+					path: `${directory}/${width === 390 ? 'sheet' : 'dialog'}-${width}.png`
+				});
+				await page.keyboard.press('Escape');
+				await page.getByRole('dialog').waitFor({ state: 'hidden' });
+			}
 			results.push({
 				locale,
 				width,

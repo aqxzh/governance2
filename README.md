@@ -37,7 +37,7 @@ node scripts/capture-preview.mjs # при запущенном dev, файлы �
 
 - Svelte 5, SvelteKit 2, TypeScript strict, Vite 8.
 - adapter-static: предрендеринг `/`, `/ru/`, `/kk/`, `/en/`, затем гидратация. Постоянный Node-процесс для публикации не нужен.
-- shadcn-svelte + Bits UI. Компоненты установлены официальным CLI (Vega); цвет, радиусы, шрифты и ритм задаёт Tailwind v4 в `src/routes/layout.css`.
+- shadcn-svelte + Bits UI, стиль **Vega**, готовые палитры **Zinc + Blue**. Семантические цвета и стандартная шкала радиусов задаются в `src/routes/layout.css`; локальные переопределения оформления примитивов убраны. Правила для следующих страниц — [система оформления](docs/design-system.md).
 - Paraglide JS: `messages/{ru,kk,en}.json`, `project.inlang/paraglide.config.js`, URL-стратегия. KK/EN — черновые переводы, не утверждённый текст.
 - Шрифты Fontsource размещаются в сборке локально. IBM Plex Sans/Mono имеют SIL Open Font License; лицензии входят в соответствующие пакеты в `node_modules`.
 - Оптимизированные иллюстрации и видео — `static/images/`, `static/videos/`. Исходники сохранены в React-worktree и истории Git; происхождение и команды обработки — в `docs/migration-status.md`.

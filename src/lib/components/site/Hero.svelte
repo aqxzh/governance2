@@ -33,7 +33,7 @@
 				class="absolute inset-0 size-full scale-[1.12] object-cover blur-[2px]"
 			></video>
 		{/if}
-		<div class="absolute inset-0 bg-foreground/75"></div>
+		<div class="absolute inset-0 bg-hero-surface/75"></div>
 		<div
 			class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background sm:h-24"
 		></div>
@@ -41,7 +41,7 @@
 
 	<div class="px-5 pt-10 pb-16 sm:px-7 sm:pt-16 sm:pb-24">
 		<p
-			class="mb-7 font-mono text-[11px] leading-relaxed tracking-widest text-white uppercase sm:mb-8 sm:text-xs"
+			class="mb-7 font-mono text-[11px] leading-relaxed tracking-widest text-hero-foreground uppercase sm:mb-8 sm:text-xs"
 		>
 			{m.hero_eyebrow()}
 		</p>
@@ -49,11 +49,11 @@
 			<div class="min-w-0">
 				<h1
 					id="hero-title"
-					class="mb-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.07] font-bold tracking-tight text-balance text-white sm:mb-6"
+					class="mb-5 text-[clamp(2rem,5vw,3.25rem)] leading-[1.07] font-bold tracking-tight text-balance text-hero-foreground sm:mb-6"
 				>
 					{m.hero_title()}
 				</h1>
-				<p class="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+				<p class="max-w-xl text-base leading-relaxed text-hero-muted-foreground sm:text-lg">
 					{m.hero_description()}
 				</p>
 			</div>
@@ -66,16 +66,13 @@
 					width="1032"
 					height="590"
 					fetchpriority="high"
-					class="w-full rounded-lg bg-muted object-cover"
+					class="w-full rounded-xl bg-muted object-cover"
 				/>
 				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 					<Dialog.Root>
 						<Dialog.Trigger>
 							{#snippet child({ props })}
-								<Button
-									{...props}
-									class="h-auto min-h-11 rounded-sm px-5 py-3 font-semibold whitespace-normal shadow-none"
-								>
+								<Button {...props} size="lg" class="h-auto min-h-11 whitespace-normal">
 									{m.meeting_cta()}
 									<ArrowRightIcon aria-hidden="true" />
 								</Button>
@@ -106,7 +103,7 @@
 									</dd>
 								</div>
 							</dl>
-							<p class="rounded-md bg-muted p-4 text-sm leading-relaxed text-muted-foreground">
+							<p class="rounded-lg bg-muted p-4 text-sm leading-relaxed text-muted-foreground">
 								{m.meeting_preview()}
 							</p>
 						</Dialog.Content>
@@ -117,8 +114,8 @@
 								<Button
 									{...props}
 									variant="outline"
-									class="h-auto min-h-11 rounded-sm border-foreground px-5 py-3 font-semibold whitespace-normal shadow-none"
-									>{m.note_cta()}</Button
+									size="lg"
+									class="h-auto min-h-11 whitespace-normal">{m.note_cta()}</Button
 								>
 							{/snippet}
 						</Dialog.Trigger>
@@ -141,7 +138,7 @@
 			size="sm"
 			aria-pressed={backgroundPlaying}
 			onclick={() => (backgroundPlaying = !backgroundPlaying)}
-			class="mt-7 h-auto min-h-9 gap-2 rounded-sm bg-foreground/60 px-3 text-xs whitespace-normal text-white/90 hover:bg-foreground/80 hover:text-white"
+			class="mt-7 h-auto min-h-9 bg-hero-surface/60 text-xs whitespace-normal text-hero-muted-foreground hover:bg-hero-surface/80 hover:text-hero-foreground"
 		>
 			{#if backgroundPlaying}<PauseIcon aria-hidden="true" />{:else}<PlayIcon
 					aria-hidden="true"

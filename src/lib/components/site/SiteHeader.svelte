@@ -36,11 +36,7 @@
 	<div class="flex shrink-0 items-center gap-1 lg:gap-4">
 		<nav aria-label={m.navigation_label()} class="hidden items-center gap-2 lg:flex">
 			{#each items as item (item.id)}
-				<Button
-					variant="outline"
-					href={localizeHref(resolve('/')) + '#' + item.id}
-					class="h-10 gap-2 px-3 text-sm font-semibold shadow-none"
-				>
+				<Button variant="outline" href={localizeHref(resolve('/')) + '#' + item.id} class="gap-2">
 					<span class="font-mono text-xs font-normal text-primary">{item.number}</span>
 					{item.label()}
 				</Button>
@@ -72,7 +68,8 @@
 							variant="outline"
 							href={localizeHref(resolve('/')) + '#' + item.id}
 							onclick={() => (menuOpen = false)}
-							class="h-auto min-h-12 justify-start gap-3 px-4 py-3 whitespace-normal shadow-none"
+							size="lg"
+							class="h-auto min-h-11 justify-start whitespace-normal"
 						>
 							<span class="font-mono text-xs text-primary">{item.number}</span>
 							{item.label()}
