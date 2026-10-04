@@ -94,6 +94,7 @@
 	html {
 		@apply font-sans;
 		scroll-padding-top: 1.5rem;
+		scroll-behavior: smooth;
 	}
 	body {
 		@apply m-0 bg-background text-foreground antialiased;
