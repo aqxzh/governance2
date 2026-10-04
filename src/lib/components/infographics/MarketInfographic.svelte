@@ -157,6 +157,14 @@
 							/></radialGradient
 						>
 					</defs>
+					<!-- Pale, explicitly schematic street context; not measured GIS geometry. -->
+					<g stroke="var(--border)" stroke-width="2" fill="none" aria-hidden="true"
+						>{#each [100, 180, 260, 340, 420, 500, 580, 660, 740, 820] as x (x)}<path
+								d={`M${x} 15L${x - 65} 505`}
+							/>{/each}{#each [80, 150, 220, 290, 360, 430] as y (y)}<path
+								d={`M15 ${y}C230 ${y - 25} 560 ${y + 35} 885 ${y}`}
+							/>{/each}</g
+					>
 					<!-- river -->
 					<path
 						d="M20 430 C160 380 220 470 360 450 C480 435 520 470 640 455"
@@ -234,7 +242,7 @@
 						<span class="size-2.5 rounded-full bg-primary"></span>{m.inf_market_demand_legend_our()}
 					</li>
 					<li class="flex items-center gap-2">
-						<span class="size-2.5 rounded-full bg-primary"
+						<span class="size-2.5 rounded-full border-2 border-muted-foreground bg-background"
 						></span>{m.inf_market_demand_legend_competitor()}
 					</li>
 					<li class="flex items-center gap-2">
@@ -534,8 +542,16 @@
 						viewBox="0 0 900 520"
 						role="img"
 						aria-label="{m.inf_market_supply_map_title()} ({m.inf_market_city_almaty()})"
-						class="w-full rounded-lg border bg-[var(--primary)]"
+						class="aspect-[900/520] w-full rounded-lg border bg-muted/30"
 					>
+						<!-- Geographic context is illustrative; avoid a solid data-colored backdrop. -->
+						<g stroke="var(--border)" stroke-width="2" fill="none" aria-hidden="true"
+							>{#each [140, 230, 320, 410, 500, 590, 680, 770] as x (x)}<path
+									d={`M${x} 10L${x - 75} 510`}
+								/>{/each}{#each [100, 180, 260, 340, 420] as y (y)}<path
+									d={`M15 ${y}C200 ${y - 50} 620 ${y + 50} 885 ${y}`}
+								/>{/each}</g
+						>
 						<!-- city boundary (schematic) -->
 						<path
 							d="M240 130 L340 100 L430 140 L560 120 L640 170 L660 270 L580 360 L470 420 L330 400 L250 320 L230 210 Z"
@@ -1076,12 +1092,12 @@
 					>{m.inf_market_ecosystem_measure_production()} ⌄</span
 				>
 			</Card.Header>
-			<Card.Content class="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+			<Card.Content class="grid min-w-0 gap-4 lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start">
 				<svg
 					viewBox="0 0 600 340"
 					role="img"
 					aria-label={m.inf_market_ecosystem_map_note()}
-					class="w-full rounded-lg border bg-primary/10"
+					class="aspect-[600/340] w-full min-w-0 rounded-lg border bg-muted/30"
 				>
 					<!-- schematic Kazakhstan-like silhouette; regions are not labelled in the source -->
 					<path
@@ -1125,8 +1141,8 @@
 						<circle cx={b.x} cy={b.y} r={b.r} fill={b.c} opacity="0.85" />
 					{/each}
 				</svg>
-				<div class="space-y-2">
-					<div class="rounded-xl border bg-card p-3 shadow-sm lg:w-52">
+				<div class="min-w-0 space-y-2">
+					<div class="rounded-xl border bg-card p-3">
 						<p class="mb-1.5 font-semibold">{m.inf_market_city_astana()}</p>
 						<div class="space-y-1">
 							{@render statRow({
@@ -1149,7 +1165,7 @@
 							></span>{m.inf_market_ecosystem_legend_surplus()}
 						</li>
 						<li class="flex items-center gap-1.5">
-							<span class="size-2 rounded-full bg-[var(--primary)]"
+							<span class="size-2 border-2 border-destructive bg-background"
 							></span>{m.inf_market_ecosystem_legend_deficit()}
 						</li>
 						<li class="flex items-center gap-1.5">
