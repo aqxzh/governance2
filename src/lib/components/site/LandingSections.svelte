@@ -11,6 +11,11 @@
 	import MediaIllustration from './MediaIllustration.svelte';
 	import ContoursSection from './ContoursSection.svelte';
 	import TeamSection from './TeamSection.svelte';
+	import SystemDiagram from './SystemDiagram.svelte';
+	const diagrams = [
+		{ state: 'before', title: m.philosophy_before },
+		{ state: 'after', title: m.philosophy_after }
+	] as const;
 </script>
 
 <ContentSection
@@ -20,9 +25,9 @@
 	description={m.story_problem_desc()}
 >
 	<div class="grid gap-6 sm:grid-cols-2">
-		{#each [{ title: m.philosophy_before, image: media.before }, { title: m.philosophy_after, image: media.after }] as item (item.image.src)}<Card.Root
+		{#each diagrams as item (item.state)}<Card.Root
 				><Card.Header><h3 class="text-xl font-semibold">{item.title()}</h3></Card.Header
-				><Card.Content><MediaIllustration image={item.image} title={item.title()} /></Card.Content
+				><Card.Content><SystemDiagram state={item.state} title={item.title()} /></Card.Content
 				></Card.Root
 			>{/each}
 	</div>

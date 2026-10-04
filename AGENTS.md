@@ -3,7 +3,7 @@
 ## Scope and status
 
 This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
-The original React reference remains in `/home/marinadec/projects/website` on port 8443.
+The original React reference remains in `/home/marinadec/projects/website`; its dev server on 8443 was stopped at the user's request. Keep it stopped unless authorised to restart.
 Implemented: a task-led landing and diagnostics → modelling → coordination navigation. All 18 unique source scenarios and six simulator presentations are retained once in canonical groups (`src/lib/story.ts`); raw materials are collapsible, not duplicate products. Advisor lives only in coordination. FoodFlow has three upper tabs retaining all six original sections. RU/KK/EN and legacy URLs remain supported. This is local implementation, not visual acceptance or publication.
 
 Read `docs/storytelling-architecture.md`, `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.

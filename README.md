@@ -13,7 +13,7 @@ pnpm dev --host 127.0.0.1 --port 5174 --strictPort
 
 - Svelte: http://localhost:5174/ru/ (также `/kk/`, `/en/`).
 - Страницы: `/ru/{simulator,diagnostics,coordination,foodflow}/`, аналогично KK/EN.
-- React-эталон в соседнем worktree: http://localhost:8443/. Публичные ссылки новой версии на него не ведут.
+- React-эталон сохранён в соседнем worktree; сервер на 8443 остановлен по просьбе пользователя. Публичные ссылки новой версии на него не ведут.
 
 ## Проверки
 

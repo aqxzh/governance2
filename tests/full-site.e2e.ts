@@ -42,6 +42,14 @@ for (const locale of locales) {
 			.locator('main > section[id]')
 			.evaluateAll((elements) => elements.map((e) => e.id));
 		expect(ids).toEqual(['infographics', 'contours', 'example', 'team', 'security']);
+		const diagrams = page.locator('#infographics [data-system-diagram]');
+		await expect(diagrams).toHaveCount(2);
+		await expect(diagrams.nth(0)).toHaveAccessibleName(catalogs[locale].philosophy_before);
+		await expect(diagrams.nth(1)).toHaveAccessibleName(catalogs[locale].philosophy_after);
+		await expect(
+			page.locator('#infographics img[src$="before.webp"], #infographics img[src$="after.webp"]')
+		).toHaveCount(0);
+		await expect(diagrams.nth(1).locator('rect')).toHaveCount(31);
 		await expect(page.locator('#process')).toHaveCount(0);
 		await expect(page.locator('#advisor')).toHaveCount(0);
 		const scheme = page
