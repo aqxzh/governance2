@@ -1,10 +1,9 @@
 <script lang="ts">
 	import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
-	import { asset } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Dialog from '#lib/components/ui/dialog/index.js';
 	import { m } from '#lib/paraglide/messages.js';
-	import { getLocale } from '#lib/paraglide/runtime.js';
+	import InfographicRenderer from '../infographics/InfographicRenderer.svelte';
 	import type { Solution } from '#lib/contours.js';
 
 	let { solution }: { solution: Solution } = $props();
@@ -27,15 +26,6 @@
 			<Dialog.Title>{solution.title()}</Dialog.Title>
 			<Dialog.Description>{solution.description()}</Dialog.Description>
 		</Dialog.Header>
-		<img
-			src={asset(solution.image.src)}
-			alt={m.solution_image_alt({ title: solution.title() })}
-			width={solution.image.width}
-			height={solution.image.height}
-			class="max-h-[64svh] w-full rounded-lg bg-muted object-contain"
-		/>
-		{#if getLocale() !== 'ru'}
-			<p class="text-sm text-muted-foreground">{m.media_language_notice()}</p>
-		{/if}
+		<InfographicRenderer image={solution.image} title={solution.title()} />
 	</Dialog.Content>
 </Dialog.Root>

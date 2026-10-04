@@ -20,13 +20,22 @@
 	class="relative isolate site-container overflow-hidden bg-hero-surface"
 >
 	<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
-		<img
-			src={asset('/images/graphs-poster.webp')}
-			alt=""
-			class="size-full scale-[1.12] object-cover blur-[2px]"
-			width="1170"
-			height="658"
-		/>
+		<svg
+			viewBox="0 0 1170 658"
+			class="size-full text-primary blur-[2px]"
+			preserveAspectRatio="xMidYMid slice"
+			aria-hidden="true"
+			><g fill="none" stroke="currentColor" stroke-width="2"
+				><path
+					d="M60 140C300 80 350 480 600 340S900 180 1120 300M80 480C300 200 700 620 1080 100M120 90L390 520L860 180L1090 530M110 380L610 90L900 560"
+				/>{#each [[60, 140], [390, 520], [600, 340], [860, 180], [1090, 530], [610, 90], [110, 380], [900, 560]] as [x, y] (`${x}-${y}`)}<circle
+						cx={x}
+						cy={y}
+						r="14"
+						class="fill-hero-surface"
+					/>{/each}</g
+			></svg
+		>
 		{#if backgroundPlaying}
 			<video
 				src={asset('/videos/graphs.mp4')}

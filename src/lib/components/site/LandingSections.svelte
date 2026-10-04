@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { asset, resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Card from '#lib/components/ui/card/index.js';
 	import * as Collapsible from '#lib/components/ui/collapsible/index.js';
@@ -12,6 +12,7 @@
 	import ContoursSection from './ContoursSection.svelte';
 	import TeamSection from './TeamSection.svelte';
 	import SystemDiagram from './SystemDiagram.svelte';
+	import InfographicRenderer from '../infographics/InfographicRenderer.svelte';
 	const diagrams = [
 		{ state: 'before', title: m.philosophy_before },
 		{ state: 'after', title: m.philosophy_after }
@@ -65,14 +66,7 @@
 	description={m.story_example_desc()}
 >
 	<div class="grid items-center gap-6 md:grid-cols-2">
-		<img
-			src={asset(media.process.src)}
-			width={media.process.width}
-			height={media.process.height}
-			alt={m.process_description()}
-			loading="lazy"
-			class="w-full rounded-lg object-contain"
-		/>
+		<InfographicRenderer image={media.process} title={m.process_description()} />
 		<div class="space-y-5">
 			<p class="text-sm leading-relaxed text-muted-foreground">{m.demo_notice()}</p>
 			<Button
@@ -112,30 +106,17 @@
 				<div
 					class="grid items-center gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,3fr)_minmax(0,1fr)]"
 				>
-					<img
-						src={asset(media.securitySymbol.src)}
-						width={media.securitySymbol.width}
-						height={media.securitySymbol.height}
-						alt=""
-						loading="lazy"
-						class="mx-auto max-h-60 object-contain"
-					/><img
-						src={asset(media.securityMap.src)}
-						width={media.securityMap.width}
-						height={media.securityMap.height}
-						alt=""
-						loading="lazy"
-						class="w-full object-contain"
-					/>
+					<div aria-hidden="true">
+						<InfographicRenderer image={media.securitySymbol} title="" />
+					</div>
+					<InfographicRenderer image={media.securityMap} title={m.security_illustration()} />
 					<div class="flex justify-center gap-4 sm:flex-col">
-						{#each [media.security1, media.security2, media.security3] as image (image.src)}<img
-								src={asset(image.src)}
-								width={image.width}
-								height={image.height}
-								alt=""
-								loading="lazy"
-								class="mx-auto size-16 object-contain"
-							/>{/each}
+						{#each [media.security1, media.security2, media.security3] as image (image.src)}<div
+								aria-hidden="true"
+								class="mx-auto w-16"
+							>
+								<InfographicRenderer {image} title="" />
+							</div>{/each}
 					</div>
 				</div>
 				<figcaption class="text-xs text-muted-foreground">{m.security_illustration()}</figcaption>

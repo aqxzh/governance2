@@ -5,7 +5,6 @@
 	import { contours } from '#lib/contours.js';
 	import { presentationTexts } from '#lib/remaining.js';
 	import { m } from '#lib/paraglide/messages.js';
-	import { getLocale } from '#lib/paraglide/runtime.js';
 	import MediaIllustration from './MediaIllustration.svelte';
 	import ContourVideo from './ContourVideo.svelte';
 	let { indices = [0] }: { indices: readonly number[] } = $props();
@@ -20,9 +19,6 @@
 
 <div class="space-y-10">
 	<p class="max-w-4xl text-sm leading-relaxed text-muted-foreground">{m.demo_notice()}</p>
-	{#if getLocale() !== 'ru'}<p class="text-sm text-muted-foreground">
-			{m.media_language_notice()}
-		</p>{/if}
 	{#each indices as i (i)}
 		{@const slide = contours[0].rows[i]}
 		<section

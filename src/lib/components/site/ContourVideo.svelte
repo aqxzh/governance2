@@ -6,6 +6,8 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import type { ContourImage } from '#lib/contours.js';
+	import { infographicFor } from '#lib/infographics.js';
+	import InfographicRenderer from '../infographics/InfographicRenderer.svelte';
 
 	let {
 		src,
@@ -28,17 +30,18 @@
 		if (open) videoFailed = false;
 	}}
 >
+	{#if poster && infographicFor(poster.src)}<InfographicRenderer image={poster} {title} />{/if}
 	<Dialog.Trigger>
 		{#snippet child({ props })}
 			<Button
 				{...props}
 				size="lg"
-				variant={poster ? 'ghost' : 'default'}
+				variant={poster && !infographicFor(poster.src) ? 'ghost' : 'outline'}
 				class={poster
 					? 'h-auto min-h-11 w-full min-w-0 flex-col p-0 whitespace-normal'
 					: 'h-auto min-h-11 whitespace-normal'}
 			>
-				{#if poster}<img
+				{#if poster && !infographicFor(poster.src)}<img
 						src={asset(poster.src)}
 						alt=""
 						width={poster.width}
@@ -59,13 +62,7 @@
 		</Dialog.Header>
 		{#if videoFailed}
 			<p role="alert" class="text-sm text-muted-foreground">{m.video_error()}</p>
-			<img
-				src={asset(image.src)}
-				alt={m.contour_image_alt({ title })}
-				width={image.width}
-				height={image.height}
-				class="max-h-[60svh] w-full rounded-lg object-contain"
-			/>
+			<InfographicRenderer {image} {title} />
 		{:else}
 			<video
 				src={asset(src)}
@@ -78,7 +75,7 @@
 				onerror={() => (videoFailed = true)}
 			></video>
 		{/if}
-		{#if getLocale() !== 'ru'}
+		{#if !videoFailed && getLocale() !== 'ru'}
 			<p class="text-sm text-muted-foreground">{m.media_language_notice()}</p>
 		{/if}
 	</Dialog.Content>

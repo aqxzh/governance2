@@ -73,10 +73,23 @@ for (const area of areas)
 				const trigger = row.getByRole('button');
 				await trigger.click();
 				const dialog = page.getByRole('dialog');
-				await expect(dialog.getByRole('img')).toHaveJSProperty('complete', true);
+				const infographic = dialog.locator('[data-infographic-source]');
+				await expect(infographic).toBeVisible();
+				await expect(
+					infographic.locator('img[src*="/images/contours/"], img[src*="/images/simulator/"]')
+				).toHaveCount(0);
+				expect((await infographic.innerText()).trim().length).toBeGreaterThan(30);
+				const accessibility = await new AxeBuilder({ page })
+					.include('[role="dialog"]')
+					.withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+					.analyze();
+				expect(accessibility.violations).toEqual([]);
 				expect(
-					await dialog.getByRole('img').evaluate((i: HTMLImageElement) => i.naturalWidth)
-				).toBeGreaterThan(0);
+					await dialog.evaluate((e) => {
+						e.scrollTop = e.scrollHeight;
+						return e.scrollHeight <= e.clientHeight || e.scrollTop > 0;
+					})
+				).toBe(true);
 				await page.keyboard.press('Escape');
 				await expect(trigger).toBeFocused();
 			}

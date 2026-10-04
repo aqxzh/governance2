@@ -13,6 +13,8 @@ export default defineConfig({
 		tailwindcss(),
 		sveltekit()
 	],
+	// LayerChart exports Svelte sources; keep them in Vite's SSR transform in dev too.
+	ssr: { noExternal: ['layerchart'] },
 	test: {
 		expect: { requireAssertions: true },
 		environment: 'node',

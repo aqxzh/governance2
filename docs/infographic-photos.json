@@ -1,0 +1,44 @@
+[
+	{
+		"source": "src/simulator/slides/module-3/c09013a65bc761c52c69fa16f2f39ecb59763909.png",
+		"target": "static/images/infographics/portfolio-1.webp",
+		"sourceSHA256": "dca9b89c388dff87bfd076b83082b82d04a10fce6497491192bfbba62131bafe",
+		"targetSHA256": "7f7e5a06fa71aacbb2e5ad4308bf6c4c0308fd0c1bca88b0b2b224075c7f97d9",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	},
+	{
+		"source": "src/simulator/slides/module-3/ca6b577cf5a8d129823f6dece1f1cba891b7613e.png",
+		"target": "static/images/infographics/portfolio-2.webp",
+		"sourceSHA256": "44e6e8c1efa170ce0529f213edc829916eae3828a015c8b2404dbd636118a09e",
+		"targetSHA256": "51e9ff6c7849e29efcb17f0508ed25be38af52fee0ce940f2e38de4e01f83635",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	},
+	{
+		"source": "src/simulator/slides/module-3/c45279bc31bae34f515ef0daec71b0eedc0083e8.png",
+		"target": "static/images/infographics/portfolio-3.webp",
+		"sourceSHA256": "f86a8f7a01380f6fd60d8ed406090418ef7fbd349265b49fd9b9bb36326e7ada",
+		"targetSHA256": "af9a77d0b634f3b9eae603f0444ee2bf448ad6f020eacd3fb3d4a8cfa79d3f49",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	},
+	{
+		"source": "src/simulator/slides/module-4/ccca115612b0c45b97732060b3f06c9ee8190b1e.png",
+		"target": "static/images/infographics/ecosystem-1.webp",
+		"sourceSHA256": "c9e4c72b01092d117383fc0ca32523f2551a52614f3acf39b37221538da90009",
+		"targetSHA256": "7d52b879902f31ef6cfefc805daed8a35181acd99039e1d0d5b5cddfbd9bd3c6",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	},
+	{
+		"source": "src/simulator/slides/module-4/8f4a3d577e7d4e99bb812a0f46e3dc50eee9ec5f.png",
+		"target": "static/images/infographics/ecosystem-2.webp",
+		"sourceSHA256": "608d994f4b7441767e92fdfb154c9ca1aa82d34e7abebea7e9780eefa7a56ad1",
+		"targetSHA256": "5cb818cb623242f1c3109ee729724b9a7398a47e3a34c021a77e0ca0aa07e000",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	},
+	{
+		"source": "src/simulator/slides/module-4/1a99fd37c26e04fcec167e8d9ac34f3bd50db16f.png",
+		"target": "static/images/infographics/ecosystem-3.webp",
+		"sourceSHA256": "0f2598876d5b4fb3508af21edd9c5ad7c23594f317fb7ffb37e4cb3ec92a9c22",
+		"targetSHA256": "3e3b3780321cb848a304832413a2199e3d14e03c55da72336ba32b0c4dda4419",
+		"purpose": "Original text-free source photo; not a dashboard screenshot or verified image of the named project."
+	}
+]
