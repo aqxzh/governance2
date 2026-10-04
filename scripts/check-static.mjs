@@ -23,16 +23,7 @@ for (const locale of ['ru', 'kk', 'en']) {
 const sections = ['simulator', 'diagnostics', 'coordination', 'foodflow'];
 for (const locale of ['ru', 'kk', 'en']) {
 	const home = await readFile(`build/${locale}/index.html`, 'utf8');
-	for (const id of [
-		'team',
-		'process',
-		'infographics',
-		'strategy',
-		'assessment',
-		'execassist',
-		'serviceflow',
-		'security'
-	])
+	for (const id of ['infographics', 'contours', 'example', 'team', 'security'])
 		assert.match(home, new RegExp(`id="${id}"`));
 	assert.doesNotMatch(home, /localhost:8443|sveltekit-prerender/);
 	for (const section of sections) {

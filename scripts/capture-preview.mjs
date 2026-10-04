@@ -24,6 +24,7 @@ try {
 			});
 			await page.goto(`${base}/${locale}/`, { waitUntil: 'networkidle' });
 			await page.evaluate(() => document.fonts.ready);
+			await page.addStyleTag({ content: 'a[href="#main"].fixed {visibility:hidden!important}' });
 			await page.screenshot({ path: `${directory}/${locale}-${width}.png`, fullPage: true });
 			if (locale === 'ru') await page.screenshot({ path: `${directory}/hero-${width}.png` });
 			if (locale === 'ru' && width !== 768) {
@@ -45,13 +46,8 @@ try {
 				await page.keyboard.press('Escape');
 				await page.getByRole('dialog').waitFor({ state: 'hidden' });
 			}
-			for (const id of ['simulator', 'diagnostics', 'coordination']) {
-				await page.locator(`[role="tab"][data-value="${id}"]`).click();
-				await page
-					.locator('#contours')
-					.evaluate((section) => section.scrollIntoView({ block: 'start' }));
-				await page.screenshot({ path: `${directory}/contours-${locale}-${id}-${width}.png` });
-			}
+			await page.locator('#contours').evaluate((e) => e.scrollIntoView({ block: 'start' }));
+			await page.screenshot({ path: `${directory}/contours-${locale}-${width}.png` });
 			await page.locator('#team').evaluate((section) => section.scrollIntoView({ block: 'start' }));
 			const teamClip = await page.locator('#team').evaluate((section) => {
 				const bounds = section.getBoundingClientRect();

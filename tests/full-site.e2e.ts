@@ -3,6 +3,27 @@ import AxeBuilder from '@axe-core/playwright';
 import ru from '../messages/ru.json' with { type: 'json' };
 import kk from '../messages/kk.json' with { type: 'json' };
 import en from '../messages/en.json' with { type: 'json' };
+test('legacy FoodFlow tabs reveal the matching section, including after refresh', async ({
+	page
+}) => {
+	for (const [hash, tab] of [
+		['trace', 'batches'],
+		['order', 'planning'],
+		['agent', 'planning'],
+		['graph', 'history'],
+		['report', 'history']
+	]) {
+		await page.goto(`/ru/foodflow/#${hash}`);
+		await expect(page.locator(`[role="tab"][data-value="${tab}"]`)).toHaveAttribute(
+			'aria-selected',
+			'true'
+		);
+		await expect(page.locator(`#food-${hash}`)).toBeVisible();
+		await page.reload();
+		await expect(page.locator(`#food-${hash}`)).toBeVisible();
+	}
+});
+
 const catalogs = { ru, kk, en };
 const locales = ['ru', 'kk', 'en'] as const;
 const sections = ['diagnostics', 'coordination', 'simulator', 'foodflow'] as const;
@@ -13,22 +34,16 @@ const titleKeys = {
 	foodflow: 'food_title'
 } as const;
 for (const locale of locales) {
-	test(`${locale}: entire landing follows the source order and diagrams work`, async ({ page }) => {
+	test(`${locale}: landing follows the task narrative and preserves source diagrams`, async ({
+		page
+	}) => {
 		await page.goto(`/${locale}/`);
 		const ids = await page
 			.locator('main > section[id]')
 			.evaluateAll((elements) => elements.map((e) => e.id));
-		expect(ids).toEqual([
-			'contours',
-			'team',
-			'process',
-			'infographics',
-			'strategy',
-			'assessment',
-			'execassist',
-			'serviceflow',
-			'security'
-		]);
+		expect(ids).toEqual(['infographics', 'contours', 'example', 'team', 'security']);
+		await expect(page.locator('#process')).toHaveCount(0);
+		await expect(page.locator('#advisor')).toHaveCount(0);
 		const scheme = page
 			.locator('#infographics')
 			.getByRole('button', { name: catalogs[locale].philosophy_scheme, exact: true });
@@ -42,6 +57,7 @@ for (const locale of locales) {
 		await expect(page.getByRole('dialog')).toContainText(catalogs[locale].scheme_1_description);
 		await page.keyboard.press('Escape');
 		await expect(preview).toBeFocused();
+		await page.goto(`/${locale}/simulator/#research`);
 		await page
 			.locator('#process')
 			.getByRole('button', { name: catalogs[locale].contour_video_cta, exact: true })
@@ -74,8 +90,8 @@ for (const locale of locales) {
 			);
 			await expect(page.locator('a[href*="localhost:8443"]')).toHaveCount(0);
 			if (section === 'simulator')
-				await expect(page.locator('section[id^="module-"]')).toHaveCount(6);
-			if (section === 'foodflow') await expect(page.getByRole('tab')).toHaveCount(6);
+				await expect(page.locator('section[id^="module-"]')).toHaveCount(5);
+			if (section === 'foodflow') await expect(page.getByRole('tab')).toHaveCount(3);
 			await page.waitForTimeout(150);
 			expect(errors).toEqual([]);
 		});
@@ -88,17 +104,16 @@ for (const locale of locales) {
 		await expect(panel.locator('tbody tr')).toHaveCount(8);
 		await page.getByLabel(c.food_search, { exact: true }).fill('B-1043');
 		await expect(panel.locator('tbody tr')).toHaveCount(1);
-		await panel.getByRole('button', { name: 'B-1043', exact: true }).click();
+		await panel.locator('tbody').getByRole('button', { name: 'B-1043', exact: true }).click();
 		await expect(panel).toContainText('D-1');
 		await page.getByLabel(c.food_search, { exact: true }).fill('');
 		await page.getByLabel(c.food_group, { exact: true }).selectOption('Молочка');
 		await expect(panel.locator('tbody tr')).toHaveCount(3);
 		await page.getByLabel(c.food_group, { exact: true }).selectOption('all');
-		await page.getByRole('tab', { name: c.food_tab_trace, exact: true }).click();
-		await panel.getByRole('button', { name: 'B-4004', exact: true }).click();
+		await panel.locator('#food-trace').getByRole('button', { name: 'B-4004', exact: true }).click();
 		await expect(panel).toContainText(c.food_product_8);
 		await expect(panel).toContainText('B-4004');
-		await page.getByRole('tab', { name: c.food_tab_order, exact: true }).click();
+		await page.getByRole('tab', { name: c.story_food_planning, exact: true }).click();
 		const before = await panel.locator('[data-spoil-total]').textContent();
 		const slider = panel.getByRole('slider');
 		await slider.focus();
@@ -108,11 +123,11 @@ for (const locale of locales) {
 			.getByRole('button', { name: c.food_days.replace('{count}', '3'), exact: true })
 			.click();
 		await expect(page.locator('[data-food-settings]')).toContainText('3');
-		await page.getByRole('tab', { name: c.food_tab_graph, exact: true }).click();
+		await page.getByRole('tab', { name: c.story_food_history, exact: true }).click();
 		const memory = panel.getByRole('button', { name: c.food_memory_off, exact: true });
 		await memory.click();
 		await expect(memory).toHaveAttribute('aria-pressed', 'true');
-		await page.getByRole('tab', { name: c.food_tab_agent, exact: true }).click();
+		await page.getByRole('tab', { name: c.story_food_planning, exact: true }).click();
 		const decision = panel.locator('[data-food-decision="Молочка"]');
 		await decision.getByRole('button', { name: c.food_approve, exact: true }).click();
 		await expect(
@@ -120,13 +135,12 @@ for (const locale of locales) {
 		).toHaveAttribute('aria-pressed', 'true');
 		await decision.getByRole('button').click();
 		await expect(decision.getByRole('button')).toHaveAttribute('aria-pressed', 'false');
-		await page.getByRole('tab', { name: c.food_tab_report, exact: true }).click();
+		await page.getByRole('tab', { name: c.story_food_history, exact: true }).click();
 		await expect(panel).toContainText(c.food_journal_1);
 		await page.reload();
-		await expect(page.getByRole('tab', { name: c.food_tab_report, exact: true })).toHaveAttribute(
-			'aria-selected',
-			'true'
-		);
+		await expect(
+			page.getByRole('tab', { name: c.story_food_history, exact: true })
+		).toHaveAttribute('aria-selected', 'true');
 	});
 	test(`${locale}: all FoodFlow states and advisor pass automated AA checks`, async ({ page }) => {
 		test.setTimeout(120000);
@@ -138,7 +152,7 @@ for (const locale of locales) {
 				.analyze();
 			expect(result.violations).toEqual([]);
 		}
-		await page.goto(`/${locale}/simulator/#advisor`);
+		await page.goto(`/${locale}/coordination/#advisor`);
 		const result = await new AxeBuilder({ page })
 			.include('#advisor')
 			.withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
@@ -164,10 +178,9 @@ test('nested language switch preserves path, query and FoodFlow tab', async ({ p
 	await page.locator('header [data-language-trigger]').click();
 	await page.getByRole('menuitem', { name: 'English', exact: true }).click();
 	await expect(page).toHaveURL(/\/en\/foodflow\/\?source=case#agent$/);
-	await expect(page.getByRole('tab', { name: en.food_tab_agent, exact: true })).toHaveAttribute(
-		'aria-selected',
-		'true'
-	);
+	await expect(
+		page.getByRole('tab', { name: en.story_food_planning, exact: true })
+	).toHaveAttribute('aria-selected', 'true');
 });
 test('advisor preserves menu, chat mode, demo messages and keyboard map access', async ({
 	page
@@ -176,7 +189,7 @@ test('advisor preserves menu, chat mode, demo messages and keyboard map access',
 	page.on('request', (r) => {
 		if (r.method() === 'POST') posts.push(r.url());
 	});
-	await page.goto('/ru/simulator/#advisor');
+	await page.goto('/ru/coordination/#advisor');
 	const advisor = page.locator('#advisor');
 	const menu = advisor.getByRole('button', { name: ru.advisor_menu_doc_overdue, exact: true });
 	await menu.click();
@@ -195,27 +208,32 @@ test('advisor preserves menu, chat mode, demo messages and keyboard map access',
 	await expect(advisor).toContainText('212');
 	expect(posts).toEqual([]);
 });
-test('all four source simulator movies use local MP4 and close cleanly', async ({ page }) => {
-	await page.goto('/ru/simulator/');
-	for (const [number, file] of [
-		[1, 'map1'],
-		[2, 'almaty'],
-		[5, 'advisor'],
-		[6, 'map2']
+test('all four source movies have a task context and close cleanly', async ({ page }) => {
+	for (const [area, group, number, file] of [
+		['simulator', 'research', 1, 'map1'],
+		['simulator', 'supply', 2, 'almaty'],
+		['coordination', 'advisor', 5, 'advisor'],
+		['simulator', 'scenarios', 6, 'map2']
 	] as const) {
+		await page.goto('/ru/' + area + '/#' + group);
+		await page
+			.getByRole('tabpanel')
+			.getByRole('button', { name: ru.story_materials, exact: true })
+			.click();
 		await page
 			.locator('#module-' + number)
 			.getByRole('button', { name: ru.contour_video_cta, exact: true })
 			.click();
 		const video = page.getByRole('dialog').locator('video');
-		await expect(video).toHaveAttribute('src', `/videos/${file}.mp4`);
+		await expect(video).toHaveAttribute('src', '/videos/' + file + '.mp4');
 		await expect
 			.poll(() => video.evaluate((v: HTMLVideoElement) => v.readyState >= 2 && !v.paused))
 			.toBe(true);
 		await page.keyboard.press('Escape');
 		await expect(page.getByRole('dialog')).toHaveCount(0);
 	}
-	await expect(page.locator('#module-2 a[href="/ru/foodflow/"]')).toBeVisible();
+	await page.goto('/ru/simulator/#supply');
+	await expect(page.getByRole('tabpanel').locator('a[href="/ru/foodflow/"]')).toHaveCount(1);
 });
 for (const status of ['success', 'error', 'false-success', 'timeout'] as const)
 	test(`application ${status}: real integration, mocked delivery only`, async ({ page }) => {
@@ -309,10 +327,10 @@ test.describe('complete static content without JavaScript', () => {
 			await expect(page.locator('#security')).toBeVisible();
 			await expect(page.locator('#infographics [data-static-collapsible]')).toBeVisible();
 			await page.goto(`/${locale}/simulator/`);
-			await expect(page.locator('section[id^="module-"]')).toHaveCount(6);
+			await expect(page.locator('section[id^="module-"]')).toHaveCount(5);
 			await expect(page.locator('#module-6 [data-static-collapsible]')).toBeVisible();
 			await page.goto(`/${locale}/foodflow/`);
-			await expect(page.locator('[data-food-panel]:visible')).toHaveCount(6);
+			await expect(page.locator('[data-food-panel]:visible')).toHaveCount(3);
 			await expect(page.locator('[data-food-decision]')).toHaveCount(4);
 			await expect(page.locator('main')).toContainText(catalogs[locale].food_journal_6);
 		});

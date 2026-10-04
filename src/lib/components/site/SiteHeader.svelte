@@ -9,8 +9,8 @@
 
 	let menuOpen = $state(false);
 	const items = [
-		{ id: 'simulator', number: '01', label: m.nav_simulator },
-		{ id: 'diagnostics', number: '02', label: m.nav_diagnostics },
+		{ id: 'diagnostics', number: '01', label: m.nav_diagnostics },
+		{ id: 'simulator', number: '02', label: m.nav_simulator },
 		{ id: 'coordination', number: '03', label: m.nav_coordination }
 	] as const;
 </script>
@@ -41,7 +41,6 @@
 					href={localizeHref(resolve('/[section]', { section: item.id }))}
 					class="gap-2"
 				>
-					<span class="font-mono text-xs font-normal text-primary">{item.number}</span>
 					{item.label()}
 				</Button>
 			{/each}
@@ -74,7 +73,6 @@
 							size="lg"
 							class="h-auto min-h-11 justify-start whitespace-normal"
 						>
-							<span class="font-mono text-xs text-primary">{item.number}</span>
 							{item.label()}
 						</Button>
 					{/each}

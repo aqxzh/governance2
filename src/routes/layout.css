@@ -108,11 +108,13 @@
 	@media (scripting: none) {
 		[data-language-trigger],
 		[data-contour-tabs],
+		[data-story-tabs],
 		[data-food-tabs] {
 			display: none !important;
 		}
 		/* Override Tailwind preflight's [hidden] rule only for the no-JS register. */
 		[data-contour-panel][hidden],
+		[data-story-panel][hidden],
 		[data-food-panel][hidden],
 		[data-static-collapsible] {
 			display: block !important;

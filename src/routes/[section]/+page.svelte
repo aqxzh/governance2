@@ -13,7 +13,9 @@
 		title={m.section_meta_title({ title: contour.title() })}
 		description={contour.description()}
 	/>
-	<main id="main" tabindex="-1"><ContourPage {contour} /></main>{:else}<Seo
+	<main id="main" tabindex="-1">
+		{#key contour.id}<ContourPage {contour} />{/key}
+	</main>{:else}<Seo
 		title={m.section_meta_title({ title: m.food_title() })}
 		description={m.food_description()}
 	/>

@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import { m } from '#lib/paraglide/messages.js';
-	import { localizeHref } from '#lib/paraglide/runtime.js';
+	import * as Dialog from '#lib/components/ui/dialog/index.js';
 	import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '#lib/site.js';
 	import MeetingDialog from './MeetingDialog.svelte';
 </script>
@@ -38,10 +37,22 @@
 	</section>
 	<div class="flex flex-wrap items-center justify-between gap-4 border-t px-5 py-6 sm:px-7">
 		<p class="font-mono text-xs tracking-wide">GOVERNANCE.KZ</p>
-		<Button
-			href={localizeHref(resolve('/[section]', { section: 'foodflow' }))}
-			variant="link"
-			class="h-auto p-0">{m.foodflow_link()}</Button
+		<Dialog.Root
+			><Dialog.Trigger
+				>{#snippet child({ props })}<Button
+						{...props}
+						variant="link"
+						class="h-auto min-h-11 whitespace-normal">{m.note_cta()}</Button
+					>{/snippet}</Dialog.Trigger
+			><Dialog.Content closeLabel={m.close_label()}
+				><Dialog.Header
+					><Dialog.Title>{m.note_cta()}</Dialog.Title><Dialog.Description
+						>{m.note_description()}</Dialog.Description
+					></Dialog.Header
+				><Button href={'mailto:' + CONTACT_EMAIL} class="h-auto min-h-11 whitespace-normal"
+					>{m.note_contact()}</Button
+				></Dialog.Content
+			></Dialog.Root
 		>
 		<p class="w-full text-xs text-muted-foreground">{m.footer_draft()}</p>
 	</div>

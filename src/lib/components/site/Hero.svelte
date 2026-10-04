@@ -5,9 +5,8 @@
 	import MeetingDialog from './MeetingDialog.svelte';
 	import { asset } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
-	import * as Dialog from '#lib/components/ui/dialog/index.js';
+
 	import { m } from '#lib/paraglide/messages.js';
-	import { CONTACT_EMAIL } from '#lib/site.js';
 
 	let backgroundPlaying = $state(false);
 
@@ -74,29 +73,9 @@
 					class="w-full rounded-xl bg-muted object-cover"
 				/>
 				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-					<MeetingDialog />
-					<Dialog.Root>
-						<Dialog.Trigger>
-							{#snippet child({ props })}
-								<Button
-									{...props}
-									variant="outline"
-									size="lg"
-									class="h-auto min-h-11 whitespace-normal">{m.note_cta()}</Button
-								>
-							{/snippet}
-						</Dialog.Trigger>
-						<Dialog.Content closeLabel={m.close_label()}>
-							<Dialog.Header>
-								<Dialog.Title>{m.note_cta()}</Dialog.Title>
-								<Dialog.Description>{m.note_description()}</Dialog.Description>
-							</Dialog.Header>
-							<Button
-								href={`mailto:${CONTACT_EMAIL}`}
-								class="h-auto min-h-11 px-4 py-3 whitespace-normal">{m.note_contact()}</Button
-							>
-						</Dialog.Content>
-					</Dialog.Root>
+					<Button href="#contours" size="lg" class="h-auto min-h-11 whitespace-normal"
+						>{m.story_choose()}</Button
+					><MeetingDialog variant="outline" />
 				</div>
 			</div>
 		</div>

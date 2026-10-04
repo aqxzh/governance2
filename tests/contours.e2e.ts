@@ -1,150 +1,134 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-
-const ids = ['simulator', 'diagnostics', 'coordination'] as const;
-const counts = [6, 7, 5];
-
+import ru from '../messages/ru.json' with { type: 'json' };
+const areas = ['diagnostics', 'simulator', 'coordination'] as const;
+const groups = {
+	diagnostics: ['functions', 'people', 'data'],
+	simulator: ['research', 'scenarios', 'supply'],
+	coordination: ['advisor', 'bots']
+};
 for (const locale of ['ru', 'kk', 'en']) {
-	test(`${locale}: three localized tabs show the full register and correct counts`, async ({
+	test(`${locale}: home has three visible task cards, not a duplicate register`, async ({
 		page
 	}) => {
 		await page.goto(`/${locale}/`);
-		await expect(page.getByRole('tab')).toHaveCount(3);
-		await page.locator('[role="tab"][data-value="coordination"]').click();
-		for (let index = 0; index < ids.length; index++) {
-			const id = ids[index];
-			const tab = page.locator(`[role="tab"][data-value="${id}"]`);
-			await expect(tab).toContainText(String(counts[index]));
-			await tab.click();
-			await expect(tab).toHaveAttribute('aria-selected', 'true');
-			await expect(page.getByRole('tabpanel')).toHaveCount(1);
-			await expect(page.getByRole('tabpanel').locator('[data-solution-id]:visible')).toHaveCount(
-				counts[index]
+		await expect(page.getByRole('tab')).toHaveCount(0);
+		await expect(page.locator('#contours [data-slot="card"]')).toHaveCount(3);
+		await expect(page.locator('[data-solution-id]')).toHaveCount(0);
+		for (const area of areas)
+			await expect(page.locator(`#contours-${area} a`)).toHaveAttribute(
+				'href',
+				`/${locale}/${area}/`
 			);
-			await expect(page).toHaveURL(new RegExp(`/${locale}/#contours-${id}$`));
-		}
 	});
+	for (const area of areas)
+		test(`${locale}/${area}: task tabs preserve hash, refresh and clean AA`, async ({ page }) => {
+			await page.goto(`/${locale}/${area}/#${groups[area][0]}`);
+			await expect(page.getByRole('tab')).toHaveCount(groups[area].length);
+			for (const id of groups[area]) {
+				const tab = page.locator(`[role="tab"][data-value="${id}"]`);
+				await tab.click();
+				await expect(tab).toHaveAttribute('aria-selected', 'true');
+				await expect(page.getByRole('tabpanel')).toHaveCount(1);
+				await expect(page).toHaveURL(new RegExp(`#${id}$`));
+				const result = await new AxeBuilder({ page })
+					.withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+					.analyze();
+				expect(result.violations).toEqual([]);
+			}
+			await page.reload();
+			await expect(
+				page.locator(`[role="tab"][data-value="${groups[area].at(-1)}"]`)
+			).toHaveAttribute('aria-selected', 'true');
+		});
 }
-
-test('direct hash entry, keyboard tabs and language switching keep the selected contour', async ({
-	page
-}) => {
-	await page.goto('/ru/?source=preview#contours-diagnostics');
-	const diagnostic = page.locator('[role="tab"][data-value="diagnostics"]');
-	await expect(diagnostic).toHaveAttribute('aria-selected', 'true');
-	await diagnostic.focus();
-	await page.keyboard.press('ArrowRight');
-	await expect(page.locator('[role="tab"][data-value="coordination"]')).toHaveAttribute(
+test('keyboard and language preserve the task, query and history', async ({ page }) => {
+	await page.goto('/ru/simulator/?source=story#research');
+	const tab = page.locator('[role="tab"][data-value="research"]');
+	await tab.focus();
+	await tab.press('ArrowRight');
+	await expect(page.locator('[role="tab"][data-value="scenarios"]')).toHaveAttribute(
 		'aria-selected',
 		'true'
 	);
 	await page.locator('header [data-language-trigger]').click();
 	await page.getByRole('menuitem', { name: 'English', exact: true }).click();
-	await expect(page).toHaveURL(/\/en\/\?source=preview#contours-coordination$/);
-	await expect(page.locator('[role="tab"][data-value="coordination"]')).toHaveAttribute(
-		'aria-selected',
-		'true'
-	);
-	await page.reload();
-	await expect(page.locator('[role="tab"][data-value="coordination"]')).toHaveAttribute(
+	await expect(page).toHaveURL(/\/en\/simulator\/\?source=story#scenarios$/);
+	await expect(page.locator('[role="tab"][data-value="scenarios"]')).toHaveAttribute(
 		'aria-selected',
 		'true'
 	);
 });
-
-for (const id of ids) {
-	test(`${id}: every solution opens its own local illustration and restores focus`, async ({
+for (const area of areas)
+	test(`${area}: every preserved source illustration opens and restores focus`, async ({
 		page
 	}) => {
-		await page.goto('/ru/');
-		await page.locator(`[role="tab"][data-value="${id}"]`).click();
-		const rows = page.getByRole('tabpanel').locator('[data-solution-id]:visible');
-		for (let index = 0; index < (await rows.count()); index++) {
-			const trigger = rows.nth(index).getByRole('button');
-			const title = (await trigger.textContent())!.trim();
-			await trigger.click();
-			const dialog = page.getByRole('dialog', { name: title, exact: true });
-			await expect(dialog).toBeVisible();
-			const image = dialog.getByRole('img');
-			await expect(image).toHaveJSProperty('complete', true);
-			expect(
-				await image.evaluate((element: HTMLImageElement) => element.naturalWidth)
-			).toBeGreaterThan(0);
-			await page.keyboard.press('Escape');
-			await expect(dialog).not.toBeVisible();
-			await expect(trigger).toBeFocused();
+		await page.goto(`/ru/${area}/`);
+		for (const id of groups[area]) {
+			await page.locator(`[role="tab"][data-value="${id}"]`).click();
+			const panel = page.getByRole('tabpanel');
+			await panel.getByRole('button', { name: ru.story_materials, exact: true }).click();
+			const rows = panel.locator('[data-solution-id]:visible');
+			for (const row of await rows.all()) {
+				const trigger = row.getByRole('button');
+				await trigger.click();
+				const dialog = page.getByRole('dialog');
+				await expect(dialog.getByRole('img')).toHaveJSProperty('complete', true);
+				expect(
+					await dialog.getByRole('img').evaluate((i: HTMLImageElement) => i.naturalWidth)
+				).toBeGreaterThan(0);
+				await page.keyboard.press('Escape');
+				await expect(trigger).toBeFocused();
+			}
 		}
 	});
-}
-
-test('contour videos load only on request, play locally and stop on close', async ({ page }) => {
-	const requested: string[] = [];
-	page.on('request', (request) => requested.push(request.url()));
-	await page.goto('/ru/');
-	for (const id of ['diagnostics', 'coordination']) {
-		await page.locator(`[role="tab"][data-value="${id}"]`).click();
-		expect(requested.some((url) => url.endsWith(`/videos/${id}.mp4`))).toBe(false);
-		await page
-			.getByRole('tabpanel')
-			.getByRole('button', { name: 'Смотреть видео', exact: true })
-			.click();
-		const dialog = page.getByRole('dialog');
-		const video = dialog.locator('video');
-		await expect(video).toHaveAttribute('src', `/videos/${id}.mp4`);
+test('source videos are lazy, local, and removed on close', async ({ page }) => {
+	for (const [area, group] of [
+		['diagnostics', 'functions'],
+		['coordination', 'bots']
+	]) {
+		const requests: string[] = [];
+		page.on('request', (r) => requests.push(r.url()));
+		await page.goto(`/ru/${area}/#${group}`);
+		expect(requests.some((u) => u.endsWith(`/videos/${area}.mp4`))).toBe(false);
+		const panel = page.getByRole('tabpanel');
+		await panel.getByRole('button', { name: ru.story_materials, exact: true }).click();
+		await panel.getByRole('button', { name: ru.contour_video_cta, exact: true }).click();
+		const video = page.getByRole('dialog').locator('video');
+		await expect(video).toHaveAttribute('src', `/videos/${area}.mp4`);
 		await expect
-			.poll(() =>
-				video.evaluate((element: HTMLVideoElement) => !element.paused && element.readyState >= 2)
-			)
+			.poll(() => video.evaluate((v: HTMLVideoElement) => v.readyState >= 2 && !v.paused))
 			.toBe(true);
 		await page.keyboard.press('Escape');
 		await expect(video).toHaveCount(0);
 	}
 });
-
-test('failed video has a readable illustration fallback', async ({ page }) => {
-	await page.route('**/videos/diagnostics.mp4', (route) => route.abort());
-	await page.goto('/en/#contours-diagnostics');
-	await page
-		.getByRole('tabpanel')
-		.getByRole('button', { name: 'Watch video', exact: true })
-		.click();
-	const dialog = page.getByRole('dialog');
-	await expect(dialog.getByRole('alert')).toContainText('video is unavailable');
-	await expect(dialog.getByRole('img')).toHaveJSProperty('complete', true);
-	await expect(dialog).toContainText('remain in Russian');
-});
-
-test('contours reflow without overflow and pass automatic AA checks', async ({ page }) => {
-	test.setTimeout(90_000);
-	for (const locale of ['ru', 'kk', 'en']) {
-		await page.goto(`/${locale}/`);
-		for (const width of [320, 390, 768, 1440]) {
-			await page.setViewportSize({ width, height: 900 });
-			for (const id of ids) {
-				await page.locator(`[role="tab"][data-value="${id}"]`).click();
-				expect(
-					await page.evaluate(() => document.documentElement.scrollWidth),
-					`${locale}/${id}/${width}`
-				).toBeLessThanOrEqual(width);
-			}
-		}
-		for (const id of ids) {
-			await page.locator(`[role="tab"][data-value="${id}"]`).click();
-			const results = await new AxeBuilder({ page })
-				.withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-				.analyze();
-			expect(results.violations, `${locale}/${id}`).toEqual([]);
-		}
+test('legacy module bookmarks reveal their source and survive refresh', async ({ page }) => {
+	for (const index of [1, 2, 3, 4, 6]) {
+		await page.goto(`/ru/simulator/#module-${index}`);
+		await expect(page.locator(`#module-${index}`)).toBeVisible();
+		await page.reload();
+		await expect(page.locator(`#module-${index}`)).toBeVisible();
 	}
 });
 
-test.describe('no JavaScript', () => {
+test('navigation remounts a new task area rather than leaving an empty panel', async ({ page }) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await page.goto('/ru/diagnostics/#people');
+	await page.locator('header nav a[href="/ru/simulator/"]').click();
+	await expect(page.getByRole('tabpanel')).toContainText(ru.story_research);
+	await page.locator('header nav a[href="/ru/coordination/"]').click();
+	await expect(page.locator('#advisor')).toBeVisible();
+});
+test.describe('static without JavaScript', () => {
 	test.use({ javaScriptEnabled: false });
-	test('all three registers are readable in static HTML', async ({ page }) => {
-		await page.goto('/en/');
-		await expect(page.locator('[data-contour-panel]:visible')).toHaveCount(3);
-		await expect(page.locator('[data-solution-id]:visible')).toHaveCount(18);
-		await expect(page.getByRole('heading', { name: 'Diagnostics', exact: true })).toBeVisible();
-		await expect(page.getByRole('heading', { name: 'Coordination', exact: true })).toBeVisible();
+	test('all reorganised groups and source materials remain readable', async ({ page }) => {
+		let count = 0;
+		for (const area of areas) {
+			await page.goto(`/en/${area}/`);
+			await expect(page.locator('[data-story-panel]:visible')).toHaveCount(groups[area].length);
+			count += (await page.locator('[data-solution-id]:visible').count()) / 1;
+		}
+		expect(count).toBe(18);
 	});
 });

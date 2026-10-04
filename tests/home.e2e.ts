@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const headings = {
-	ru: 'Организации, которые видят свои процессы целиком',
-	kk: 'Өз үдерістерін тұтас көретін ұйымдар',
-	en: 'Organisations that see their processes as a whole'
+	ru: 'Видеть систему целиком. Проверять решения до внедрения.',
+	kk: 'Жүйені тұтас көру. Шешімдерді енгізуге дейін тексеру.',
+	en: 'See the whole system. Test decisions before implementation.'
 };
 
 for (const locale of ['ru', 'kk', 'en'] as const) {
@@ -97,7 +97,7 @@ test('shared palette and primitive radii stay consistent', async ({ page }) => {
 		};
 	});
 	expect(colors.primary).toEqual(colors.blue);
-	expect(colors.button).toEqual(colors.primary);
+	expect(colors.button).not.toEqual(colors.primary); // Outline secondary CTA.
 	colors.meta.forEach((value, index) =>
 		expect(Math.abs(value - colors.primary[index])).toBeLessThanOrEqual(1)
 	);
@@ -287,5 +287,6 @@ test('finished local site retains draft disclosures but no React dependencies', 
 	await expect(page.locator('footer')).toContainText(/draft/i);
 	await expect(page.locator('a[href*="localhost:8443"]')).toHaveCount(0);
 	await expect(page.locator('#security')).toBeVisible();
-	await expect(page.locator('footer a[href="/en/foodflow/"]')).toBeVisible();
+	await expect(page.locator('footer a[href="/en/foodflow/"]')).toHaveCount(0);
+	await expect(page.locator('#contours-simulator a')).toHaveAttribute('href', '/en/simulator/');
 });

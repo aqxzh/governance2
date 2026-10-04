@@ -4,9 +4,9 @@
 
 This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
 The original React reference remains in `/home/marinadec/projects/website` on port 8443.
-Implemented: the full landing in source order, all 18 solutions, standalone simulator/diagnostics/coordination/FoodFlow pages, six original simulator presentations with HTML alternatives and videos, interactive advisor/map, six FoodFlow tabs and consent-based FormSubmit integration. Locale routes and legacy hash/query entries are supported. This is a complete local frontend milestone, not publication or user acceptance; translations/media/delivery require external review.
+Implemented: a task-led landing and diagnostics → modelling → coordination navigation. All 18 unique source scenarios and six simulator presentations are retained once in canonical groups (`src/lib/story.ts`); raw materials are collapsible, not duplicate products. Advisor lives only in coordination. FoodFlow has three upper tabs retaining all six original sections. RU/KK/EN and legacy URLs remain supported. This is local implementation, not visual acceptance or publication.
 
-Read `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
+Read `docs/storytelling-architecture.md`, `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
 
 ## Stack and conventions
 

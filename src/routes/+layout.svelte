@@ -6,19 +6,23 @@
 	import SiteFooter from '#lib/components/site/SiteFooter.svelte';
 	import { m } from '#lib/paraglide/messages.js';
 	import { localizeHref } from '#lib/paraglide/runtime.js';
-	import { legacySection } from '#lib/legacy.js';
+	import { storyRedirect } from '#lib/story-legacy.js';
 	import './layout.css';
 	let { children } = $props();
 	onMount(() => {
 		const redirect = () => {
 			const url = new URL(window.location.href);
-			const section = legacySection(url);
-			if (!section) return;
+			const target = storyRedirect(url);
+			if (!target) return;
+			const { section, hash } = target;
 			url.searchParams.delete('food');
-			// eslint-disable-next-line svelte/no-navigation-without-resolve -- Paraglide localizes the resolved Kit route.
-			void goto(localizeHref(resolve('/[section]', { section })) + url.search, {
-				replaceState: true
-			});
+			void goto(
+				// eslint-disable-next-line svelte/no-navigation-without-resolve -- Paraglide localizes the resolved Kit route.
+				localizeHref(resolve('/[section]', { section })) + url.search + (hash ? '#' + hash : ''),
+				{
+					replaceState: true
+				}
+			);
 		};
 		redirect();
 		window.addEventListener('hashchange', redirect);
