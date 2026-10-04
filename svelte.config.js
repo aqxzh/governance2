@@ -9,7 +9,17 @@ const config = {
 		// Deploy at the domain root. Keep prerendered links/assets origin-independent.
 		paths: { relative: false },
 		adapter: adapter({ precompress: true, strict: true }),
-		prerender: { entries: ['/', '/ru/', '/kk/', '/en/'] }
+		prerender: {
+			entries: [
+				'/',
+				'/ru/',
+				'/kk/',
+				'/en/',
+				...['simulator', 'diagnostics', 'coordination', 'foodflow'].flatMap((section) =>
+					['', '/ru', '/kk', '/en'].map((locale) => `${locale}/${section}/`)
+				)
+			]
+		}
 	}
 };
 export default config;

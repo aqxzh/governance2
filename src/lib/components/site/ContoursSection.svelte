@@ -17,11 +17,11 @@
 	let active = $state('simulator');
 	onMount(() => {
 		const syncHash = async () => {
-			const id = window.location.hash.slice(1);
+			const id = window.location.hash.slice(1).replace(/^contours-/, '');
 			if (!contours.some((contour) => contour.id === id)) return;
 			active = id;
 			await tick();
-			document.getElementById(id)?.scrollIntoView({ block: 'start' });
+			document.getElementById('contours-' + id)?.scrollIntoView({ block: 'start' });
 		};
 		void syncHash();
 		window.addEventListener('hashchange', syncHash);
@@ -46,7 +46,7 @@
 		onValueChange={(value) => {
 			if (browser) {
 				// eslint-disable-next-line svelte/no-navigation-without-resolve -- Paraglide localizes the resolved Kit root.
-				void goto(localizeHref(resolve('/')) + page.url.search + '#' + value, {
+				void goto(localizeHref(resolve('/')) + page.url.search + '#contours-' + value, {
 					replaceState: true,
 					noScroll: true,
 					keepFocus: true
@@ -88,7 +88,7 @@
 		{#each contours as contour (contour.id)}
 			<Tabs.Content
 				value={contour.id}
-				id={contour.id}
+				id={'contours-' + contour.id}
 				class="mt-6 scroll-mt-6 space-y-6"
 				data-contour-panel
 			>
@@ -121,7 +121,7 @@
 							<ContourVideo src={contour.video} title={contour.title()} image={contour.image} />
 						{:else}
 							<Button
-								href="http://localhost:8443/#simulator"
+								href={localizeHref(resolve('/[section]', { section: 'simulator' }))}
 								size="lg"
 								class="h-auto min-h-11 whitespace-normal"
 								>{m.simulator_demo_cta()}<ArrowUpRightIcon aria-hidden="true" /></Button
@@ -133,12 +133,12 @@
 				<div
 					class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-sm text-muted-foreground"
 				>
-					<p>{m.reference_description()}</p>
+					<p>{contour.description()}</p>
 					<Button
-						href={'http://localhost:8443/#' + contour.id}
+						href={localizeHref(resolve('/[section]', { section: contour.id }))}
 						variant="link"
 						class="h-auto min-h-11 p-0 whitespace-normal"
-						>{m.reference_link()}<ArrowUpRightIcon aria-hidden="true" /></Button
+						>{m.open_contour()}<ArrowUpRightIcon aria-hidden="true" /></Button
 					>
 				</div>
 			</Tabs.Content>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://governance.kz/ru/</loc></url>
-  <url><loc>https://governance.kz/kk/</loc></url>
-  <url><loc>https://governance.kz/en/</loc></url>
+ <url><loc>https://governance.kz/ru/</loc></url>
+ <url><loc>https://governance.kz/kk/</loc></url>
+ <url><loc>https://governance.kz/en/</loc></url>
+ <url><loc>https://governance.kz/ru/simulator/</loc></url>
+ <url><loc>https://governance.kz/kk/simulator/</loc></url>
+ <url><loc>https://governance.kz/en/simulator/</loc></url>
+ <url><loc>https://governance.kz/ru/diagnostics/</loc></url>
+ <url><loc>https://governance.kz/kk/diagnostics/</loc></url>
+ <url><loc>https://governance.kz/en/diagnostics/</loc></url>
+ <url><loc>https://governance.kz/ru/coordination/</loc></url>
+ <url><loc>https://governance.kz/kk/coordination/</loc></url>
+ <url><loc>https://governance.kz/en/coordination/</loc></url>
+ <url><loc>https://governance.kz/ru/foodflow/</loc></url>
+ <url><loc>https://governance.kz/kk/foodflow/</loc></url>
+ <url><loc>https://governance.kz/en/foodflow/</loc></url>
 </urlset>

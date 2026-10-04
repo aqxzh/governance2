@@ -74,7 +74,7 @@ test.describe('static HTML without JavaScript', () => {
 
 test('shared palette and primitive radii stay consistent', async ({ page }) => {
 	await page.goto('/ru/');
-	const meeting = page.getByRole('button', { name: 'Записаться на встречу', exact: true });
+	const meeting = page.getByRole('button', { name: 'Записаться на встречу', exact: true }).first();
 	const colors = await meeting.evaluate((button) => {
 		const root = getComputedStyle(document.documentElement);
 		const canvas = document.createElement('canvas');
@@ -125,10 +125,10 @@ test('languages preserve the anchor and survive refresh and browser history', as
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.kk);
 	await page.goBack();
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.ru);
-	await page.goto('/ru/?source=preview#diagnostics');
+	await page.goto('/ru/?source=preview#contours-diagnostics');
 	await page.locator('header [data-language-trigger]').click();
 	await page.getByRole('menuitem', { name: 'English', exact: true }).click();
-	await expect(page).toHaveURL(/\/en\/\?source=preview#diagnostics$/);
+	await expect(page).toHaveURL(/\/en\/\?source=preview#contours-diagnostics$/);
 	await expect(page.getByRole('heading', { level: 1 })).toHaveText(headings.en);
 });
 
@@ -162,7 +162,7 @@ test('meeting Dialog closes on Escape and restores focus without sending data', 
 		if (request.method() === 'POST') posts.push(request.url());
 	});
 	await page.goto('/ru/');
-	const trigger = page.getByRole('button', { name: 'Записаться на встречу' });
+	const trigger = page.getByRole('button', { name: 'Записаться на встречу' }).first();
 	await trigger.click();
 	const dialog = page.getByRole('dialog', { name: 'Записаться на встречу' });
 	await expect(dialog).toBeVisible();
@@ -170,7 +170,10 @@ test('meeting Dialog closes on Escape and restores focus without sending data', 
 		'href',
 		'mailto:akbota.akylbek07@gmail.com'
 	);
-	await expect(dialog).toContainText('персональные данные не отправляются');
+	await expect(dialog).toContainText('FormSubmit');
+	await expect(
+		dialog.getByRole('button', { name: 'Отправить заявку', exact: true })
+	).toBeDisabled();
 	await page.keyboard.press('Escape');
 	await expect(dialog).not.toBeVisible();
 	await expect(trigger).toBeFocused();
@@ -239,7 +242,7 @@ test('mobile Sheet has translated labels, keyboard close and working anchors', a
 	await trigger.click();
 	await sheet.getByRole('link', { name: /Диагностика/ }).click();
 	await expect(sheet).not.toBeVisible();
-	await expect(page).toHaveURL(/\/kk\/#diagnostics$/);
+	await expect(page).toHaveURL(/\/kk\/diagnostics\/$/);
 });
 
 test('no horizontal overflow across supported widths and languages', async ({ page }) => {
@@ -270,17 +273,19 @@ test('automated WCAG AA checks pass on the home page and open meeting Dialog', a
 		(await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
 			.violations
 	).toEqual([]);
-	await page.getByRole('button', { name: 'Записаться на встречу' }).click();
+	await page.getByRole('button', { name: 'Записаться на встречу' }).first().click();
 	expect(
 		(await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
 			.violations
 	).toEqual([]);
 });
 
-test('preview explicitly marks unfinished sections and draft translations', async ({ page }) => {
+test('finished local site retains draft disclosures but no React dependencies', async ({
+	page
+}) => {
 	await page.goto('/en/');
-	await expect(page.locator('footer')).toContainText('translation draft');
-	const references = page.getByRole('link', { name: 'Open the React reference' });
-	await expect(references).toHaveCount(1);
-	await expect(references.first()).toHaveAttribute('href', 'http://localhost:8443/#simulator');
+	await expect(page.locator('footer')).toContainText(/draft/i);
+	await expect(page.locator('a[href*="localhost:8443"]')).toHaveCount(0);
+	await expect(page.locator('#security')).toBeVisible();
+	await expect(page.locator('footer a[href="/en/foodflow/"]')).toBeVisible();
 });

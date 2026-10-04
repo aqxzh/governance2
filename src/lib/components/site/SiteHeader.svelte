@@ -36,7 +36,11 @@
 	<div class="flex shrink-0 items-center gap-1 lg:gap-4">
 		<nav aria-label={m.navigation_label()} class="hidden items-center gap-2 lg:flex">
 			{#each items as item (item.id)}
-				<Button variant="outline" href={localizeHref(resolve('/')) + '#' + item.id} class="gap-2">
+				<Button
+					variant="outline"
+					href={localizeHref(resolve('/[section]', { section: item.id }))}
+					class="gap-2"
+				>
 					<span class="font-mono text-xs font-normal text-primary">{item.number}</span>
 					{item.label()}
 				</Button>
@@ -65,7 +69,7 @@
 					{#each items as item (item.id)}
 						<Button
 							variant="outline"
-							href={localizeHref(resolve('/')) + '#' + item.id}
+							href={localizeHref(resolve('/[section]', { section: item.id }))}
 							onclick={() => (menuOpen = false)}
 							size="lg"
 							class="h-auto min-h-11 justify-start whitespace-normal"

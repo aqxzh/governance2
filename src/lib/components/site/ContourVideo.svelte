@@ -7,7 +7,19 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import type { ContourImage } from '#lib/contours.js';
 
-	let { src, title, image }: { src: string; title: string; image: ContourImage } = $props();
+	let {
+		src,
+		title,
+		image,
+		poster,
+		posterClass = ''
+	}: {
+		src: string;
+		title: string;
+		image: ContourImage;
+		poster?: ContourImage;
+		posterClass?: string;
+	} = $props();
 	let videoFailed = $state(false);
 </script>
 
@@ -18,8 +30,25 @@
 >
 	<Dialog.Trigger>
 		{#snippet child({ props })}
-			<Button {...props} size="lg" class="h-auto min-h-11 whitespace-normal">
-				<PlayIcon aria-hidden="true" />{m.contour_video_cta()}
+			<Button
+				{...props}
+				size="lg"
+				variant={poster ? 'ghost' : 'default'}
+				class={poster
+					? 'h-auto min-h-11 w-full min-w-0 flex-col p-0 whitespace-normal'
+					: 'h-auto min-h-11 whitespace-normal'}
+			>
+				{#if poster}<img
+						src={asset(poster.src)}
+						alt=""
+						width={poster.width}
+						height={poster.height}
+						loading="lazy"
+						class={'w-full rounded-lg object-contain ' + posterClass}
+					/>{/if}
+				<span class="flex min-h-11 items-center gap-2"
+					><PlayIcon aria-hidden="true" />{m.contour_video_cta()}</span
+				>
 			</Button>
 		{/snippet}
 	</Dialog.Trigger>

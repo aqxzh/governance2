@@ -24,7 +24,7 @@
 	--muted-foreground: var(--color-zinc-600);
 	--accent: var(--color-zinc-100);
 	--accent-foreground: var(--color-zinc-900);
-	--destructive: var(--color-red-600);
+	--destructive: var(--color-red-700);
 	--border: var(--color-zinc-200);
 	--input: var(--border);
 	--ring: var(--primary);
@@ -107,11 +107,14 @@
 	}
 	@media (scripting: none) {
 		[data-language-trigger],
-		[data-contour-tabs] {
+		[data-contour-tabs],
+		[data-food-tabs] {
 			display: none !important;
 		}
 		/* Override Tailwind preflight's [hidden] rule only for the no-JS register. */
-		[data-contour-panel][hidden] {
+		[data-contour-panel][hidden],
+		[data-food-panel][hidden],
+		[data-static-collapsible] {
 			display: block !important;
 		}
 	}

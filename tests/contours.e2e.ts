@@ -21,7 +21,7 @@ for (const locale of ['ru', 'kk', 'en']) {
 			await expect(page.getByRole('tabpanel').locator('[data-solution-id]:visible')).toHaveCount(
 				counts[index]
 			);
-			await expect(page).toHaveURL(new RegExp(`/${locale}/#${id}$`));
+			await expect(page).toHaveURL(new RegExp(`/${locale}/#contours-${id}$`));
 		}
 	});
 }
@@ -29,7 +29,7 @@ for (const locale of ['ru', 'kk', 'en']) {
 test('direct hash entry, keyboard tabs and language switching keep the selected contour', async ({
 	page
 }) => {
-	await page.goto('/ru/?source=preview#diagnostics');
+	await page.goto('/ru/?source=preview#contours-diagnostics');
 	const diagnostic = page.locator('[role="tab"][data-value="diagnostics"]');
 	await expect(diagnostic).toHaveAttribute('aria-selected', 'true');
 	await diagnostic.focus();
@@ -40,7 +40,7 @@ test('direct hash entry, keyboard tabs and language switching keep the selected 
 	);
 	await page.locator('header [data-language-trigger]').click();
 	await page.getByRole('menuitem', { name: 'English', exact: true }).click();
-	await expect(page).toHaveURL(/\/en\/\?source=preview#coordination$/);
+	await expect(page).toHaveURL(/\/en\/\?source=preview#contours-coordination$/);
 	await expect(page.locator('[role="tab"][data-value="coordination"]')).toHaveAttribute(
 		'aria-selected',
 		'true'
@@ -84,7 +84,10 @@ test('contour videos load only on request, play locally and stop on close', asyn
 	for (const id of ['diagnostics', 'coordination']) {
 		await page.locator(`[role="tab"][data-value="${id}"]`).click();
 		expect(requested.some((url) => url.endsWith(`/videos/${id}.mp4`))).toBe(false);
-		await page.getByRole('button', { name: 'Смотреть видео', exact: true }).click();
+		await page
+			.getByRole('tabpanel')
+			.getByRole('button', { name: 'Смотреть видео', exact: true })
+			.click();
 		const dialog = page.getByRole('dialog');
 		const video = dialog.locator('video');
 		await expect(video).toHaveAttribute('src', `/videos/${id}.mp4`);
@@ -100,8 +103,11 @@ test('contour videos load only on request, play locally and stop on close', asyn
 
 test('failed video has a readable illustration fallback', async ({ page }) => {
 	await page.route('**/videos/diagnostics.mp4', (route) => route.abort());
-	await page.goto('/en/#diagnostics');
-	await page.getByRole('button', { name: 'Watch video', exact: true }).click();
+	await page.goto('/en/#contours-diagnostics');
+	await page
+		.getByRole('tabpanel')
+		.getByRole('button', { name: 'Watch video', exact: true })
+		.click();
 	const dialog = page.getByRole('dialog');
 	await expect(dialog.getByRole('alert')).toContainText('video is unavailable');
 	await expect(dialog.getByRole('img')).toHaveJSProperty('complete', true);

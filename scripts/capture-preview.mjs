@@ -33,7 +33,11 @@ try {
 				await page.keyboard.press('Escape');
 				await page.getByRole('menu').waitFor({ state: 'hidden' });
 				if (width === 390) await page.locator('header button[aria-haspopup="dialog"]').click();
-				else await page.getByRole('button', { name: 'Записаться на встречу', exact: true }).click();
+				else
+					await page
+						.getByRole('button', { name: 'Записаться на встречу', exact: true })
+						.first()
+						.click();
 				await page.getByRole('dialog').waitFor();
 				await page.screenshot({
 					path: `${directory}/${width === 390 ? 'sheet' : 'dialog'}-${width}.png`

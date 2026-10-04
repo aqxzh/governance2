@@ -6,11 +6,20 @@
 		ref = $bindable(null),
 		class: className,
 		children,
+		scrollLabel,
 		...restProps
-	}: WithElementRef<HTMLTableAttributes> = $props();
+	}: WithElementRef<HTMLTableAttributes> & { scrollLabel?: string } = $props();
 </script>
 
-<div data-slot="table-container" class="relative w-full overflow-x-auto">
+<!-- Named horizontal scroll regions intentionally receive keyboard focus in Safari. -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div
+	data-slot="table-container"
+	role={scrollLabel ? 'region' : undefined}
+	aria-label={scrollLabel}
+	tabindex={scrollLabel ? 0 : undefined}
+	class="relative w-full overflow-x-auto focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+>
 	<table
 		bind:this={ref}
 		data-slot="table"

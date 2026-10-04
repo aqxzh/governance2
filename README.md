@@ -1,55 +1,56 @@
-# Governance.kz — локальная миграция на SvelteKit
+# Governance.kz — SvelteKit
 
-**Локальный образец миграции, не готовая замена прод-сайта.** Реализованы шапка, hero, RU/KZ/EN, мобильное меню, контактные модалки и блок контуров: три вкладки, все 18 решений, иллюстрации и видео. Перенесена команда: четыре этапа, руководитель внедрения и три принципа. Следом — процесс работы. Полные страницы контуров, интерактивные демо и отправка формы ещё не перенесены.
+**Полный локальный перенос публичного фронтенда; не опубликованная замена прод-сайта.** Перенесены весь лендинг, три контура, шесть презентаций симулятора, интерактивные advisor/map, шесть вкладок FoodFlow, формы, RU/KZ/EN и старые входы. Пользовательская визуальная приёмка и внешние проверки публикации остаются отдельно.
 
 ## Запуск
 
-Node **24.19.0**, pnpm **10.34.3**. Версии заданы в `.mise.toml`, `engines`, `packageManager`; зависимости — в `pnpm-lock.yaml`.
+Node **24.19.0**, pnpm **10.34.3**; версии и зависимости закреплены.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev --host 127.0.0.1 --port 5174 --strictPort
 ```
 
-- Новая версия: http://localhost:5174/ru/ (также `/kk/`, `/en/`).
-- React-эталон в соседнем worktree: http://localhost:8443/.
-- Прямые ссылки на React-эталон в обзоре контуров рассчитаны на локальный просмотр на этой машине, а не на публикацию.
+- Svelte: http://localhost:5174/ru/ (также `/kk/`, `/en/`).
+- Страницы: `/ru/{simulator,diagnostics,coordination,foodflow}/`, аналогично KK/EN.
+- React-эталон в соседнем worktree: http://localhost:8443/. Публичные ссылки новой версии на него не ведут.
 
 ## Проверки
 
 ```sh
-pnpm exec playwright install chromium # один раз для окружения
+pnpm exec playwright install chromium
 pnpm verify
 ```
 
-`verify`: svelte-check → Prettier/ESLint → Vitest → сборка + Playwright desktop/mobile → статический HTML/SEO. Браузерные тесты запускают свой production preview на порту 4173; порт должен быть свободен.
-
-Дополнительно:
+`verify`: svelte-check → Prettier/ESLint → Vitest → сборка + Playwright desktop/mobile → статический HTML/SEO. Playwright запускает production preview на порту 4173. Итог: **35 unit, 141 browser passed, 1 намеренный skip**, 0 ошибок/предупреждений svelte-check. Формы тестируются исключительно с mock-сетью, реальных заявок агент не отправлял.
 
 ```sh
 pnpm format
 pnpm build
 pnpm preview --host 127.0.0.1 --port 4173
-node scripts/capture-preview.mjs # при запущенном dev, файлы в .artifacts/preview/
+node scripts/capture-preview.mjs
+node scripts/capture-fullsite.mjs
 ```
 
-## Основа
+Скриншоты при работающем dev сохраняются в `.artifacts/preview/`; просмотрены напрямую текущей vision-моделью. Это не заменяет пользовательскую приёмку или полную сертификацию WCAG.
 
-- Svelte 5, SvelteKit 2, TypeScript strict, Vite 8.
-- adapter-static: предрендеринг `/`, `/ru/`, `/kk/`, `/en/`, затем гидратация. Постоянный Node-процесс для публикации не нужен.
-- shadcn-svelte + Bits UI, стиль **Vega**, готовые палитры **Zinc + Blue**. Семантические цвета и стандартная шкала радиусов задаются в `src/routes/layout.css`; локальные переопределения оформления примитивов убраны. Правила для следующих страниц — [система оформления](docs/design-system.md).
-- Paraglide JS: `messages/{ru,kk,en}.json`, `project.inlang/paraglide.config.js`, URL-стратегия. KK/EN — черновые переводы, не утверждённый текст.
-- Шрифты Fontsource размещаются в сборке локально. IBM Plex Sans/Mono имеют SIL Open Font License; лицензии входят в соответствующие пакеты в `node_modules`.
-- Оптимизированные иллюстрации и видео — `static/images/`, `static/videos/`. Исходники сохранены в React-worktree и истории Git; происхождение и команды обработки — в `docs/migration-status.md` и `docs/contour-media.json`. Повторная подготовка медиа контуров: `node scripts/prepare-contour-media.mjs` (ImageMagick + FFmpeg; `REFERENCE_DIR` задаёт путь к React-источнику).
+## Основа и медиа
 
-SvelteKit 2 выбран для совместимости с текущим Bits UI/runed; несовместимые peer-зависимости нового CLI-шаблона с Kit 3 не оставлены.
+- Svelte 5, SvelteKit 2, TypeScript strict, Vite 8, adapter-static: все страницы предрендерены, затем гидратируются. Постоянный Node-сервер не нужен.
+- shadcn-svelte/Bits UI, **Vega + Zinc + Blue**, Tailwind v4 и semantic tokens. [Правила оформления](docs/design-system.md).
+- Paraglide JS, `messages/{ru,kk,en}.json`; locale `kk`, метка **KZ**. KK/EN остаются черновиками. Переключатель сохраняет путь/query/hash.
+- Локальные Fontsource IBM Plex Sans/Mono, SIL Open Font License. Лицензии находятся в пакетах зависимостей.
+- `static/images/`, `static/videos/`: оптимизированные производные исходных материалов. Происхождение: `docs/{contour-media,fullsite-media}.json`.
+- Повторная генерация: `node scripts/prepare-contour-media.mjs`, `node scripts/prepare-fullsite-media.mjs` (ImageMagick/FFmpeg, `REFERENCE_DIR` для React-источника); `node scripts/capture-simulator-reference.mjs` требует работающий React-эталон и ImageMagick.
 
-## Что пока намеренно отсутствует
+Kit 2 выбран из-за совместимости Bits UI/runed, без конфликтующих peer-зависимостей Kit 3.
 
-- Полный лендинг, страницы контуров, интерактивный симулятор и FoodFlow.
-- Реальная отправка заявок: Dialog показывает контакты и явно сообщает о локальном образце.
-- PDF аналитической записки: без документа нет фиктивного скачивания.
-- Service worker/PWA: старый sw.js не скопирован. Обновление старого кеша нужно спланировать перед публикацией.
-- Деплой и замена nginx на Caddy. Ни сервер, ни работающий прод не менялись.
+## Ограничения и публикация
 
-Подробности: [план](docs/migration-plan.md), [эталон](docs/migration-baseline.md), [статус](docs/migration-status.md).
+- Демо используют исходные синтетические данные: нет работающей AI/БД, камеры/QR-сканера или новой расчётной системы. Сложные презентации сохранены как изображения с локализованными HTML-текстами и рабочими исходными видеосценариями.
+- Форма вызывает исходный FormSubmit только после явного согласия. Подтверждение API не означает доставку письма; активация/получатель/обработка данных требуют внешней проверки.
+- PDF не предоставлен, фиктивного скачивания нет. Русские подписи в исходных медиа требуют редакторской проверки и субтитров.
+- `static/sw.js` — переходный tombstone для старого Governance-кеша: новый worker не регистрируется, принудительной перезагрузки нет. Работа offline/PWA не заявляется.
+- GitHub Write-доступ отсутствует. Push, PR, merge, деплой и изменения VPS/nginx/SSL не выполнялись. Публикация — отдельный этап после приёмки, с бэкапом и откатом.
+
+[Статус](docs/migration-status.md) · [План](docs/migration-plan.md) · [Эталон](docs/migration-baseline.md)

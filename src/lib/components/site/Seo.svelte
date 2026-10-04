@@ -4,14 +4,18 @@
 	import { getLocale, deLocalizeUrl, localizeHref } from '#lib/paraglide/runtime.js';
 	import { SITE_ORIGIN, THEME_COLOR, languages } from '#lib/site.js';
 
+	let {
+		title = m.meta_title(),
+		description = m.meta_description()
+	}: { title?: string; description?: string } = $props();
 	const canonical = $derived(
 		new URL(localizeHref(deLocalizeUrl(page.url).pathname), SITE_ORIGIN).href
 	);
 </script>
 
 <svelte:head>
-	<title>{m.meta_title()}</title>
-	<meta name="description" content={m.meta_description()} />
+	<title>{title}</title>
+	<meta name="description" content={description} />
 	<link rel="canonical" href={canonical} />
 	{#each languages as language (language.locale)}
 		<link
@@ -31,8 +35,8 @@
 	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Governance.kz" />
-	<meta property="og:title" content={m.meta_title()} />
-	<meta property="og:description" content={m.meta_description()} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
 	<meta property="og:url" content={canonical} />
 	<meta
 		property="og:locale"

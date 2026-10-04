@@ -2,12 +2,12 @@
 	import { onMount } from 'svelte';
 	import PlayIcon from '@lucide/svelte/icons/play';
 	import PauseIcon from '@lucide/svelte/icons/pause';
-	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
+	import MeetingDialog from './MeetingDialog.svelte';
 	import { asset } from '$app/paths';
 	import { Button } from '#lib/components/ui/button/index.js';
 	import * as Dialog from '#lib/components/ui/dialog/index.js';
 	import { m } from '#lib/paraglide/messages.js';
-	import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from '#lib/site.js';
+	import { CONTACT_EMAIL } from '#lib/site.js';
 
 	let backgroundPlaying = $state(false);
 
@@ -74,45 +74,7 @@
 					class="w-full rounded-xl bg-muted object-cover"
 				/>
 				<div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-					<Dialog.Root>
-						<Dialog.Trigger>
-							{#snippet child({ props })}
-								<Button {...props} size="lg" class="h-auto min-h-11 whitespace-normal">
-									{m.meeting_cta()}
-									<ArrowRightIcon aria-hidden="true" />
-								</Button>
-							{/snippet}
-						</Dialog.Trigger>
-						<Dialog.Content closeLabel={m.close_label()} class="sm:max-w-lg">
-							<Dialog.Header>
-								<Dialog.Title>{m.meeting_cta()}</Dialog.Title>
-								<Dialog.Description>{m.meeting_description()}</Dialog.Description>
-							</Dialog.Header>
-							<dl class="grid gap-4">
-								<div>
-									<dt class="mb-1 section-eyebrow">{m.contact_email()}</dt>
-									<dd>
-										<a
-											class="break-all text-primary underline underline-offset-4"
-											href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
-										>
-									</dd>
-								</div>
-								<div>
-									<dt class="mb-1 section-eyebrow">{m.contact_phone()}</dt>
-									<dd>
-										<a
-											class="text-primary underline underline-offset-4"
-											href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE_DISPLAY}</a
-										>
-									</dd>
-								</div>
-							</dl>
-							<p class="rounded-lg bg-muted p-4 text-sm leading-relaxed text-muted-foreground">
-								{m.meeting_preview()}
-							</p>
-						</Dialog.Content>
-					</Dialog.Root>
+					<MeetingDialog />
 					<Dialog.Root>
 						<Dialog.Trigger>
 							{#snippet child({ props })}

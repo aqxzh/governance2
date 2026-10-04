@@ -1,0 +1,82 @@
+{
+	"process": {
+		"src": "/images/landing/process.webp",
+		"width": 1536,
+		"height": 1024
+	},
+	"before": {
+		"src": "/images/landing/before.webp",
+		"width": 760,
+		"height": 578
+	},
+	"after": {
+		"src": "/images/landing/after.webp",
+		"width": 760,
+		"height": 571
+	},
+	"scheme1": {
+		"src": "/images/landing/scheme1.webp",
+		"width": 1254,
+		"height": 1254
+	},
+	"scheme2": {
+		"src": "/images/landing/scheme2.webp",
+		"width": 1254,
+		"height": 1254
+	},
+	"strategy": {
+		"src": "/images/landing/strategy.webp",
+		"width": 1086,
+		"height": 661
+	},
+	"assessment": {
+		"src": "/images/landing/assessment.webp",
+		"width": 964,
+		"height": 475
+	},
+	"assessmentDetail": {
+		"src": "/images/landing/assessmentDetail.webp",
+		"width": 1920,
+		"height": 1037
+	},
+	"advisor": {
+		"src": "/images/landing/advisor.webp",
+		"width": 1920,
+		"height": 1037
+	},
+	"exec": {
+		"src": "/images/landing/exec.webp",
+		"width": 1376,
+		"height": 768
+	},
+	"service": {
+		"src": "/images/landing/service.webp",
+		"width": 1716,
+		"height": 762
+	},
+	"securityMap": {
+		"src": "/images/landing/securityMap.webp",
+		"width": 1920,
+		"height": 681
+	},
+	"securitySymbol": {
+		"src": "/images/landing/securitySymbol.webp",
+		"width": 253,
+		"height": 302
+	},
+	"security1": {
+		"src": "/images/landing/security1.webp",
+		"width": 116,
+		"height": 114
+	},
+	"security2": {
+		"src": "/images/landing/security2.webp",
+		"width": 116,
+		"height": 114
+	},
+	"security3": {
+		"src": "/images/landing/security3.webp",
+		"width": 113,
+		"height": 114
+	}
+}
