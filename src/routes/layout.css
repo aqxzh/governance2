@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn-svelte/tailwind.css';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Standard shadcn Vega: Zinc neutrals + Blue accent from Tailwind's palette.
+   Use semantic tokens in components, not local colors or one-off surface styles. */
+:root {
+	--background: var(--color-white);
+	--foreground: var(--color-zinc-950);
+	--card: var(--background);
+	--card-foreground: var(--foreground);
+	--popover: var(--background);
+	--popover-foreground: var(--foreground);
+	--primary: var(--color-blue-700);
+	--primary-foreground: var(--color-white);
+	--secondary: var(--color-zinc-100);
+	--secondary-foreground: var(--color-zinc-900);
+	--muted: var(--color-zinc-100);
+	/* Zinc 600 keeps small text AA-readable on both white and muted panels. */
+	--muted-foreground: var(--color-zinc-600);
+	--accent: var(--color-zinc-100);
+	--accent-foreground: var(--color-zinc-900);
+	--destructive: var(--color-red-700);
+	--border: var(--color-zinc-200);
+	--input: var(--border);
+	--ring: var(--primary);
+	--radius: 0.5rem;
+	--hero-surface: var(--color-zinc-950);
+	--hero-foreground: var(--color-white);
+	--hero-muted-foreground: var(--color-zinc-200);
+	--footer-surface: var(--color-zinc-950);
+}
+
+.dark {
+	--background: var(--color-zinc-950);
+	--foreground: var(--color-zinc-50);
+	--card: var(--color-zinc-900);
+	--card-foreground: var(--foreground);
+	--popover: var(--color-zinc-900);
+	--popover-foreground: var(--foreground);
+	--primary: var(--color-blue-400);
+	--primary-foreground: var(--color-zinc-950);
+	--secondary: var(--color-zinc-800);
+	--secondary-foreground: var(--foreground);
+	--muted: var(--color-zinc-800);
+	--muted-foreground: var(--color-zinc-400);
+	--accent: var(--color-zinc-800);
+	--accent-foreground: var(--foreground);
+	--destructive: var(--color-red-400);
+	--border: var(--color-zinc-700);
+	--input: var(--border);
+	--ring: var(--color-blue-400);
+}
+
+@theme inline {
+	--font-sans: 'IBM Plex Sans Variable', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', monospace;
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-hero-surface: var(--hero-surface);
+	--color-hero-foreground: var(--hero-foreground);
+	--color-hero-muted-foreground: var(--hero-muted-foreground);
+	--color-footer-surface: var(--footer-surface);
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	html {
+		@apply font-sans;
+		scroll-padding-top: 1.5rem;
+		scroll-behavior: smooth;
+	}
+	body {
+		@apply m-0 bg-background text-foreground antialiased;
+	}
+	::selection {
+		@apply bg-primary text-primary-foreground;
+	}
+	button:not(:disabled),
+	a {
+		-webkit-tap-highlight-color: transparent;
+	}
+	@media (scripting: none) {
+		[data-language-trigger],
+		[data-contour-tabs],
+		[data-story-tabs],
+		[data-food-tabs] {
+			display: none !important;
+		}
+		/* Override Tailwind preflight's [hidden] rule only for the no-JS register. */
+		[data-contour-panel][hidden],
+		[data-story-panel][hidden],
+		[data-food-panel][hidden],
+		[data-static-collapsible] {
+			display: block !important;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
+
+@utility site-container {
+	width: 100%;
+	max-width: 1170px;
+	margin-inline: auto;
+}
+
+@utility section-eyebrow {
+	@apply font-mono text-xs tracking-widest text-primary uppercase;
+}
