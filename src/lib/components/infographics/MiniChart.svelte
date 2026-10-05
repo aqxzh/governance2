@@ -52,7 +52,9 @@
 
 	let measuredWidth = $state(0);
 	const width = $derived(measuredWidth || chart.width || 560);
-	const height = $derived(chart.height ?? 190);
+	// At compact inline/dialog widths, reserve extra vertical room so category
+	// labels and the plotted marks remain legible rather than shrinking together.
+	const height = $derived(chart.height ?? (measuredWidth > 0 && measuredWidth < 440 ? 220 : 190));
 
 	const config: ChartConfig = $derived.by(() => {
 		const c: ChartConfig = {};

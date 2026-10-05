@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
+	server: {
+		allowedHosts: ['home-marinadec.vpn-mesh.ai-hr.kz']
+	},
 	plugins: [
 		paraglideVitePlugin({
 			project: './project.inlang',

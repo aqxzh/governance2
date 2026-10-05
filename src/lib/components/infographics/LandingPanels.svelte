@@ -150,16 +150,11 @@
 	{#if variant === 'strategy'}
 		<!-- strategy.webp: три опорных слоя + выноска -->
 		<div
-			class="relative rounded-xl bg-[radial-gradient(circle,var(--border)_1px,transparent_1px)] [background-size:22px_22px] p-4 sm:p-6"
+			class="rounded-xl bg-[radial-gradient(circle,var(--border)_1px,transparent_1px)] [background-size:22px_22px] p-4 sm:p-6"
 		>
-			<div
-				class="absolute top-4 right-4 max-w-40 rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-semibold shadow-md sm:top-6 sm:right-8 sm:max-w-52 sm:text-base"
-			>
-				{m.inf_panels_strategy_layer_tech()}
-			</div>
 			<svg
-				viewBox="0 0 1080 620"
-				class="w-full"
+				viewBox="0 0 1080 760"
+				class="block h-auto w-full"
 				role="img"
 				aria-label={m.inf_panels_strategy_aria()}
 			>
@@ -177,20 +172,20 @@
 				{/each}
 				<!-- нижний и средний слои -->
 				{#each strategyLayers as layer (layer.key)}
-					<path class={layer.cls} d={isoSkirt(560, layer.cy, layer.w, layer.t)} />
+					<path class={layer.cls} d={isoSkirt(560, layer.cy + 140, layer.w, layer.t)} />
 					<path
-						d={isoSkirt(560, layer.cy, layer.w, layer.t)}
+						d={isoSkirt(560, layer.cy + 140, layer.w, layer.t)}
 						fill="var(--foreground)"
 						opacity="0.15"
 					/>
-					<path class={layer.cls} d={isoTop(560, layer.cy, layer.w)} />
+					<path class={layer.cls} d={isoTop(560, layer.cy + 140, layer.w)} />
 					<text
 						class={layer.labelCls}
 						x="315"
-						y={layer.cy + layer.w * ISO * 0.62 + layer.t * 0.45}
+						y={layer.cy + 140 + layer.w * ISO * 0.62 + layer.t * 0.45}
 						font-size="34"
 						font-weight="600"
-						transform="rotate(19 315 {layer.cy + layer.w * ISO * 0.62 + layer.t * 0.45})"
+						transform="rotate(19 315 {layer.cy + 140 + layer.w * ISO * 0.62 + layer.t * 0.45})"
 					>
 						{layer.key === 'resources'
 							? m.inf_panels_strategy_layer_resources()
@@ -198,15 +193,36 @@
 					</text>
 				{/each}
 				<!-- верхний белый слой с синим кантом -->
-				<path class="fill-muted-foreground" d={isoSkirt(560, 210, 255, 55)} />
-				<path class="fill-background" d={isoTop(560, 210, 255)} />
+				<path class="fill-muted-foreground" d={isoSkirt(560, 350, 255, 55)} />
+				<path class="fill-background" d={isoTop(560, 350, 255)} />
 				<path
-					d={isoTop(560, 206, 218)}
+					d={isoTop(560, 346, 218)}
 					fill="none"
 					class="stroke-primary"
 					stroke-width="7"
 					stroke-linejoin="round"
 				/>
+				<rect
+					x="570"
+					y="18"
+					width="420"
+					height="112"
+					rx="10"
+					class="fill-card"
+					stroke="var(--border)"
+					stroke-width="2"
+				/>
+				<text
+					x="780"
+					y="78"
+					text-anchor="middle"
+					dominant-baseline="middle"
+					class="fill-foreground"
+					font-size="30"
+					font-weight="600"
+				>
+					{m.inf_panels_strategy_layer_tech()}
+				</text>
 			</svg>
 		</div>
 	{:else if variant === 'assessment'}
