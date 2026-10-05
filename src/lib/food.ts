@@ -69,14 +69,6 @@ export const memoryModes = [
 	{ id: 'off', label: m.food_memory_off, description: m.food_memory_off_desc },
 	{ id: 'required', label: m.food_memory_required, description: m.food_memory_required_desc }
 ];
-export const foodTabs = [
-	{ id: 'batches', label: m.food_tab_batches },
-	{ id: 'order', label: m.food_tab_order },
-	{ id: 'graph', label: m.food_tab_graph },
-	{ id: 'agent', label: m.food_tab_agent },
-	{ id: 'trace', label: m.food_tab_trace },
-	{ id: 'report', label: m.food_tab_report }
-];
 export function productName(b: Batch) {
 	return productLabels[b.id]?.() ?? b.product;
 }
