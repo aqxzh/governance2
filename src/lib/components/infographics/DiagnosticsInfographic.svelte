@@ -237,7 +237,7 @@
 					/>
 					<circle cx="572" cy="232" r="15" class="fill-destructive" />
 					<circle cx="598" cy="247" r="15" class="fill-destructive" />
-					<line x1="612" y1="252" x2="896" y2="344" class="stroke-destructive" stroke-width="2" />
+					<line x1="612" y1="252" x2="760" y2="300" class="stroke-destructive" stroke-width="2" />
 				</g>
 			</svg>
 			<Card.Root class="border-destructive/40">
