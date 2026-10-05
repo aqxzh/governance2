@@ -1,0 +1,190 @@
+[
+	{
+		"id": "simulator-banner",
+		"kind": "image",
+		"source": "imports/ai-sim.png",
+		"path": "/images/contours/simulator-banner.webp",
+		"width": 1672,
+		"height": 941
+	},
+	{
+		"id": "simulator-01",
+		"kind": "image",
+		"source": "imports/sim-slide-1.png",
+		"path": "/images/contours/simulator-01.webp",
+		"width": 1920,
+		"height": 1184
+	},
+	{
+		"id": "simulator-02",
+		"kind": "image",
+		"source": "imports/sim-slide-2.png",
+		"path": "/images/contours/simulator-02.webp",
+		"width": 1920,
+		"height": 1482
+	},
+	{
+		"id": "simulator-03",
+		"kind": "image",
+		"source": "imports/sim-slide-3.png",
+		"path": "/images/contours/simulator-03.webp",
+		"width": 1920,
+		"height": 1501
+	},
+	{
+		"id": "simulator-04",
+		"kind": "image",
+		"source": "imports/sim-slide-4.png",
+		"path": "/images/contours/simulator-04.webp",
+		"width": 1920,
+		"height": 1542
+	},
+	{
+		"id": "simulator-05",
+		"kind": "image",
+		"source": "imports/sim-slide-5.png",
+		"path": "/images/contours/simulator-05.webp",
+		"width": 1540,
+		"height": 1243
+	},
+	{
+		"id": "simulator-06",
+		"kind": "image",
+		"source": "imports/sim-slide-6.png",
+		"path": "/images/contours/simulator-06.webp",
+		"width": 1920,
+		"height": 1567
+	},
+	{
+		"id": "diagnostics-banner",
+		"kind": "image",
+		"source": "imports/024996798644ee39e17d62182850eebdd0609893.png",
+		"path": "/images/contours/diagnostics-banner.webp",
+		"width": 1376,
+		"height": 768
+	},
+	{
+		"id": "diagnostics-01",
+		"kind": "image",
+		"source": "imports/functional-analysis.png",
+		"path": "/images/contours/diagnostics-01.webp",
+		"width": 1920,
+		"height": 937
+	},
+	{
+		"id": "diagnostics-02",
+		"kind": "image",
+		"source": "imports/gov-functions-analytics.png",
+		"path": "/images/contours/diagnostics-02.webp",
+		"width": 1920,
+		"height": 904
+	},
+	{
+		"id": "diagnostics-03",
+		"kind": "image",
+		"source": "imports/ai-recruitment.png",
+		"path": "/images/contours/diagnostics-03.webp",
+		"width": 1920,
+		"height": 892
+	},
+	{
+		"id": "diagnostics-04",
+		"kind": "image",
+		"source": "imports/gov-services-analytics.png",
+		"path": "/images/contours/diagnostics-04.webp",
+		"width": 1920,
+		"height": 913
+	},
+	{
+		"id": "diagnostics-05",
+		"kind": "image",
+		"source": "imports/ekyzmet-analytics.png",
+		"path": "/images/contours/diagnostics-05.webp",
+		"width": 1920,
+		"height": 931
+	},
+	{
+		"id": "diagnostics-06",
+		"kind": "image",
+		"source": "imports/anticorruption-monitoring.png",
+		"path": "/images/contours/diagnostics-06.webp",
+		"width": 1920,
+		"height": 905
+	},
+	{
+		"id": "diagnostics-07",
+		"kind": "image",
+		"source": "imports/eks-enbek-reconciliation.png",
+		"path": "/images/contours/diagnostics-07.webp",
+		"width": 1920,
+		"height": 937
+	},
+	{
+		"id": "diagnostics-video",
+		"kind": "video",
+		"source": "public/videos/diagnostics.mov",
+		"path": "/videos/diagnostics.mp4",
+		"width": 1280,
+		"height": 720,
+		"duration": 39.727891,
+		"codecs": ["h264", "aac"]
+	},
+	{
+		"id": "coordination-banner",
+		"kind": "image",
+		"source": "imports/tab-coordination.png",
+		"path": "/images/contours/coordination-banner.webp",
+		"width": 1536,
+		"height": 1024
+	},
+	{
+		"id": "coordination-01",
+		"kind": "image",
+		"source": "imports/digital-twin.png",
+		"path": "/images/contours/coordination-01.webp",
+		"width": 1920,
+		"height": 871
+	},
+	{
+		"id": "coordination-02",
+		"kind": "image",
+		"source": "imports/civil-service-selection.png",
+		"path": "/images/contours/coordination-02.webp",
+		"width": 1920,
+		"height": 876
+	},
+	{
+		"id": "coordination-03",
+		"kind": "image",
+		"source": "imports/ai-management-advisor.png",
+		"path": "/images/contours/coordination-03.webp",
+		"width": 1920,
+		"height": 876
+	},
+	{
+		"id": "coordination-04",
+		"kind": "image",
+		"source": "imports/industry-bank.png",
+		"path": "/images/contours/coordination-04.webp",
+		"width": 1920,
+		"height": 904
+	},
+	{
+		"id": "coordination-05",
+		"kind": "image",
+		"source": "imports/bot-assistants.png",
+		"path": "/images/contours/coordination-05.webp",
+		"width": 1920,
+		"height": 892
+	},
+	{
+		"id": "coordination-video",
+		"kind": "video",
+		"source": "public/videos/coordination.mov",
+		"path": "/videos/coordination.mp4",
+		"width": 1280,
+		"height": 720,
+		"duration": 52.638186,
+		"codecs": ["h264", "aac"]
+	}
+]
