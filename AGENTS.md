@@ -2,10 +2,10 @@
 
 ## Scope and status
 
-The canonical project is `/home/marinadec/projects/website`, branch `main`. SvelteKit is now the primary version by the user's explicit instruction. The old React application has been removed from the working tree; it is preserved only in Git history / `archive/react-reference` (commit `37f31c2`). Do not restart React or restore its code into main. `/home/marinadec/projects/website-svelte` is a retained secondary migration worktree, not the primary project. Local main promotion does not authorise push/deployment.
+The canonical project is `/home/marinadec/projects/website`, branch `main`. SvelteKit is the primary version. The old React application has been removed from the working tree; it is preserved only in Git history / `archive/react-reference` (commit `37f31c2`). Do not restart React or restore its code into main. `/home/marinadec/projects/website-svelte` is a retained secondary migration worktree, not the primary project. Push working branches only when requested; deployment requires separate approval.
 Implemented: a task-led landing and diagnostics → modelling → coordination navigation. All 18 unique source scenarios and six simulator presentations are retained once in canonical groups (`src/lib/story.ts`); raw materials are collapsible, not duplicate products. Advisor lives only in coordination. FoodFlow has three upper tabs retaining all six original sections. RU/KK/EN and legacy URLs remain supported. This is local implementation, not visual acceptance or publication.
 
-Read `docs/storytelling-architecture.md`, `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. `PRODUCT.md` is historical and contains stale claims; validate against original raster references in `static/images/` and the React archive in Git, not the new main as if it were React. Visual reconstruction still needs fixes identified by the seven fast reviews; passing tests is not visual approval.
+Read `docs/storytelling-architecture.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. Validate source fidelity against raster references in `static/images/` and the React archive in Git. Visual reconstruction has unresolved review findings; passing tests is not visual approval.
 
 ## Stack and conventions
 
