@@ -1,9 +1,11 @@
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
+import { requireReferenceDirectory } from './reference-source.mjs';
 import { dirname, resolve } from 'node:path';
 
 // Optional asset preparation, not part of install/build. Requires ImageMagick + FFmpeg.
-const reference = resolve(process.env.REFERENCE_DIR ?? '../website');
+const reference = requireReferenceDirectory();
+
 const manifestPath = 'docs/contour-media.json';
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
 for (const item of manifest) {

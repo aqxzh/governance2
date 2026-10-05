@@ -2,7 +2,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
-const source = resolve(process.argv[2] || '../website');
+import { requireReferenceDirectory } from './reference-source.mjs';
+const source = requireReferenceDirectory(process.argv[2]);
+
 mkdirSync('static/images/landing', { recursive: true });
 const images = {
 	process: 'demka-photo.png',

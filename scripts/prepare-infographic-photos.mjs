@@ -1,8 +1,10 @@
 import { execFileSync } from 'node:child_process';
+import { requireReferenceDirectory } from './reference-source.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-const reference = process.env.REFERENCE_DIR ?? '../website';
+const reference = requireReferenceDirectory();
+
 const files = [
 	['portfolio-1', 3, 'c09013a65bc761c52c69fa16f2f39ecb59763909.png'],
 	['portfolio-2', 3, 'ca6b577cf5a8d129823f6dece1f1cba891b7613e.png'],

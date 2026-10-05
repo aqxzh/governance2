@@ -1,8 +1,12 @@
-// Regenerate presentation derivatives from the unchanged local React reference.
+// Optional historical capture: requires a separately authorised archived React server.
 import { chromium } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
-const base = process.env.REFERENCE_URL ?? 'http://127.0.0.1:8443';
+const base = process.env.REFERENCE_URL;
+if (!base)
+	throw new Error(
+		'Set REFERENCE_URL explicitly for an separately authorised historical reference server. React is no longer the current application.'
+	);
 const output = process.env.OUTPUT_DIR ?? 'static/images/simulator';
 await mkdir(output, { recursive: true });
 await mkdir('.artifacts/reference', { recursive: true });

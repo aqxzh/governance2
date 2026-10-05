@@ -1,56 +1,63 @@
 # Governance.kz — SvelteKit
 
-**Локальная SvelteKit-версия; не опубликованная замена прод-сайта.** Главная выстроена по задачам: понять проблему → проверить варианты → организовать исполнение. Опросы собраны в моделировании, советник — в координации; FoodFlow разделён на три вкладки. Все 18 уникальных исходных сценариев, шесть презентаций и прежние входы сохранены. Пользовательская приёмка остаётся отдельно.
+**SvelteKit — основная версия проекта в локальной `main`.** Канонический каталог: `/home/marinadec/projects/website`. React удалён из текущего дерева, но сохранён в Git. Перенос в main не является публикацией: удалённый репозиторий и production не обновлялись.
 
-## Запуск
+Главная выстроена по задачам: понять проблему → проверить варианты → организовать исполнение. Сохранены 18 исходных сценариев, шесть презентаций, Advisor, FoodFlow и старые hash/query входы. RU/KK/EN; видимая метка казахского языка — KZ.
 
-Node **24.19.0**, pnpm **10.34.3**; версии и зависимости закреплены.
+## Запуск и проверка
+
+Node **24.19.0**, pnpm **10.34.3**.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev --host 127.0.0.1 --port 5174 --strictPort
 ```
 
-- Svelte: http://localhost:5174/ru/ (также `/kk/`, `/en/`).
-- Страницы: `/ru/{simulator,diagnostics,coordination,foodflow}/`, аналогично KK/EN.
-- React-эталон сохранён в соседнем worktree; сервер на 8443 остановлен по просьбе пользователя. Публичные ссылки новой версии на него не ведут.
-
-## Проверки
+Превью: http://localhost:5174/ru/ (также `/kk/`, `/en/`). Страницы направлений: `/{locale}/{simulator,diagnostics,coordination,foodflow}/`.
 
 ```sh
 pnpm exec playwright install chromium
 pnpm verify
-```
-
-`verify`: svelte-check → Prettier/ESLint → Vitest → сборка + Playwright desktop/mobile → статический HTML/SEO. Playwright запускает production preview на порту 4173. Итог: **39 unit, 161 browser passed, 1 намеренный skip**, 0 ошибок/предупреждений svelte-check. Формы тестируются исключительно с mock-сетью, реальных заявок агент не отправлял.
-
-```sh
-pnpm format
 pnpm build
 pnpm preview --host 127.0.0.1 --port 4173
-node scripts/capture-preview.mjs
-node scripts/capture-fullsite.mjs
 ```
 
-Скриншоты при работающем dev сохраняются в `.artifacts/preview/`, актуальная структура — `.artifacts/preview/story/` (скрипт `capture-story.mjs`; `capture-fullsite.mjs` — совместимый вход); просмотрены напрямую текущей vision-моделью. Это не заменяет пользовательскую приёмку или полную сертификацию WCAG.
+`verify`: типы → Prettier/ESLint → unit → production build и Playwright → статический HTML/SEO. Последний полный контроль инфографик: **43 unit, 161 browser passed, 1 намеренный skip**, svelte-check 0/0. После переноса проверка выполняется из основного каталога. Реальные формы в тестах не отправляются — только mock-сеть.
 
-## Основа и медиа
+## Структура
 
-- Svelte 5, SvelteKit 2, TypeScript strict, Vite 8, adapter-static: все страницы предрендерены, затем гидратируются. Постоянный Node-сервер не нужен.
-- shadcn-svelte/Bits UI, **Vega + Zinc + Blue**, Tailwind v4 и semantic tokens. [Правила оформления](docs/design-system.md).
-- Paraglide JS, `messages/{ru,kk,en}.json`; locale `kk`, метка **KZ**. KK/EN остаются черновиками. Переключатель сохраняет путь/query/hash.
-- Локальные Fontsource IBM Plex Sans/Mono, SIL Open Font License. Лицензии находятся в пакетах зависимостей.
-- `static/images/`, `static/videos/`: оптимизированные производные исходных материалов. Происхождение: `docs/{contour-media,fullsite-media}.json`.
-- Повторная генерация: `node scripts/prepare-contour-media.mjs`, `node scripts/prepare-fullsite-media.mjs` (ImageMagick/FFmpeg, `REFERENCE_DIR` для React-источника); `node scripts/capture-simulator-reference.mjs` требует работающий React-эталон и ImageMagick.
+- `src/routes/` — SvelteKit-страницы и глобальная тема.
+- `src/lib/components/site/` — страницы/демо.
+- `src/lib/components/infographics/` — локализуемые реконструкции; реестр `src/lib/infographics.ts`.
+- `src/lib/components/ui/` — стандартные shadcn-svelte/Bits UI, Vega/Zinc/Blue.
+- `messages/{ru,kk,en}.json` — Paraglide; нет собственного locale runtime. Переводы требуют редакторского согласования.
+- `static/images/`, `static/videos/` — локальные медиа и исходные растровые эталоны.
+- `.artifacts/preview/` — локальные QA-скриншоты, не runtime-зависимости.
 
-Kit 2 выбран из-за совместимости Bits UI/runed, без конфликтующих peer-зависимостей Kit 3.
+Svelte 5, SvelteKit 2, strict TypeScript, Vite 8, adapter-static, Tailwind v4, LayerChart, локальные Fontsource IBM Plex Sans/Mono. Все страницы предрендерены; постоянный Node-сервер для публикации не требуется.
 
-## Ограничения и публикация
+## Старый React и источники
 
-- Демо используют исходные синтетические данные: нет работающей AI/БД, камеры/QR-сканера или новой расчётной системы. Сложные презентации сохранены как изображения с локализованными HTML-текстами и рабочими исходными видеосценариями.
-- Форма вызывает исходный FormSubmit только после явного согласия. Подтверждение API не означает доставку письма; активация/получатель/обработка данных требуют внешней проверки.
-- PDF не предоставлен, фиктивного скачивания нет. Русские подписи в исходных медиа требуют редакторской проверки и субтитров.
-- `static/sw.js` — переходный tombstone для старого Governance-кеша: новый worker не регистрируется, принудительной перезагрузки нет. Работа offline/PWA не заявляется.
-- GitHub Write-доступ отсутствует. Push, PR, merge, деплой и изменения VPS/nginx/SSL не выполнялись. Публикация — отдельный этап после приёмки, с бэкапом и откатом.
+React не хранится как второй действующий сайт и не запускается автоматически. Историческая ссылка: `archive/react-reference`, commit `37f31c2`. Если для сверки/перегенерации нужны оригинальные TSX/PNG:
 
-[Статус](docs/migration-status.md) · [План](docs/migration-plan.md) · [Эталон](docs/migration-baseline.md)
+```sh
+mkdir -p /tmp/governance-react-reference
+git archive archive/react-reference | tar -x -C /tmp/governance-react-reference
+REFERENCE_DIR=/tmp/governance-react-reference node scripts/prepare-infographic-photos.mjs
+```
+
+`prepare-contour-media.mjs` и `prepare-fullsite-media.mjs` также требуют явный `REFERENCE_DIR` (ImageMagick/FFmpeg). Install/build не зависят от React, соседнего `website-svelte` или архива. Исторический browser capture требует отдельно разрешённого сервера и явного `REFERENCE_URL`; не запускайте React без согласования.
+
+`/home/marinadec/projects/website-svelte` пока сохранён как вторичный migration worktree. Основные изменения и новые изолированные задачи следует вести от `main` в `website`.
+
+## Незавершённое и публикация
+
+- Семь fast-ревью выявили визуальные дефекты реконструкций. Их исправление продолжается; прохождение тестов не заменяет визуальную приёмку.
+- Демо используют исходные синтетические данные: нет нового live AI/backend, БД, камеры или QR-сканера. Иллюстрации — HTML/SVG, не действующие интеграции; фотографии и видео остаются медиа.
+- Содержание, KK/EN, маркетинговые обещания, неразборчивые части источников и субтитры требуют согласования.
+- FormSubmit — только после явного согласия; API acknowledgement не подтверждает доставку. Тесты не посылают реальные заявки.
+- Аналитический PDF не предоставлен; фиктивного скачивания нет.
+- `static/sw.js` — tombstone старого Governance worker, без нового offline/PWA обещания.
+- Push/deploy/VPS/nginx/SSL и второй сайт не изменялись; публикация требует отдельного разрешения.
+
+[Статус](docs/migration-status.md) · [Инфографики](docs/infographic-reconstruction.md) · [Дизайн-система](docs/design-system.md) · [Исторический план](docs/migration-plan.md)

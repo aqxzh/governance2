@@ -1,12 +1,11 @@
-# Governance.kz — SvelteKit migration
+# Governance.kz — SvelteKit
 
 ## Scope and status
 
-This worktree is `/home/marinadec/projects/website-svelte`, branch `migration/sveltekit`.
-The original React reference remains in `/home/marinadec/projects/website`; its dev server on 8443 was stopped at the user's request. Keep it stopped unless authorised to restart.
+The canonical project is `/home/marinadec/projects/website`, branch `main`. SvelteKit is now the primary version by the user's explicit instruction. The old React application has been removed from the working tree; it is preserved only in Git history / `archive/react-reference` (commit `37f31c2`). Do not restart React or restore its code into main. `/home/marinadec/projects/website-svelte` is a retained secondary migration worktree, not the primary project. Local main promotion does not authorise push/deployment.
 Implemented: a task-led landing and diagnostics → modelling → coordination navigation. All 18 unique source scenarios and six simulator presentations are retained once in canonical groups (`src/lib/story.ts`); raw materials are collapsible, not duplicate products. Advisor lives only in coordination. FoodFlow has three upper tabs retaining all six original sections. RU/KK/EN and legacy URLs remain supported. This is local implementation, not visual acceptance or publication.
 
-Read `docs/storytelling-architecture.md`, `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. `PRODUCT.md` is historical and contains stale claims; validate against the reference code.
+Read `docs/storytelling-architecture.md`, `docs/migration-plan.md` and `docs/migration-status.md` before extending the implementation. Preserve unique scenarios, not the historical 6/7/5 marketing structure. `PRODUCT.md` is historical and contains stale claims; validate against original raster references in `static/images/` and the React archive in Git, not the new main as if it were React. Visual reconstruction still needs fixes identified by the seven fast reviews; passing tests is not visual approval.
 
 ## Stack and conventions
 
@@ -37,6 +36,6 @@ pnpm verify
 
 `pnpm verify` runs types, lint/format, unit tests, a production build + browser tests, and checks generated HTML. Playwright Chromium is installed separately using `pnpm exec playwright install chromium`.
 
-Generated Paraglide output is ignored; `prepare` and `check` compile it. Do not edit generated messages/runtime. Screenshot evidence goes to ignored `.artifacts/preview/` via `node scripts/capture-preview.mjs` and `node scripts/capture-fullsite.mjs` while dev is running. Fullsite capture masks the offscreen fixed skip-link only in screenshots to avoid a CDP full-page-clip artefact; the live accessibility link stays intact. Media preparation/provenance is recorded in `docs/{contour-media,fullsite-media}.json`.
+Generated Paraglide output is ignored; `prepare` and `check` compile it. `project.inlang/paraglide.config.js` is tracked and required for a fresh checkout (output path, declarations and URL patterns); do not leave it only in an ignored local file. Do not edit generated messages/runtime. Screenshot evidence goes to ignored `.artifacts/preview/` via `node scripts/capture-preview.mjs` and `node scripts/capture-fullsite.mjs` while dev is running. Fullsite capture masks the offscreen fixed skip-link only in screenshots to avoid a CDP full-page-clip artefact; the live accessibility link stays intact. Media preparation/provenance is recorded in `docs/{contour-media,fullsite-media}.json`.
 
 Use the Svelte MCP autofixer for authored/modified Svelte components. Inspect screenshots directly with the current vision-capable agent (per user instruction); use a separate vision model only if direct image access is unavailable. Verify behaviours with DOM, source and browser tests, not screenshots alone.
