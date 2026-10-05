@@ -24,7 +24,7 @@ SvelteKit — основная версия в `main`; канонический 
 
 Скриншоты RU/KK/EN на 390/768/1440 px сохраняются в `.artifacts/preview/` через `scripts/capture-preview.mjs`, `capture-fullsite.mjs` и `capture-infographics.mjs`. Источники медиа/команды — `docs/{contour-media,fullsite-media,infographic-photos}.json`. Артефакты не являются runtime-зависимостями. Скриншоты проверяются напрямую, поведение — DOM/браузерными тестами.
 
-Предыдущие визуальные ревью выявили дефекты реконструкций; визуальная приёмка не закрыта. Axe A/AA и успешные тесты не являются полной сертификацией WCAG.
+В рабочей ветке `refactor/svelte` исправлены выявленные дефекты strategy, coordination-01, source Advisor, карты регионов и SSR числового графика. Повторный полный `pnpm verify`: **43 unit, 171 browser passed, 1 намеренный skip**, types/lint/build/static — OK. Автогенерируемые Inlang README/metadata исключены из проверки форматирования. Покрытие и границы прямого визуального просмотра зафиксированы в [infographic-reconstruction.md](infographic-reconstruction.md). Эти изменения не слиты в `main`; пользовательская визуальная приёмка не закрыта. Axe A/AA и успешные тесты не являются полной сертификацией WCAG.
 
 ## Открыто перед публикацией
 

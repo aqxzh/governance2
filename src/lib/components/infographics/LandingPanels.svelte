@@ -120,7 +120,7 @@
 	};
 
 	/* ---------- advisor: пончик 86 / 7 / 7 ---------- */
-	const DONUT_R = 15.9155; // длина окружности ≈ 100
+	const DONUT_R = 42; // pathLength normalises each circumference to 100
 	const donutSlices = [
 		{ value: 86, offset: 25, cls: 'stroke-primary' },
 		{ value: 7, offset: 39, cls: 'stroke-destructive' },
@@ -148,82 +148,54 @@
 	{/snippet}
 
 	{#if variant === 'strategy'}
-		<!-- strategy.webp: три опорных слоя + выноска -->
+		<!-- Geometry stays illustrative; translated labels use HTML, not shrinking SVG text. -->
 		<div
 			class="rounded-xl bg-[radial-gradient(circle,var(--border)_1px,transparent_1px)] [background-size:22px_22px] p-4 sm:p-6"
 		>
 			<svg
-				viewBox="0 0 1080 760"
+				viewBox="0 0 1080 720"
 				class="block h-auto w-full"
 				role="img"
 				aria-label={m.inf_panels_strategy_aria()}
 			>
-				<!-- стрелки слева -->
 				{#each [{ y: 250 }, { y: 366 }, { y: 486 }] as arrow, i (i)}
-					<g class="stroke-border" fill="none" stroke-width="3">
+					<g class="stroke-muted-foreground" fill="none" stroke-width="3">
 						<line x1={i === 2 ? 20 : 120} y1={arrow.y} x2={i === 2 ? 170 : 270} y2={arrow.y} />
 						<polyline
 							points="{i === 2 ? 158 : 258},{arrow.y - 8} {i === 2 ? 170 : 270},{arrow.y} {i === 2
 								? 158
 								: 258},{arrow.y + 8}"
-							fill="none"
 						/>
 					</g>
 				{/each}
-				<!-- нижний и средний слои -->
 				{#each strategyLayers as layer (layer.key)}
-					<path class={layer.cls} d={isoSkirt(560, layer.cy + 140, layer.w, layer.t)} />
+					<path class={layer.cls} d={isoSkirt(560, layer.cy, layer.w, layer.t)} />
 					<path
-						d={isoSkirt(560, layer.cy + 140, layer.w, layer.t)}
+						d={isoSkirt(560, layer.cy, layer.w, layer.t)}
 						fill="var(--foreground)"
 						opacity="0.15"
 					/>
-					<path class={layer.cls} d={isoTop(560, layer.cy + 140, layer.w)} />
-					<text
-						class={layer.labelCls}
-						x="315"
-						y={layer.cy + 140 + layer.w * ISO * 0.62 + layer.t * 0.45}
-						font-size="34"
-						font-weight="600"
-						transform="rotate(19 315 {layer.cy + 140 + layer.w * ISO * 0.62 + layer.t * 0.45})"
-					>
-						{layer.key === 'resources'
-							? m.inf_panels_strategy_layer_resources()
-							: m.inf_panels_strategy_layer_infra()}
-					</text>
+					<path class={layer.cls} d={isoTop(560, layer.cy, layer.w)} />
 				{/each}
-				<!-- верхний белый слой с синим кантом -->
-				<path class="fill-muted-foreground" d={isoSkirt(560, 350, 255, 55)} />
-				<path class="fill-background" d={isoTop(560, 350, 255)} />
+				<path class="fill-muted-foreground" d={isoSkirt(560, 210, 255, 55)} />
+				<path class="fill-background" d={isoTop(560, 210, 255)} />
 				<path
-					d={isoTop(560, 346, 218)}
+					d={isoTop(560, 206, 218)}
 					fill="none"
 					class="stroke-primary"
 					stroke-width="7"
 					stroke-linejoin="round"
 				/>
-				<rect
-					x="570"
-					y="18"
-					width="420"
-					height="112"
-					rx="10"
-					class="fill-card"
-					stroke="var(--border)"
-					stroke-width="2"
-				/>
-				<text
-					x="780"
-					y="78"
-					text-anchor="middle"
-					dominant-baseline="middle"
-					class="fill-foreground"
-					font-size="30"
-					font-weight="600"
-				>
-					{m.inf_panels_strategy_layer_tech()}
-				</text>
 			</svg>
+			<ul class="grid gap-3 text-sm font-medium sm:grid-cols-3">
+				{#each [{ label: m.inf_panels_strategy_layer_resources(), tone: 'bg-foreground' }, { label: m.inf_panels_strategy_layer_infra(), tone: 'bg-muted-foreground' }, { label: m.inf_panels_strategy_layer_tech(), tone: 'bg-background border-primary' }] as layer (layer.label)}
+					<li class="flex items-start gap-2 rounded-lg border border-border bg-card p-3">
+						<span aria-hidden="true" class="mt-0.5 size-4 shrink-0 rounded-sm border {layer.tone}"
+						></span>
+						<span>{layer.label}</span>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	{:else if variant === 'assessment'}
 		<!-- assessment.webp: окно анализа с сеткой лица и показателями -->
@@ -502,7 +474,7 @@
 						</g>
 						<text
 							x="60"
-							y="57"
+							y="66"
 							text-anchor="middle"
 							font-size="17"
 							font-weight="700"

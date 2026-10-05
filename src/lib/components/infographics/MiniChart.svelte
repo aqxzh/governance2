@@ -99,7 +99,11 @@
 </script>
 
 <figure class={className}>
-	<div class="w-full min-w-0" bind:clientWidth={measuredWidth} style:height={`${height}px`}>
+	<div
+		class="relative w-full min-w-0"
+		bind:clientWidth={measuredWidth}
+		style:height={measuredWidth ? `${height}px` : undefined}
+	>
 		<ChartContainer {config} class="aspect-auto h-full w-full justify-start">
 			<Chart
 				data={chart.kind === 'bars' ? barData : areaPoints.flatMap((s) => s.points)}
@@ -108,7 +112,7 @@
 				valueAxis="y"
 				bandPadding={chart.kind === 'bars' ? 0.25 : undefined}
 				{yDomain}
-				ssr
+				ssr={false}
 				{width}
 				{height}
 				padding={{ top: 12, right: 12, bottom: 40, left: 40 }}
@@ -116,6 +120,7 @@
 				aria-label={chart.caption}
 			>
 				<Svg
+					class="h-full w-full"
 					viewBox={`0 0 ${width} ${height}`}
 					title={chart.caption}
 					role="img"

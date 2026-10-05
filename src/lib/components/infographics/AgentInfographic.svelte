@@ -257,7 +257,7 @@
 							<p class="text-xs text-muted-foreground">{t('inf_coord_adv_map_sub')}</p>
 							<div class="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto]">
 								<svg
-									viewBox="-15 -10 810 440"
+									viewBox="-35 -10 830 440"
 									role="img"
 									aria-label={t('inf_coord_adv_map_aria')}
 									class="w-full rounded-lg bg-muted/40"
@@ -275,13 +275,17 @@
 											y={r.id === 'almaty' ? r.ly - 40 : r.ly}
 											text-anchor="middle"
 											font-size="12"
-											class="pointer-events-none fill-foreground">{regionLabels[r.id]()}</text
+											class={r.value >= 200
+												? 'pointer-events-none fill-primary-foreground'
+												: 'pointer-events-none fill-foreground'}>{regionLabels[r.id]()}</text
 										><text
 											x={r.lx}
 											y={(r.id === 'almaty' ? r.ly - 40 : r.ly) + 15}
 											text-anchor="middle"
 											font-size="12"
-											class="pointer-events-none fill-muted-foreground">{r.value}</text
+											class={r.value >= 200
+												? 'pointer-events-none fill-primary-foreground'
+												: 'pointer-events-none fill-foreground'}>{r.value}</text
 										>{/each}
 									{#each cities as city (city.name)}<circle
 											cx={city.x}

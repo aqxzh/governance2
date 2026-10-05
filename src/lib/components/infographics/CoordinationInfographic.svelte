@@ -128,22 +128,12 @@
 				</span>
 			</div>
 			<div
-				class="grid items-center gap-4 rounded-xl border bg-muted/30 p-4 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
+				class="rounded-xl border bg-muted/30 p-4"
 				role="img"
 				aria-label={t('inf_coord_v1_sat_aria')}
 			>
-				<div class="order-2 space-y-3 sm:order-1">
-					{#each [0, 1, 2] as i (i)}<div class="rounded-lg border bg-card p-3 shadow-sm">
-							<div aria-hidden="true" class="mb-2 h-1.5 w-3/4 rounded-full bg-muted"></div>
-							<!-- Чипы в растре — псевдотекст: заглушки без заявленных значений -->
-							<div aria-hidden="true" class="flex flex-wrap gap-1.5">
-								<span class="h-4 w-14 rounded bg-primary/80"></span>
-								<span class="h-4 w-10 rounded bg-primary/50"></span>
-							</div>
-						</div>{/each}
-				</div>
 				<div
-					class="order-1 rounded-xl border-2 border-destructive/60 bg-card p-5 text-center shadow-md sm:order-2"
+					class="mx-auto w-fit max-w-full rounded-xl border-2 border-destructive/60 bg-card p-5 text-center shadow-md"
 				>
 					<p class="font-semibold">{t('inf_coord_v1_center')}</p>
 					<p
@@ -152,33 +142,71 @@
 						{t('inf_coord_v1_risk')}
 					</p>
 				</div>
-				<div class="order-3 space-y-3">
-					{#each [3, 4, 5] as i (i)}<div class="rounded-lg border bg-card p-3 shadow-sm">
-							<div aria-hidden="true" class="mb-2 h-1.5 w-3/4 rounded-full bg-muted"></div>
-							<!-- Чипы в растре — псевдотекст: заглушки без заявленных значений -->
-							<div aria-hidden="true" class="flex flex-wrap gap-1.5">
-								<span class="h-4 w-14 rounded bg-primary/80"></span>
-								<span class="h-4 w-10 rounded bg-primary/50"></span>
-							</div>
-						</div>{/each}
-				</div>
-				<div class="order-4 flex justify-center gap-3 sm:col-span-3">
-					{#each [6, 7] as i (i)}<div
-							class="w-full max-w-56 rounded-lg border bg-card p-3 shadow-sm"
+				<div aria-hidden="true" class="mx-auto h-6 w-px bg-muted-foreground"></div>
+				<div class="relative grid grid-cols-2 gap-6 pt-6 sm:grid-cols-4" data-coordination-network>
+					<!-- Fixed card heights keep the schematic connectors aligned without JS. -->
+					<svg
+						viewBox="0 0 400 416"
+						preserveAspectRatio="none"
+						class="pointer-events-none absolute inset-0 h-full w-full text-muted-foreground sm:hidden"
+						aria-hidden="true"
+					>
+						<path
+							d="M200 0V324"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							vector-effect="non-scaling-stroke"
+						/>
+						{#each [12, 116, 220, 324] as y (y)}
+							<path
+								d="M100 {y + 12}V{y}H300V{y + 12}"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								vector-effect="non-scaling-stroke"
+							/>
+						{/each}
+					</svg>
+					<svg
+						viewBox="0 0 800 208"
+						preserveAspectRatio="none"
+						class="pointer-events-none absolute inset-0 hidden h-full w-full text-muted-foreground sm:block"
+						aria-hidden="true"
+					>
+						<path
+							d="M400 0V116"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							vector-effect="non-scaling-stroke"
+						/>
+						{#each [12, 116] as y (y)}
+							<path
+								d="M100 {y + 12}V{y}H700V{y + 12}M300 {y}V{y + 12}M500 {y}V{y + 12}"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								vector-effect="non-scaling-stroke"
+							/>
+						{/each}
+					</svg>
+					{#each Array.from({ length: 8 }, (_, i) => i) as i (i)}
+						<div
+							aria-hidden="true"
+							class="relative flex h-20 min-w-0 flex-col justify-center gap-2 rounded-lg border bg-card p-3 shadow-sm"
 						>
-							<div aria-hidden="true" class="mb-2 h-1.5 w-3/4 rounded-full bg-muted"></div>
-							<!-- Чипы в растре — псевдотекст: заглушки без заявленных значений -->
-							<div aria-hidden="true" class="flex flex-wrap gap-1.5">
-								<span class="h-4 w-14 rounded bg-primary/80"></span>
-								<span class="h-4 w-10 rounded bg-primary/50"></span>
+							<!-- Source chips are unreadable; do not invent departments or values. -->
+							<div class="h-1.5 w-3/4 rounded-full bg-muted"></div>
+							<div class="flex gap-1.5">
+								<span class="h-4 w-14 max-w-[55%] rounded bg-primary/80"></span>
+								<span class="h-4 w-10 max-w-[35%] rounded bg-primary/50"></span>
 							</div>
-						</div>{/each}
+						</div>
+					{/each}
 				</div>
 			</div>
 			<p class="text-xs text-muted-foreground">{t('inf_coord_v1_chips_unreadable')}</p>
-			<svg aria-hidden="true" viewBox="0 0 600 24" class="hidden h-6 w-full text-primary sm:block">
-				<path d="M0 12 H600" stroke="currentColor" stroke-width="2" stroke-dasharray="6 6" />
-			</svg>
 		</div>
 	{:else if variant === 2}
 		<!-- Комплексная оценка: три составляющих → общая оценка -->

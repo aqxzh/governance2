@@ -21,7 +21,7 @@ Hero raster-постер заменён декоративным SVG без те
 
 ## Библиотеки и локализация
 
-Используется стандартный shadcn-svelte Chart + LayerChart для восстановленных числовых данных, с HTML-таблицей альтернативой, SSR и доступной прокруткой. `MiniChart.svelte` явно размещает Axis/Bars внутри Svg; `vite.config.ts` оставляет LayerChart в SSR transform и в dev. Не подключены лишние Svelte Flow/ECharts/Cytoscape: редактора графа или аналитического network engine здесь нет. Статичные формы связей допустимо передавать обычным SVG.
+Используется стандартный shadcn-svelte Chart + LayerChart для восстановленных числовых данных, с SSR HTML-таблицей и доступной прокруткой. В `MiniChart.svelte` библиотечный SVG появляется только после гидратации (`ssr={false}`): LayerChart 2.5.1 некорректно сериализовал CSS position в SSR, вынося график за пределы панели. Без JS остаются исходные числа и подписи в таблице. Axis/Bars явно размещены внутри Svg; `vite.config.ts` оставляет LayerChart в SSR transform и в dev. Не подключены лишние Svelte Flow/ECharts/Cytoscape: редактора графа или аналитического network engine здесь нет. Статичные формы связей допустимо передавать обычным SVG.
 
 Тексты перенесены в отслеживаемые `messages/{ru,kk,en}.json`, компилируются Paraglide. `.artifacts` — только staging/reference, runtime от неё не зависит. Нет собственных locale-словарей/dispatch по JSON-фрагментам. KZ обозначает язык kk. Единицы и десятичные значения agent-таблиц/журнала локализованы. RU тоже требует редакторской проверки; KK/EN остаются черновиками.
 
@@ -41,5 +41,9 @@ Hero raster-постер заменён декоративным SVG без те
 `pnpm verify`: Svelte/TypeScript → lint → unit → production build + browser → static. Проверки source Dialog теперь требуют HTML/SVG вместо dashboard image, WCAG AA и доступной прокрутки; focus restoration и старые ссылки сохранены. Unit contract охватывает все исходные пути и два размера presentations.
 
 `node scripts/capture-infographics.mjs` проверяет RU/KK/EN × 390/768/1440: основные варианты, раскрытые архивы, source Dialog начало/конец, схемы, стратегию, browser/hydration errors, raster dashboard, duplicate IDs и page overflow. Проверяется no-JS числовая таблица. Результаты — `.artifacts/preview/infographics/manifest.json` и PNG; это локальные QA-артефакты, не runtime-зависимости.
+
+В ветке `refactor/svelte` выполнена самостоятельная повторная проверка без субагентов: 43 source paths × RU/KK/EN × 390/768/1440 = 387 финальных снимков; DOM-контроль не нашёл page overflow, выхода SVG-текста за viewBox и JS-ошибок. Сохранены отдельные `self-review/before/` и `self-review/final/` в `.artifacts/preview/`. Прямо просмотрены RU contact sheets всех семейств desktop/mobile, крупные фрагменты simulator и изменённые панели, включая выбранные KK/EN. Это не утверждение о ручном просмотре всех 387 файлов. Временный QA-маршрут удалён.
+
+Исправлены легенда слоёв strategy, связи восьми карточек coordination-01, размер кольца/центральная подпись source Advisor, границы карты и контраст региональных подписей, SSR-позиционирование числового графика. Не придуманы нечитабельные названия департаментов и новые данные. `tests/infographic-layout.e2e.ts` закрепляет перенос подписей, наличие связей, позицию графика после гидратации и таблицу без JS; полный `pnpm verify` прошёл: 43 unit, 171 browser passed, 1 намеренный skip.
 
 Технические проверки не заменяют пользовательскую приёмку и согласование содержания. Деплой и реальные отправки формы требуют отдельного разрешения.
