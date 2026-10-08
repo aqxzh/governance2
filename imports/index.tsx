@@ -37,10 +37,9 @@ import imgTabDiagnostics from "./tab-diagnostics.png"
 import imgTabCoordination from "./tab-coordination.png"
 
 import { VideoModal } from "../src/simulator/VideoModal"
+import AISimulatorPage from "../src/simulator/AISimulatorPage"
 import SyntheticResearchSection from "../src/synthetic-research/SyntheticResearchSection"
-import ModelingPage, {
-  RegistryTable,
-} from "../src/synthetic-research/ModelingPage"
+import { RegistryTable } from "../src/synthetic-research/ModelingPage"
 import { ImageModal } from "../src/synthetic-research/ImageModal"
 
 export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty"
@@ -216,7 +215,7 @@ export const tabData: Record<TabKey, TabData> = {
     ],
   },
   analytics: {
-    index: "03",
+    index: "02",
     label: "Координация",
     title: "Координация",
     description:
@@ -264,7 +263,7 @@ export const tabData: Record<TabKey, TabData> = {
     ],
   },
   modeling: {
-    index: "02",
+    index: "03",
     label: "Моделирование",
     title: "Моделирование",
     description:
@@ -451,8 +450,15 @@ function ContoursSection({
       items: ["Функции и услуги", "Кадры и оценка", "Данные и риски"],
     },
     {
-      key: "modeling",
+      key: "analytics",
       num: "02",
+      title: "Координация",
+      text: "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
+      items: ["AI-советник", "Задачи и боты"],
+    },
+    {
+      key: "modeling",
+      num: "03",
       title: "Моделирование",
       text: "Проверить варианты до внедрения: исследовать реакции аудитории, сравнить сценарии и рассчитать поставки с учётом сроков годности.",
       items: [
@@ -460,13 +466,6 @@ function ContoursSection({
         "Сценарии и расчёты",
         "Поставки и срок годности",
       ],
-    },
-    {
-      key: "analytics",
-      num: "03",
-      title: "Координация",
-      text: "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
-      items: ["AI-советник", "Задачи и боты"],
     },
   ]
 
@@ -480,7 +479,7 @@ function ContoursSection({
           className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Понять. Проверить. Организовать.
+          Понять. Организовать. Проверить.
         </h2>
 
         <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
@@ -2466,7 +2465,7 @@ function Container66() {
   )
 }
 function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const tabs: TabKey[] = ["recruitment", "modeling", "analytics"]
+  const tabs: TabKey[] = ["recruitment", "analytics", "modeling"]
   return (
     <div className="hidden md:flex flex-row gap-[6px] shrink-0">
       {tabs.map((key) => (
@@ -2535,17 +2534,6 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   const closeHeroVideo = () => {
     setShowHeroVideo(false)
     setHeroVideoFailed(false)
-  }
-
-  if (tabKey === "modeling") {
-    return (
-      <ModelingPage
-        title={data.title}
-        description={data.description}
-        rows={data.rows}
-        onBack={onBack}
-      />
-    )
   }
 
   return (
@@ -2735,36 +2723,58 @@ function Background() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  const isSimulator = activeTab === "modeling"
+
   return (
     <div
-      className="bg-white content-stretch flex flex-col items-stretch relative shrink-0 w-full"
+      className={`${isSimulator ? "bg-black" : "bg-white"} content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
       data-name="Background"
     >
-      <div className="bg-white w-full">
-        <HorizontalBorder
-          onTabClick={handleTabChange}
-          onHomeClick={handleBack}
-          language={language}
-          onLanguageChange={setLanguage}
-        />
-      </div>
-      <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
-        {activeTab ? (
-          <TabPage tabKey={activeTab} onBack={handleBack} />
-        ) : (
-          <>
-            <Frame21 onTabClick={handleTabChange} />
-            <ContoursSection onTabClick={handleTabChange} />
-            <TeamSection />
-            <SyntheticResearchSection onTabClick={handleTabChange} />
-            <BackgroundHorizontalBorder2 />
-            <BackgroundHorizontalBorder3 />
-            <HorizontalBorder10 />
-            <Background7 />
-          </>
-        )}
-        <Container66 />
-      </div>
+      {isSimulator ? (
+        <>
+          {/* Белая шапка остаётся, ниже — полноэкранная чёрная страница симуляторов */}
+          <div className="bg-white w-full">
+            <HorizontalBorder
+              onTabClick={handleTabChange}
+              onHomeClick={handleBack}
+              language={language}
+              onLanguageChange={setLanguage}
+            />
+          </div>
+          <AISimulatorPage onBack={handleBack} />
+          <div className="bg-black w-full">
+            <Container66 />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="bg-white w-full">
+            <HorizontalBorder
+              onTabClick={handleTabChange}
+              onHomeClick={handleBack}
+              language={language}
+              onLanguageChange={setLanguage}
+            />
+          </div>
+          <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
+            {activeTab ? (
+              <TabPage tabKey={activeTab} onBack={handleBack} />
+            ) : (
+              <>
+                <Frame21 onTabClick={handleTabChange} />
+                <ContoursSection onTabClick={handleTabChange} />
+                <TeamSection />
+                <SyntheticResearchSection onTabClick={handleTabChange} />
+                <BackgroundHorizontalBorder2 />
+                <BackgroundHorizontalBorder3 />
+                <HorizontalBorder10 />
+                <Background7 />
+              </>
+            )}
+            <Container66 />
+          </div>
+        </>
+      )}
       {imageModal && (
         <ImageModal
           index={productImages[imageModal].index}

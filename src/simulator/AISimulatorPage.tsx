@@ -353,7 +353,7 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
               className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-white sm:text-[38px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
-              ИИ симуляторы
+              Моделирование
             </h2>
             <p
               className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/70 max-w-[900px] sm:text-[17px]"
