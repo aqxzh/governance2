@@ -2296,7 +2296,7 @@ function HorizontalBorder10() {
             </span>
           </button>
           {showFoundation && (
-            <div className="relative left-1/2 mt-[20px] w-screen max-w-[1600px] -translate-x-1/2 overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
+            <div className="mt-[20px] w-full max-w-[960px] overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
               <img
                 src={imgImage56}
                 alt="Стратегический фундамент"
