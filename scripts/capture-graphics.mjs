@@ -25,34 +25,12 @@ async function shot(findFn, out) {
     path: `public/graphics/${out}`,
     clip: { x: box.x, y: box.y, width: box.width, height: box.height },
   })
-  console.log(`✓ ${out}: ${Math.round(box.width)}×${Math.round(box.height)} @2x`)
+  console.log(
+    `✓ ${out}: ${Math.round(box.width)}×${Math.round(box.height)} @2x`,
+  )
 }
 
 try {
-  // 06 AI-АССЕССМЕНТ: кнопка с картинкой + метрики справа (Group8)
-  await shot(
-    () => document.querySelector('img[alt="AI Assessment"]')?.closest("button")?.parentElement,
-    "assessment.png",
-  )
-
-  // 07 EXECASSIST: Frame10 — панель с текстами поверх скриншота
-  await shot(() => {
-    const img = [...document.querySelectorAll("img")].find((i) =>
-      i.src.includes("d905383f"),
-    )
-    let el = img
-    while (el && el.offsetWidth < 900) el = el.parentElement
-    return el
-  }, "execassist.png")
-
-  // 08 SERVICEFLOW: Group10 — схема с подписями барьеров
-  await shot(() => {
-    const img = [...document.querySelectorAll("img")].find((i) =>
-      i.src.includes("29a3bee7"),
-    )
-    return img?.parentElement?.parentElement
-  }, "serviceflow.png")
-
   // 09 БЕЗОПАСНОСТЬ: композиция иллюстраций (Group)
   await shot(() => {
     const img = [...document.querySelectorAll("img")].find((i) =>

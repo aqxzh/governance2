@@ -9,8 +9,6 @@ import {
 import imgDemkaPhoto from "../../imports/demka-photo.png"
 import imgBefore from "../../imports/before.png"
 import imgAfter from "../../imports/after.png"
-import imgGraphic06 from "../../imports/graphic-06.png"
-import imgGraphic07 from "../../imports/graphic-07.png"
 
 /* ==================== Типы и данные ==================== */
 
@@ -113,44 +111,6 @@ const VISION_BLOCKS: VisionBlock[] = [
     video: "/videos/process.mp4",
     quote:
       "«Будущее инноваций и ИИ упирается в энергию и вычислительные мощности.»",
-  },
-  {
-    num: "06",
-    label: "AI-АССЕССМЕНТ",
-    title: "AI-Ассессмент: Поведенческий анализ",
-    points: [
-      "Использование компьютерного зрения и аудиоаналитики в реальном времени.",
-      "Прогнозирование эффективности на основе поведенческих паттернов как дополнение к экспертной оценке.",
-    ],
-    image: imgGraphic06,
-    imageDescription:
-      "AI-Ассессмент: компьютерное зрение и аудиоаналитика для поведенческого анализа кандидатов.",
-  },
-  {
-    num: "07",
-    label: "EXECASSIST",
-    title: "ExecAssist: Помощник руководителя",
-    points: [
-      "ИИ видит ведомство изнутри в реальном времени.",
-      "Координация задач и умные боты работают прямо в рабочих мессенджерах сотрудников.",
-      "Переход от избыточных данных к чистому управленческому сигналу: управленческий сигнал, прямая координация, эффективность департаментов, общий уровень нагрузки.",
-    ],
-    image: imgGraphic07,
-    imageDescription:
-      "ExecAssist: управленческий сигнал, прямая координация и эффективность департаментов в одной панели.",
-  },
-  {
-    num: "08",
-    label: "SERVICEFLOW",
-    title: "ServiceFlow: Проактивный клиентский сервис с помощью ИИ",
-    points: [
-      "Проанализировано 1 500 государственных услуг с помощью ИИ.",
-      "Выявление аномалий, скрытых офлайн-процессов и нормативных барьеров.",
-      "Проактивный формат работы с гражданами вместо ожидания обращений.",
-    ],
-    image: "/graphics/serviceflow.png",
-    imageDescription:
-      "ServiceFlow: выявление аномалий и скрытых процессов, проактивный формат обслуживания.",
   },
 ]
 
@@ -1307,7 +1267,9 @@ function HomeFeed({
   toggleFav: (item: FavItem) => void
   share: () => void
 }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  )
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [question, setQuestion] = useState("")
@@ -1578,7 +1540,7 @@ function HomeFeed({
         <p className="mt-3 font-['IBM_Plex_Sans',sans-serif] text-[14px] leading-[1.6] text-[#3a4050]">
           {INFOGRAPHIC_TEXT}
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-3">
+        <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-3">
           {([
             {
               src: imgBefore,
@@ -1608,35 +1570,35 @@ function HomeFeed({
               aria-label={`${img.label} — открыть на весь экран`}
               className="group flex flex-col gap-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] rounded-[12px]"
             >
-              <span className="block overflow-hidden rounded-[12px] border border-[#dbe2ec]">
+              <span className="relative block overflow-hidden rounded-[12px] border border-[#dbe2ec]">
                 <img
                   src={img.src}
                   alt={img.alt}
                   className="block aspect-[4/3] w-full object-cover transition-transform duration-300 group-active:scale-[1.04]"
                   loading="lazy"
                 />
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="rounded-[6px] bg-[#2242d6] px-2.5 py-0.5 font-['IBM_Plex_Sans',sans-serif] font-bold text-[11.5px] text-white">
-                  {img.label}
+                <span className="absolute left-2 top-2 flex items-center gap-1 rounded-[6px] bg-white/90 px-2 py-0.5 backdrop-blur-sm">
+                  <span className="font-['IBM_Plex_Sans',sans-serif] font-bold text-[11.5px] leading-none text-[#0d0f16]">
+                    {img.label}
+                  </span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="size-3 fill-none stroke-[#8990a0]"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                  </svg>
                 </span>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="size-3.5 fill-none stroke-[#8990a0]"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                </svg>
               </span>
             </button>
           ))}
         </div>
       </section>
 
-      {/* ===== 05–08 Видение ===== */}
+      {/* ===== 05 Видение ===== */}
       {VISION_BLOCKS.map((b) => (
         <section key={b.num} className="px-5 pt-10">
           <div className="flex flex-col gap-3 rounded-[14px] border border-[#e6e8ee] bg-white p-5">
@@ -1747,13 +1709,13 @@ function HomeFeed({
               loading="lazy"
             />
           </button>
-          <div className="flex flex-col divide-y divide-[#e6e8ee]">
+          <div className="flex flex-col gap-5">
             {PRINCIPLES.map((p) => (
-              <div key={p.title} className="flex flex-col gap-1 py-4">
+              <div key={p.title} className="flex flex-col gap-1">
                 <span className="font-['IBM_Plex_Sans',sans-serif] font-bold text-[15.5px] text-[#0d0f16]">
                   {p.title}
                 </span>
-                <span className="font-['IBM_Plex_Sans',sans-serif] text-[13.5px] leading-[1.5] text-[#5a606e]">
+                <span className="font-['IBM_Plex_Sans',sans-serif] text-[13.5px] leading-[1.45] text-[#5a606e]">
                   {p.text}
                 </span>
               </div>

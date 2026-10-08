@@ -1,106 +1,160 @@
-import React, { useEffect, useRef, useState } from "react";
-import imgTeamMain from "./team-main.png";
-import imgDemkaPhoto from "./demka-photo.png";
-import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png";
-import imgAiSim from "./ai-sim.png";
-import imgSimSlide1 from "./sim-slide-1.png";
-import imgSimSlide2 from "./sim-slide-2.png";
-import imgSimSlide3 from "./sim-slide-3.png";
-import imgSimSlide4 from "./sim-slide-4.png";
-import imgSimSlide5 from "./sim-slide-5.png";
-import imgSimSlide6 from "./sim-slide-6.png";
-import imgAfter from "./after.png";
-import imgBefore from "./before.png";
-import imgSchemeSteps19 from "./scheme-steps-1-9.png";
-import imgSchemeSteps1017 from "./scheme-steps-10-17.png";
-import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png";
-import imgImage57 from "./a1f65cf94f5b3c805215dfdc6c26bc10642d5405.png";
-import imgFrame5 from "./d905383f33c1e237129302dc61291c1114ce4e71.png";
-import imgImage58 from "./29a3bee7660df8358ecf16a3422d11eb33c3cb17.png";
-import imgImage56 from "./c07407db45f5b55ba113edc2d3987e4a10064c6c.png";
-import imgImage59 from "./29ec613a87bc4f3acf7213fc4f5fc665e405cb89.png";
-import imgImage60 from "./139f115f8c2e5f0ed078adfaed1ec6bced7ee40c.png";
-import imgImage61 from "./8a984d7d3fd8f76fd80c78c281b414d9286b59ad.png";
-import imgImage62 from "./f69f67e473112b2672b4d0eedc1b935c373c076e.png";
-import imgProductSmartHr from "./smart-hr.png";
-import imgProductOnlineAssessment from "./online-assessment.png";
-import imgProductAssistant from "./assistant.png";
-import imgProductSovereignty from "./sovereignty.png";
+import React, { useEffect, useRef, useState } from "react"
+import imgTeamMain from "./team-main.png"
+import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png"
+import imgAiSim from "./ai-sim.png"
+import imgSimSlide1 from "./sim-slide-1.png"
+import imgSimSlide2 from "./sim-slide-2.png"
+import imgSimSlide3 from "./sim-slide-3.png"
+import imgSimSlide4 from "./sim-slide-4.png"
+import imgSimSlide5 from "./sim-slide-5.png"
+import imgSimSlide6 from "./sim-slide-6.png"
+import imgAfter from "./after.png"
+import imgBefore from "./before.png"
+import imgSchemeSteps19 from "./scheme-steps-1-9.png"
+import imgSchemeSteps1017 from "./scheme-steps-10-17.png"
+import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png"
+import imgImage56 from "./c07407db45f5b55ba113edc2d3987e4a10064c6c.png"
+import imgProductSmartHr from "./smart-hr.png"
+import imgProductOnlineAssessment from "./online-assessment.png"
+import imgProductAssistant from "./assistant.png"
+import imgProductSovereignty from "./sovereignty.png"
 
-import imgSolutionFunctionalAnalysis from "./functional-analysis.png";
-import imgSolutionGovFunctionsAnalytics from "./gov-functions-analytics.png";
-import imgSolutionDigitalTwin from "./digital-twin.png";
-import imgSolutionGovServicesAnalytics from "./gov-services-analytics.png";
-import imgSolutionAiRecruitment from "./ai-recruitment.png";
-import imgSolutionCivilServiceSelection from "./civil-service-selection.png";
-import imgSolutionAiManagementAdvisor from "./ai-management-advisor.png";
-import imgSolutionEkyzmetAnalytics from "./ekyzmet-analytics.png";
-import imgSolutionBotAssistants from "./bot-assistants.png";
-import imgSolutionIndustryBank from "./industry-bank.png";
-import imgSolutionAnticorruptionMonitoring from "./anticorruption-monitoring.png";
-import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png";
-import { CONTACT_EMAIL, sendApplication } from "../src/lib/sendApplication";
+import imgSolutionFunctionalAnalysis from "./functional-analysis.png"
+import imgSolutionGovFunctionsAnalytics from "./gov-functions-analytics.png"
+import imgSolutionDigitalTwin from "./digital-twin.png"
+import imgSolutionGovServicesAnalytics from "./gov-services-analytics.png"
+import imgSolutionAiRecruitment from "./ai-recruitment.png"
+import imgSolutionCivilServiceSelection from "./civil-service-selection.png"
+import imgSolutionAiManagementAdvisor from "./ai-management-advisor.png"
+import imgSolutionEkyzmetAnalytics from "./ekyzmet-analytics.png"
+import imgSolutionBotAssistants from "./bot-assistants.png"
+import imgSolutionIndustryBank from "./industry-bank.png"
+import imgSolutionAnticorruptionMonitoring from "./anticorruption-monitoring.png"
+import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png"
+import { CONTACT_EMAIL, sendApplication } from "../src/lib/sendApplication"
 
-import imgTabDiagnostics from "./tab-diagnostics.png";
-import imgTabCoordination from "./tab-coordination.png";
+import imgTabDiagnostics from "./tab-diagnostics.png"
+import imgTabCoordination from "./tab-coordination.png"
 
-import AISimulatorPage from "../src/simulator/AISimulatorPage";
-import { VideoModal } from "../src/simulator/VideoModal";
+import { VideoModal } from "../src/simulator/VideoModal"
+import SyntheticResearchSection from "../src/synthetic-research/SyntheticResearchSection"
+import ModelingPage, {
+  RegistryTable,
+} from "../src/synthetic-research/ModelingPage"
+import { ImageModal } from "../src/synthetic-research/ImageModal"
 
-export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty";
+export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty"
 
-export const productImages: Record<ProductImageKey, { index: string; title: string; image: string; description: string }> = {
+export const productImages: Record<ProductImageKey, {
+  index: string
+  title: string
+  image: string
+  description: string
+}> = {
   smarthr: {
     index: "01",
     title: "Smart HR",
     image: imgProductSmartHr,
-    description: "Кадровые профили, подбор и аналитика кандидатов в едином контуре данных.",
+    description:
+      "Кадровые профили, подбор и аналитика кандидатов в едином контуре данных.",
   },
   assessment: {
     index: "02",
     title: "AI Assessment",
     image: imgProductOnlineAssessment,
-    description: "Поведенческий анализ, компьютерное зрение и аудиоанализ для оценки кандидатов.",
+    description:
+      "Поведенческий анализ, компьютерное зрение и аудиоанализ для оценки кандидатов.",
   },
   assistant: {
     index: "03",
     title: "Помощник руководителя",
     image: imgProductAssistant,
-    description: "Управленческий сигнал, координация задач и приоритизация действий.",
+    description:
+      "Управленческий сигнал, координация задач и приоритизация действий.",
   },
   sovereignty: {
     index: "04",
     title: "Цифровой суверенитет",
     image: imgProductSovereignty,
-    description: "Закрытый контур, локальная инфраструктура и защита данных национального уровня.",
+    description:
+      "Закрытый контур, локальная инфраструктура и защита данных национального уровня.",
   },
-};
+}
 
-export type TabKey = "recruitment" | "analytics" | "simulator";
+export type TabKey = "recruitment" | "modeling" | "analytics"
 
 type TabRow = {
-  num: string;
-  name: string;
-  does: string;
-  feature: string;
-  image?: string;
-};
+  num: string
+  name: string
+  does: string
+  feature: string
+  image?: string
+}
 
 type TabData = {
-  index: string;
-  label: string;
-  title: string;
-  description: string;
-  image?: string;
-  video?: string;
-  videoGradient?: [string, string, string];
-  videoGlow?: string;
-  rows: TabRow[];
-};
+  index: string
+  label: string
+  title: string
+  description: string
+  image?: string
+  video?: string
+  videoGradient?: [string, string, string]
+  videoGlow?: string
+  rows: TabRow[]
+}
+
+const slideImgBust = import.meta.env.DEV ? `?t=${Date.now()}` : ""
+const slideImg = (src: string) => `${src}${slideImgBust}`
+
+/* Модули моделирования — шесть сценариев */
+export const modelingSlides: TabRow[] = [
+  {
+    num: "01",
+    name: "Потребительский спрос и рост бренда",
+    does: "Синтетический аналитик оценивает спрос по брендам и торговым зонам: свой магазин против конкурентов",
+    feature: "Синтетические профили",
+    image: slideImg(imgSimSlide1),
+  },
+  {
+    num: "02",
+    name: "Партия доедет — и успеет продаться",
+    does: "Моделирование поставок охлаждённой продукции на карте Алматы: завод → склад → магазины, маршруты и сроки продажи партии",
+    feature: "Карта поставок",
+    image: slideImg(imgSimSlide2),
+  },
+  {
+    num: "03",
+    name: "Продукты и офферы",
+    does: "What-if сценарии для портфеля продуктов: изменение цен на сырьё, акции конкурентов, рост спроса, выход нового игрока",
+    feature: "Сценарии what-if",
+    image: slideImg(imgSimSlide3),
+  },
+  {
+    num: "04",
+    name: "Продовольственная экосистема",
+    does: "Срез продовольственного рынка: объём, производство, привлечённый капитал и охват населения по регионам",
+    feature: "Все регионы",
+    image: slideImg(imgSimSlide4),
+  },
+  {
+    num: "05",
+    name: "Контроль исполнения документов",
+    does: "Дашборды AI-Советника: приоритеты руководителя, движение документов и контроль сроков без ручной аналитики",
+    feature: "AI-Советник",
+    image: slideImg(imgSimSlide5),
+  },
+  {
+    num: "06",
+    name: "LLM говорит с LLM",
+    does: "Переговоры закупщика и поставщика ведут ИИ-агенты: запрос скидки, расчёт и интерпретация ответа",
+    feature: "Агент ↔ агент",
+    image: slideImg(imgSimSlide6),
+  },
+]
 
 export const tabData: Record<TabKey, TabData> = {
   recruitment: {
-    index: "02",
+    index: "01",
     label: "Диагностика",
     title: "Диагностика",
     description:
@@ -110,13 +164,55 @@ export const tabData: Record<TabKey, TabData> = {
     videoGradient: ["#0d9488", "#14b8a6", "#22d3ee"],
     videoGlow: "rgba(20,184,166,0.55)",
     rows: [
-      { num: "01", name: "Функциональный анализ", does: "Платформа выявляет коллизии между ведомствами, дублирование полномочий и несоответствие функций декларируемой миссии", feature: "Передача функций частному сектору", image: imgSolutionFunctionalAnalysis },
-      { num: "02", name: "Аналитика госфункций", does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи", feature: "Переход от обзора к профилю в один клик", image: imgSolutionGovFunctionsAnalytics },
-      { num: "03", name: "Рекрутинг с ИИ", does: "AI-платформа подбора кадровного резерва из 50 000+ профилей по опыту, компетенциям, рангу и параметрам", feature: "50 000+ профилей", image: imgSolutionAiRecruitment },
-      { num: "04", name: "Аналитика госуслуг", does: "Автоматизированный аудит реестра госуслуг и НПА: выявление неэффективных процедур и ошибок в нормативке", feature: "Пошаговый план автоматизации", image: imgSolutionGovServicesAnalytics },
-      { num: "05", name: "Кадровая аналитика госслужащих", does: "Платформа анализа качества данных о сотрудниках государственных органов: демографические и профессиональные характеристики", feature: "Повышение точности метрик", image: imgSolutionEkyzmetAnalytics },
-      { num: "06", name: "Антикоррупционный мониторинг", does: "Сквозной анализ данных для выявления скрытой аффилированности, мониторинга фискальной дисциплины и оценки рисков", feature: "Предиктивная оценка рисков", image: imgSolutionAnticorruptionMonitoring },
-      { num: "07", name: "Сверка баз данных", does: "Интеллектуальный аудит расхождений между кадровой системой с ручным вводом и системой с автообновлением, с проверкой идентификаторов сотрудников", feature: "Аналитика качества данных", image: imgSolutionEksEnbekReconciliation },
+      {
+        num: "01",
+        name: "Функциональный анализ",
+        does: "Платформа выявляет коллизии между ведомствами, дублирование полномочий и несоответствие функций декларируемой миссии",
+        feature: "Передача функций частному сектору",
+        image: imgSolutionFunctionalAnalysis,
+      },
+      {
+        num: "02",
+        name: "Аналитика госфункций",
+        does: "Карта сравнительного среза по госорганам: объём обращений, собственные и не родные функции, внешние связи",
+        feature: "Переход от обзора к профилю в один клик",
+        image: imgSolutionGovFunctionsAnalytics,
+      },
+      {
+        num: "03",
+        name: "Рекрутинг с ИИ",
+        does: "AI-платформа подбора кадровного резерва из 50 000+ профилей по опыту, компетенциям, рангу и параметрам",
+        feature: "50 000+ профилей",
+        image: imgSolutionAiRecruitment,
+      },
+      {
+        num: "04",
+        name: "Аналитика госуслуг",
+        does: "Автоматизированный аудит реестра госуслуг и НПА: выявление неэффективных процедур и ошибок в нормативке",
+        feature: "Пошаговый план автоматизации",
+        image: imgSolutionGovServicesAnalytics,
+      },
+      {
+        num: "05",
+        name: "Кадровая аналитика госслужащих",
+        does: "Платформа анализа качества данных о сотрудниках государственных органов: демографические и профессиональные характеристики",
+        feature: "Повышение точности метрик",
+        image: imgSolutionEkyzmetAnalytics,
+      },
+      {
+        num: "06",
+        name: "Антикоррупционный мониторинг",
+        does: "Сквозной анализ данных для выявления скрытой аффилированности, мониторинга фискальной дисциплины и оценки рисков",
+        feature: "Предиктивная оценка рисков",
+        image: imgSolutionAnticorruptionMonitoring,
+      },
+      {
+        num: "07",
+        name: "Сверка баз данных",
+        does: "Интеллектуальный аудит расхождений между кадровой системой с ручным вводом и системой с автообновлением, с проверкой идентификаторов сотрудников",
+        feature: "Аналитика качества данных",
+        image: imgSolutionEksEnbekReconciliation,
+      },
     ],
   },
   analytics: {
@@ -130,154 +226,86 @@ export const tabData: Record<TabKey, TabData> = {
     videoGradient: ["#1a35ad", "#2242d6", "#3b82f6"],
     videoGlow: "rgba(34,66,214,0.55)",
     rows: [
-      { num: "01", name: "Цифровой двойник", does: "Моделирование перераспределения функций и сотрудников между ведомствами с мгновенным расчётом нагрузки и баланса", feature: "Drag-and-drop интерфейс", image: imgSolutionDigitalTwin },
-      { num: "02", name: "Отбор на госслужбу с ИИ", does: "Оценка кандидатов через анализ видео, голосовых ответов и текста по 15 компетенциям: логика, коммуникация, устойчивость", feature: "15 компетенций", image: imgSolutionCivilServiceSelection },
-      { num: "03", name: "ИИ-советник по управлению", does: "Единый интеллектуальный центр доступа к знаниям организации на данных систем документооборота и обращений граждан — вопросы на естественном языке", feature: "Интерактивные панели и упреждающие сигналы", image: imgSolutionAiManagementAdvisor },
-      { num: "04", name: "Банк отраслевых направлений", does: "Единая база данных по всем госслужащим Казахстана: стаж, прошлые места работы, быстрый подбор кандидата на вакансию", feature: "Поиск по всем регионам", image: imgSolutionIndustryBank },
-      { num: "05", name: "Разработка ботов-ассистентов", does: "Telegram и WhatsApp-боты на платформе ИИ для ответов на вопросы по заданной теме в нескольких группах", feature: "Изолированные сессии", image: imgSolutionBotAssistants },
+      {
+        num: "01",
+        name: "Цифровой двойник",
+        does: "Моделирование перераспределения функций и сотрудников между ведомствами с мгновенным расчётом нагрузки и баланса",
+        feature: "Drag-and-drop интерфейс",
+        image: imgSolutionDigitalTwin,
+      },
+      {
+        num: "02",
+        name: "Отбор на госслужбу с ИИ",
+        does: "Оценка кандидатов через анализ видео, голосовых ответов и текста по 15 компетенциям: логика, коммуникация, устойчивость",
+        feature: "15 компетенций",
+        image: imgSolutionCivilServiceSelection,
+      },
+      {
+        num: "03",
+        name: "ИИ-советник по управлению",
+        does: "Единый интеллектуальный центр доступа к знаниям организации на данных систем документооборота и обращений граждан — вопросы на естественном языке",
+        feature: "Интерактивные панели и упреждающие сигналы",
+        image: imgSolutionAiManagementAdvisor,
+      },
+      {
+        num: "04",
+        name: "Банк отраслевых направлений",
+        does: "Единая база данных по всем госслужащим Казахстана: стаж, прошлые места работы, быстрый подбор кандидата на вакансию",
+        feature: "Поиск по всем регионам",
+        image: imgSolutionIndustryBank,
+      },
+      {
+        num: "05",
+        name: "Разработка ботов-ассистентов",
+        does: "Telegram и WhatsApp-боты на платформе ИИ для ответов на вопросы по заданной теме в нескольких группах",
+        feature: "Изолированные сессии",
+        image: imgSolutionBotAssistants,
+      },
     ],
   },
-  simulator: {
-    index: "01",
-    label: "ИИ симуляторы",
-    title: "ИИ симуляторы",
+  modeling: {
+    index: "02",
+    label: "Моделирование",
+    title: "Моделирование",
     description:
-      "Моделирование сценариев и поведение синтетической аудитории: опросы, реакции и прогнозы без полевых исследований.",
-    rows: [],
+      "Проверить варианты до внедрения: исследовать реакции аудитории, сравнить сценарии и рассчитать поставки с учётом сроков годности.",
+    image: imgAiSim,
+    rows: modelingSlides,
   },
-};
-
-
-const slideImgBust = import.meta.env.DEV ? `?t=${Date.now()}` : "";
-const slideImg = (src: string) => `${src}${slideImgBust}`;
-
-/* Модули ИИ-симуляторов — те же шесть слайдов, что и в интерактивных демо */
-export const simulatorSlides: TabRow[] = [
-  { num: "01", name: "Потребительский спрос и рост бренда", does: "Синтетический аналитик оценивает спрос по брендам и торговым зонам: свой магазин против конкурентов", feature: "Синтетические профили", image: slideImg(imgSimSlide1) },
-  { num: "02", name: "Партия доедет — и успеет продаться", does: "Моделирование поставок охлаждённой продукции на карте Алматы: завод → склад → магазины, маршруты и сроки продажи партии", feature: "Карта поставок", image: slideImg(imgSimSlide2) },
-  { num: "03", name: "Продукты и офферы", does: "What-if сценарии для портфеля продуктов: изменение цен на сырьё, акции конкурентов, рост спроса, выход нового игрока", feature: "Сценарии what-if", image: slideImg(imgSimSlide3) },
-  { num: "04", name: "Продовольственная экосистема", does: "Срез продовольственного рынка: объём, производство, привлечённый капитал и охват населения по регионам", feature: "Все регионы", image: slideImg(imgSimSlide4) },
-  { num: "05", name: "Контроль исполнения документов", does: "Дашборды AI-Советника: приоритеты руководителя, движение документов и контроль сроков без ручной аналитики", feature: "AI-Советник", image: slideImg(imgSimSlide5) },
-  { num: "06", name: "LLM говорит с LLM", does: "Переговоры закупщика и поставщика ведут ИИ-агенты: запрос скидки, расчёт и интерпретация ответа", feature: "Агент ↔ агент", image: slideImg(imgSimSlide6) },
-];
-
-function ImageModal({ index, title, image, description, onClose, showTitle = true }: { index: string; title: string; image: string; description: string; onClose: () => void; showTitle?: boolean }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [onClose]);
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0f16]/25 backdrop-blur-[3px] p-4 sm:p-6 animate-[imgmodal-fade_.18s_ease-out]"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label={title}
-    >
-      <div
-        className="relative flex w-full max-w-[1100px] max-h-[90vh] flex-col overflow-hidden rounded-[14px] bg-white shadow-[0_24px_80px_rgba(0,0,0,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
-        onClick={(event) => event.stopPropagation()}
-      >
-        {/* Header — только для реестра решений */}
-        {showTitle && (
-          <div className="flex items-start justify-between gap-6 border-b border-[#e6e8ee] px-7 pt-6 pb-5">
-            <div className="flex min-w-0 flex-col">
-              <div className="flex items-baseline gap-[14px] min-w-0">
-                <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[22px] leading-none text-[#2242d6] tabular-nums shrink-0">
-                  {index}
-                </span>
-                <h2
-                  className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.1] tracking-[-0.26px] text-[#0d0f16]"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  {title}
-                </h2>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Закрыть"
-              className="shrink-0 grid size-11 place-items-center rounded-full border border-[#e6e8ee] text-[26px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
-            >
-              ×
-            </button>
-          </div>
-        )}
-
-        {/* Image stage */}
-        <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto bg-[#f6f7fb] p-4 sm:p-8">
-          {!showTitle && (
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Закрыть"
-              className="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full border border-[#e6e8ee] bg-white text-[24px] leading-none text-[#3a4050] transition-colors hover:border-[#0d0f16] hover:bg-[#0d0f16] hover:text-white cursor-pointer"
-            >
-              ×
-            </button>
-          )}
-          <img
-            src={image}
-            alt=""
-            className="block max-h-[64vh] max-w-full object-contain shadow-[0_8px_32px_rgba(13,15,22,0.12)]"
-          />
-        </div>
-
-        {/* Footer description */}
-        <div className="border-t border-[#e6e8ee] px-7 py-5">
-          <p
-            className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.55] text-[#3a4050]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {description}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
 }
+
 function onRowKeyDown(onActivate: () => void) {
   return (e: React.KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onActivate();
+      e.preventDefault()
+      onActivate()
     }
-  };
+  }
 }
 
 function Reveal({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
+      setVisible(true)
+      return
     }
-    const el = ref.current;
-    if (!el) return;
+    const el = ref.current
+    if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
+          setVisible(true)
+          observer.disconnect()
         }
       },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+      { threshold: 0.15 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div
@@ -290,429 +318,228 @@ function Reveal({ children }: { children: React.ReactNode }) {
     >
       {children}
     </div>
-  );
+  )
 }
 
-function SolutionsRegistry({ rows, onSelect }: { rows: TabRow[]; onSelect: (row: TabRow) => void }) {
+function SolutionsRegistry({
+  rows,
+  onSelect,
+}: {
+  rows: TabRow[]
+  onSelect: (row: TabRow) => void
+}) {
   return (
     <div className="relative w-full overflow-x-auto">
       <div className="relative min-w-[760px]">
-        <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10" />
+        <div
+          aria-hidden
+          className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none z-10"
+        />
         <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
           {/* Header */}
           <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
-                {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
-                  <div key={h} className="justify-self-stretch relative row-1 self-start shrink-0">
-                    <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-                        <p className="leading-[normal]">{h}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {/* Rows */}
-              {rows.map((row, i) => {
-                const clickable = Boolean(row.image);
-                return (
-                  <div
-                    key={row.num}
-                    onClick={clickable ? () => onSelect(row) : undefined}
-                    onKeyDown={clickable ? onRowKeyDown(() => onSelect(row)) : undefined}
-                    role={clickable ? "button" : undefined}
-                    tabIndex={clickable ? 0 : undefined}
-                    className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${clickable ? "cursor-pointer hover:bg-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2242d6]" : ""} ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
-                  >
-                    <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-                    <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-                    {clickable && (
-                      <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-                    )}
-                    <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
-                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
-                          <p className="leading-[normal]">{row.num}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
-                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                          <p className="leading-[24px]">{row.name}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
-                      <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                          <p className="leading-[24px]">{row.does}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
-                      <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                          <p className="leading-[24px]">{row.feature}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ContourBlock({ blockId, data }: { blockId: string; data: TabData }) {
-  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
-
-  const closeVideo = () => {
-    setShowVideo(false);
-    setVideoFailed(false);
-  };
-
-  return (
-    <>
-      <Reveal>
-        <div id={blockId} className="flex w-full flex-col gap-[18px]">
-          <ContourBanner data={data} onPlayClick={() => setShowVideo(true)} />
-          {data.rows.length > 0 && (
-            <SolutionsRegistry rows={data.rows} onSelect={setSelectedRow} />
-          )}
-        </div>
-      </Reveal>
-      {selectedRow && selectedRow.image && (
-        <ImageModal
-          index={selectedRow.num}
-          title={selectedRow.name}
-          image={selectedRow.image}
-          description={selectedRow.does}
-          onClose={() => setSelectedRow(null)}
-          showTitle={false}
-        />
-      )}
-      {showVideo &&
-        (data.video && !videoFailed ? (
-          <VideoModal src={data.video} title={data.title} onClose={closeVideo} onError={() => setVideoFailed(true)} large />
-        ) : (
-          data.image && (
-            <ImageModal index={data.index} title={data.title} image={data.image} description={data.description} onClose={closeVideo} />
-          )
-        ))}
-    </>
-  );
-}
-
-function SimulatorBlock({ blockId, onOpen }: { blockId: string; onOpen: () => void }) {
-  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
-
-  return (
-    <>
-      <Reveal>
-        <div id={blockId} className="flex w-full flex-col gap-[18px]">
-          <SimulatorBanner onOpen={onOpen} />
-          <SolutionsRegistry rows={simulatorSlides} onSelect={setSelectedRow} />
-        </div>
-      </Reveal>
-      {selectedRow && selectedRow.image && (
-        <ImageModal
-          index={selectedRow.num}
-          title={selectedRow.name}
-          image={selectedRow.image}
-          description={selectedRow.does}
-          onClose={() => setSelectedRow(null)}
-          showTitle={false}
-        />
-      )}
-    </>
-  );
-}
-
-function ContourBanner({ data, onPlayClick }: { data: TabData; onPlayClick: () => void }) {
-  return (
-    <div className="relative w-full overflow-hidden border border-[#0d0f16]">
-      <div className="relative min-h-[300px] w-full sm:min-h-[340px]">
-        <img src={data.image} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
-        <div aria-hidden className="absolute inset-0 bg-[#0d0f16]/60" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-[#0d0f16]/75 via-[#0d0f16]/25 to-transparent" />
-        <div className="relative flex min-h-[300px] w-full flex-col items-start justify-end gap-[14px] p-[26px] sm:min-h-[340px] sm:p-[36px]">
-          <h3
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {data.title}
-          </h3>
-          <p
-            className="max-w-[820px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/85 sm:text-[17px]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {data.description}
-          </p>
-          {data.video && (
-            <button
-              type="button"
-              onClick={onPlayClick}
-              className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 hover:text-white hover:ring-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-            >
-              <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
-                <path d="M8 5.14v13.72L19 12 8 5.14z" />
-              </svg>
-              <span
-                className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
-                style={{ fontVariationSettings: '"wdth" 100' }}
+            {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
+              <div
+                key={h}
+                className="justify-self-stretch relative row-1 self-start shrink-0"
               >
-                Смотреть видео
-              </span>
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SimulatorBanner({ onOpen }: { onOpen: () => void }) {
-  const data = tabData.simulator;
-  return (
-    <div className="relative w-full overflow-hidden border border-[#0d0f16]">
-      <div className="relative min-h-[300px] w-full sm:min-h-[340px]">
-        <img src={imgAiSim} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
-        <div aria-hidden className="absolute inset-0 bg-[#0d0f16]/60" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-[#0d0f16]/75 via-[#0d0f16]/25 to-transparent" />
-        <div className="relative flex min-h-[300px] w-full flex-col items-start justify-end gap-[14px] p-[26px] sm:min-h-[340px] sm:p-[36px]">
-          <h3
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {data.title}
-          </h3>
-          <p
-            className="max-w-[820px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/85 sm:text-[17px]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            {data.description}
-          </p>
-          <div className="mt-[8px] flex w-full flex-wrap items-end justify-between gap-x-[24px] gap-y-[14px]">
-            <p className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[11px] leading-[1.5] text-white/40">
-              {`// процесс показан в разделе «Процесс работы» выше`}
-            </p>
-            <button
-              type="button"
-              onClick={onOpen}
-              className="group relative shrink-0 cursor-pointer bg-[#2242d6] transition-colors hover:bg-[#1a35ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-              <div className="flex items-center gap-[10px] px-[22px] py-[14px]">
-                <span
-                  className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-white whitespace-nowrap"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  Открыть интерактивные демо
-                </span>
+                <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
+                  <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
+                    <p className="leading-[normal]">{h}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Rows */}
+          {rows.map((row, i) => {
+            const clickable = Boolean(row.image)
+            return (
+              <div
+                key={row.num}
+                onClick={clickable ? () => onSelect(row) : undefined}
+                onKeyDown={
+                  clickable ? onRowKeyDown(() => onSelect(row)) : undefined
+                }
+                role={clickable ? "button" : undefined}
+                tabIndex={clickable ? 0 : undefined}
+                className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${
+                  clickable
+                    ? "cursor-pointer hover:bg-[#eef0f5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2242d6]"
+                    : ""
+                } ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
+              >
+                <div
+                  aria-hidden
+                  className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"
+                />
                 <span
                   aria-hidden
-                  className="text-[15px] leading-none text-white transition-transform duration-300 group-hover:translate-x-[3px]"
-                >
-                  →
-                </span>
+                  className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"
+                />
+                {clickable && (
+                  <span
+                    aria-hidden
+                    className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"
+                  >
+                    →
+                  </span>
+                )}
+                <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
+                      <p className="leading-[normal]">{row.num}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div
+                      className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      <p className="leading-[24px]">{row.name}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
+                    <div
+                      className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      <p className="leading-[24px]">{row.does}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
+                  <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
+                    <div
+                      className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      <p className="leading-[24px]">{row.feature}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </button>
-          </div>
+            )
+          })}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-function ContoursSection({ onOpenSimulator }: { onOpenSimulator: () => void }) {
-  const order: TabKey[] = ["simulator", "recruitment", "analytics"];
-  const counts: Record<TabKey, number> = {
-    recruitment: tabData.recruitment.rows.length,
-    analytics: tabData.analytics.rows.length,
-    simulator: simulatorSlides.length,
-  };
-  const [active, setActive] = useState<TabKey>("simulator");
-  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
-
-  const switchTab = (key: TabKey) => {
-    setActive(key);
-    setSelectedRow(null);
-    setShowVideo(false);
-    setVideoFailed(false);
-  };
-
-  const closeVideo = () => {
-    setShowVideo(false);
-    setVideoFailed(false);
-  };
-
-  const isSimulator = active === "simulator";
-  const data = tabData[active];
-  const rows = isSimulator ? simulatorSlides : data.rows;
-  const bannerImage = isSimulator ? imgAiSim : data.image;
-  const bannerTitle = data.title;
-  const bannerDesc = data.description;
-  const bannerVideo = isSimulator ? undefined : data.video;
+function ContoursSection({
+  onTabClick,
+}: {
+  onTabClick: (key: TabKey) => void
+}) {
+  const cards: {
+    key: TabKey
+    num: string
+    title: string
+    text: string
+    items: string[]
+  }[] = [
+    {
+      key: "recruitment",
+      num: "01",
+      title: "Диагностика",
+      text: "ИИ анализирует функции, кадры и услуги госорганов в единой логике данных: находит дублирования полномочий, скрытые барьеры и аномалии. Диагностика показывает, как процессы ломаются и почему.",
+      items: ["Функции и услуги", "Кадры и оценка", "Данные и риски"],
+    },
+    {
+      key: "modeling",
+      num: "02",
+      title: "Моделирование",
+      text: "Проверить варианты до внедрения: исследовать реакции аудитории, сравнить сценарии и рассчитать поставки с учётом сроков годности.",
+      items: [
+        "Синтетические исследования",
+        "Сценарии и расчёты",
+        "Поставки и срок годности",
+      ],
+    },
+    {
+      key: "analytics",
+      num: "03",
+      title: "Координация",
+      text: "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
+      items: ["AI-советник", "Задачи и боты"],
+    },
+  ]
 
   return (
     <section id="contours" className="relative w-full">
-      <div className="content-stretch flex flex-col gap-[10px] items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-          <p className="leading-[normal]">01 / КОНТУРЫ</p>
+      <div className="content-stretch flex flex-col items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
+        <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
+          ВЫБРАТЬ ЗАДАЧУ
         </div>
         <h2
-          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Три контура. Одна логика данных.
+          Понять. Проверить. Организовать.
         </h2>
 
-        {/* Tabs — как на макете: номер / название / счётчик, подчёркивание активного */}
-        <div className="mt-[18px] flex w-full items-stretch gap-[24px] border-b border-[#d8dbe3] sm:gap-[40px]">
-          {order.map((key, i) => {
-            const t = tabData[key];
-            const isActive = key === active;
-            const num = `0${i + 1}`;
-            return (
-              <button
-                key={key}
-                type="button"
-                onClick={() => switchTab(key)}
-                aria-pressed={isActive}
-                className="relative flex-1 cursor-pointer pb-[12px] text-left outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] focus-visible:ring-offset-2"
+        <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
+          {cards.map((card) => (
+            <button
+              key={card.key}
+              type="button"
+              onClick={() => onTabClick(card.key)}
+              className="group flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] text-left transition-colors hover:border-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+            >
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-[#2242d6]">
+                {card.num}
+              </span>
+              <span
+                className="mt-[10px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
               >
-                <span className="flex flex-wrap items-baseline gap-x-[8px] gap-y-[2px]">
+                {card.title}
+              </span>
+              <span className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] leading-[1.6] text-[#5a606e]">
+                {card.text}
+              </span>
+              <span className="mt-[16px] flex flex-col gap-[10px]">
+                {card.items.map((item) => (
                   <span
-                    className={`font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tabular-nums ${isActive ? "text-[#2242d6]" : "text-[#9aa0ae]"}`}
+                    key={item}
+                    className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] text-[#0d0f16]"
                   >
-                    {num}
+                    {item}
                   </span>
-                  <span
-                    className={`font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] sm:text-[17px] whitespace-nowrap ${isActive ? "text-[#0d0f16]" : "text-[#6b7280]"}`}
-                    style={{ fontVariationSettings: '"wdth" 100' }}
-                  >
-                    {t.label}
-                  </span>
-                  <span className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[12px] text-[#9aa0ae] whitespace-nowrap">
-                    {counts[key]} решений
-                  </span>
+                ))}
+              </span>
+              <span className="mt-auto pt-[20px]">
+                <span className="block w-full whitespace-nowrap rounded-[8px] border border-[#0d0f16] bg-white px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] transition-colors group-hover:border-[#2242d6] group-hover:bg-[#2242d6] group-hover:text-white">
+                  Разобрать направление
                 </span>
-                <span
-                  aria-hidden
-                  className={`absolute inset-x-0 -bottom-px h-[2px] transition-colors ${isActive ? "bg-[#0d0f16]" : "bg-transparent"}`}
-                />
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Banner */}
-        <div className="mt-[20px] w-full">
-          <div className="relative w-full overflow-hidden border border-[#0d0f16]">
-            <div className="relative min-h-[320px] w-full sm:min-h-[380px]">
-              <img src={bannerImage} alt="" aria-hidden className="absolute inset-0 size-full object-cover" />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-[#0d0f16]/85 via-[#0d0f16]/55 to-[#0d0f16]/15" />
-              <div aria-hidden className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#0d0f16]/70 via-[#0d0f16]/20 to-transparent" />
-              <div className="relative flex min-h-[320px] w-full max-w-[640px] flex-col items-start justify-center gap-[14px] p-[26px] sm:min-h-[380px] sm:p-[40px]">
-                <h3
-                  className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-white sm:text-[30px]"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  {bannerTitle}
-                </h3>
-                <p
-                  className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.6] text-white/85 sm:text-[16px]"
-                  style={{ fontVariationSettings: '"wdth" 100' }}
-                >
-                  {bannerDesc}
-                </p>
-                {isSimulator ? (
-                  <button
-                    type="button"
-                    onClick={onOpenSimulator}
-                    className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white ring-1 ring-white/40 backdrop-blur-xl transition-all duration-300 hover:ring-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    style={{ backgroundColor: "rgba(255,255,255,0.10)" }}
-                  >
-                    <span
-                      aria-hidden
-                      className="text-[13px] leading-none transition-transform duration-300 group-hover:translate-x-[3px]"
-                    >
-                      →
-                    </span>
-                    <span
-                      className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
-                      style={{ fontVariationSettings: '"wdth" 100' }}
-                    >
-                      Открыть интерактивные демо
-                    </span>
-                  </button>
-                ) : (
-                  bannerVideo && (
-                    <button
-                      type="button"
-                      onClick={() => setShowVideo(true)}
-                      className="group mt-[6px] flex cursor-pointer items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 hover:text-white hover:ring-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                      style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-                    >
-                      <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
-                        <path d="M8 5.14v13.72L19 12 8 5.14z" />
-                      </svg>
-                      <span
-                        className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
-                        style={{ fontVariationSettings: '"wdth" 100' }}
-                      >
-                        Смотреть видео
-                      </span>
-                    </button>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-[14px] w-full">
-            <SolutionsRegistry rows={rows} onSelect={setSelectedRow} />
-          </div>
+              </span>
+            </button>
+          ))}
         </div>
       </div>
-
-      {selectedRow && selectedRow.image && (
-        <ImageModal
-          index={selectedRow.num}
-          title={selectedRow.name}
-          image={selectedRow.image}
-          description={selectedRow.does}
-          onClose={() => setSelectedRow(null)}
-          showTitle={false}
-        />
-      )}
-      {showVideo &&
-        !isSimulator &&
-        (bannerVideo && !videoFailed ? (
-          <VideoModal src={bannerVideo} title={bannerTitle} onClose={closeVideo} onError={() => setVideoFailed(true)} large />
-        ) : (
-          bannerImage && (
-            <ImageModal index={data.index} title={bannerTitle} image={bannerImage} description={bannerDesc} onClose={closeVideo} />
-          )
-        ))}
     </section>
-  );
+  )
 }
 
 function Container3() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] tracking-[-0.17px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] tracking-[-0.17px] whitespace-nowrap"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">GOVERNANCE.KZ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
@@ -725,65 +552,111 @@ function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
       aria-label="На главную"
     >
       <div className="relative shrink-0 size-[26px]" data-name="Border">
-        <div aria-hidden className="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none" />
+        <div
+          aria-hidden
+          className="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none"
+        />
       </div>
       <Container3 />
     </button>
-  );
+  )
 }
 
 function Container5() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Контуры</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container6() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Продукты</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container7() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Видение</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container8() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 cursor-pointer"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3a4050] text-[13.5px] whitespace-nowrap transition-colors hover:text-[#2242d6]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Принципы</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Border() {
   return (
-    <div className="content-stretch flex flex-col items-start px-[19px] py-[10px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#0d0f16] group" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none group-hover:border-[#0d0f16]" />
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap transition-colors group-hover:text-white" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start px-[19px] py-[10px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#0d0f16] group"
+      data-name="Border"
+    >
+      <div
+        aria-hidden
+        className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none group-hover:border-[#0d0f16]"
+      />
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap transition-colors group-hover:text-white"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
     </div>
-  );
+  )
 }
 
-function HorizontalBorder({ onTabClick, onHomeClick, language, onLanguageChange }: { onTabClick: (id: TabKey) => void; onHomeClick?: () => void; language: Language; onLanguageChange: (lang: Language) => void }) {
+function HorizontalBorder({
+  onTabClick,
+  onHomeClick,
+  language,
+  onLanguageChange,
+}: {
+  onTabClick: (id: TabKey) => void
+  onHomeClick?: () => void
+  language: Language
+  onLanguageChange: (lang: Language) => void
+}) {
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div className="flex flex-row items-center size-full">
@@ -796,108 +669,151 @@ function HorizontalBorder({ onTabClick, onHomeClick, language, onLanguageChange 
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Container9() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">01 / ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
+        <p className="leading-[normal]">ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container11() {
   return (
-    <div className="col-0 content-stretch flex flex-col items-start max-w-[620px] relative row-0 self-end shrink-0" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[18px] text-black" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[28.8px] mb-0">Governance.kz — прикладной центр цифровой трансформации</p>
-        <p className="leading-[28.8px] mb-0">управления. ИИ анализирует функции, кадры, услуги и нагрузку в</p>
-        <p className="leading-[28.8px] mb-0">единой логике данных: находит дублирования, барьеры и аномалии —</p>
+    <div
+      className="col-0 content-stretch flex flex-col items-start max-w-[620px] relative row-0 self-end shrink-0"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[18px] text-black"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
+        <p className="leading-[28.8px] mb-0">
+          Governance.kz — прикладной центр цифровой трансформации
+        </p>
+        <p className="leading-[28.8px] mb-0">
+          управления. ИИ анализирует функции, кадры, услуги и нагрузку в
+        </p>
+        <p className="leading-[28.8px] mb-0">
+          единой логике данных: находит дублирования, барьеры и аномалии —
+        </p>
         <p className="leading-[28.8px]">а решения остаются за людьми.</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Background2({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="bg-[#2242d6] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]" data-name="Background">
+    <div
+      onClick={onClick}
+      className="bg-[#2242d6] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      data-name="Background"
+    >
       <div className="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div
+          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
           <p className="leading-[normal]">Записаться на встречу →</p>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Border1({ onClick }: { onClick: () => void }) {
   return (
-    <div onClick={onClick} className="relative shrink-0 cursor-pointer bg-white" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
+    <div
+      onClick={onClick}
+      className="relative shrink-0 cursor-pointer bg-white"
+      data-name="Border"
+    >
+      <div
+        aria-hidden
+        className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"
+      />
       <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
-        <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+        <div
+          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
           <p className="leading-[normal]">Аналитическая записка</p>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-function Container12({ onMeetingClick, onNoteClick }: { onMeetingClick: () => void; onNoteClick: () => void }) {
+function Container12({
+  onMeetingClick,
+  onNoteClick,
+}: {
+  onMeetingClick: () => void
+  onNoteClick: () => void
+}) {
   return (
-    <div className="col-0 content-stretch flex flex-row gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full" data-name="Container">
+    <div
+      className="col-0 content-stretch flex flex-row gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full"
+      data-name="Container"
+    >
       <Background2 onClick={onMeetingClick} />
       <Border1 onClick={onNoteClick} />
     </div>
-  );
+  )
 }
 
 const CONTACTS = {
   email: CONTACT_EMAIL,
   phoneDisplay: "+7 (776) 173-82-91",
   phoneHref: "+777761738291",
-};
+}
 
 function MeetingModal({ onClose }: { onClose: () => void }) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [question, setQuestion] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [question, setQuestion] = useState("")
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  )
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+      if (e.key === "Escape") onClose()
+    }
+    window.addEventListener("keydown", onKey)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
     return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [onClose]);
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [onClose])
 
   const send = async () => {
-    if (!name.trim() || !phone.trim()) return;
-    setStatus("sending");
+    if (!name.trim() || !phone.trim()) return
+    setStatus("sending")
     try {
       await sendApplication({
         name: name.trim(),
         phone: phone.trim(),
         message: question.trim() || undefined,
-      });
-      setStatus("sent");
+      })
+      setStatus("sent")
     } catch {
-      setStatus("error");
+      setStatus("error")
     }
-  };
+  }
 
   const inputClass =
-    "w-full rounded-[10px] border border-[#e6e8ee] bg-[#f6f7fb] px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-[#0d0f16] outline-none transition-colors focus:border-[#2242d6] focus:bg-white placeholder:text-[#9aa0ad]";
+    "w-full rounded-[10px] border border-[#e6e8ee] bg-[#f6f7fb] px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-[#0d0f16] outline-none transition-colors focus:border-[#2242d6] focus:bg-white placeholder:text-[#9aa0ad]"
 
   return (
     <div
@@ -926,7 +842,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
         >
           Записаться на встречу
         </h2>
-        <p className="mt-[8px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-[#5a606e]">
+        <p className="mt-[14px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-[#5a606e]">
           Опишите ваш вопрос — и мы свяжемся с вами.
         </p>
 
@@ -970,15 +886,19 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
               disabled={status === "sending" || !name.trim() || !phone.trim()}
               className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-[#2242d6] px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-[#1a35ad] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden>
+              <svg
+                viewBox="0 0 24 24"
+                className="size-4 fill-current"
+                aria-hidden
+              >
                 <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z" />
               </svg>
               {status === "sending" ? "Отправляем…" : "Отправить заявку"}
             </button>
             {status === "error" && (
               <p className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#c5221f]">
-                Не удалось отправить заявку. Попробуйте ещё раз или напишите нам напрямую на{" "}
-                {CONTACTS.email}.
+                Не удалось отправить заявку. Попробуйте ещё раз или напишите нам
+                напрямую на {CONTACTS.email}.
               </p>
             )}
             <p className="mt-[12px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#9aa0ad]">
@@ -988,13 +908,27 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-function InfoModal({ title, description, onClose }: { title: string; description: React.ReactNode; onClose: () => void }) {
+function InfoModal({
+  title,
+  description,
+  onClose,
+}: {
+  title: string
+  description: React.ReactNode
+  onClose: () => void
+}) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
-      <div className="relative w-full max-w-2xl rounded-[24px] bg-white p-8 shadow-[0_40px_80px_rgba(0,0,0,0.18)]" onClick={(event) => event.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-2xl rounded-[24px] bg-white p-8 shadow-[0_40px_80px_rgba(0,0,0,0.18)]"
+        onClick={(event) => event.stopPropagation()}
+      >
         <button
           type="button"
           onClick={onClose}
@@ -1003,130 +937,189 @@ function InfoModal({ title, description, onClose }: { title: string; description
           ×
         </button>
         <h2 className="mb-4 text-2xl font-semibold text-slate-900">{title}</h2>
-        <div className="space-y-4 text-sm leading-6 text-slate-700">{description}</div>
+        <div className="space-y-4 text-sm leading-6 text-slate-700">
+          {description}
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder2() {
   return (
-    <div className="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex items-start pb-[2px] relative shrink-0"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"
+      />
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap">
         <p className="leading-[normal]">0 000</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container13() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">профилей · Smart HR</p>
       </div>
     </div>
-  );
+  )
 }
 
 function VerticalBorder() {
   return (
     <div className="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"
+      />
       <div className="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full">
         <HorizontalBorder2 />
         <Container13 />
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder3() {
   return (
-    <div className="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex items-start pb-[2px] relative shrink-0"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"
+      />
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap">
         <p className="leading-[normal]">0 000</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container14() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">госуслуг проверено</p>
       </div>
     </div>
-  );
+  )
 }
 
 function VerticalBorder1() {
   return (
     <div className="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"
+      />
       <div className="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full">
         <HorizontalBorder3 />
         <Container14 />
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder4() {
   return (
-    <div className="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex items-start pb-[2px] relative shrink-0"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"
+      />
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap">
         <p className="leading-[normal]">00</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container15() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">госорганов в пилоте</p>
       </div>
     </div>
-  );
+  )
 }
 
 function VerticalBorder2() {
   return (
     <div className="flex-[1_0_0] min-w-px relative" data-name="VerticalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-r border-solid inset-0 pointer-events-none"
+      />
       <div className="content-stretch flex flex-col gap-[8px] items-start pl-[20px] pr-[21px] py-[18px] relative size-full">
         <HorizontalBorder4 />
         <Container15 />
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder5() {
   return (
-    <div className="content-stretch flex items-start pb-[2px] relative shrink-0" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex items-start pb-[2px] relative shrink-0"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#b9c1e8] border-b-2 border-dashed inset-0 pointer-events-none"
+      />
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[30px] whitespace-nowrap">
         <p className="leading-[normal]">+00%</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container17() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-black w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">эффективность управления</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container16() {
@@ -1137,59 +1130,76 @@ function Container16() {
         <Container17 />
       </div>
     </div>
-  );
+  )
 }
 
 function Border2() {
   return (
-    <div className="content-stretch flex h-[103px] items-start justify-center p-px relative w-full" data-name="Border">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex h-[103px] items-start justify-center p-px relative w-full"
+      data-name="Border"
+    >
+      <div
+        aria-hidden
+        className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"
+      />
       <VerticalBorder />
       <VerticalBorder1 />
       <VerticalBorder2 />
       <Container16 />
     </div>
-  );
+  )
 }
 
 function Container18() {
   return (
-    <div className="content-stretch flex flex-col items-start mt-[14px] w-full" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start mt-[14px] w-full"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11px] text-black w-full">
         <p className="leading-[normal]">{`// плейсхолдеры — подставить фактические показатели`}</p>
       </div>
     </div>
-  );
+  )
 }
-function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const [showMeeting, setShowMeeting] = useState(false);
-  const [showNote, setShowNote] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+function HorizontalBorder1({
+  onTabClick,
+}: {
+  onTabClick: (id: TabKey) => void
+}) {
+  const [showMeeting, setShowMeeting] = useState(false)
+  const [showNote, setShowNote] = useState(false)
+  const heroRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    let rafId = 0;
+    let rafId = 0
     const onScroll = () => {
-      cancelAnimationFrame(rafId);
+      cancelAnimationFrame(rafId)
       rafId = requestAnimationFrame(() => {
-        const el = heroRef.current;
-        const v = videoRef.current;
-        if (!el || !v) return;
-        const rect = el.getBoundingClientRect();
-        const progress = Math.max(-1, Math.min(1, -rect.top / rect.height));
-        v.style.transform = `translateY(${progress * 8}%) scale(1.12)`;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+        const el = heroRef.current
+        const v = videoRef.current
+        if (!el || !v) return
+        const rect = el.getBoundingClientRect()
+        const progress = Math.max(-1, Math.min(1, -rect.top / rect.height))
+        v.style.transform = `translateY(${progress * 8}%) scale(1.12)`
+      })
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
+      window.removeEventListener("scroll", onScroll)
+      cancelAnimationFrame(rafId)
+    }
+  }, [])
 
   return (
-    <div ref={heroRef} className="relative w-full overflow-hidden" data-name="HorizontalBorder">
+    <div
+      ref={heroRef}
+      className="relative w-full overflow-hidden"
+      data-name="HorizontalBorder"
+    >
       {/* Фоновое зацикленное видео с параллаксом */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -1219,15 +1229,25 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
         <div className="flex flex-col lg:flex-row gap-[40px] items-start mt-[32px] mb-[40px]">
           <div className="flex-1">
             {/* Main heading */}
-            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-white text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+            <div
+              className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-white text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]"
+              style={{ fontVariationSettings: '"wdth" 100' }}
+            >
               <p className="mb-0">Организации,</p>
               <p className="mb-0">которые видят свои</p>
               <p>процессы целиком</p>
             </div>
 
             {/* Description text only */}
-            <div className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[28.8px] text-white/75" style={{ fontVariationSettings: '"wdth" 100' }}>
-              <p>Governance.kz — прикладной центр цифровой трансформации управления. ИИ анализирует кадры, услуги и нагрузку в единой логике данных.</p>
+            <div
+              className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[28.8px] text-white/75"
+              style={{ fontVariationSettings: '"wdth" 100' }}
+            >
+              <p>
+                Governance.kz — прикладной центр цифровой трансформации
+                управления. ИИ анализирует кадры, услуги и нагрузку в единой
+                логике данных.
+              </p>
             </div>
           </div>
 
@@ -1235,11 +1255,18 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
           <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
             {/* Hero image */}
             <div className="w-full lg:w-[516px] min-h-[200px] bg-[#f4f5f8] rounded-[8px] overflow-hidden">
-              <img alt="Governance.kz" className="block w-full h-auto object-cover rounded-[8px]" src={imgTeamMain} />
+              <img
+                alt="Governance.kz"
+                className="block w-full h-auto object-cover rounded-[8px]"
+                src={imgTeamMain}
+              />
             </div>
 
             {/* Buttons */}
-            <Container12 onMeetingClick={() => setShowMeeting(true)} onNoteClick={() => setShowNote(true)} />
+            <Container12
+              onMeetingClick={() => setShowMeeting(true)}
+              onNoteClick={() => setShowNote(true)}
+            />
           </div>
         </div>
       </div>
@@ -1252,15 +1279,24 @@ function HorizontalBorder1({ onTabClick }: { onTabClick: (id: TabKey) => void })
           onClose={() => setShowNote(false)}
           description={
             <>
-              <p>Аналитическая записка представляет ключевые выводы и советы по развитию управления.</p>
-              <p>Она поможет понять текущие риски, возможности оптимизации и пути улучшения процессов.</p>
-              <p>Документ включает краткий обзор модели, дорожную карту внедрения и ожидаемые результаты.</p>
+              <p>
+                Аналитическая записка представляет ключевые выводы и советы по
+                развитию управления.
+              </p>
+              <p>
+                Она поможет понять текущие риски, возможности оптимизации и пути
+                улучшения процессов.
+              </p>
+              <p>
+                Документ включает краткий обзор модели, дорожную карту внедрения
+                и ожидаемые результаты.
+              </p>
             </>
           }
         />
       )}
     </div>
-  );
+  )
 }
 
 function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
@@ -1268,7 +1304,7 @@ function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
     <div className="w-full">
       <HorizontalBorder1 onTabClick={onTabClick} />
     </div>
-  );
+  )
 }
 
 const teamStages = [
@@ -1304,32 +1340,31 @@ const teamStages = [
     method: "онтологии, графовый анализ, LLM-контур",
     artifact: "Работающая система на ваших данных",
   },
-] as const;
+] as const
 
 const teamOwner = {
   n: "05",
   role: "Руководитель внедрения",
   does: "Ведёт пилот через все этапы — отвечает за срок и результат.",
   artifact: "Отчёт пилота и решение о масштабировании",
-} as const;
+} as const
 
 const teamSeal = [
   "Работаете напрямую с теми, кто делает",
   "Данные остаются в вашем контуре",
   "Решения остаются за людьми",
-] as const;
+] as const
 
-const teamMonoLabel =
-  "font-['IBM_Plex_Mono:Regular',sans-serif] not-italic";
+const teamMonoLabel = "font-['IBM_Plex_Mono:Regular',sans-serif] not-italic"
 
 function TeamNode({ n }: { n: string }) {
   return (
     <span
-      className={`${teamMonoLabel} grid size-[34px] shrink-0 place-items-center border-[1.5px] border-[#0d0f16] bg-white text-[13px] tabular-nums text-[#0d0f16]`}
+      className={`${teamMonoLabel} grid size-[34px] shrink-0 place-items-center rounded-[8px] border-[1.5px] border-[#0d0f16] bg-white text-[13px] tabular-nums text-[#0d0f16]`}
     >
       {n}
     </span>
-  );
+  )
 }
 
 function TeamPort({ label }: { label: string }) {
@@ -1339,41 +1374,44 @@ function TeamPort({ label }: { label: string }) {
     >
       {label}
     </span>
-  );
+  )
 }
 
 function TeamSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null)
+  const [started, setStarted] = useState(false)
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setStarted(true);
-      return;
+      setStarted(true)
+      return
     }
-    const el = ref.current;
-    if (!el) return;
+    const el = ref.current
+    if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setStarted(true);
-          observer.disconnect();
+          setStarted(true)
+          observer.disconnect()
         }
       },
       { threshold: 0.2 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   const step = (i: number) => ({
     opacity: started ? 1 : 0,
     transform: started ? "none" : "translateY(10px)",
     transition: `opacity .55s cubic-bezier(0.2,0.8,0.2,1) ${i * 90}ms, transform .55s cubic-bezier(0.2,0.8,0.2,1) ${i * 90}ms`,
-  });
+  })
 
   return (
-    <div className="relative w-full shrink-0 bg-white border-t border-[#e6e8ee]" data-name="HorizontalBorder">
+    <div
+      className="relative w-full shrink-0 bg-white border-t border-[#e6e8ee]"
+      data-name="HorizontalBorder"
+    >
       <style>{`
         .team-rail { background-image: repeating-linear-gradient(to right, #b9c0d0 0 3px, transparent 3px 6px); }
         @keyframes team-rail-move { to { background-position-x: -6px; } }
@@ -1384,19 +1422,21 @@ function TeamSection() {
       <div className="content-stretch relative flex size-full w-full flex-col items-start gap-[8px] px-[20px] pb-[68px] pt-[66px] sm:px-[28px]">
         {/* label */}
         <div className="[word-break:break-word] flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[12px] tracking-[1.2px] text-[#2242d6]">
-          <p className="leading-[normal]">02 / КОМАНДА</p>
+          <p className="leading-[normal]">КОМАНДА</p>
         </div>
         <h2
           className="w-full font-['IBM_Plex_Sans:Bold',sans-serif] text-[30px] font-bold leading-[1.1] tracking-[-0.3px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Те, кто превращают сложное в рабочее<span className="text-[#2242d6]">.</span>
+          Те, кто превращают сложное в рабочее
+          <span className="text-[#2242d6]">.</span>
         </h2>
         <p
           className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.55] text-[#5a606e] sm:text-[17px] xl:whitespace-nowrap"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Задача не переходит из кабинета в кабинет — она проходит по цепочке профилей: от диагностики аппарата до работающей системы.
+          Задача не переходит из кабинета в кабинет — она проходит по цепочке
+          профилей: от диагностики аппарата до работающей системы.
         </p>
 
         {/* mechanism */}
@@ -1406,21 +1446,19 @@ function TeamSection() {
             <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
           </div>
 
-          {/* desktop track: rail with numbered nodes from ВХОД to ВЫХОД */}
-          <div className="hidden items-start gap-[10px] lg:flex" style={step(0)}>
+          {/* desktop track: rail with input/output labels */}
+          <div
+            className="hidden items-start gap-[10px] lg:flex"
+            style={step(0)}
+          >
             <div className="pt-[3px]">
               <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
             </div>
             <div className="relative flex-1">
-              <span aria-hidden className="team-rail absolute -left-[10px] -right-[10px] top-[16px] h-px" />
-              <div className="relative grid grid-cols-4 gap-[26px]">
-                {teamStages.map((s) => (
-                  <div key={s.n} className="flex flex-col items-center">
-                    <TeamNode n={s.n} />
-                    <span aria-hidden className="h-[12px] w-0 border-l border-dashed border-[#c3cad9]" />
-                  </div>
-                ))}
-              </div>
+              <span
+                aria-hidden
+                className="team-rail absolute -left-[10px] -right-[10px] top-[16px] h-px"
+              />
             </div>
             <div className="pt-[3px]">
               <TeamPort label="ВЫХОД · РАБОЧИЙ РЕЗУЛЬТАТ" />
@@ -1429,40 +1467,62 @@ function TeamSection() {
 
           {/* stages */}
           <div className="relative mt-[14px] lg:mt-0">
-            <span aria-hidden className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[#c3cad9] lg:hidden" />
-            <ol className="flex flex-col gap-[20px] lg:grid lg:grid-cols-4 lg:gap-[26px]">
+            <span
+              aria-hidden
+              className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[#c3cad9] lg:hidden"
+            />
+            <ol className="flex flex-col gap-[24px] lg:grid lg:grid-cols-4 lg:gap-[32px]">
               {teamStages.map((s, i) => (
                 <li
                   key={s.n}
-                  className="group relative ml-[48px] flex flex-col border border-[#e0e4ee] bg-white p-[16px] transition-colors duration-200 hover:border-[#0d0f16] lg:ml-0"
+                  className="group relative ml-[48px] flex flex-col rounded-[12px] border border-[#e0e4ee] bg-white p-[24px] transition-colors duration-200 hover:border-[#0d0f16] lg:ml-0"
                   style={step(i + 1)}
                 >
-                  <span aria-hidden className="absolute -left-[48px] top-[14px] lg:hidden">
+                  <span
+                    aria-hidden
+                    className="absolute -left-[48px] top-[14px] lg:hidden"
+                  >
                     <TeamNode n={s.n} />
                   </span>
-                  <h3
-                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
-                    style={{ fontVariationSettings: '"wdth" 100' }}
-                  >
-                    {s.phase}
-                  </h3>
+                  <div className="flex items-center gap-[10px]">
+                    <TeamNode n={s.n} />
+                    <h3
+                      className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      {s.phase}
+                    </h3>
+                  </div>
                   <p
-                    className="mt-[2px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[15px] font-medium leading-[1.35] text-[#2242d6]"
+                    className="mt-[4px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[15px] font-medium leading-[1.35] text-[#2242d6]"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {s.role}
                   </p>
                   <p
-                    className="mt-[8px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#3a4050]"
+                    className="mt-[10px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#3a4050]"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {s.does}
                   </p>
-                  <p className={`${teamMonoLabel} mt-[8px] text-[12px] leading-[1.4] text-[#6a7080]`}>{s.method}</p>
-                  <div className="mt-auto pt-[14px]">
-                    <div className="border-t border-[#eceff5] pt-[10px]">
-                      <p className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}>Артефакт</p>
-                      <p className="mt-[3px] flex items-start gap-[8px]">
+                  <p
+                    className={`${teamMonoLabel} mt-[12px] text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                  >
+                    Метод
+                  </p>
+                  <p
+                    className={`${teamMonoLabel} mt-[3px] text-[12px] leading-[1.4] text-[#6a7080]`}
+                  >
+                    {s.method}
+                  </p>
+                  <div className="mt-auto pt-[16px]">
+                    <div className="border-t border-[#eceff5] pt-[12px]">
+                      <p
+                        className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                      >
+                        Артефакт
+                      </p>
+                      <p className="mt-[4px] flex items-start gap-[8px]">
                         <span
                           aria-hidden
                           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold leading-[1.45] text-[#2242d6]"
@@ -1485,12 +1545,18 @@ function TeamSection() {
 
           {/* owner bar spanning all stages */}
           <div style={step(5)}>
-            <div aria-hidden className="hidden h-[26px] w-full lg:grid lg:grid-cols-4 lg:gap-[26px]">
+            <div
+              aria-hidden
+              className="hidden h-[26px] w-full lg:grid lg:grid-cols-4 lg:gap-[32px]"
+            >
               {teamStages.map((s) => (
-                <span key={s.n} className="mx-auto w-0 border-l border-dashed border-[#c3cad9]" />
+                <span
+                  key={s.n}
+                  className="mx-auto w-0 border-l border-dashed border-[#c3cad9]"
+                />
               ))}
             </div>
-            <div className="flex flex-col gap-[8px] border border-[#d8dde8] bg-white px-[16px] py-[13px] transition-colors duration-200 hover:border-[#0d0f16] lg:flex-row lg:items-center lg:gap-[20px] lg:px-[20px]">
+            <div className="flex flex-col gap-[10px] rounded-[12px] border border-[#d8dde8] bg-white px-[20px] py-[16px] transition-colors duration-200 hover:border-[#0d0f16] lg:flex-row lg:items-center lg:gap-[24px]">
               <div className="flex shrink-0 items-center gap-[12px]">
                 <TeamNode n={teamOwner.n} />
                 <h3
@@ -1507,9 +1573,13 @@ function TeamSection() {
                 {teamOwner.does}
               </p>
               <p className="shrink-0 lg:text-right">
-                <span className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}>Артефакт · </span>
                 <span
-                  className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
+                  className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                >
+                  Артефакт
+                </span>
+                <span
+                  className="ml-[6px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
                   style={{ fontVariationSettings: '"wdth" 100' }}
                 >
                   {teamOwner.artifact}
@@ -1525,144 +1595,95 @@ function TeamSection() {
         </div>
 
         {/* seal */}
-        <div className="mt-[18px] w-full" style={step(7)}>
-          <ul className="flex w-full flex-col divide-y divide-[#e4e8f0] border border-[#d8dde8] bg-white sm:flex-row sm:divide-x sm:divide-y-0">
+        <div className="mt-[24px] w-full" style={step(7)}>
+          <ul className="grid w-full grid-cols-1 gap-[16px] sm:grid-cols-3">
             {teamSeal.map((s, i) => (
-              <li key={s} className="flex flex-1 items-baseline gap-[10px] px-[16px] py-[11px]">
-                <span className={`${teamMonoLabel} text-[11.5px] tabular-nums tracking-[1px] text-[#2242d6]`}>0{i + 1}</span>
-                <span className="text-[15px] font-medium leading-[1.45] text-[#0d0f16]">{s}</span>
+              <li
+                key={s}
+                className="flex items-baseline gap-[10px] rounded-[12px] border border-[#d8dde8] bg-white px-[20px] py-[18px]"
+              >
+                <span
+                  className={`${teamMonoLabel} text-[11.5px] tabular-nums tracking-[1px] text-[#2242d6]`}
+                >
+                  0{i + 1}
+                </span>
+                <span className="text-[15px] font-medium leading-[1.45] text-[#0d0f16]">
+                  {s}
+                </span>
               </li>
             ))}
           </ul>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Container47() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">04 / ИНФОГРАФИКА</p>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px]">
+        <span className="text-[#2242d6]">БЫЛО</span>
+        <span className="text-[#2242d6]"> → </span>
+        <span className="text-[#2242d6]">СТАЛО</span>
       </div>
     </div>
-  );
+  )
 }
 
 function Heading5() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">Инфографика: Философия “Укрощения хаоса”</p>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Heading 2"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
+        <p className="leading-[normal]">
+          Когда данные не складываются в картину
+        </p>
       </div>
     </div>
-  );
-}
-
-function Frame3() {
-  return (
-    <div className="col-1 h-[55.677px] ml-[20.87px] mt-0 relative row-1 w-full max-w-[1082px]" data-name="Frame">
-      <div className="absolute h-[63.5px] left-0 top-0 w-full" data-name="Rectangle" />
-    </div>
-  );
-}
-
-function Frame4() {
-  return (
-    <div className="col-1 h-[103.399px] ml-0 mt-[11px] relative row-1 w-full max-w-[1082px]" data-name="Frame">
-      <div className="absolute h-[117.086px] left-0 top-0 w-full" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[normal] left-0 not-italic text-[#3a4050] text-[22px] top-0 w-full">В Governance.kz инфографика — это не украшение. Это функциональный инструмент, который переводит сложнейшие процессы (коллизии полномочий, скрытые барьеры) в кристально чистую визуальную структуру. От хаоса неструктурированных данных — к математическому порядку.</p>
-    </div>
-  );
-}
-
-function Frame5() {
-  return (
-    <div className="col-1 h-[60.537px] ml-[540.71px] mt-[412.71px] relative row-1 w-[58.063px]" data-name="Frame">
-      <div className="absolute h-[68.5px] left-0 top-0 w-[64px]" data-name="Rectangle" />
-    </div>
-  );
-}
-
-function Frame6({ src }: { src: string }) {
-  return (
-    <div className="col-1 h-[293.898px] ml-[30.41px] mt-[31.38px] relative rounded-[14px] row-1 w-[437.528px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[14px]">
-        <img alt="" className="absolute h-[113.85%] left-0 max-w-none top-[-10.68%] w-[101.79%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:-rotate-[0.5deg]" src={src} />
-      </div>
-    </div>
-  );
-}
-
-function Frame7() {
-  return (
-    <div className="col-1 h-[19.654px] ml-[11.05px] mt-[5.2px] relative row-1 w-[49.772px]" data-name="Frame">
-      <div className="absolute h-[31.5px] left-0 top-0 w-[77.023px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[77.023px]">Стало</p>
-    </div>
-  );
-}
-
-function Group3({ src }: { src: string }) {
-  return (
-    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-[610.57px] mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[351.737px] ml-0 mt-[1.77px] relative rounded-[20px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
-      <Frame6 src={src} />
-      <div className="bg-[#2242d6] col-1 h-[41px] ml-[0.43px] mt-0 relative rounded-[7.191px] row-1 w-[95px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
-      <Frame7 />
-    </div>
-  );
-}
-
-function Frame8({ src }: { src: string }) {
-  return (
-    <div className="col-1 h-[308.645px] ml-[30.47px] mt-[23.12px] relative rounded-[14px] row-1 w-[437.398px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[14px]">
-        <img alt="" className="absolute h-[109.41%] left-[-1.51%] max-w-none top-[-9.36%] w-[101.51%] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05] group-hover:rotate-[0.5deg]" src={src} />
-      </div>
-    </div>
-  );
-}
-
-function Frame9() {
-  return (
-    <div className="bg-[#2242d6] col-1 h-[23.248px] ml-[12.72px] mt-[6.1px] relative row-1 w-[50.425px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Frame">
-      <div className="absolute h-[31.5px] left-0 top-0 w-[68.625px]" data-name="Rectangle" />
-      <p className="[word-break:break-word] absolute font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[31.5px] leading-[normal] left-0 not-italic text-[24px] text-white top-0 w-[68.625px]">Было</p>
-    </div>
-  );
-}
-
-function Group1() {
-  return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-      <div className="bg-[#2242d6] col-1 h-[41px] ml-0 mt-0 relative rounded-[7.191px] row-1 w-[89px] transition-colors duration-300 group-hover:bg-[#1a35ad]" data-name="Rectangle" />
-      <Frame9 />
-    </div>
-  );
-}
-
-function Group2({ src }: { src: string }) {
-  return (
-    <div className="group col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[128px] place-items-start relative row-1">
-      <div className="bg-white border-[#dbe2ec] border-[0.75px] border-solid col-1 h-[353.502px] ml-0 mt-0 relative rounded-[20px] row-1 w-[498.977px] transition-colors duration-300 group-hover:border-[#2242d6]" data-name="Rectangle" />
-      <Frame8 src={src} />
-      <Group1 />
-    </div>
-  );
+  )
 }
 
 function Group4() {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <Frame3 />
-      <Frame4 />
-      <Frame5 />
-      <Group2 src={imgBefore} />
-      <Group3 src={imgAfter} />
+    <div className="flex flex-col gap-[24px]">
+      <p className="max-w-[760px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[17px] leading-[1.6] text-[#5a606e]">
+        Функции пересекаются, услуги состоят из лишних этапов, а нагрузка видна
+        только по отдельным отчётам. Начинаем с того, как устроен процесс, а не
+        с выбора ИИ.
+      </p>
+      <div className="grid grid-cols-1 gap-y-[20px] md:grid-cols-2 md:gap-x-[40px]">
+        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white">
+          <img
+            alt="Было"
+            className="block w-full rounded-[20px]"
+            src={imgBefore}
+          />
+          <span className="absolute left-[16px] top-[16px] rounded-[8px] bg-white/90 px-[12px] py-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] leading-none text-[#0d0f16] backdrop-blur-sm">
+            Было
+          </span>
+        </div>
+        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white">
+          <img
+            alt="Стало"
+            className="block w-full rounded-[20px]"
+            src={imgAfter}
+          />
+          <span className="absolute left-[16px] top-[16px] rounded-[8px] bg-white/90 px-[12px] py-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] leading-none text-[#0d0f16] backdrop-blur-sm">
+            Стало
+          </span>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
 const schemeCards = [
@@ -1670,36 +1691,40 @@ const schemeCards = [
     num: "01",
     title: "Шаги 1–9",
     image: imgSchemeSteps19,
-    description: "[1204011] Выдача разрешений на пользование животным миром (Охота): подача заявки, приём и регистрация, проверка полноты документов, рассмотрение по существу.",
+    description:
+      "[1204011] Выдача разрешений на пользование животным миром (Охота): подача заявки, приём и регистрация, проверка полноты документов, рассмотрение по существу.",
   },
   {
     num: "02",
     title: "Шаги 10–17",
     image: imgSchemeSteps1017,
-    description: "[1204011] Выдача разрешений на пользование животным миром (Охота): предварительный отказ, заслушивание, выдача разрешения или мотивированный отказ, обжалование.",
+    description:
+      "[1204011] Выдача разрешений на пользование животным миром (Охота): предварительный отказ, заслушивание, выдача разрешения или мотивированный отказ, обжалование.",
   },
-];
+]
 
 function SchemeExplorer() {
-  const [expanded, setExpanded] = useState(false);
-  const [zoom, setZoom] = useState<(typeof schemeCards)[number] | null>(null);
+  const [expanded, setExpanded] = useState(false)
+  const [zoom, setZoom] = useState<typeof schemeCards[number] | null>(null)
   return (
     <div className="mt-[28px] w-full">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="group flex cursor-pointer items-center gap-[10px] border border-[#0d0f16] border-solid bg-white px-[19px] py-[10px] transition-colors hover:bg-[#0d0f16]"
+        className="group flex cursor-pointer items-center gap-[10px] rounded-[8px] border border-[#0d0f16] border-solid bg-white px-[19px] py-[12px] transition-colors hover:bg-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
       >
         <span
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] whitespace-nowrap transition-colors group-hover:text-white"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap transition-colors group-hover:text-white"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           {expanded ? "Скрыть схему" : "Разобрать схему процесса"}
         </span>
         <span
           aria-hidden
-          className={`text-[15px] leading-none text-[#0d0f16] transition-all duration-300 group-hover:text-white ${expanded ? "rotate-180" : ""}`}
+          className={`text-[14px] leading-none text-[#0d0f16] transition-all duration-300 group-hover:text-white ${
+            expanded ? "rotate-180" : ""
+          }`}
         >
           ↓
         </span>
@@ -1733,7 +1758,12 @@ function SchemeExplorer() {
                     {card.title}
                   </span>
                 </span>
-                <span aria-hidden className="text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover/card:opacity-100">⤢</span>
+                <span
+                  aria-hidden
+                  className="text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover/card:opacity-100"
+                >
+                  ⤢
+                </span>
               </span>
             </button>
           ))}
@@ -1750,41 +1780,59 @@ function SchemeExplorer() {
         />
       )}
     </div>
-  );
+  )
 }
 
 function BackgroundHorizontalBorder2() {
   return (
-    <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-t border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
+    <div
+      className="bg-white relative shrink-0 w-full overflow-hidden"
+      data-name="Background+HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-b border-t border-solid inset-0 pointer-events-none"
+      />
+      <div className="content-stretch flex flex-col gap-[20px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container47 />
         <Heading5 />
         <Group4 />
         <SchemeExplorer />
       </div>
     </div>
-  );
+  )
 }
 
 function Container48() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">05 / СТРАТЕГИЯ</p>
+        <p className="leading-[normal]">СТРАТЕГИЯ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Group6() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
-      <div className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]" data-name="image 55">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage55} />
+      <div
+        className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]"
+        data-name="image 55"
+      >
+        <img
+          alt=""
+          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+          src={imgImage55}
+        />
       </div>
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[93px] justify-center ml-[843px] mt-[0.5px] not-italic relative row-1 text-[#0d0f16] text-[16px] text-center w-[265px]">
-        <p className="leading-[normal] mb-0">governance.kz — создание сложных</p>
+        <p className="leading-[normal] mb-0">
+          governance.kz — создание сложных
+        </p>
         <p className="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p>
         <p className="leading-[normal]">вычислительных мощностей.</p>
       </div>
@@ -1792,16 +1840,24 @@ function Group6() {
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
       </div>
-      <div className="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]" data-name="Rectangle" />
+      <div
+        className="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]"
+        data-name="Rectangle"
+      />
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[83px] mt-[229.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]">
         <p className="leading-[normal] mb-0">Передовая экосистема eGov,</p>
         <p className="leading-[normal]">суперкомпьютеры, ЦОДы.</p>
       </div>
-      <div className="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]" data-name="Rectangle" />
+      <div
+        className="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]"
+        data-name="Rectangle"
+      />
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79px] justify-center ml-[40px] mt-[362.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]">
         <p className="leading-[normal] mb-0">Дешевая электроэнергия,</p>
         <p className="leading-[normal] mb-0">запасы редкоземельных металлов</p>
-        <p className="leading-[normal]">(кремний, литий), критичные для вычислений.</p>
+        <p className="leading-[normal]">
+          (кремний, литий), критичные для вычислений.
+        </p>
       </div>
       <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold h-[72.394px] justify-center ml-[694.47px] mt-[149.84px] not-italic relative row-1 text-[#0d0f16] text-[20px] text-center w-[119.534px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`Технологии `}</p>
@@ -1809,658 +1865,511 @@ function Group6() {
         <p className="leading-[normal]">Продукты</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Group5() {
   return (
     <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
-      <div className="col-1 h-[109.199px] ml-0 mt-0 relative row-1 w-[617.147px]" data-name="Rectangle" />
-      <div className="col-1 h-[85.579px] ml-[524px] mt-[45px] relative row-1 w-[261.761px]" data-name="Rectangle" />
+      <div
+        className="col-1 h-[109.199px] ml-0 mt-0 relative row-1 w-[617.147px]"
+        data-name="Rectangle"
+      />
+      <div
+        className="col-1 h-[85.579px] ml-[524px] mt-[45px] relative row-1 w-[261.761px]"
+        data-name="Rectangle"
+      />
     </div>
-  );
+  )
 }
 
 function Heading6() {
   return (
-    <div className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full"
+      data-name="Heading 2"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Стратегический фундамент</p>
       </div>
       <Group6 />
       <Group5 />
     </div>
-  );
+  )
 }
 
 function BackgroundHorizontalBorder3() {
   return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+    <div
+      className="bg-white relative shrink-0 w-full"
+      data-name="Background+HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"
+      />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container48 />
         <Heading6 />
       </div>
     </div>
-  );
-}
-
-function Container49() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">06 / AI-АССЕССМЕНТ</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading7() {
-  return (
-    <div className="content-stretch flex flex-col h-[53px] items-start relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">AI-Ассессмент: Поведенческий анализ</p>
-      </div>
-    </div>
-  );
-}
-
-function Group7() {
-  return (
-    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-[427.5px] place-items-start relative row-1">
-      <div className="bg-[#e5e9ec] border-[#9fa6ae] border-[0.5px] border-solid col-1 h-[79px] ml-0 mt-0 relative rounded-[15px] row-1 w-[1001px]" />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[63px] justify-center ml-[31.75px] mt-[8px] not-italic relative row-1 text-[#0d0f16] text-[19px] w-[954px]">
-        <p className="leading-[normal] mb-0">Использование компьютерного зрения и аудиоаналитики в реальном времени. Прогнозирование</p>
-        <p className="leading-[normal]">эффективности на основе поведенческих паттернов как дополнение к экспертной оценке.</p>
-      </div>
-    </div>
-  );
-}
-
-function Group8({ onImageClick }: { onImageClick: () => void }) {
-  return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <button
-        type="button"
-        onClick={onImageClick}
-        aria-label="Открыть AI Assessment"
-        className="group col-1 relative h-[387.656px] ml-[110.47px] mt-0 row-1 w-[786.737px] cursor-zoom-in overflow-hidden rounded-[14px] outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-        data-name="image 57"
-      >
-        <img alt="AI Assessment" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full transition-transform duration-500 group-hover:scale-[1.03]" src={imgImage57} />
-        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent py-4">
-          <span className="flex items-center gap-[8px] rounded-full border border-white/60 bg-white/15 px-4 py-2 text-[14px] font-medium tracking-[0.12em] text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-105">
-            <span className="text-[16px] leading-none">⤢</span>
-            AI ASSESSMENT — ОТКРЫТЬ
-          </span>
-        </div>
-      </button>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[31.403px] justify-center ml-[591px] mt-[73.95px] not-italic relative row-1 text-[#3a4050] text-[0px] w-[270px]">
-        <p className="text-[18px]">
-          <span className="leading-[normal]">{`Уровень вовлеченности: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">87%</span>
-        </p>
-      </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[30.39px] justify-center ml-[591px] mt-[188.42px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[203px]">
-        <p className="text-[18px]">
-          <span className="leading-[normal]">{`Уровень стресса: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">12%</span>
-        </p>
-      </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[46.598px] justify-center ml-[591px] mt-[303.9px] not-italic relative row-1 text-[#0d0f16] text-[0px] w-[292px]">
-        <p className="leading-[normal] mb-0 text-[18px]">Эмоциональное состояние:</p>
-        <p className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] text-[18px]">Стабильное</p>
-      </div>
-      <Group7 />
-    </div>
-  );
-}
-
-function BackgroundHorizontalBorder4({ onImageClick }: { onImageClick: () => void }) {
-  return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[6px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
-          <Container49 />
-          <Heading7 />
-          <Group8 onImageClick={onImageClick} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Container50() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">07 / EXECASSIST</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading8() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">ExecAssist: Помощник Руководителя</p>
-      </div>
-    </div>
-  );
-}
-
-function BackgroundHorizontalBorder5() {
-  return (
-    <div className="bg-white relative shrink-0 w-full overflow-hidden" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="content-stretch flex flex-col gap-[20px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full max-w-[1170px] mx-auto">
-        <Container50 />
-        <Heading8 />
-        <Frame22 />
-      </div>
-    </div>
-  );
-}
-
-function Frame11() {
-  return (
-    <div className="absolute h-[44.511px] left-[19px] top-[3px] w-[457.523px]" data-name="Frame">
-      <div className="absolute h-[44.511px] left-0 top-0 w-[457.523px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[26px] top-[27.26px] w-[457.523px]">
-        <p className="leading-[normal]">Управленческий сигнал</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame12() {
-  return (
-    <div className="absolute h-[44.511px] left-[629px] top-[7px] w-[408.548px]" data-name="Frame">
-      <div className="absolute h-[44.511px] left-0 top-0 w-[408.548px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Medium',sans-serif] font-medium h-[44.511px] justify-center leading-[0] left-[-62px] not-italic text-[#0d0f16] text-[26px] top-[22.26px] w-[408.548px]">
-        <p className="leading-[normal]">Прямая координация</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame13() {
-  return (
-    <div className="absolute h-[48.17px] left-[51px] top-[72px] w-[540.963px]" data-name="Frame">
-      <div className="absolute h-[48.17px] left-0 top-0 w-[540.963px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[540.963px]">
-        <p className="leading-[normal]">Эффективность департаментов</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame14() {
-  return (
-    <div className="absolute h-[42.818px] left-[37px] top-[176px] w-[245.296px]" data-name="Frame">
-      <div className="absolute h-[42.818px] left-0 top-0 w-[245.296px]" data-name="Rectangle" />
-    </div>
-  );
-}
-
-function Frame15() {
-  return (
-    <div className="absolute h-[42.818px] left-[36px] top-[219px] w-[223.529px]" data-name="Frame">
-      <div className="absolute h-[42.818px] left-0 top-0 w-[223.529px]" data-name="Rectangle" />
-    </div>
-  );
-}
-
-function Frame16() {
-  return (
-    <div className="absolute h-[48.17px] left-[36px] top-[259.07px] w-[270.691px]" data-name="Frame">
-      <div className="absolute h-[48.17px] left-0 top-0 w-[270.691px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-[-7px] not-italic text-[#3a4050] text-[0px] top-[-30.91px] w-[270.691px]">
-        <p className="text-[19px]">
-          <span className="leading-[normal]">{`Разработка: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">95%</span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Frame17() {
-  return (
-    <div className="absolute h-[48.17px] left-[93px] top-[290px] w-[428.501px]" data-name="Frame">
-      <div className="absolute h-[48.17px] left-0 top-0 w-[428.501px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[48.17px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[24px] top-[24.09px] w-[428.501px]">
-        <p className="leading-[normal]">Общий уровень нагрузки</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame18() {
-  return (
-    <div className="absolute h-[39.159px] left-[479.99px] top-[740.34px] w-[316.039px]" data-name="Frame">
-      <div className="absolute h-[39.159px] left-0 top-0 w-[316.039px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[39.159px] justify-center leading-[0] left-0 not-italic text-[#0d0f16] text-[0px] top-[19.58px] w-[316.039px]">
-        <p className="text-[23px]">
-          <span className="leading-[normal]">{`Оптимальный: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#0d0f16]">70%</span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Frame19() {
-  return (
-    <div className="absolute h-[159.927px] left-[651px] top-[76px] w-[473.849px]" data-name="Frame">
-      <div className="absolute h-[159.927px] left-0 top-0 w-[473.849px]" data-name="Rectangle" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[159.927px] justify-center leading-[0] left-0 not-italic text-[#3a4050] text-[0px] top-[79.96px] w-[473.849px]">
-        <p className="mb-0 text-[19px]">
-          <span className="leading-[normal]">{`Робот: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Назначена задача</span>
-        </p>
-        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">на основе анализа.</p>
-        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">@Иванов, просьба</p>
-        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] mb-0 text-[19px]">подготовить отчет по проекту</p>
-        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">{`"Альфа" к 15:00.`}</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame20() {
-  return (
-    <div className="absolute h-[73.586px] left-[929px] top-[332px] w-[419.431px]" data-name="Frame">
-      <div className="absolute h-[73.586px] left-0 top-0 w-[419.431px]" data-name="Rectangle" />
-    </div>
-  );
-}
-
-function Frame10() {
-  return (
-    <div className="h-[510px] overflow-clip relative rounded-[20px] shrink-0 w-[1064px]" data-name="Frame">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-        <img alt="" className="absolute h-[162.9%] left-[-19.45%] max-w-none top-[-27.9%] w-[138.83%]" src={imgFrame5} />
-      </div>
-      <Frame11 />
-      <Frame12 />
-      <Frame13 />
-      <Frame14 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[30px] not-italic text-[#3a4050] text-[0px] top-[142.41px] w-[245.296px]">
-        <p className="text-[19px]">
-          <span className="leading-[normal]">{`Маркетинг: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">92%</span>
-        </p>
-      </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[42.818px] justify-center leading-[0] left-[29px] not-italic text-[#3a4050] text-[0px] top-[185.41px] w-[223.529px]">
-        <p className="text-[19px]">
-          <span className="leading-[normal]">{`Продажи: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold leading-[normal] not-italic text-[#3a4050]">88%</span>
-        </p>
-      </div>
-      <Frame15 />
-      <Frame16 />
-      <Frame17 />
-      <Frame18 />
-      <Frame19 />
-      <Frame20 />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold h-[73.586px] justify-center leading-[0] left-[706px] not-italic text-[#3a4050] text-[0px] top-[282.79px] w-[419.431px]">
-        <p className="mb-0 text-[19px]">
-          <span className="leading-[normal]">{`Иванов: `}</span>
-          <span className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] not-italic text-[#3a4050]">Принято в работу.</span>
-        </p>
-        <p className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal leading-[normal] text-[19px]">Будет готово.</p>
-      </div>
-    </div>
-  );
-}
-
-function Frame22() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0">
-      <div className="[word-break:break-word] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[117px] leading-[0] not-italic relative shrink-0 text-[#3a4050] text-[22px] w-[1064px]">
-        <p className="leading-[normal] mb-0">ИИ видит ведомство изнутри в реальном времени. Координация задач и умные боты работают прямо в рабочих мессенджерах сотрудников.</p>
-        <p className="leading-[normal]">Переход от избыточных данных к чистому управленческому сигналу.</p>
-      </div>
-      <Frame10 />
-    </div>
-  );
-}
-
-function Container51() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">08 / SERVICEFLOW</p>
-      </div>
-    </div>
-  );
-}
-
-function Heading9() {
-  return (
-    <div className="[word-break:break-word] content-stretch flex flex-col items-start leading-[0] relative shrink-0 w-full" data-name="Heading 2">
-      <div className="flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal]">{`ServiceFlow: Проактивный клиентский сервис`}</p>
-      </div>
-    </div>
-  );
-}
-
-function Group9() {
-  return (
-    <div className="relative w-full h-[420px]" data-name="image 58">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage58} />
-      <div className="absolute left-[6%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
-        <p className="mb-0">Спрятанный</p>
-        <p>барьер</p>
-      </div>
-      <div className="absolute left-[44%] top-[74%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold not-italic text-[#0d0f16] text-[24px] leading-[normal]">
-        <p className="leading-[normal]">Проактивный формат</p>
-      </div>
-    </div>
-  );
-}
-
-function Group10() {
-  return (
-    <div className="relative w-full">
-      <Group9 />
-      <div className="absolute left-[48%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
-        <p className="mb-0">Лишний</p>
-        <p>документ</p>
-      </div>
-      <div className="absolute left-[80%] top-[42%] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal not-italic text-[#0d0f16] text-[24px] leading-[normal]">
-        <p className="mb-0">Потеря</p>
-        <p>времени</p>
-      </div>
-    </div>
-  );
-}
-
-function BackgroundHorizontalBorder6() {
-  return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background+HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
-      <div className="flex flex-col items-start justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[16px] items-start justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
-          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-            <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-              <p className="leading-[normal]">08 / SERVICEFLOW</p>
-            </div>
-          </div>
-          <Heading9 />
-          <div className="flex flex-col items-center gap-[40px] w-full">
-            <div className="w-full">
-              <Group10 />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  )
 }
 
 function Container52() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
-        <p className="leading-[normal]">09 / БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
+        <p className="leading-[normal]">БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Heading10() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Heading 2"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Безопасность и доверие</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container54() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Human-in-the-loop</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container55() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[23px] mb-0">Ответственность — за</p>
         <p className="leading-[23px]">уполномоченными лицами</p>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder11() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"
+      />
       <Container54 />
       <Container55 />
     </div>
-  );
+  )
 }
 
 function Container56() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Замкнутый контур</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container57() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[23px]">Безопасная среда апробации</p>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder12() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"
+      />
       <Container56 />
       <Container57 />
     </div>
-  );
+  )
 }
 
 function Container58() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Защита данных</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container59() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[23px]">Этика и законодательство РК</p>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder13() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"
+      />
       <Container58 />
       <Container59 />
     </div>
-  );
+  )
 }
 
 function Container60() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Межведомственность</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container61() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[23px]">Устранение барьеров данных</p>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder14() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"
+      />
       <Container60 />
       <Container61 />
     </div>
-  );
+  )
 }
 
 function Container62() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Прозрачность и аудит</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container63() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#5a606e] text-[15px] w-full"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[23px]">Проверяемость процессов</p>
       </div>
     </div>
-  );
+  )
 }
 
 function HorizontalBorder15() {
   return (
-    <div className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none" />
+    <div
+      className="content-stretch flex flex-col gap-[6px] items-start pb-[21px] pt-[16px] relative shrink-0 w-[210px]"
+      data-name="HorizontalBorder"
+    >
+      <div
+        aria-hidden
+        className="absolute border-[#2242d6] border-solid border-t-2 inset-0 pointer-events-none"
+      />
       <Container62 />
       <Container63 />
     </div>
-  );
+  )
 }
 
 function Container53() {
   return (
-    <div className="content-stretch flex gap-[16px] h-auto items-start justify-center pt-[16px] relative shrink-0 w-full pb-[24px]" data-name="Container">
-      <HorizontalBorder11 />
-      <HorizontalBorder12 />
-      <HorizontalBorder13 />
-      <HorizontalBorder14 />
-      <HorizontalBorder15 />
+    <div
+      className="grid w-full grid-cols-1 gap-y-[20px] sm:grid-cols-2 sm:gap-x-[28px] lg:grid-cols-5 lg:gap-x-[20px]"
+      data-name="Container"
+    >
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+        <h3
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Human-in-the-loop
+        </h3>
+        <p
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Ответственность — за уполномоченными лицами
+        </p>
+      </div>
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+        <h3
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Замкнутый контур
+        </h3>
+        <p
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Безопасная среда апробации
+        </p>
+      </div>
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+        <h3
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Защита данных
+        </h3>
+        <p
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Этика и законодательство РК
+        </p>
+      </div>
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+        <h3
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Межведомственность
+        </h3>
+        <p
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Устранение барьеров данных
+        </p>
+      </div>
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+        <h3
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Прозрачность и аудит
+        </h3>
+        <p
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Проверяемость процессов
+        </p>
+      </div>
     </div>
-  );
-}
-
-function Group() {
-  return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0">
-      <div className="col-1 h-[259.97px] ml-[216.62px] mt-0 relative row-1 w-[526.026px]" data-name="image 56">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[114.35%] left-[-40.37%] max-w-none top-[-10.22%] w-[159.35%]" src={imgImage56} />
-        </div>
-      </div>
-      <div className="col-1 h-[259.848px] ml-0 mt-[0.73px] relative row-1 w-[217.687px]" data-name="image 59">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage59} />
-      </div>
-      <div className="col-1 h-[86.478px] ml-[742.01px] mt-[0.26px] relative row-1 w-[87.995px]" data-name="image 60">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage60} />
-      </div>
-      <div className="col-1 h-[86.478px] ml-[742.01px] mt-[86.89px] relative row-1 w-[87.995px]" data-name="image 61">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage61} />
-      </div>
-      <div className="col-1 h-[86.436px] ml-[741.96px] mt-[173.51px] relative row-1 w-[88.037px]" data-name="image 62">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[102.75%] left-0 max-w-none top-[-2.61%] w-full" src={imgImage62} />
-        </div>
-      </div>
-    </div>
-  );
+  )
 }
 
 function HorizontalBorder10() {
+  const [showFoundation, setShowFoundation] = useState(false)
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
-      <div aria-hidden className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"
+      />
       <div className="flex flex-col items-center justify-center size-full">
-        <div className="content-stretch flex flex-col gap-[8px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[16px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
           <Container52 />
           <Heading10 />
           <Container53 />
-          <Group />
+          <button
+            type="button"
+            onClick={() => setShowFoundation((v) => !v)}
+            aria-expanded={showFoundation}
+            className="group mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-[#0d0f16] bg-white px-[19px] py-[12px] transition-colors hover:bg-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+          >
+            <span
+              className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] transition-colors group-hover:text-white"
+              style={{ fontVariationSettings: '"wdth" 100' }}
+            >
+              Стратегический фундамент
+            </span>
+            <span
+              aria-hidden
+              className={`text-[14px] leading-none text-[#0d0f16] transition-all group-hover:text-white ${
+                showFoundation ? "rotate-180" : ""
+              }`}
+            >
+              ↓
+            </span>
+          </button>
+          {showFoundation && (
+            <div className="mt-[20px] w-full max-w-[720px] overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
+              <img
+                src={imgImage56}
+                alt="Стратегический фундамент"
+                className="block w-full"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function Container65() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start relative shrink-0 w-full"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8fa6ff] text-[12px] tracking-[1.2px] whitespace-nowrap">
         <p className="leading-[normal]">КОНТАКТ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Heading11() {
   return (
-    <div className="content-stretch flex flex-col items-start max-w-[448.79998779296875px] relative shrink-0 w-full" data-name="Heading 2">
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[24px] text-white tracking-[-0.24px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+    <div
+      className="content-stretch flex flex-col items-start max-w-[448.79998779296875px] relative shrink-0 w-full"
+      data-name="Heading 2"
+    >
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[24px] text-white tracking-[-0.24px] whitespace-nowrap"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal] mb-0">Готовы показать модель на</p>
         <p className="leading-[normal]">ваших данных</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container64() {
   return (
-    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[440px]" data-name="Container">
+    <div
+      className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[440px]"
+      data-name="Container"
+    >
       <Container65 />
       <Heading11 />
       <div className="mt-[10px] flex flex-wrap gap-x-[48px] gap-y-[16px]">
-        <ContactChannel label="ПОЧТА" value={CONTACTS.email} href={`mailto:${CONTACTS.email}`} />
-        <ContactChannel label="ТЕЛЕФОН" value={CONTACTS.phoneDisplay} href={`tel:${CONTACTS.phoneHref}`} />
+        <ContactChannel
+          label="ПОЧТА"
+          value={CONTACTS.email}
+          href={`mailto:${CONTACTS.email}`}
+        />
+        <ContactChannel
+          label="ТЕЛЕФОН"
+          value={CONTACTS.phoneDisplay}
+          href={`tel:${CONTACTS.phoneHref}`}
+        />
       </div>
     </div>
-  );
+  )
 }
 
 function Background8({ onClick }: { onClick: () => void }) {
@@ -2471,14 +2380,27 @@ function Background8({ onClick }: { onClick: () => void }) {
       className="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
       data-name="Background"
     >
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
+      <div
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[14.5px] text-white whitespace-nowrap"
+        style={{ fontVariationSettings: '"wdth" 100' }}
+      >
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
     </button>
-  );
+  )
 }
 
-function ContactChannel({ label, value, href, external }: { label: string; value: string; href: string; external?: boolean }) {
+function ContactChannel({
+  label,
+  value,
+  href,
+  external,
+}: {
+  label: string
+  value: string
+  href: string
+  external?: boolean
+}) {
   return (
     <a
       href={href}
@@ -2496,14 +2418,17 @@ function ContactChannel({ label, value, href, external }: { label: string; value
         {value}
       </span>
     </a>
-  );
+  )
 }
 
 function Background7() {
-  const [showMeeting, setShowMeeting] = useState(false);
+  const [showMeeting, setShowMeeting] = useState(false)
   return (
     <>
-      <div className="bg-[#0d0f16] relative shrink-0 w-full" data-name="Background">
+      <div
+        className="bg-[#0d0f16] relative shrink-0 w-full"
+        data-name="Background"
+      >
         <div className="flex flex-row items-center size-full">
           <div className="content-stretch flex justify-between items-start sm:items-center px-[20px] sm:px-[28px] py-[56px] relative size-full gap-[36px] flex-col sm:flex-row">
             <Container64 />
@@ -2513,17 +2438,20 @@ function Background7() {
       </div>
       {showMeeting && <MeetingModal onClose={() => setShowMeeting(false)} />}
     </>
-  );
+  )
 }
 
 function Container67() {
   return (
-    <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-name="Container">
+    <div
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
+      data-name="Container"
+    >
       <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8990a0] text-[11.5px] whitespace-nowrap">
         <p className="leading-[normal]">GOVERNANCE.KZ</p>
       </div>
     </div>
-  );
+  )
 }
 
 function Container66() {
@@ -2535,10 +2463,10 @@ function Container66() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const tabs: TabKey[] = ["simulator", "recruitment", "analytics"];
+  const tabs: TabKey[] = ["recruitment", "modeling", "analytics"]
   return (
     <div className="hidden md:flex flex-row gap-[6px] shrink-0">
       {tabs.map((key) => (
@@ -2560,23 +2488,34 @@ function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
         </button>
       ))}
     </div>
-  );
+  )
 }
 
-type Language = "RU" | "KZ" | "EN";
+type Language = "RU" | "KZ" | "EN"
 
-function LanguageSwitcher({ language, onChange }: { language: Language; onChange: (lang: Language) => void }) {
-  const langs: Language[] = ["RU", "KZ", "EN"];
+function LanguageSwitcher({
+  language,
+  onChange,
+}: {
+  language: Language
+  onChange: (lang: Language) => void
+}) {
+  const langs: Language[] = ["RU", "KZ", "EN"]
   return (
     <div className="flex flex-row items-center gap-[2px] shrink-0">
       {langs.map((lang, i) => (
         <React.Fragment key={lang}>
-          {i > 0 && <span className="text-[12px] text-[#b9c1e8] select-none">·</span>}
+          {i > 0 && (
+            <span className="text-[12px] text-[#b9c1e8] select-none">·</span>
+          )}
           <button
             type="button"
             onClick={() => onChange(lang)}
             className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[0.46px] px-[6px] py-[4px] cursor-pointer transition-colors hover:text-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] rounded-[4px]"
-            style={{ color: lang === language ? "#2242d6" : "#3a4050", fontWeight: lang === language ? 700 : 400 }}
+            style={{
+              color: lang === language ? "#2242d6" : "#3a4050",
+              fontWeight: lang === language ? 700 : 400,
+            }}
             aria-pressed={lang === language}
             aria-label={`Сменить язык на ${lang}`}
           >
@@ -2585,18 +2524,30 @@ function LanguageSwitcher({ language, onChange }: { language: Language; onChange
         </React.Fragment>
       ))}
     </div>
-  );
+  )
 }
 function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
-  const data = tabData[tabKey];
-  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null);
-  const [showHeroVideo, setShowHeroVideo] = useState(false);
-  const [heroVideoFailed, setHeroVideoFailed] = useState(false);
+  const data = tabData[tabKey]
+  const [selectedRow, setSelectedRow] = useState<TabRow | null>(null)
+  const [showHeroVideo, setShowHeroVideo] = useState(false)
+  const [heroVideoFailed, setHeroVideoFailed] = useState(false)
 
   const closeHeroVideo = () => {
-    setShowHeroVideo(false);
-    setHeroVideoFailed(false);
-  };
+    setShowHeroVideo(false)
+    setHeroVideoFailed(false)
+  }
+
+  if (tabKey === "modeling") {
+    return (
+      <ModelingPage
+        title={data.title}
+        description={data.description}
+        rows={data.rows}
+        onBack={onBack}
+      />
+    )
+  }
+
   return (
     <div className="w-full">
       {/* Back link */}
@@ -2616,7 +2567,12 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
         {/* Фоновая картинка с затемнением */}
         {data.image && (
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <img src={data.image} alt="" className="size-full object-cover" style={{ transform: "scale(1.05)" }} />
+            <img
+              src={data.image}
+              alt=""
+              className="size-full object-cover"
+              style={{ transform: "scale(1.05)" }}
+            />
             <div className="absolute inset-0 bg-[#0d0f16]/65" />
             <div className="absolute inset-x-0 bottom-0 h-[160px] bg-gradient-to-b from-transparent via-white/40 to-white" />
           </div>
@@ -2656,7 +2612,10 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
                 className="absolute -inset-[6px] rounded-full opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
                 style={{ background: data.videoGlow }}
               />
-              <span aria-hidden className="absolute inset-0 rounded-full bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
+              <span
+                aria-hidden
+                className="absolute inset-0 rounded-full bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]"
+              />
               <span
                 aria-hidden
                 className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 animate-[glass-video-flow_4s_linear_infinite] group-hover:opacity-100"
@@ -2667,7 +2626,11 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
                   }
                 }
               />
-              <svg viewBox="0 0 24 24" className="relative size-4 fill-current" aria-hidden>
+              <svg
+                viewBox="0 0 24 24"
+                className="relative size-4 fill-current"
+                aria-hidden
+              >
                 <path d="M8 5.14v13.72L19 12 8 5.14z" />
               </svg>
               <span
@@ -2683,69 +2646,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
       {/* Registry table */}
       <div className="content-stretch flex flex-col px-[20px] sm:px-[44px] pb-[60px] pt-[20px] w-full max-w-[1170px] mx-auto">
-        {/* Registry table — same columns as "04 / ПРОДУКТЫ" */}
-        <div className="relative w-full">
-      <div aria-hidden className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none" />
-          <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
-            {/* Header */}
-            <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
-              {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
-                <div key={h} className="justify-self-stretch relative row-1 self-start shrink-0" data-name="Container">
-                  <div className="content-stretch flex flex-col items-start px-[16px] py-[12px] relative size-full">
-                    <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[11.5px] text-white tracking-[0.69px] whitespace-nowrap">
-                      <p className="leading-[normal]">{h}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* Rows */}
-            {data.rows.map((row, i) => {
-              const clickable = Boolean(row.image);
-              return (
-                <div
-                  key={row.num}
-                  onClick={clickable ? () => setSelectedRow(row) : undefined}
-                  className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${clickable ? "cursor-pointer hover:bg-[#eef0f5]" : ""} ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
-                >
-                  <div aria-hidden className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none" />
-                  <span aria-hidden className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100" />
-                  {clickable && (
-                    <span aria-hidden className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100">→</span>
-                  )}
-                  <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
-                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
-                        <p className="leading-[normal]">{row.num}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
-                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                        <p className="leading-[24px]">{row.name}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
-                    <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
-                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                        <p className="leading-[24px]">{row.does}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
-                    <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                        <p className="leading-[24px]">{row.feature}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <RegistryTable rows={data.rows} onSelect={setSelectedRow} />
       </div>
       {selectedRow && selectedRow.image && (
         <ImageModal
@@ -2778,298 +2679,92 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
           )
         ))}
     </div>
-  );
-}
-
-function DemkaSection() {
-  const [showVideo, setShowVideo] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const steps = [
-    {
-      num: "01",
-      title: "Придумываем человека",
-      text: "Сто покупателей с возрастом, профессией, доходом, составом семьи и отношением к новинкам. Всё записано обычными словами и передано модели как роль.",
-    },
-    {
-      num: "02",
-      title: "Задаём один вопрос",
-      text: "Один и тот же продукт для всех. Меняется только цена — сначала повышенная, потом со скидкой. Так сравниваем сценарии между собой.",
-    },
-    {
-      num: "03",
-      title: "Получаем живой ответ",
-      text: "Не цифру, а реплику — как в настоящем интервью. Это принципиально: если просить модель сразу назвать балл, она отвечает неохотно и однообразно.",
-    },
-    {
-      num: "04",
-      title: "Переводим слова в оценку",
-      text: "Пять эталонных фраз — от «точно не куплю» до «обязательно куплю». Программа измеряет, на какую похож ответ, по смыслу, а не по совпадению слов.",
-    },
-  ];
-
-  return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-white pt-[66px] pb-[68px] border-t border-[#e6e8ee]"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(24px)",
-        transition: "opacity .6s ease, transform .6s cubic-bezier(0.2,0.8,0.2,1)",
-      }}
-    >
-      <div className="w-full px-[20px] sm:px-[28px] flex flex-col items-center gap-[28px]">
-        {/* Заголовок */}
-        <div className="flex w-full flex-col gap-[6px]">
-          <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] not-italic leading-[normal] tracking-[1.2px] text-[#2242d6]">03 / ПРОЦЕСС РАБОТЫ</p>
-          <h3
-            className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[34px] sm:text-[42px] tracking-[-0.34px] leading-[1.1]"
-            style={{ fontVariationSettings: '"wdth" 100' }}
-          >
-            Процесс работы
-          </h3>
-        </div>
-      </div>
-
-      {/* Превью / встроенное видео */}
-      <div className="w-full px-[20px] sm:px-[28px] mt-[28px]">
-        <div
-          className="relative block w-full max-w-[1600px] mx-auto overflow-hidden rounded-[14px] outline-none"
-        >
-          <div className="relative w-full bg-white" style={{ aspectRatio: "21 / 7" }}>
-            {showVideo ? (
-              <>
-                <div className="absolute inset-0 overflow-hidden">
-                  <img
-                    alt=""
-                    aria-hidden
-                    className="size-full object-cover"
-                    style={{ transform: "scale(1.05)" }}
-                    src={imgDemkaPhoto}
-                  />
-                  <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white via-white/80 to-transparent" />
-                  <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-white via-white/80 to-transparent" />
-                </div>
-                <video
-                  src="/videos/demka.mp4"
-                  controls
-                  autoPlay
-                  playsInline
-                  className="relative h-full w-full object-contain outline-none border-none"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowVideo(false)}
-                  aria-label="Вернуться к превью"
-                  className="group absolute left-4 top-4 z-20 flex items-center gap-[8px] rounded-full bg-white/95 pl-[12px] pr-[16px] py-[8px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all hover:bg-white"
-                >
-                  <svg viewBox="0 0 24 24" className="size-4 fill-[#2242d6]" aria-hidden>
-                    <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                  </svg>
-                  <span
-                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] whitespace-nowrap"
-                    style={{ fontVariationSettings: '"wdth" 100' }}
-                  >
-                    Назад
-                  </span>
-                </button>
-              </>
-            ) : (
-              <button
-                type="button"
-                onClick={() => setShowVideo(true)}
-                aria-label="Смотреть видео демо"
-                className="group absolute inset-0 size-full cursor-pointer focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-              >
-                <div className="absolute inset-0 overflow-hidden">
-                  <img
-                    alt=""
-                    aria-hidden
-                    className="size-full object-cover"
-                    style={{ transform: "scale(1.05)" }}
-                    src={imgDemkaPhoto}
-                  />
-                  <div className="absolute inset-y-0 left-0 w-[35%] bg-gradient-to-r from-white via-white/80 to-transparent" />
-                  <div className="absolute inset-y-0 right-0 w-[35%] bg-gradient-to-l from-white via-white/80 to-transparent" />
-                </div>
-                <img
-                  alt="Опрос синтетических покупателей"
-                  className="relative h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                  src={imgDemkaPhoto}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                <span className="absolute bottom-5 left-5 flex items-center gap-[12px] rounded-full bg-white/95 pl-[14px] pr-[20px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-white">
-                  <span className="flex size-9 items-center justify-center rounded-full bg-[#2242d6] text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0d0f16]">
-                    <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current" aria-hidden>
-                      <path d="M8 5.14v13.72L19 12 8 5.14z" />
-                    </svg>
-                  </span>
-                  <span
-                    className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
-                    style={{ fontVariationSettings: '"wdth" 100' }}
-                  >
-                    Смотреть демо
-                  </span>
-                </span>
-                <span className="absolute top-5 right-5 rounded-full border border-white/20 bg-black/40 px-[12px] py-[6px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] tracking-[0.6px] text-white/85 backdrop-blur-md">
-                  ДЕМО · 100 РЕСПОНДЕНТОВ
-                </span>
-                <span className="pointer-events-none absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/10" />
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Подзаголовок */}
-      <div className="w-full px-[20px] sm:px-[28px] mt-[28px]">
-        <p
-          className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[760px] text-center mx-auto"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          Опрос 100 синтетических покупателей
-        </p>
-      </div>
-
-      {/* Шаги — выровнены по границам статистики */}
-      <div className="w-full px-[20px] sm:px-[28px]">
-        <div className="grid w-full grid-cols-1 gap-px overflow-hidden border border-[#0d0f16] bg-[#e6e8ee] sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s) => (
-            <div
-              key={s.num}
-              className="group/step flex flex-col gap-[6px] bg-white p-[16px] transition-colors duration-300 hover:bg-[#f8f9fc]"
-            >
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6] transition-colors group-hover/step:text-[#0d0f16]">
-                {s.num}
-              </span>
-              <span
-                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] leading-[1.25] text-[#0d0f16]"
-                style={{ fontVariationSettings: '"wdth" 100' }}
-              >
-                {s.title}
-              </span>
-              <span
-                className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13.5px] leading-[1.5] text-[#5a606e]"
-                style={{ fontVariationSettings: '"wdth" 100' }}
-              >
-                {s.text}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  )
 }
 
 function Background() {
-  const [imageModal, setImageModal] = useState<ProductImageKey | null>(null);
-  const [activeTab, setActiveTab] = useState<TabKey | null>(null);
-  const [language, setLanguage] = useState<Language>("RU");
+  const [imageModal, setImageModal] = useState<ProductImageKey | null>(null)
+  const [activeTab, setActiveTab] = useState<TabKey | null>(null)
+  const [language, setLanguage] = useState<Language>("RU")
 
   useEffect(() => {
     const applyHash = () => {
-      const h = window.location.hash.replace("#", "");
+      const h = window.location.hash.replace("#", "")
       const tab =
         h === "diagnostics"
           ? "recruitment"
           : h === "coordination"
             ? "analytics"
-            : h === "simulator"
-              ? "simulator"
-              : null;
+            : h === "modeling"
+              ? "modeling"
+              : null
       if (tab) {
-        setActiveTab(tab as TabKey);
+        setActiveTab(tab as TabKey)
       } else if (!h) {
-        setActiveTab(null);
+        setActiveTab(null)
       }
-    };
-    // Поддерживаем прямые ссылки: site.com/#simulator открывает симулятор сразу.
-    applyHash();
-    window.addEventListener("hashchange", applyHash);
-    return () => window.removeEventListener("hashchange", applyHash);
-  }, []);
+    }
+    // Поддерживаем прямые ссылки: site.com/#modeling открывает моделирование сразу.
+    applyHash()
+    window.addEventListener("hashchange", applyHash)
+    return () => window.removeEventListener("hashchange", applyHash)
+  }, [])
 
   // Вкладки шапки открывают отдельную страницу контура, как раньше
   const handleTabChange = (key: TabKey) => {
-    setActiveTab(key);
-    const hash = key === "recruitment" ? "diagnostics" : key === "analytics" ? "coordination" : "simulator";
-    window.history.replaceState(null, "", `#${hash}`);
-    window.scrollTo(0, 0);
-  };
+    setActiveTab(key)
+    const hash =
+      key === "recruitment"
+        ? "diagnostics"
+        : key === "analytics"
+          ? "coordination"
+          : "modeling"
+    window.history.replaceState(null, "", `#${hash}`)
+    window.scrollTo(0, 0)
+  }
 
   const handleBack = () => {
-    setActiveTab(null);
+    setActiveTab(null)
     if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      )
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const isSimulator = activeTab === "simulator";
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
     <div
-      className={`${isSimulator ? "bg-black" : "bg-white"} content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
+      className="bg-white content-stretch flex flex-col items-stretch relative shrink-0 w-full"
       data-name="Background"
     >
-      {isSimulator ? (
-        <>
-          {/* White site header stays white, everything below is full-bleed black */}
-          <div className="bg-white w-full">
-            <HorizontalBorder onTabClick={handleTabChange} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
-          </div>
-          <AISimulatorPage onBack={handleBack} />
-          <div className="bg-black w-full">
-            <div className="mx-auto w-full max-w-[1170px]">
-              <Container66 />
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-        <div className="bg-white w-full">
-          <HorizontalBorder onTabClick={handleTabChange} onHomeClick={handleBack} language={language} onLanguageChange={setLanguage} />
-        </div>
-        <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
-          {activeTab ? (
-            <TabPage tabKey={activeTab} onBack={handleBack} />
-          ) : (
-            <>
-              <Frame21 onTabClick={handleTabChange} />
-              <ContoursSection onOpenSimulator={() => handleTabChange("simulator")} />
-              <TeamSection />
-              <DemkaSection />
-              <BackgroundHorizontalBorder2 />
-              <BackgroundHorizontalBorder3 />
-              <BackgroundHorizontalBorder4 onImageClick={() => setImageModal("assessment")} />
-              <BackgroundHorizontalBorder5 />
-              <BackgroundHorizontalBorder6 />
-              <HorizontalBorder10 />
-              <Background7 />
-            </>
-          )}
-          <Container66 />
-        </div>
-        </>
-      )}
+      <div className="bg-white w-full">
+        <HorizontalBorder
+          onTabClick={handleTabChange}
+          onHomeClick={handleBack}
+          language={language}
+          onLanguageChange={setLanguage}
+        />
+      </div>
+      <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
+        {activeTab ? (
+          <TabPage tabKey={activeTab} onBack={handleBack} />
+        ) : (
+          <>
+            <Frame21 onTabClick={handleTabChange} />
+            <ContoursSection onTabClick={handleTabChange} />
+            <TeamSection />
+            <SyntheticResearchSection onTabClick={handleTabChange} />
+            <BackgroundHorizontalBorder2 />
+            <BackgroundHorizontalBorder3 />
+            <HorizontalBorder10 />
+            <Background7 />
+          </>
+        )}
+        <Container66 />
+      </div>
       {imageModal && (
         <ImageModal
           index={productImages[imageModal].index}
@@ -3080,7 +2775,7 @@ function Background() {
         />
       )}
     </div>
-  );
+  )
 }
 
 export default function BackgroundBorderShadow() {
@@ -3090,5 +2785,5 @@ export default function BackgroundBorderShadow() {
         <Background />
       </div>
     </div>
-  );
+  )
 }

@@ -1,15 +1,17 @@
-export const CONTACT_EMAIL = "akbota.akylbek07@gmail.com";
+export const CONTACT_EMAIL = "ssarimov@gmail.com"
 
-const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`
 
 export type ApplicationPayload = {
-  name?: string;
-  contact?: string;
-  phone?: string;
-  message?: string;
-};
+  name?: string
+  contact?: string
+  phone?: string
+  message?: string
+}
 
-export async function sendApplication(payload: ApplicationPayload): Promise<void> {
+export async function sendApplication(
+  payload: ApplicationPayload,
+): Promise<void> {
   const body = {
     _subject: "Новая заявка с сайта Governance.kz",
     _template: "table",
@@ -17,15 +19,15 @@ export async function sendApplication(payload: ApplicationPayload): Promise<void
     Имя: payload.name ?? "—",
     Телефон: payload.phone ?? payload.contact ?? "—",
     "Вопрос / тема встречи": payload.message ?? "—",
-  };
+  }
 
   const response = await fetch(FORMSUBMIT_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(body),
-  });
+  })
 
   if (!response.ok) {
-    throw new Error(`FormSubmit error: ${response.status}`);
+    throw new Error(`FormSubmit error: ${response.status}`)
   }
 }
