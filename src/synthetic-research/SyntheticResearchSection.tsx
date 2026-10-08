@@ -406,7 +406,7 @@ export default function SyntheticResearchSection({
           Один вопрос. Разные сценарии.
         </h2>
         <p
-          className="mt-[18px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050] max-w-[720px]"
+          className="mt-[18px] w-full font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Как исследовать реакцию на предложение без полевого опроса? В исходном
@@ -420,7 +420,7 @@ export default function SyntheticResearchSection({
           Опрос 100 синтетических покупателей
         </h3>
 
-        <div className="mt-[24px] flex flex-col lg:flex-row items-center gap-[36px]">
+        <div className="mt-[24px] flex flex-col lg:flex-row items-center lg:items-start gap-[36px]">
           <div className="w-full lg:flex-1 min-w-0">
             <img
               src="/graphics/data-flow-ai-filtering.png"
@@ -429,7 +429,38 @@ export default function SyntheticResearchSection({
               loading="lazy"
             />
           </div>
-          <div className="w-full lg:w-[340px] shrink-0 flex flex-col justify-center gap-[20px]">
+          <div className="w-full lg:w-[340px] shrink-0 flex flex-col gap-[20px] lg:pt-0">
+            <aside
+              aria-label="Что сравниваем"
+              className="w-full rounded-[14px] border border-[#b9c6f5] bg-white p-[20px]"
+            >
+              <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] not-italic leading-[normal] tracking-[1.2px] text-[#2242d6]">
+                ЧТО СРАВНИВАЕМ
+              </p>
+              <ul className="mt-[14px] flex flex-col gap-[14px]">
+                {[
+                  ["100", "респондентов"],
+                  ["5", "сценариев"],
+                  ["1", "вопрос"],
+                ].map(([num, label]) => (
+                  <li key={label} className="flex items-baseline gap-[12px]">
+                    <span
+                      className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[22px] leading-none tabular-nums text-[#0d0f16]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      {num}
+                    </span>
+                    <span
+                      className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.4] text-[#0d0f16]"
+                      style={{ fontVariationSettings: '"wdth" 100' }}
+                    >
+                      {label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+            <div className="flex flex-col gap-[20px] lg:mt-[40px]">
             <p
               className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-[#3a4050]"
               style={{ fontVariationSettings: '"wdth" 100' }}
@@ -446,6 +477,7 @@ export default function SyntheticResearchSection({
               >
                 Посмотреть метод и пример
               </button>
+            </div>
             </div>
           </div>
         </div>
