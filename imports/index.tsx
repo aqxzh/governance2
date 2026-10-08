@@ -1828,14 +1828,12 @@ function Group6() {
           src={imgImage55}
         />
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[93px] justify-center ml-[843px] mt-[0.5px] not-italic relative row-1 text-[#0d0f16] text-[16px] text-center w-[265px]">
-        <p className="leading-[normal] mb-0">
-          governance.kz — создание сложных
-        </p>
-        <p className="leading-[normal] mb-0">ИИ-продуктов на базе доступных</p>
-        <p className="leading-[normal]">вычислительных мощностей.</p>
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[56px] justify-center ml-[830px] mt-[18px] not-italic relative row-1 text-[#0d0f16] text-[14px] text-center w-[260px]">
+        <p className="leading-[normal] mb-0">governance.kz — сложные</p>
+        <p className="leading-[normal] mb-0">ИИ-продукты на доступных</p>
+        <p className="leading-[normal]">вычислительных мощностях</p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[130px] mt-[111.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[78px] mt-[99px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
       </div>
@@ -1843,7 +1841,7 @@ function Group6() {
         className="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]"
         data-name="Rectangle"
       />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[83px] mt-[229.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[59px] mt-[215px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]">
         <p className="leading-[normal] mb-0">Передовая экосистема eGov,</p>
         <p className="leading-[normal]">суперкомпьютеры, ЦОДы.</p>
       </div>
@@ -1851,17 +1849,12 @@ function Group6() {
         className="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]"
         data-name="Rectangle"
       />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[79px] justify-center ml-[40px] mt-[362.5px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[88px] justify-center ml-[16px] mt-[297px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]">
         <p className="leading-[normal] mb-0">Дешевая электроэнергия,</p>
         <p className="leading-[normal] mb-0">запасы редкоземельных металлов</p>
         <p className="leading-[normal]">
           (кремний, литий), критичные для вычислений.
         </p>
-      </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold h-[72.394px] justify-center ml-[694.47px] mt-[149.84px] not-italic relative row-1 text-[#0d0f16] text-[20px] text-center w-[119.534px] whitespace-pre-wrap">
-        <p className="leading-[normal] mb-0">{`Технологии `}</p>
-        <p className="leading-[normal] mb-0">{`&`}</p>
-        <p className="leading-[normal]">Продукты</p>
       </div>
     </div>
   )
@@ -2303,7 +2296,7 @@ function HorizontalBorder10() {
             </span>
           </button>
           {showFoundation && (
-            <div className="mt-[20px] w-full max-w-[720px] overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
+            <div className="relative left-1/2 mt-[20px] w-screen max-w-[1600px] -translate-x-1/2 overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
               <img
                 src={imgImage56}
                 alt="Стратегический фундамент"

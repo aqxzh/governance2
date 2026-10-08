@@ -423,8 +423,8 @@ export default function SyntheticResearchSection({
         <div className="mt-[24px] flex flex-col lg:flex-row items-center lg:items-start gap-[36px]">
           <div className="w-full lg:flex-1 min-w-0">
             <img
-              src="/graphics/data-flow-ai-filtering.png"
-              alt="Схема потока данных и ИИ-фильтрации"
+              src="/graphics/ai-robot.png"
+              alt="ИИ-робот"
               className="block w-full h-auto"
               loading="lazy"
             />

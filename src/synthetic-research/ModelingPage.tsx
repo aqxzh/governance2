@@ -258,8 +258,8 @@ export default function ModelingPage({
 
             <div className="mt-[20px] w-full max-w-[880px] mx-auto">
               <img
-                src="/graphics/data-flow-ai-filtering.png"
-                alt="Схема потока данных и ИИ-фильтрации"
+                src="/graphics/ai-robot.png"
+                alt="ИИ-робот"
                 className="block w-full h-auto"
                 loading="lazy"
               />
