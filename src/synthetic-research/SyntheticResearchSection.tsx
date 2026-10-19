@@ -472,7 +472,7 @@ export default function SyntheticResearchSection({
               <button
                 type="button"
                 onClick={() => onTabClick("modeling")}
-                className="inline-flex items-center justify-center rounded-[10px] bg-[#2242d6] px-[24px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[15px] text-white transition-colors hover:bg-[#1a34b0] cursor-pointer"
+                className="inline-flex items-center justify-center rounded-[10px] border border-[#0d0f16] bg-white px-[24px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[15px] text-[#0d0f16] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] hover:text-white cursor-pointer"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 Посмотреть метод и пример
