@@ -51,8 +51,8 @@ export default function App() {
           <iframe
             title="АДАМ — интерактивная презентация"
             src={SLIDE_SRC}
-            className="w-full rounded-[16px] border border-[#e6e8ee] bg-[#f5f5f7]"
-            style={{ aspectRatio: "16 / 10.5", minHeight: 480 }}
+            className="w-full bg-white"
+            style={{ aspectRatio: "16 / 9", minHeight: 480 }}
           />
         </div>
       </div>
