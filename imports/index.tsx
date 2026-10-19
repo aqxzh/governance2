@@ -1415,7 +1415,7 @@ function AdamTeaserSection() {
               </span>
             </div>
             <div className="mt-[14px] flex items-center gap-[16px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px]">
-              <span className="rounded-full bg-[#eef1f6] px-[14px] py-[6px] text-[#0d0f16]">
+              <span className="rounded-full bg-[#eaf1fd] px-[14px] py-[6px] text-[#2242d6]">
                 Вопрос
               </span>
               <span className="text-[#5a606e]">Поручение</span>
@@ -1424,7 +1424,10 @@ function AdamTeaserSection() {
               <span className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px] text-[#0d0f16]">
                 Как ответить на письмо?
               </span>
-              <span aria-hidden className="text-[20px] leading-none text-[#9aa1b2]">
+              <span
+                aria-hidden
+                className="text-[20px] leading-none text-[#9aa1b2]"
+              >
                 ›
               </span>
             </div>
@@ -1444,13 +1447,13 @@ function AdamTeaserSection() {
               </span>
             </div>
             <div className="mt-[14px] flex items-start gap-[14px]">
-              <div className="relative flex h-[68px] w-[52px] shrink-0 flex-col items-center justify-end border border-[#e6e8ee] bg-[#f7f8fb] pb-[10px]">
+              <div className="relative flex h-[68px] w-[52px] shrink-0 flex-col items-center justify-end border border-[#c9d9f2] bg-[#eaf1fd] pb-[10px]">
                 <span
                   aria-hidden
-                  className="absolute right-0 top-0 h-[12px] w-[12px] bg-[#e6e8ee]"
+                  className="absolute right-0 top-0 h-[12px] w-[12px] bg-[#c9d9f2]"
                   style={{ clipPath: "polygon(0 0, 100% 100%, 0 100%)" }}
                 />
-                <span className="rounded-[4px] bg-[#c9d2e3] px-[6px] py-[2px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[10px] font-bold text-white">
+                <span className="rounded-[4px] bg-[#2242d6] px-[6px] py-[2px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[10px] font-bold text-white">
                   PDF
                 </span>
               </div>
@@ -1485,10 +1488,10 @@ function AdamTeaserSection() {
               </span>
             </div>
             <div className="mt-[14px] flex items-center gap-[14px]">
-              <div className="flex h-[64px] w-[110px] shrink-0 flex-col justify-center gap-[8px] rounded-[4px] border border-dashed border-[#9aa1b2] bg-[#f7f8fb] px-[12px]">
-                <div className="h-[4px] rounded-full bg-[#c9d2e3]" />
-                <div className="h-[4px] rounded-full bg-[#c9d2e3]" />
-                <div className="h-[4px] w-2/3 rounded-full bg-[#c9d2e3]" />
+              <div className="flex h-[64px] w-[110px] shrink-0 flex-col justify-center gap-[8px] rounded-[4px] border border-dashed border-[#8fa8d8] bg-[#eaf1fd] px-[12px]">
+                <div className="h-[4px] rounded-full bg-[#b9ceee]" />
+                <div className="h-[4px] rounded-full bg-[#b9ceee]" />
+                <div className="h-[4px] w-2/3 rounded-full bg-[#b9ceee]" />
               </div>
               <div className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px] leading-[1.6] text-[#0d0f16]">
                 <div>Что здесь?</div>
@@ -1496,7 +1499,7 @@ function AdamTeaserSection() {
               </div>
             </div>
             <div className="mt-[12px]">
-              <span className="inline-block rounded-[6px] bg-[#eef1f6] px-[14px] py-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] text-[#5a606e]">
+              <span className="inline-block rounded-[6px] bg-[#eaf1fd] px-[14px] py-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] text-[#2242d6]">
                 Ctrl + Alt + O
               </span>
             </div>
@@ -1852,7 +1855,7 @@ function SchemeExplorer() {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="group flex cursor-pointer items-center gap-[10px] rounded-[8px] border border-[#0d0f16] border-solid bg-white px-[19px] py-[12px] transition-colors hover:bg-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        className="group flex cursor-pointer items-center gap-[10px] rounded-[8px] border border-[#0d0f16] border-solid bg-white px-[19px] py-[12px] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
       >
         <span
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap transition-colors group-hover:text-white"
@@ -2419,7 +2422,7 @@ function HorizontalBorder10() {
             type="button"
             onClick={() => setShowFoundation((v) => !v)}
             aria-expanded={showFoundation}
-            className="group mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-[#0d0f16] bg-white px-[19px] py-[12px] transition-colors hover:bg-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+            className="group mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-[#0d0f16] bg-white px-[19px] py-[12px] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
           >
             <span
               className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] transition-colors group-hover:text-white"
@@ -2814,7 +2817,10 @@ function Background() {
   const [cameFromInternalNavigation] = useState(() => {
     if (typeof document === "undefined") return false
     try {
-      return Boolean(document.referrer) && new URL(document.referrer).origin === window.location.origin
+      return (
+        Boolean(document.referrer) &&
+        new URL(document.referrer).origin === window.location.origin
+      )
     } catch {
       return false
     }
@@ -2876,7 +2882,9 @@ function Background() {
 
   return (
     <div
-      className={`${isSimulator ? "bg-black" : "bg-white"} content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
+      className={`${
+        isSimulator ? "bg-black" : "bg-white"
+      } content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
       data-name="Background"
     >
       {isSimulator ? (
@@ -2908,7 +2916,7 @@ function Background() {
           <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
             {activeTab ? (
               <TabPage tabKey={activeTab} onBack={handleBack} />
-        ) : (
+            ) : (
               <>
                 <Frame21 onTabClick={handleTabChange} />
                 <ContoursSection onTabClick={handleTabChange} />
