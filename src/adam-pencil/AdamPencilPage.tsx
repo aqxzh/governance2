@@ -10,6 +10,7 @@ const SLIDE_SRC = `${import.meta.env.BASE_URL}adam-presentation.html`
 
 export default function App() {
   const [language, setLanguage] = useState<Language>("RU")
+  const [slideLoaded, setSlideLoaded] = useState(false)
 
   const homeHref =
     typeof window !== "undefined" ? window.location.pathname : "/"
@@ -58,12 +59,25 @@ export default function App() {
           </a>
         </div>
         <div className="px-[20px] sm:px-[28px] pb-[32px]">
-          <iframe
-            title="АДАМ — интерактивная презентация"
-            src={SLIDE_SRC}
-            className="w-full bg-white"
-            style={{ aspectRatio: "16 / 9", minHeight: 480 }}
-          />
+          <div className="relative">
+            {!slideLoaded && (
+              <div
+                className="absolute inset-0 rounded-[15px] bg-[#f5f5f7] animate-pulse"
+                style={{ aspectRatio: "16 / 9", minHeight: 480 }}
+              />
+            )}
+            <iframe
+              title="АДАМ — интерактивная презентация"
+              src={SLIDE_SRC}
+              onLoad={() => setSlideLoaded(true)}
+              className="w-full bg-white transition-opacity duration-500"
+              style={{
+                aspectRatio: "16 / 9",
+                minHeight: 480,
+                opacity: slideLoaded ? 1 : 0,
+              }}
+            />
+          </div>
         </div>
       </div>
       <BackToTopButton />
