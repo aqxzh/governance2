@@ -1,0 +1,10 @@
+{
+  "description": "Delivers a fully replicated, user-friendly design optimized for seamless video code integration without errors or issues, enhancing developer efficiency.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

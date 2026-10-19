@@ -1,6 +1,7 @@
 import React from 'react'
 import BackgroundBorderShadow from '../imports/index'
 import FoodFlowApp from './foodflow/FoodFlowApp'
+import AdamPencilPage from './adam-pencil/AdamPencilPage'
 
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
@@ -34,15 +35,25 @@ class ErrorBoundary extends React.Component<
 }
 
 export default function App() {
-  const food =
+  const params =
     typeof window !== 'undefined'
-      ? new URLSearchParams(window.location.search).get('food')
+      ? new URLSearchParams(window.location.search)
       : null
+  const food = params?.get('food')
+  const adam = params?.get('adam')
 
   if (food === '1') {
     return (
       <ErrorBoundary>
         <FoodFlowApp />
+      </ErrorBoundary>
+    )
+  }
+
+  if (adam === '1') {
+    return (
+      <ErrorBoundary>
+        <AdamPencilPage />
       </ErrorBoundary>
     )
   }

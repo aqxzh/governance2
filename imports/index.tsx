@@ -645,7 +645,7 @@ function Border() {
   )
 }
 
-function HorizontalBorder({
+export function HorizontalBorder({
   onTabClick,
   onHomeClick,
   language,
@@ -1373,6 +1373,144 @@ function TeamPort({ label }: { label: string }) {
     >
       {label}
     </span>
+  )
+}
+
+function AdamTeaserSection() {
+  return (
+    <section id="adam" className="relative w-full border-t border-[#e6e8ee]">
+      <div className="content-stretch flex flex-col items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
+        <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
+          ИИ ПОМОЩНИК
+        </div>
+        <h2
+          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          АДАМ — помощник на вашем рабочем столе.
+        </h2>
+        <p
+          className="mt-[12px] max-w-[680px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-[#5a606e]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          Разбирает документы, держит сервисы под рукой и ведёт план дня — с
+          тактом к вашему ритму: не отвлекает в фокусе и на совещаниях.
+        </p>
+
+        <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
+          {/* 01 — Задайте вопрос */}
+          <div className="flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] transition-colors hover:border-[#0d0f16]">
+            <div className="flex items-baseline gap-[12px]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[14px] text-[#2242d6]">
+                01
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Задайте вопрос
+              </span>
+            </div>
+            <div className="mt-[14px] flex items-center gap-[16px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px]">
+              <span className="rounded-full bg-[#eef1f6] px-[14px] py-[6px] text-[#0d0f16]">
+                Вопрос
+              </span>
+              <span className="text-[#5a606e]">Поручение</span>
+            </div>
+            <div className="mt-[12px] flex items-center justify-between rounded-full border border-[#e6e8ee] px-[16px] py-[12px]">
+              <span className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px] text-[#0d0f16]">
+                Как ответить на письмо?
+              </span>
+              <span aria-hidden className="text-[20px] leading-none text-[#9aa1b2]">
+                ›
+              </span>
+            </div>
+          </div>
+
+          {/* 02 — Перетащите файл */}
+          <div className="flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] transition-colors hover:border-[#0d0f16]">
+            <div className="flex items-baseline gap-[12px]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[14px] text-[#2242d6]">
+                02
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Перетащите файл
+              </span>
+            </div>
+            <div className="mt-[14px] flex items-start gap-[14px]">
+              <div className="relative flex h-[68px] w-[52px] shrink-0 flex-col items-center justify-end border border-[#e6e8ee] bg-[#f7f8fb] pb-[10px]">
+                <span
+                  aria-hidden
+                  className="absolute right-0 top-0 h-[12px] w-[12px] bg-[#e6e8ee]"
+                  style={{ clipPath: "polygon(0 0, 100% 100%, 0 100%)" }}
+                />
+                <span className="rounded-[4px] bg-[#c9d2e3] px-[6px] py-[2px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[10px] font-bold text-white">
+                  PDF
+                </span>
+              </div>
+              <div className="font-['IBM_Plex_Sans:Regular',sans-serif]">
+                <div
+                  className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] text-[#0d0f16]"
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  Отчёт.pdf
+                </div>
+                <div className="mt-[4px] text-[14px] text-[#5a606e]">
+                  Прямо на ручку →
+                </div>
+                <div className="text-[14px] text-[#5a606e]">
+                  Главное · сроки · ответ
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 03 — Обведите экран */}
+          <div className="flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] transition-colors hover:border-[#0d0f16]">
+            <div className="flex items-baseline gap-[12px]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[14px] text-[#2242d6]">
+                03
+              </span>
+              <span
+                className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-[#0d0f16]"
+                style={{ fontVariationSettings: '"wdth" 100' }}
+              >
+                Обведите экран
+              </span>
+            </div>
+            <div className="mt-[14px] flex items-center gap-[14px]">
+              <div className="flex h-[64px] w-[110px] shrink-0 flex-col justify-center gap-[8px] rounded-[4px] border border-dashed border-[#9aa1b2] bg-[#f7f8fb] px-[12px]">
+                <div className="h-[4px] rounded-full bg-[#c9d2e3]" />
+                <div className="h-[4px] rounded-full bg-[#c9d2e3]" />
+                <div className="h-[4px] w-2/3 rounded-full bg-[#c9d2e3]" />
+              </div>
+              <div className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[14px] leading-[1.6] text-[#0d0f16]">
+                <div>Что здесь?</div>
+                <div>Переведи</div>
+              </div>
+            </div>
+            <div className="mt-[12px]">
+              <span className="inline-block rounded-[6px] bg-[#eef1f6] px-[14px] py-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] text-[#5a606e]">
+                Ctrl + Alt + O
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-[28px] flex w-full flex-col gap-[16px] sm:flex-row sm:items-center">
+          <a
+            href="?adam=1"
+            className="rounded-[8px] border border-[#0d0f16] bg-white px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] whitespace-nowrap transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] hover:text-white"
+            style={{ fontVariationSettings: '"wdth" 100' }}
+          >
+            Подробнее об АДАМе →
+          </a>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -2483,7 +2621,7 @@ function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
   )
 }
 
-type Language = "RU" | "KZ" | "EN"
+export type Language = "RU" | "KZ" | "EN"
 
 function LanguageSwitcher({
   language,
@@ -2756,6 +2894,7 @@ function Background() {
               <>
                 <Frame21 onTabClick={handleTabChange} />
                 <ContoursSection onTabClick={handleTabChange} />
+                <AdamTeaserSection />
                 <TeamSection />
                 <SyntheticResearchSection onTabClick={handleTabChange} />
                 <BackgroundHorizontalBorder2 />
