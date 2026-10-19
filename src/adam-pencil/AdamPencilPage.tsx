@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useState } from "react"
 import {
   HorizontalBorder,
   type Language,
   type TabKey,
-} from "../../imports/index";
+} from "../../imports/index"
+import BackToTopButton from "../components/BackToTopButton"
 
-const SLIDE_SRC = `${import.meta.env.BASE_URL}adam-presentation.html`;
+const SLIDE_SRC = `${import.meta.env.BASE_URL}adam-presentation.html`
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>("RU");
+  const [language, setLanguage] = useState<Language>("RU")
 
   const homeHref =
-    typeof window !== "undefined" ? window.location.pathname : "/";
+    typeof window !== "undefined" ? window.location.pathname : "/"
 
   const goHome = () => {
-    window.location.href = homeHref;
-  };
+    try {
+      const referrer = new URL(document.referrer)
+      if (referrer.origin === window.location.origin) {
+        window.history.back()
+        return
+      }
+    } catch {
+      // referrer пустой или сторонний — возвращаемся на главную по прямой ссылке
+    }
+    window.location.href = homeHref
+  }
 
   const handleTabClick = (key: TabKey) => {
     const hash =
@@ -23,9 +33,9 @@ export default function App() {
         ? "diagnostics"
         : key === "analytics"
           ? "coordination"
-          : "modeling";
-    window.location.href = `${homeHref}#${hash}`;
-  };
+          : "modeling"
+    window.location.href = `${homeHref}#${hash}`
+  }
 
   return (
     <main className="w-full bg-white">
@@ -56,6 +66,7 @@ export default function App() {
           />
         </div>
       </div>
+      <BackToTopButton />
     </main>
-  );
+  )
 }

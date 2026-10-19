@@ -41,6 +41,7 @@ import AISimulatorPage from "../src/simulator/AISimulatorPage"
 import SyntheticResearchSection from "../src/synthetic-research/SyntheticResearchSection"
 import { RegistryTable } from "../src/synthetic-research/ModelingPage"
 import { ImageModal } from "../src/synthetic-research/ImageModal"
+import BackToTopButton from "../src/components/BackToTopButton"
 
 export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty"
 
@@ -1800,7 +1801,7 @@ function Group4() {
         с выбора ИИ.
       </p>
       <div className="grid grid-cols-1 gap-y-[20px] md:grid-cols-2 md:gap-x-[40px]">
-        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white">
+        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white transition-colors duration-300 hover:border-[#0d0f16]">
           <img
             alt="Было"
             className="block w-full rounded-[20px]"
@@ -1810,7 +1811,7 @@ function Group4() {
             Было
           </span>
         </div>
-        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white">
+        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white transition-colors duration-300 hover:border-[#0d0f16]">
           <img
             alt="Стало"
             className="block w-full rounded-[20px]"
@@ -2327,7 +2328,7 @@ function Container53() {
       className="grid w-full grid-cols-1 gap-y-[20px] sm:grid-cols-2 sm:gap-x-[28px] lg:grid-cols-5 lg:gap-x-[20px]"
       data-name="Container"
     >
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
         <h3
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2341,7 +2342,7 @@ function Container53() {
           Ответственность — за уполномоченными лицами
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
         <h3
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2355,7 +2356,7 @@ function Container53() {
           Безопасная среда апробации
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
         <h3
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2369,7 +2370,7 @@ function Container53() {
           Этика и законодательство РК
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
         <h3
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2383,7 +2384,7 @@ function Container53() {
           Устранение барьеров данных
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px]">
+      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
         <h3
           className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
           style={{ fontVariationSettings: '"wdth" 100' }}
@@ -2808,6 +2809,17 @@ function Background() {
   const [activeTab, setActiveTab] = useState<TabKey | null>(null)
   const [language, setLanguage] = useState<Language>("RU")
 
+  // Если пользователь попал сюда переходом с другой страницы этого же сайта,
+  // «НАЗАД К ГЛАВНОЙ» ведёт по истории — назад туда, откуда он начинал.
+  const [cameFromInternalNavigation] = useState(() => {
+    if (typeof document === "undefined") return false
+    try {
+      return Boolean(document.referrer) && new URL(document.referrer).origin === window.location.origin
+    } catch {
+      return false
+    }
+  })
+
   useEffect(() => {
     const applyHash = () => {
       const h = window.location.hash.replace("#", "")
@@ -2845,6 +2857,10 @@ function Background() {
   }
 
   const handleBack = () => {
+    if (cameFromInternalNavigation) {
+      window.history.back()
+      return
+    }
     setActiveTab(null)
     if (window.location.hash) {
       window.history.replaceState(
@@ -2892,7 +2908,7 @@ function Background() {
           <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
             {activeTab ? (
               <TabPage tabKey={activeTab} onBack={handleBack} />
-            ) : (
+        ) : (
               <>
                 <Frame21 onTabClick={handleTabChange} />
                 <ContoursSection onTabClick={handleTabChange} />
@@ -2909,6 +2925,7 @@ function Background() {
           </div>
         </>
       )}
+      <BackToTopButton />
       {imageModal && (
         <ImageModal
           index={productImages[imageModal].index}
