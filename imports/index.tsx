@@ -484,11 +484,9 @@ function ContoursSection({
 
         <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
           {cards.map((card) => (
-            <button
+            <article
               key={card.key}
-              type="button"
-              onClick={() => onTabClick(card.key)}
-              className="group flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] text-left transition-colors hover:border-[#0d0f16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+              className="flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] transition-colors hover:border-[#0d0f16]"
             >
               <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-[#2242d6]">
                 {card.num}
@@ -513,11 +511,15 @@ function ContoursSection({
                 ))}
               </span>
               <span className="mt-auto pt-[20px]">
-                <span className="block w-full whitespace-nowrap rounded-[8px] border border-[#0d0f16] bg-white px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] transition-colors group-hover:border-[#2242d6] group-hover:bg-[#2242d6] group-hover:text-white">
+                <button
+                  type="button"
+                  onClick={() => onTabClick(card.key)}
+                  className="block w-full whitespace-nowrap rounded-[8px] border border-[#0d0f16] bg-white px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] cursor-pointer"
+                >
                   Разобрать направление
-                </span>
+                </button>
               </span>
-            </button>
+            </article>
           ))}
         </div>
       </div>
@@ -713,7 +715,7 @@ function Background2({ onClick }: { onClick: () => void }) {
   return (
     <div
       onClick={onClick}
-      className="bg-[#2242d6] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      className="bg-[#2242d6] rounded-[8px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
       data-name="Background"
     >
       <div className="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full">
@@ -732,12 +734,12 @@ function Border1({ onClick }: { onClick: () => void }) {
   return (
     <div
       onClick={onClick}
-      className="relative shrink-0 cursor-pointer bg-white"
+      className="relative shrink-0 cursor-pointer bg-white rounded-[8px]"
       data-name="Border"
     >
       <div
         aria-hidden
-        className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"
+        className="absolute border border-[#0d0f16] border-solid rounded-[8px] inset-0 pointer-events-none"
       />
       <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
         <div
@@ -2507,7 +2509,7 @@ function Background8({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="bg-[#2242d6] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      className="bg-[#2242d6] rounded-[8px] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
       data-name="Background"
     >
       <div
