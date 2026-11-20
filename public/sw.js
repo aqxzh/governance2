@@ -3,7 +3,7 @@
 //  - навигация: сеть → при офлайне кэш
 //  - статика (js/css/картинки): stale-while-revalidate
 //  - видео: кэшируются при первом просмотре, дальше работают офлайн
-const CACHE_NAME = "governance-kz-v3";
+const CACHE_NAME = "governance-kz-v4";
 const VIDEO_CACHE = "governance-kz-videos-v1";
 const PRECACHE = [
   "/",
