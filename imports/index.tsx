@@ -689,12 +689,12 @@ export function HorizontalBorder({
 }) {
   return (
     <header
-      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[8px] gap-y-[12px] bg-gov-canvas px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[960px]:grid-cols-[minmax(0,1fr)_auto_auto] min-[960px]:gap-x-[16px]"
+      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[8px] gap-y-[12px] bg-gov-canvas px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[1000px]:grid-cols-[minmax(0,1fr)_auto_auto] min-[1000px]:gap-x-[16px]"
       data-name="HorizontalBorder"
     >
       <Container2 onHomeClick={onHomeClick} />
       <HeroTabs activePage={activePage} />
-      <div className="col-start-2 row-start-1 flex items-center gap-[4px] min-[400px]:gap-[8px] min-[960px]:col-start-3">
+      <div className="col-start-2 row-start-1 flex items-center gap-[4px] min-[400px]:gap-[8px] min-[1000px]:col-start-3">
         <LanguageSwitcher language={language} onChange={onLanguageChange} />
         <ThemeToggle theme={theme} onToggle={onThemeToggle} />
       </div>
@@ -2453,7 +2453,7 @@ function HeroTabs({ activePage }: { activePage: PageKey | null }) {
   return (
     <nav
       aria-label="Основная навигация"
-      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[960px]:col-span-1 min-[960px]:col-start-2 min-[960px]:row-start-1"
+      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[1000px]:col-span-1 min-[1000px]:col-start-2 min-[1000px]:row-start-1"
     >
       {pageKeys.map((key) => {
         const tab = key === "general" ? null : tabData[key]
@@ -2463,7 +2463,9 @@ function HeroTabs({ activePage }: { activePage: PageKey | null }) {
             key={key}
             href={pageHashes[key]}
             aria-current={isCurrent ? "page" : undefined}
-            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent sm:px-[12px] min-[960px]:min-h-0 ${
+            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent sm:px-[12px] min-[1000px]:min-h-0 ${
+              key === "general" ? "sm:min-w-[112px] sm:justify-center" : ""
+            } ${
               isCurrent
                 ? "border-gov-accent bg-gov-hover"
                 : "border-gov-line bg-gov-panel hover:border-gov-outline hover:bg-gov-inset"
