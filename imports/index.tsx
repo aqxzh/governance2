@@ -31,7 +31,7 @@ import imgSolutionBotAssistants from "./bot-assistants.png"
 import imgSolutionIndustryBank from "./industry-bank.png"
 import imgSolutionAnticorruptionMonitoring from "./anticorruption-monitoring.png"
 import imgSolutionEksEnbekReconciliation from "./eks-enbek-reconciliation.png"
-import { CONTACT_EMAIL, sendApplication } from "../src/lib/sendApplication"
+import { sendApplication } from "../src/lib/sendApplication"
 
 import imgTabDiagnostics from "./tab-diagnostics.png"
 import imgTabCoordination from "./tab-coordination.png"
@@ -82,6 +82,24 @@ export const productImages: Record<ProductImageKey, {
 }
 
 export type TabKey = "recruitment" | "modeling" | "analytics"
+
+const pageHashes = {
+  general: "#general",
+  recruitment: "#diagnostics",
+  analytics: "#coordination",
+  modeling: "#modeling",
+} as const satisfies Record<TabKey | "general", string>
+
+type PageKey = keyof typeof pageHashes
+
+const pageKeys = Object.keys(pageHashes) as PageKey[]
+
+function getActivePage(): PageKey | null {
+  if (typeof window === "undefined") return null
+  const { hash } = window.location
+  if (hash === "#contours") return "general"
+  return pageKeys.find((key) => pageHashes[key] === hash) ?? null
+}
 
 type TabRow = {
   num: string
@@ -476,12 +494,12 @@ function ContoursSection({
         <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
           ВЫБРАТЬ ЗАДАЧУ
         </div>
-        <h2
+        <h1
           className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Понять. Организовать. Проверить.
-        </h2>
+        </h1>
 
         <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
           {cards.map((card) => (
@@ -549,7 +567,7 @@ function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
     <button
       type="button"
       onClick={onHomeClick}
-      className="content-stretch flex gap-[11px] items-center relative shrink-0 cursor-pointer outline-none"
+      className="content-stretch flex gap-[11px] items-center relative shrink-0 cursor-pointer justify-self-start rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2242d6]"
       data-name="Container"
       aria-label="На главную"
     >
@@ -649,28 +667,27 @@ function Border() {
 }
 
 export function HorizontalBorder({
-  onTabClick,
+  activePage,
   onHomeClick,
   language,
   onLanguageChange,
 }: {
-  onTabClick: (id: TabKey) => void
+  activePage: PageKey | null
   onHomeClick?: () => void
   language: Language
   onLanguageChange: (lang: Language) => void
 }) {
   return (
-    <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
-      <div className="flex flex-row items-center size-full">
-        <div className="content-stretch flex items-center justify-between pb-[22px] pt-[20px] px-[20px] sm:px-[28px] relative size-full gap-[24px]">
-          <Container2 onHomeClick={onHomeClick} />
-          <div className="flex flex-row items-center gap-[16px]">
-            <HeroTabs onTabClick={onTabClick} />
-            <LanguageSwitcher language={language} onChange={onLanguageChange} />
-          </div>
-        </div>
+    <header
+      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[16px] gap-y-[12px] bg-white px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[900px]:grid-cols-[minmax(0,1fr)_auto_auto]"
+      data-name="HorizontalBorder"
+    >
+      <Container2 onHomeClick={onHomeClick} />
+      <HeroTabs activePage={activePage} />
+      <div className="col-start-2 row-start-1 min-[900px]:col-start-3">
+        <LanguageSwitcher language={language} onChange={onLanguageChange} />
       </div>
-    </div>
+    </header>
   )
 }
 
@@ -770,12 +787,6 @@ function Container12({
       <Border1 onClick={onNoteClick} />
     </div>
   )
-}
-
-const CONTACTS = {
-  email: CONTACT_EMAIL,
-  phoneDisplay: "+7 (776) 173-82-91",
-  phoneHref: "+777761738291",
 }
 
 function MeetingModal({ onClose }: { onClose: () => void }) {
@@ -898,14 +909,13 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
               {status === "sending" ? "Отправляем…" : "Отправить заявку"}
             </button>
             {status === "error" && (
-              <p className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#c5221f]">
-                Не удалось отправить заявку. Попробуйте ещё раз или напишите нам
-                напрямую на {CONTACTS.email}.
+              <p
+                role="alert"
+                className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#c5221f]"
+              >
+                Не удалось отправить заявку. Попробуйте ещё раз.
               </p>
             )}
-            <p className="mt-[12px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#9aa0ad]">
-              Заявка придёт на {CONTACTS.email}
-            </p>
           </>
         )}
       </div>
@@ -1165,11 +1175,7 @@ function Container18() {
     </div>
   )
 }
-function HorizontalBorder1({
-  onTabClick,
-}: {
-  onTabClick: (id: TabKey) => void
-}) {
+function HorizontalBorder1() {
   const [showMeeting, setShowMeeting] = useState(false)
   const [showNote, setShowNote] = useState(false)
   const heroRef = useRef<HTMLDivElement>(null)
@@ -1301,10 +1307,10 @@ function HorizontalBorder1({
   )
 }
 
-function Frame21({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
+function Frame21() {
   return (
     <div className="w-full">
-      <HorizontalBorder1 onTabClick={onTabClick} />
+      <HorizontalBorder1 />
     </div>
   )
 }
@@ -2328,41 +2334,23 @@ function Container65() {
 
 function Heading11() {
   return (
-    <div
-      className="content-stretch flex flex-col items-start max-w-[448.79998779296875px] relative shrink-0 w-full"
-      data-name="Heading 2"
+    <h2
+      className="max-w-[340px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[24px] leading-[normal] font-bold tracking-[-0.24px] text-white"
+      style={{ fontVariationSettings: '"wdth" 100' }}
     >
-      <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[24px] text-white tracking-[-0.24px] whitespace-nowrap"
-        style={{ fontVariationSettings: '"wdth" 100' }}
-      >
-        <p className="leading-[normal] mb-0">Готовы показать модель на</p>
-        <p className="leading-[normal]">ваших данных</p>
-      </div>
-    </div>
+      Готовы показать модель на ваших данных
+    </h2>
   )
 }
 
 function Container64() {
   return (
     <div
-      className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-[440px]"
+      className="content-stretch flex flex-col gap-[12px] items-start relative min-w-0 max-w-full"
       data-name="Container"
     >
       <Container65 />
       <Heading11 />
-      <div className="mt-[10px] flex flex-wrap gap-x-[48px] gap-y-[16px]">
-        <ContactChannel
-          label="ПОЧТА"
-          value={CONTACTS.email}
-          href={`mailto:${CONTACTS.email}`}
-        />
-        <ContactChannel
-          label="ТЕЛЕФОН"
-          value={CONTACTS.phoneDisplay}
-          href={`tel:${CONTACTS.phoneHref}`}
-        />
-      </div>
     </div>
   )
 }
@@ -2382,37 +2370,6 @@ function Background8({ onClick }: { onClick: () => void }) {
         <p className="leading-[normal]">Записаться на встречу →</p>
       </div>
     </button>
-  )
-}
-
-function ContactChannel({
-  label,
-  value,
-  href,
-  external,
-}: {
-  label: string
-  value: string
-  href: string
-  external?: boolean
-}) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
-      className="group flex flex-col gap-[8px] no-underline"
-    >
-      <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[1.2px] text-[#8fa6ff] transition-colors group-hover:text-white">
-        {label}
-      </span>
-      <span
-        className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[16px] text-white transition-colors group-hover:text-[#8fa6ff]"
-        style={{ fontVariationSettings: '"wdth" 100' }}
-      >
-        {value}
-      </span>
-    </a>
   )
 }
 
@@ -2460,29 +2417,44 @@ function Container66() {
     </div>
   )
 }
-function HeroTabs({ onTabClick }: { onTabClick: (id: TabKey) => void }) {
-  const tabs: TabKey[] = ["recruitment", "analytics", "modeling"]
+function HeroTabs({ activePage }: { activePage: PageKey | null }) {
   return (
-    <div className="hidden md:flex flex-row gap-[6px] shrink-0">
-      {tabs.map((key) => (
-        <button
-          key={key}
-          type="button"
-          onClick={() => onTabClick(key)}
-          className="group flex items-center gap-[6px] rounded-[6px] border border-[#e6e8ee] bg-white px-[12px] py-[8px] text-left cursor-pointer transition-colors hover:border-[#0d0f16] hover:bg-[#f6f7fb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
-        >
-          <span className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] text-[#2242d6] tabular-nums shrink-0">
-            {tabData[key].index}
-          </span>
-          <span
-            className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap"
-            style={{ fontVariationSettings: '"wdth" 100' }}
+    <nav
+      aria-label="Основная навигация"
+      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[900px]:col-span-1 min-[900px]:col-start-2 min-[900px]:row-start-1"
+    >
+      {pageKeys.map((key) => {
+        const tab = key === "general" ? null : tabData[key]
+        const isCurrent = key === activePage
+        return (
+          <a
+            key={key}
+            href={pageHashes[key]}
+            aria-current={isCurrent ? "page" : undefined}
+            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] sm:px-[12px] min-[900px]:min-h-0 ${
+              isCurrent
+                ? "border-[#2242d6] bg-[#f6f7fb]"
+                : "border-[#e6e8ee] bg-white hover:border-[#0d0f16] hover:bg-[#f6f7fb]"
+            }`}
           >
-            {tabData[key].label}
-          </span>
-        </button>
-      ))}
-    </div>
+            {tab && (
+              <span
+                aria-hidden
+                className="shrink-0 font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6] max-[369px]:hidden"
+              >
+                {tab.index}
+              </span>
+            )}
+            <span
+              className="whitespace-nowrap font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold text-[#0d0f16]"
+              style={{ fontVariationSettings: '"wdth" 100' }}
+            >
+              {tab?.label ?? "Общее"}
+            </span>
+          </a>
+        )
+      })}
+    </nav>
   )
 }
 
@@ -2666,9 +2638,23 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   )
 }
 
+function GeneralPage({ onTabClick }: { onTabClick: (key: TabKey) => void }) {
+  return (
+    <main className="w-full" aria-label="Общее">
+      <ContoursSection onTabClick={onTabClick} />
+      <TeamSection />
+      <SyntheticResearchSection onTabClick={onTabClick} />
+      <BackgroundHorizontalBorder2 />
+      <BackgroundHorizontalBorder3 />
+      <HorizontalBorder10 />
+      <Background7 />
+    </main>
+  )
+}
+
 function Background() {
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null)
-  const [activeTab, setActiveTab] = useState<TabKey | null>(null)
+  const [activePage, setActivePage] = useState(getActivePage)
   const [language, setLanguage] = useState<Language>("RU")
 
   // Если пользователь попал сюда переходом с другой страницы этого же сайта,
@@ -2686,38 +2672,35 @@ function Background() {
   })
 
   useEffect(() => {
-    const applyHash = () => {
-      const h = window.location.hash.replace("#", "")
-      const tab =
-        h === "diagnostics"
-          ? "recruitment"
-          : h === "coordination"
-            ? "analytics"
-            : h === "modeling"
-              ? "modeling"
-              : null
-      if (tab) {
-        setActiveTab(tab as TabKey)
-      } else if (!h) {
-        setActiveTab(null)
-      }
-    }
-    // Поддерживаем прямые ссылки: site.com/#modeling открывает моделирование сразу.
-    applyHash()
+    const applyHash = () => setActivePage(getActivePage())
     window.addEventListener("hashchange", applyHash)
     return () => window.removeEventListener("hashchange", applyHash)
   }, [])
 
-  // Вкладки шапки открывают отдельную страницу контура, как раньше
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    if (activePage !== "general") return
+
+    const siteTitle = document.title
+    document.title = "Общее — Governance.kz"
+    return () => {
+      document.title = siteTitle
+    }
+  }, [activePage])
+
   const handleTabChange = (key: TabKey) => {
-    setActiveTab(key)
-    const hash =
-      key === "recruitment"
-        ? "diagnostics"
-        : key === "analytics"
-          ? "coordination"
-          : "modeling"
-    window.history.replaceState(null, "", `#${hash}`)
+    window.location.hash = pageHashes[key]
+  }
+
+  const handleHome = () => {
+    if (window.location.hash) {
+      window.history.pushState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      )
+      setActivePage(null)
+    }
     window.scrollTo(0, 0)
   }
 
@@ -2726,18 +2709,10 @@ function Background() {
       window.history.back()
       return
     }
-    setActiveTab(null)
-    if (window.location.hash) {
-      window.history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search,
-      )
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    handleHome()
   }
 
-  const isSimulator = activeTab === "modeling"
+  const isSimulator = activePage === "modeling"
 
   return (
     <div
@@ -2746,50 +2721,30 @@ function Background() {
       } content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
       data-name="Background"
     >
+      <HorizontalBorder
+        activePage={activePage}
+        onHomeClick={handleHome}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
       {isSimulator ? (
         <>
-          {/* Белая шапка остаётся, ниже — полноэкранная чёрная страница симуляторов */}
-          <div className="bg-white w-full">
-            <HorizontalBorder
-              onTabClick={handleTabChange}
-              onHomeClick={handleBack}
-              language={language}
-              onLanguageChange={setLanguage}
-            />
-          </div>
           <AISimulatorPage onBack={handleBack} />
           <div className="bg-black w-full">
             <Container66 />
           </div>
         </>
       ) : (
-        <>
-          <div className="bg-white w-full">
-            <HorizontalBorder
-              onTabClick={handleTabChange}
-              onHomeClick={handleBack}
-              language={language}
-              onLanguageChange={setLanguage}
-            />
-          </div>
-          <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
-            {activeTab ? (
-              <TabPage tabKey={activeTab} onBack={handleBack} />
-            ) : (
-              <>
-                <Frame21 onTabClick={handleTabChange} />
-                <ContoursSection onTabClick={handleTabChange} />
-                <TeamSection />
-                <SyntheticResearchSection onTabClick={handleTabChange} />
-                <BackgroundHorizontalBorder2 />
-                <BackgroundHorizontalBorder3 />
-                <HorizontalBorder10 />
-                <Background7 />
-              </>
-            )}
-            <Container66 />
-          </div>
-        </>
+        <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
+          {activePage === "general" ? (
+            <GeneralPage onTabClick={handleTabChange} />
+          ) : activePage ? (
+            <TabPage key={activePage} tabKey={activePage} onBack={handleBack} />
+          ) : (
+            <Frame21 />
+          )}
+          <Container66 />
+        </div>
       )}
       <BackToTopButton />
       {imageModal && (
