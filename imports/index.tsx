@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react"
-import imgTeamMain from "./team-main.png"
 import imgBrain from "./024996798644ee39e17d62182850eebdd0609893.png"
 import imgAiSim from "./ai-sim.png"
 import imgSimSlide1 from "./sim-slide-1.png"
@@ -47,6 +46,8 @@ import { RegistryTable } from "../src/synthetic-research/ModelingPage"
 import { ImageModal } from "../src/synthetic-research/ImageModal"
 import BackToTopButton from "../src/components/BackToTopButton"
 import ThemeToggle from "../src/components/ThemeToggle"
+import "../src/components/siteHeader.css"
+import HomePage from "../src/home/HomePage"
 import { useSiteTheme, type SiteTheme } from "../src/lib/siteTheme"
 
 export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty"
@@ -455,45 +456,53 @@ function SolutionsRegistry({
   )
 }
 
+const directionCards: {
+  key: TabKey
+  num: string
+  title: string
+  summary: string
+  text: string
+  items: string[]
+}[] = [
+  {
+    key: "recruitment",
+    num: "01",
+    title: "Обучение",
+    summary: "Освоить ИИ на рабочих задачах.",
+    text: "Научим команду применять ИИ в повседневной работе: готовить черновики, разбирать документы и анализировать таблицы.",
+    items: [
+      "Постановка задач для ИИ",
+      "Проверка ответов ИИ",
+      "Безопасная работа с данными",
+    ],
+  },
+  {
+    key: "analytics",
+    num: "02",
+    title: "Консультации",
+    summary: "Разобрать процесс и выбрать, с чего начать.",
+    text: "Разберём, где ИИ может сократить ручную работу, а где достаточно изменить сам процесс. Предложим, с какой задачи начать.",
+    items: ["Разбор процессов", "Оценка данных и ограничений", "План пилота"],
+  },
+  {
+    key: "modeling",
+    num: "03",
+    title: "Внедрение ИИ",
+    summary: "Проверить решение на пилоте и встроить его в работу.",
+    text: "Начнём с одного процесса и заранее договоримся, как измерить результат. Если пилот покажет пользу, подключим решение к вашим системам.",
+    items: [
+      "Прототип под вашу задачу",
+      "Пилот в закрытом контуре",
+      "Интеграция и запуск",
+    ],
+  },
+]
+
 function ContoursSection({
   onTabClick,
 }: {
   onTabClick: (key: TabKey) => void
 }) {
-  const cards: {
-    key: TabKey
-    num: string
-    title: string
-    text: string
-    items: string[]
-  }[] = [
-    {
-      key: "recruitment",
-      num: "01",
-      title: "Диагностика",
-      text: "ИИ анализирует функции, кадры и услуги госорганов в единой логике данных: находит дублирования полномочий, скрытые барьеры и аномалии. Диагностика показывает, как процессы ломаются и почему.",
-      items: ["Функции и услуги", "Кадры и оценка", "Данные и риски"],
-    },
-    {
-      key: "analytics",
-      num: "02",
-      title: "Координация",
-      text: "Помощник руководителя агрегирует ЭДО, задачи и метрики в чистый управленческий сигнал. Координация задач и умные боты работают прямо в мессенджерах сотрудников.",
-      items: ["AI-советник", "Задачи и боты"],
-    },
-    {
-      key: "modeling",
-      num: "03",
-      title: "Моделирование",
-      text: "Проверить варианты до внедрения: исследовать реакции аудитории, сравнить сценарии и рассчитать поставки с учётом сроков годности.",
-      items: [
-        "Синтетические исследования",
-        "Сценарии и расчёты",
-        "Поставки и срок годности",
-      ],
-    },
-  ]
-
   return (
     <section id="contours" className="relative w-full">
       <div className="content-stretch flex flex-col items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
@@ -508,7 +517,7 @@ function ContoursSection({
         </h1>
 
         <div className="mt-[28px] grid w-full grid-cols-1 gap-[20px] md:grid-cols-3">
-          {cards.map((card) => (
+          {directionCards.map((card) => (
             <article
               key={card.key}
               className="flex flex-col rounded-[16px] border border-gov-line bg-gov-panel p-[20px] transition-colors hover:border-gov-outline"
@@ -549,42 +558,6 @@ function ContoursSection({
         </div>
       </div>
     </section>
-  )
-}
-
-function Container3() {
-  return (
-    <div
-      className="content-stretch flex flex-col items-start relative shrink-0"
-      data-name="Container"
-    >
-      <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-gov-ink text-[clamp(13px,4vw,17px)] tracking-[-0.17px] whitespace-nowrap"
-        style={{ fontVariationSettings: '"wdth" 100' }}
-      >
-        <p className="leading-[normal]">GOVERNANCE.KZ</p>
-      </div>
-    </div>
-  )
-}
-
-function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onHomeClick}
-      className="content-stretch flex gap-[7px] items-center relative shrink-0 cursor-pointer justify-self-start rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gov-accent min-[400px]:gap-[11px]"
-      data-name="Container"
-      aria-label="На главную"
-    >
-      <div className="relative shrink-0 size-[clamp(20px,6vw,26px)]" data-name="Border">
-        <div
-          aria-hidden
-          className="absolute border-[3px] border-gov-accent border-solid inset-0 pointer-events-none"
-        />
-      </div>
-      <Container3 />
-    </button>
   )
 }
 
@@ -672,7 +645,7 @@ function Border() {
   )
 }
 
-export function HorizontalBorder({
+function SiteHeader({
   activePage,
   onHomeClick,
   language,
@@ -681,22 +654,39 @@ export function HorizontalBorder({
   onThemeToggle,
 }: {
   activePage: PageKey | null
-  onHomeClick?: () => void
+  onHomeClick: () => void
   language: Language
   onLanguageChange: (lang: Language) => void
   theme: SiteTheme
   onThemeToggle: () => void
 }) {
   return (
-    <header
-      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[8px] gap-y-[12px] bg-gov-canvas px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[1000px]:grid-cols-[minmax(0,1fr)_auto_auto] min-[1000px]:gap-x-[16px]"
-      data-name="HorizontalBorder"
-    >
-      <Container2 onHomeClick={onHomeClick} />
-      <HeroTabs activePage={activePage} />
-      <div className="col-start-2 row-start-1 flex items-center gap-[4px] min-[400px]:gap-[8px] min-[1000px]:col-start-3">
-        <LanguageSwitcher language={language} onChange={onLanguageChange} />
-        <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+    <header className="site-header">
+      <div className="site-shell site-header__bar">
+        <button
+          type="button"
+          className="site-header__brand"
+          onClick={onHomeClick}
+          aria-label="Governance.kz — на главную"
+        >
+          <span aria-hidden="true" className="site-header__mark" />
+          GOVERNANCE.KZ
+        </button>
+        <nav className="site-header__nav" aria-label="Основная навигация">
+          {pageKeys.map((key) => (
+            <a
+              key={key}
+              href={pageHashes[key]}
+              aria-current={key === activePage ? "page" : undefined}
+            >
+              {key === "general" ? "Общее" : tabData[key].label}
+            </a>
+          ))}
+        </nav>
+        <div className="site-header__tools">
+          <LanguageSwitcher language={language} onChange={onLanguageChange} />
+          <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+        </div>
       </div>
     </header>
   )
@@ -740,65 +730,7 @@ function Container11() {
   )
 }
 
-function Background2({ onClick }: { onClick: () => void }) {
-  return (
-    <div
-      onClick={onClick}
-      className="bg-gov-action rounded-[8px] relative shrink-0 cursor-pointer transition-colors hover:bg-gov-action-hover"
-      data-name="Background"
-    >
-      <div className="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full">
-        <div
-          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[13px] text-white whitespace-nowrap"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          <p className="leading-[normal]">Записаться на встречу →</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function Border1({ onClick }: { onClick: () => void }) {
-  return (
-    <div
-      onClick={onClick}
-      className="relative shrink-0 cursor-pointer rounded-[8px] bg-gov-panel transition-colors hover:bg-gov-hover"
-      data-name="Border"
-    >
-      <div
-        aria-hidden
-        className="absolute border border-gov-outline border-solid rounded-[8px] inset-0 pointer-events-none"
-      />
-      <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
-        <div
-          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-gov-ink text-[13px] whitespace-nowrap"
-          style={{ fontVariationSettings: '"wdth" 100' }}
-        >
-          <p className="leading-[normal]">Аналитическая записка</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function Container12({
-  onMeetingClick,
-  onNoteClick,
-}: {
-  onMeetingClick: () => void
-  onNoteClick: () => void
-}) {
-  return (
-    <div
-      className="col-0 content-stretch flex flex-wrap gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full"
-      data-name="Container"
-    >
-      <Background2 onClick={onMeetingClick} />
-      <Border1 onClick={onNoteClick} />
-    </div>
-  )
-}
+const meetingEmail = "altynbekus@gmail.com"
 
 function MeetingModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("")
@@ -868,6 +800,15 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
         </h2>
         <p className="mt-[14px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
           Опишите ваш вопрос — и мы свяжемся с вами.
+        </p>
+        <p className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
+          Или напишите напрямую:{" "}
+          <a
+            href={`mailto:${meetingEmail}`}
+            className="rounded-sm text-gov-accent underline underline-offset-2 hover:decoration-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
+          >
+            {meetingEmail}
+          </a>
         </p>
 
         {status === "sent" ? (
@@ -943,32 +884,52 @@ function InfoModal({
   description: React.ReactNode
   onClose: () => void
 }) {
+  const panel = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const dialog = panel.current
+    if (!dialog) return
+    dialog.showModal()
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [])
+
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
+    <dialog
+      ref={panel}
+      className="fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-[24px] bg-gov-panel p-6 text-gov-ink shadow-[0_40px_80px_rgba(0,0,0,0.18)] backdrop:bg-[#0d0f16]/60 sm:p-8"
       aria-label={title}
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target !== event.currentTarget) return
+        const { left, right, top, bottom } =
+          event.currentTarget.getBoundingClientRect()
+        if (
+          event.clientX < left ||
+          event.clientX > right ||
+          event.clientY < top ||
+          event.clientY > bottom
+        ) {
+          event.currentTarget.close()
+        }
+      }}
     >
-      <div
-        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[24px] bg-gov-panel p-6 shadow-[0_40px_80px_rgba(0,0,0,0.18)] sm:p-8"
-        onClick={(event) => event.stopPropagation()}
+      <button
+        type="button"
+        onClick={() => panel.current?.close()}
+        aria-label="Закрыть"
+        className="absolute right-5 top-5 cursor-pointer rounded text-[24px] font-bold text-gov-muted hover:text-gov-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Закрыть"
-          className="absolute right-5 top-5 cursor-pointer rounded text-[24px] font-bold text-gov-muted hover:text-gov-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
-        >
-          ×
-        </button>
-        <h2 className="mb-4 pr-6 text-2xl font-semibold text-gov-ink">{title}</h2>
-        <div className="space-y-4 text-sm leading-6 text-gov-body">
-          {description}
-        </div>
+        ×
+      </button>
+      <h2 className="mb-4 pr-6 text-2xl font-semibold">{title}</h2>
+      <div className="space-y-4 text-sm leading-6 text-gov-body">
+        {description}
       </div>
-    </div>
+    </dialog>
   )
 }
 
@@ -1190,116 +1151,22 @@ function Container18() {
     </div>
   )
 }
-function HorizontalBorder1() {
-  const [showMeeting, setShowMeeting] = useState(false)
-  const [showNote, setShowNote] = useState(false)
-  const heroRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    let rafId = 0
-    const onScroll = () => {
-      cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => {
-        const el = heroRef.current
-        const v = videoRef.current
-        if (!el || !v) return
-        const rect = el.getBoundingClientRect()
-        const progress = Math.max(-1, Math.min(1, -rect.top / rect.height))
-        v.style.transform = `translateY(${progress * 8}%) scale(1.12)`
-      })
-    }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    onScroll()
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
+function HomeLanding() {
+  const [dialog, setDialog] = useState<"meeting" | "note" | null>(null)
 
   return (
-    <div
-      ref={heroRef}
-      className="relative w-full overflow-hidden"
-      data-name="HorizontalBorder"
-    >
-      {/* Фоновое зацикленное видео с параллаксом */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          src="/videos/graphs.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 size-full object-cover will-change-transform"
-          style={{ transform: "scale(1.12)" }}
-        />
-        {/* Затемнение для читаемости текста */}
-        <div className="absolute inset-0 bg-gov-media-scrim" />
-        {/* Плавный переход к фону страницы */}
-        <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-b from-transparent to-gov-canvas" />
-      </div>
-
-      {/* Контент поверх фона */}
-      <div className="relative z-10 px-[20px] sm:px-[28px] py-[48px] sm:py-[64px]">
-        {/* Label */}
-        <div className="flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white mb-[24px]">
-          <p className="leading-[normal]">ИИ ИНФРАСТРУКТУРА УПРАВЛЕНИЯ</p>
-        </div>
-
-        {/* Hero content: text left, image and buttons right */}
-        <div className="flex flex-col lg:flex-row gap-[40px] items-start mt-[32px] mb-[40px]">
-          <div className="flex-1">
-            {/* Main heading */}
-            <div
-              className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-white text-[48px] lg:text-[52px] tracking-[-1.04px] leading-[55px] mb-[24px]"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              <p className="mb-0">Организации,</p>
-              <p className="mb-0">которые видят свои</p>
-              <p>процессы целиком</p>
-            </div>
-
-            {/* Description text only */}
-            <div
-              className="max-w-[620px] [word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[28.8px] text-white/75"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              <p>
-                Governance.kz — прикладной центр цифровой трансформации
-                управления. ИИ анализирует кадры, услуги и нагрузку в единой
-                логике данных.
-              </p>
-            </div>
-          </div>
-
-          {/* Right column: image + buttons */}
-          <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
-            {/* Hero image */}
-            <div className="w-full lg:w-[516px] min-h-[200px] bg-gov-inset rounded-[8px] overflow-hidden">
-              <img
-                alt="Governance.kz"
-                className="block w-full h-auto object-cover rounded-[8px]"
-                src={imgTeamMain}
-              />
-            </div>
-
-            {/* Buttons */}
-            <Container12
-              onMeetingClick={() => setShowMeeting(true)}
-              onNoteClick={() => setShowNote(true)}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Modals */}
-      {showMeeting && <MeetingModal onClose={() => setShowMeeting(false)} />}
-      {showNote && (
+    <>
+      <HomePage
+        directions={directionCards.map(({ title, summary }) => ({ title, summary }))}
+        directionsHref={pageHashes.general}
+        onMeetingClick={() => setDialog("meeting")}
+        onNoteClick={() => setDialog("note")}
+      />
+      {dialog === "meeting" && <MeetingModal onClose={() => setDialog(null)} />}
+      {dialog === "note" && (
         <InfoModal
           title="Аналитическая записка"
-          onClose={() => setShowNote(false)}
+          onClose={() => setDialog(null)}
           description={
             <>
               <p>
@@ -1318,15 +1185,7 @@ function HorizontalBorder1() {
           }
         />
       )}
-    </div>
-  )
-}
-
-function Frame21() {
-  return (
-    <div className="w-full">
-      <HorizontalBorder1 />
-    </div>
+    </>
   )
 }
 
@@ -1390,13 +1249,15 @@ function TeamNode({ n }: { n: string }) {
   )
 }
 
-function TeamPort({ label }: { label: string }) {
+function TeamPort({ direction }: { direction: "input" | "output" }) {
+  const isInput = direction === "input"
   return (
-    <span
-      className={`${teamMonoLabel} shrink-0 whitespace-nowrap bg-gov-canvas px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-gov-muted`}
-    >
-      {label}
-    </span>
+    <p className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] leading-[1.3] font-semibold tracking-[0.02em] text-gov-ink sm:text-[17px]">
+      <span className="font-bold text-gov-accent">
+        {isInput ? "ВХОД" : "ВЫХОД"}
+      </span>
+      {isInput ? " · ВАША ЗАДАЧА" : " · РАБОЧИЙ РЕЗУЛЬТАТ"}
+    </p>
   )
 }
 
@@ -1463,33 +1324,21 @@ function TeamSection() {
         </p>
 
         {/* mechanism */}
-        <div ref={ref} className="mt-[24px] flex w-full flex-col">
+        <div ref={ref} className="mt-[20px] flex w-full flex-col">
           {/* input port on narrow screens */}
-          <div className="lg:hidden" style={step(0)}>
-            <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
+          <div className="mb-[16px] lg:hidden">
+            <TeamPort direction="input" />
           </div>
 
           {/* desktop track: rail with input/output labels */}
-          <div
-            className="hidden items-start gap-[10px] lg:flex"
-            style={step(0)}
-          >
-            <div className="pt-[3px]">
-              <TeamPort label="ВХОД · ВАША ЗАДАЧА" />
-            </div>
-            <div className="relative flex-1">
-              <span
-                aria-hidden
-                className="team-rail absolute -left-[10px] -right-[10px] top-[16px] h-px"
-              />
-            </div>
-            <div className="pt-[3px]">
-              <TeamPort label="ВЫХОД · РАБОЧИЙ РЕЗУЛЬТАТ" />
-            </div>
+          <div className="mb-[16px] hidden items-center gap-[16px] lg:flex">
+            <TeamPort direction="input" />
+            <span aria-hidden className="team-rail h-[2px] flex-1" />
+            <TeamPort direction="output" />
           </div>
 
           {/* stages */}
-          <div className="relative mt-[14px] lg:mt-0">
+          <div className="relative">
             <span
               aria-hidden
               className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[color:var(--gov-rail)] lg:hidden"
@@ -1612,8 +1461,8 @@ function TeamSection() {
           </div>
 
           {/* output port on narrow screens */}
-          <div className="mt-[14px] lg:hidden" style={step(6)}>
-            <TeamPort label="ВЫХОД · РАБОЧИЙ РЕЗУЛЬТАТ" />
+          <div className="mt-[16px] lg:hidden">
+            <TeamPort direction="output" />
           </div>
         </div>
 
@@ -2449,49 +2298,6 @@ function Container66() {
     </div>
   )
 }
-function HeroTabs({ activePage }: { activePage: PageKey | null }) {
-  return (
-    <nav
-      aria-label="Основная навигация"
-      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[1000px]:col-span-1 min-[1000px]:col-start-2 min-[1000px]:row-start-1"
-    >
-      {pageKeys.map((key) => {
-        const tab = key === "general" ? null : tabData[key]
-        const isCurrent = key === activePage
-        return (
-          <a
-            key={key}
-            href={pageHashes[key]}
-            aria-current={isCurrent ? "page" : undefined}
-            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent sm:px-[12px] min-[1000px]:min-h-0 ${
-              key === "general" ? "sm:min-w-[112px] sm:justify-center" : ""
-            } ${
-              isCurrent
-                ? "border-gov-accent bg-gov-hover"
-                : "border-gov-line bg-gov-panel hover:border-gov-outline hover:bg-gov-inset"
-            }`}
-          >
-            {tab && (
-              <span
-                aria-hidden
-                className="shrink-0 font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-gov-accent max-[369px]:hidden"
-              >
-                {tab.index}
-              </span>
-            )}
-            <span
-              className="whitespace-nowrap font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold text-gov-ink"
-              style={{ fontVariationSettings: '"wdth" 100' }}
-            >
-              {tab?.label ?? "Общее"}
-            </span>
-          </a>
-        )
-      })}
-    </nav>
-  )
-}
-
 export type Language = "RU" | "KZ" | "EN"
 
 function LanguageSwitcher({
@@ -2756,7 +2562,7 @@ function Background() {
       className="content-stretch flex flex-col items-stretch relative shrink-0 w-full bg-gov-canvas text-gov-ink"
       data-name="Background"
     >
-      <HorizontalBorder
+      <SiteHeader
         activePage={activePage}
         onHomeClick={handleHome}
         language={language}
@@ -2764,7 +2570,9 @@ function Background() {
         theme={theme}
         onThemeToggle={toggleTheme}
       />
-      {isSimulator ? (
+      {activePage === null ? (
+        <HomeLanding />
+      ) : isSimulator ? (
         <>
           <AISimulatorPage onBack={handleBack} />
           <Container66 />
@@ -2773,15 +2581,13 @@ function Background() {
         <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
           {activePage === "general" ? (
             <GeneralPage onTabClick={handleTabChange} theme={theme} />
-          ) : activePage ? (
-            <TabPage key={activePage} tabKey={activePage} onBack={handleBack} />
           ) : (
-            <Frame21 />
+            <TabPage key={activePage} tabKey={activePage} onBack={handleBack} />
           )}
           <Container66 />
         </div>
       )}
-      <BackToTopButton />
+      {activePage !== null && <BackToTopButton />}
       {imageModal && (
         <ImageModal
           index={productImages[imageModal].index}

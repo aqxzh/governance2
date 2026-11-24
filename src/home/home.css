@@ -1,0 +1,376 @@
+.home-page :is(a, button):focus-visible {
+  outline: 2px solid var(--gov-accent);
+  outline-offset: 4px;
+}
+
+.home-hero {
+  --home-scene-height: calc(100svh - var(--site-header-height));
+  --home-rail-height: 3.75rem;
+  --home-display-size: clamp(2.125rem, 3.7vw, 3.875rem);
+  --home-frame-aspect: 2.64;
+  --home-directions-width: 40rem;
+  --home-frame-shadow:
+    0 28px 48px -18px rgb(29 45 76 / .23),
+    0 10px 24px -14px rgb(29 45 76 / .14);
+  --home-film-canvas: #edf2f9;
+  --home-film-tone: saturate(.9);
+  --home-film-tint: rgb(215 227 247 / .12);
+  background: var(--gov-canvas);
+  color: var(--gov-ink);
+}
+
+:root[data-governance-theme="dark"] .home-hero {
+  --home-frame-shadow:
+    0 28px 54px -18px rgb(0 0 0 / .55),
+    0 10px 24px -14px rgb(0 0 0 / .36);
+  --home-film-canvas: #0d1422;
+  --home-film-tone: invert(1) hue-rotate(180deg) contrast(.88) brightness(.9) saturate(.8);
+  --home-film-tint: rgb(19 30 50 / .24);
+}
+
+.home-hero__media video,
+.home-hero__media img,
+.home-hero__media::after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-hero__scene {
+  background: linear-gradient(180deg, var(--gov-canvas) 5%, var(--gov-inset) 92%);
+}
+
+/* `clip` keeps the document as the sticky scroll container. */
+:root:has(.home-hero[data-horizontal]),
+:root:has(.home-hero[data-horizontal]) body,
+#root:has(.home-hero[data-horizontal]) {
+  overflow-x: clip;
+}
+
+#root:has(.home-hero[data-horizontal]) .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.home-hero[data-horizontal] {
+  --home-edge: max(
+    var(--site-gutter),
+    calc((100vw - var(--site-shell-width)) / 2 + var(--site-gutter))
+  );
+  --home-chapter-gap: clamp(2rem, 4.75vw, 6.5rem);
+  --home-directions-width: 44rem;
+  min-height: calc(var(--home-scene-height) + var(--home-scroll-distance, 0px));
+}
+
+.home-hero[data-horizontal] .home-hero__scene {
+  position: sticky;
+  top: var(--site-header-height);
+  display: grid;
+  height: var(--home-scene-height);
+  grid-template-rows: minmax(0, 1fr) var(--home-rail-height);
+  overflow: clip;
+}
+
+.home-hero[data-horizontal] .home-hero__viewport {
+  min-width: 0;
+  overflow: clip;
+}
+
+.home-hero[data-horizontal] .home-hero__track {
+  position: relative;
+  display: flex;
+  width: max-content;
+  height: 100%;
+  column-gap: var(--home-chapter-gap);
+}
+
+.home-hero[data-horizontal] .home-hero__panel {
+  display: grid;
+  flex: none;
+  align-content: center;
+  margin: 0;
+  padding-block: clamp(1rem, 3svh, 2.5rem);
+}
+
+.home-hero[data-horizontal] .home-hero__intro {
+  /* The headline, not an empty fraction of the viewport, sets the measure. */
+  width: min(68vw, calc(var(--home-edge) + 14.25 * var(--home-display-size)));
+  padding-inline: var(--home-edge) 0;
+}
+
+.home-hero[data-horizontal] .home-hero__showcase {
+  width: min(
+    91vw,
+    116rem,
+    calc((var(--home-scene-height) - var(--home-rail-height) - 5rem) * var(--home-frame-aspect))
+  );
+  padding-inline: 0;
+}
+
+.home-hero[data-horizontal] .home-hero__film {
+  width: 100%;
+}
+
+.home-hero[data-horizontal] .home-hero__closing {
+  width: min(68vw, calc(var(--home-edge) + var(--home-directions-width)));
+  padding-inline: 0 var(--home-edge);
+}
+
+.home-hero__showcase {
+  display: grid;
+  place-items: center;
+  padding: 0 var(--site-gutter);
+  pointer-events: none;
+}
+
+.home-hero__film {
+  position: relative;
+  width: min(100%, 112rem);
+  aspect-ratio: var(--home-frame-aspect);
+  border-radius: clamp(.75rem, 1.4vw, 1.375rem);
+  box-shadow: var(--home-frame-shadow);
+}
+
+.home-hero__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--home-film-canvas);
+}
+
+.home-hero__media :is(video, img) {
+  /* Crop out the recorded app's toolbar so it doesn't read as a second menu. */
+  top: -12%;
+  height: 112%;
+  object-fit: cover;
+  object-position: center 12%;
+  filter: var(--home-film-tone);
+}
+
+.home-hero__media::after {
+  content: "";
+  background: var(--home-film-tint);
+}
+
+.home-hero__intro,
+.home-hero__closing {
+  width: min(100%, 112rem);
+  margin-inline: auto;
+  padding: clamp(2rem, 5vw, 4rem) var(--site-gutter);
+}
+
+.home-hero__title {
+  max-width: clamp(48rem, 52vw, 56rem);
+  font-size: var(--home-display-size);
+  font-weight: 620;
+  line-height: 1.05;
+  letter-spacing: -.038em;
+  text-wrap: balance;
+}
+
+.home-hero__closing .home-hero__title {
+  max-width: 38rem;
+}
+
+.home-hero__description {
+  max-width: 36rem;
+  margin-top: clamp(1rem, 2.2svh, 1.5rem);
+  color: var(--gov-body);
+  font-size: clamp(1rem, 1.34vw, 1.1875rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .25rem clamp(.75rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2.65svh, 1.75rem);
+}
+
+.home-meeting,
+.home-note,
+.home-hero__directions-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 590;
+}
+
+.home-meeting,
+.home-note {
+  cursor: pointer;
+}
+
+.home-meeting {
+  padding-inline: 1rem;
+  border-radius: 999px;
+  background-color: var(--gov-action);
+  color: white;
+  font-size: .875rem;
+  transition: background-color 160ms ease;
+}
+
+.home-meeting:hover {
+  background-color: var(--gov-action-hover);
+}
+
+.home-note {
+  color: var(--gov-accent);
+  font-size: .875rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: .3em;
+}
+
+.home-note:hover {
+  text-decoration-color: currentColor;
+}
+
+.home-hero :is(button, a) svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.home-hero__directions {
+  max-width: var(--home-directions-width);
+  margin-top: clamp(1rem, 2.3svh, 1.5rem);
+  border-top: 1px solid var(--gov-line);
+}
+
+.home-hero__directions > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, .9fr) minmax(0, 1.7fr);
+  align-items: baseline;
+  gap: .25rem 1rem;
+  padding-block: .7rem;
+  border-bottom: 1px solid var(--gov-line);
+}
+
+.home-hero__directions dt {
+  font-size: .975rem;
+  font-weight: 620;
+}
+
+.home-hero__directions dd {
+  color: var(--gov-body);
+  font-size: .9375rem;
+  line-height: 1.45;
+}
+
+.home-hero__directions-link {
+  justify-self: start;
+  margin-top: .7rem;
+  color: var(--gov-accent);
+  font-size: .9rem;
+  text-underline-offset: .3em;
+}
+
+.home-hero__directions-link:hover {
+  text-decoration: underline;
+}
+
+.home-hero__rail {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 1rem;
+  color: var(--gov-muted);
+  font-size: .8125rem;
+}
+
+.home-hero__descriptor {
+  font-size: .6875rem;
+  font-weight: 590;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.home-hero__chapters {
+  display: flex;
+  gap: clamp(.85rem, 2vw, 2rem);
+}
+
+.home-hero__chapters button {
+  position: relative;
+  min-height: 2.75rem;
+  cursor: pointer;
+  font-weight: 550;
+}
+
+.home-hero__chapters button:hover,
+.home-hero__chapters button[aria-current="step"] {
+  color: var(--gov-ink);
+}
+
+.home-hero__chapters button[aria-current="step"]::after {
+  position: absolute;
+  inset-inline: 0;
+  bottom: .4rem;
+  height: 1px;
+  background: var(--gov-accent);
+  content: "";
+}
+
+.home-hero__scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: .4rem;
+}
+
+.home-hero__scroll-cue svg {
+  width: .95rem;
+  height: .95rem;
+}
+
+@media (max-width: 56rem) {
+  .home-hero__rail {
+    grid-template-columns: 1fr auto;
+  }
+
+  .home-hero__descriptor {
+    display: none;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .home-hero {
+    --home-display-size: clamp(1.95rem, 6vw, 2.8rem);
+  }
+
+  .home-hero__film {
+    aspect-ratio: 1.1;
+  }
+
+  .home-hero__media :is(video, img) {
+    width: 172%;
+    max-width: none;
+    object-position: 38% 12%;
+  }
+
+  .home-hero__description {
+    max-width: 32rem;
+  }
+
+  .home-hero__directions > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 26rem) {
+  .home-meeting,
+  .home-note {
+    font-size: .8125rem;
+  }
+
+  .home-hero .home-meeting svg {
+    display: none;
+  }
+}

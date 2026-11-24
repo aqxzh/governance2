@@ -51,11 +51,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div className="block min-h-screen w-full bg-gov-canvas text-gov-ink">
-        {/*
-          Full-width page: the 1170px constraint for the main site now lives
-          inside imports/index.tsx (Background), so the simulator branch can
-          go full-bleed without being clipped by this wrapper.
-        */}
+        {/* The homepage film and simulator use the full width of this wrapper. */}
         <div
           style={{
             width: '100%',
