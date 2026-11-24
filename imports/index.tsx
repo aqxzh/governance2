@@ -14,6 +14,10 @@ import imgSchemeSteps19 from "./scheme-steps-1-9.png"
 import imgSchemeSteps1017 from "./scheme-steps-10-17.png"
 import imgImage55 from "./762e3da223b722c4708edaa513edb7fb81d065dc.png"
 import imgImage56 from "./c07407db45f5b55ba113edc2d3987e4a10064c6c.png"
+import imgAfterDark from "./dark/after.webp"
+import imgBeforeDark from "./dark/before.webp"
+import imgStrategyDark from "./dark/strategy.webp"
+import imgVisualDark from "./dark/visual.webp"
 import imgProductSmartHr from "./smart-hr.png"
 import imgProductOnlineAssessment from "./online-assessment.png"
 import imgProductAssistant from "./assistant.png"
@@ -1669,7 +1673,20 @@ function Heading5() {
   )
 }
 
-function Group4() {
+function Group4({ theme }: { theme: SiteTheme }) {
+  const illustrations = [
+    {
+      label: "Было",
+      alt: "Схема запутанных связей между функциями",
+      image: theme === "dark" ? imgBeforeDark : imgBefore,
+    },
+    {
+      label: "Стало",
+      alt: "Схема функций в упорядоченной иерархии",
+      image: theme === "dark" ? imgAfterDark : imgAfter,
+    },
+  ]
+
   return (
     <div className="flex flex-col gap-[24px]">
       <p className="max-w-[760px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[17px] leading-[1.6] text-gov-muted">
@@ -1678,26 +1695,25 @@ function Group4() {
         с выбора ИИ.
       </p>
       <div className="grid grid-cols-1 gap-y-[20px] md:grid-cols-2 md:gap-x-[40px]">
-        <div className="relative rounded-[20px] border-[0.75px] border-gov-line border-solid bg-white transition-colors duration-300 hover:border-gov-outline">
-          <img
-            alt="Было"
-            className="block w-full rounded-[20px]"
-            src={imgBefore}
-          />
-          <span className="absolute left-[16px] top-[16px] rounded-[8px] bg-white/90 px-[12px] py-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] leading-none text-[#0d0f16] backdrop-blur-sm">
-            Было
-          </span>
-        </div>
-        <div className="relative rounded-[20px] border-[0.75px] border-gov-line border-solid bg-white transition-colors duration-300 hover:border-gov-outline">
-          <img
-            alt="Стало"
-            className="block w-full rounded-[20px]"
-            src={imgAfter}
-          />
-          <span className="absolute left-[16px] top-[16px] rounded-[8px] bg-white/90 px-[12px] py-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] leading-none text-[#0d0f16] backdrop-blur-sm">
-            Стало
-          </span>
-        </div>
+        {illustrations.map(({ label, alt, image }) => (
+          <div
+            key={label}
+            className="relative overflow-hidden rounded-[20px] border-[0.75px] border-gov-line bg-gov-panel transition-colors duration-300 hover:border-gov-outline"
+          >
+            <img
+              key={theme}
+              src={image}
+              alt={alt}
+              width={1076}
+              height={778}
+              loading="lazy"
+              className="block h-auto w-full"
+            />
+            <span className="absolute left-[16px] top-[16px] rounded-[8px] bg-gov-panel/90 px-[12px] py-[6px] font-['IBM_Plex_Sans:Bold',sans-serif] text-[16px] leading-none font-bold text-gov-ink">
+              {label}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -1800,7 +1816,7 @@ function SchemeExplorer() {
   )
 }
 
-function BackgroundHorizontalBorder2() {
+function BackgroundHorizontalBorder2({ theme }: { theme: SiteTheme }) {
   return (
     <div
       className="bg-gov-canvas relative shrink-0 w-full overflow-hidden"
@@ -1813,7 +1829,7 @@ function BackgroundHorizontalBorder2() {
       <div className="content-stretch flex flex-col gap-[20px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container47 />
         <Heading5 />
-        <Group4 />
+        <Group4 theme={theme} />
         <SchemeExplorer />
       </div>
     </div>
@@ -1833,25 +1849,27 @@ function Container48() {
   )
 }
 
-function Group6() {
+function Group6({ theme }: { theme: SiteTheme }) {
   return (
-    <div className="relative inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start bg-white">
+    <div className="relative inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start">
       <div
         className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]"
         data-name="image 55"
       >
         <img
-          alt=""
+          key={theme}
+          alt="Слои стратегии: материальные ресурсы и энергия, инфраструктура, технологии и продукты"
+          loading="lazy"
           className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-          src={imgImage55}
+          src={theme === "dark" ? imgStrategyDark : imgImage55}
         />
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[56px] justify-center ml-[830px] mt-[18px] not-italic relative row-1 text-[#0d0f16] text-[14px] text-center w-[260px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[56px] justify-center ml-[830px] mt-[18px] not-italic relative row-1 text-gov-ink text-[14px] text-center w-[260px]">
         <p className="leading-[normal] mb-0">governance.kz — сложные</p>
         <p className="leading-[normal] mb-0">ИИ-продукты на доступных</p>
         <p className="leading-[normal]">вычислительных мощностях</p>
       </div>
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[78px] mt-[99px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[552px] whitespace-pre-wrap">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[100px] justify-center ml-[78px] mt-[99px] not-italic relative row-1 text-gov-body text-[20px] w-[552px] whitespace-pre-wrap">
         <p className="leading-[normal] mb-0">{`«Будущее инноваций и ИИ упирается в `}</p>
         <p className="leading-[normal]">энергию и вычислительные мощности.»</p>
       </div>
@@ -1859,7 +1877,7 @@ function Group6() {
         className="col-1 h-[68.247px] ml-0 mt-[161.62px] relative row-1 w-[627.918px]"
         data-name="Rectangle"
       />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[59px] mt-[215px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[305px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[68px] justify-center ml-[59px] mt-[215px] not-italic relative row-1 text-gov-body text-[20px] w-[305px]">
         <p className="leading-[normal] mb-0">Передовая экосистема eGov,</p>
         <p className="leading-[normal]">суперкомпьютеры, ЦОДы.</p>
       </div>
@@ -1867,7 +1885,7 @@ function Group6() {
         className="col-1 h-[120.332px] ml-0 mt-[359.44px] relative row-1 w-[504.237px]"
         data-name="Rectangle"
       />
-      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[88px] justify-center ml-[16px] mt-[297px] not-italic relative row-1 text-[#3a4050] text-[20px] w-[463px]">
+      <div className="[word-break:break-word] col-1 flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal h-[88px] justify-center ml-[16px] mt-[297px] not-italic relative row-1 text-gov-body text-[20px] w-[463px]">
         <p className="leading-[normal] mb-0">Дешевая электроэнергия,</p>
         <p className="leading-[normal] mb-0">запасы редкоземельных металлов</p>
         <p className="leading-[normal]">
@@ -1893,7 +1911,7 @@ function Group5() {
   )
 }
 
-function Heading6() {
+function Heading6({ theme }: { theme: SiteTheme }) {
   return (
     <div
       className="content-stretch flex flex-col h-[523px] items-start leading-[0] relative shrink-0 w-full"
@@ -1905,15 +1923,15 @@ function Heading6() {
       >
         <p className="leading-[normal]">Стратегический фундамент</p>
       </div>
-      <div className="w-full shrink-0 overflow-x-auto rounded-[12px] bg-white">
-        <Group6 />
+      <div className="w-full shrink-0 overflow-x-auto rounded-[12px]">
+        <Group6 theme={theme} />
       </div>
       <Group5 />
     </div>
   )
 }
 
-function BackgroundHorizontalBorder3() {
+function BackgroundHorizontalBorder3({ theme }: { theme: SiteTheme }) {
   return (
     <div
       className="bg-gov-canvas relative shrink-0 w-full"
@@ -1925,7 +1943,7 @@ function BackgroundHorizontalBorder3() {
       />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container48 />
-        <Heading6 />
+        <Heading6 theme={theme} />
       </div>
     </div>
   )
@@ -2281,8 +2299,8 @@ function Container53() {
   )
 }
 
-function HorizontalBorder10() {
-  const [showFoundation, setShowFoundation] = useState(false)
+function HorizontalBorder10({ theme }: { theme: SiteTheme }) {
+  const [showVisual, setShowVisual] = useState(false)
   return (
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div
@@ -2296,31 +2314,34 @@ function HorizontalBorder10() {
           <Container53 />
           <button
             type="button"
-            onClick={() => setShowFoundation((v) => !v)}
-            aria-expanded={showFoundation}
+            onClick={() => setShowVisual((v) => !v)}
+            aria-expanded={showVisual}
             className="mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-gov-outline bg-gov-panel px-[19px] py-[12px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
           >
             <span
               className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
-              Стратегический фундамент
+              Визуал
             </span>
             <span
               aria-hidden
               className={`text-[14px] leading-none transition-transform ${
-                showFoundation ? "rotate-180" : ""
+                showVisual ? "rotate-180" : ""
               }`}
             >
               ↓
             </span>
           </button>
-          {showFoundation && (
-            <div className="mt-[20px] w-full max-w-[960px] overflow-hidden rounded-[16px] border border-gov-line bg-white">
+          {showVisual && (
+            <div className="mt-[20px] w-full max-w-[960px] overflow-hidden rounded-[16px] border border-gov-line bg-gov-panel">
               <img
-                src={imgImage56}
-                alt="Стратегический фундамент"
-                className="block w-full"
+                key={theme}
+                src={theme === "dark" ? imgVisualDark : imgImage56}
+                alt="Схема фильтрации профилей и подбора кандидатов"
+                width={2172}
+                height={724}
+                className="block h-auto w-full"
               />
             </div>
           )}
@@ -2645,15 +2666,21 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   )
 }
 
-function GeneralPage({ onTabClick }: { onTabClick: (key: TabKey) => void }) {
+function GeneralPage({
+  onTabClick,
+  theme,
+}: {
+  onTabClick: (key: TabKey) => void
+  theme: SiteTheme
+}) {
   return (
     <main className="w-full" aria-label="Общее">
       <ContoursSection onTabClick={onTabClick} />
       <TeamSection />
-      <SyntheticResearchSection onTabClick={onTabClick} />
-      <BackgroundHorizontalBorder2 />
-      <BackgroundHorizontalBorder3 />
-      <HorizontalBorder10 />
+      <SyntheticResearchSection onTabClick={onTabClick} theme={theme} />
+      <BackgroundHorizontalBorder2 theme={theme} />
+      <BackgroundHorizontalBorder3 theme={theme} />
+      <HorizontalBorder10 theme={theme} />
       <Background7 />
     </main>
   )
@@ -2743,7 +2770,7 @@ function Background() {
       ) : (
         <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">
           {activePage === "general" ? (
-            <GeneralPage onTabClick={handleTabChange} />
+            <GeneralPage onTabClick={handleTabChange} theme={theme} />
           ) : activePage ? (
             <TabPage key={activePage} tabKey={activePage} onBack={handleBack} />
           ) : (

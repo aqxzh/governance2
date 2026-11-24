@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react"
+import researchDark from "../../imports/dark/synthetic-research.webp"
+import type { SiteTheme } from "../lib/siteTheme"
 
 const BLUE = "#2242d6"
 const BLUE_BRIGHT = "#2f6fed"
@@ -362,8 +364,10 @@ export function SyntheticDiagram() {
 
 export default function SyntheticResearchSection({
   onTabClick,
+  theme,
 }: {
   onTabClick: (key: "recruitment" | "modeling" | "analytics") => void
+  theme: SiteTheme
 }) {
   const sectionRef = useRef<HTMLElement>(null)
   const [visible, setVisible] = useState(false)
@@ -423,8 +427,11 @@ export default function SyntheticResearchSection({
         <div className="mt-[24px] flex flex-col lg:flex-row items-center lg:items-start gap-[36px]">
           <div className="w-full lg:flex-1 min-w-0">
             <img
-              src="/graphics/ai-robot.png"
-              alt="ИИ-робот"
+              key={theme}
+              src={theme === "dark" ? researchDark : "/graphics/ai-robot.png"}
+              alt="Схема опроса синтетических покупателей"
+              width={1672}
+              height={941}
               className="block h-auto w-full rounded-[12px]"
               loading="lazy"
             />
