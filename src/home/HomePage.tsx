@@ -4,7 +4,6 @@ import { useHomeStory } from "./useHomeStory"
 import "./home.css"
 
 const heroVideoSource = `${import.meta.env.BASE_URL}videos/graphs-hero.mp4`
-const chapters = ["О центре", "Видео", "Направления"]
 
 function ArrowIcon({ direction = "right" }: { direction?: "right" | "down" | "up" }) {
   const paths = {
@@ -167,18 +166,6 @@ export default function HomePage({
               <span className="home-hero__descriptor">
                 ИИ инфраструктура управления
               </span>
-              <nav className="home-hero__chapters" aria-label="Вступление">
-                {chapters.map((label, index) => (
-                  <button
-                    key={label}
-                    type="button"
-                    aria-current={index === story.activeChapter ? "step" : undefined}
-                    onClick={() => story.goToChapter(index)}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </nav>
               <span className="home-hero__scroll-cue">
                 <ArrowIcon direction={story.activeChapter === 2 ? "up" : "down"} />
                 {story.activeChapter === 2 ? "Прокрутите вверх" : "Листайте дальше"}

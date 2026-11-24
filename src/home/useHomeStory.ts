@@ -102,20 +102,14 @@ export function useHomeStory() {
     }
   }, [horizontal])
 
-  function goToChapter(index: number, behavior: ScrollBehavior = "smooth") {
-    const position = layout.current
-    if (!position) return
-
-    window.scrollTo({ top: position.start + (position.stops[index] ?? 0), behavior })
-  }
-
   function revealFocus(index: number, event: FocusEvent<HTMLElement>) {
+    const position = layout.current
     const viewport = viewportRef.current?.getBoundingClientRect()
-    if (!horizontal || !viewport || !(event.target instanceof HTMLElement)) return
+    if (!horizontal || !position || !viewport || !(event.target instanceof HTMLElement)) return
 
     const target = event.target.getBoundingClientRect()
     if (target.left < viewport.left || target.right > viewport.right) {
-      goToChapter(index, "auto")
+      window.scrollTo({ top: position.start + (position.stops[index] ?? 0), behavior: "auto" })
     }
   }
 
@@ -126,7 +120,6 @@ export function useHomeStory() {
     trackRef,
     horizontal,
     activeChapter,
-    goToChapter,
     revealFocus,
   }
 }

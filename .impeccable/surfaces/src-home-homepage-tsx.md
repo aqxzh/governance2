@@ -17,7 +17,7 @@ Persuade. For public-sector and organizational decision-makers who need to under
 
 **STORY:** Read the introduction, book a meeting or open the note. Move past the video and into a text-only closing chapter: «Решения остаются за людьми» plus three ways to work with the team and a link to «Общее».
 
-**FIRST VIEWPORT:** The shared masthead and a pinned three-part strip, based on the opening layout of `normalisboring.es`. The opening pairs the headline with a generously visible portion of the film; one consistent gap separates the chapters instead of leaving an empty band between them. Vertical scroll moves from the introduction to the video and right-hand text. A small chapter navigator doubles as a keyboard path. Narrow, short and reduced-motion layouts read top to bottom.
+**FIRST VIEWPORT:** The shared masthead and a pinned three-part strip, based on the opening layout of `normalisboring.es`. The opening pairs the headline with a generously visible portion of the film; one consistent gap separates the chapters instead of leaving an empty band between them. Vertical scroll moves from the introduction to the video and right-hand text. The rail keeps a scroll cue, without chapter buttons. Narrow, short and reduced-motion layouts read top to bottom.
 
 **FORM:** Code-led. Native scroll with a sticky viewport and a single track transform; no wheel interception. The 4.8-second clip in `public/videos/graphs-hero.mp4` starts at 8.6 seconds of the 2880×1470 source `_video-originals/graphs.mov`, cropped only to remove the console strip. The poster uses the same first frame. The muted clip plays once as its frame comes into view; reduced motion uses the poster.
 
