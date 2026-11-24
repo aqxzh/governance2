@@ -50,18 +50,11 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div
-        style={{
-          minHeight: '100vh',
-          width: '100%',
-          backgroundColor: '#ffffff',
-          display: 'block',
-        }}
-      >
+      <div className="block min-h-screen w-full bg-gov-canvas text-gov-ink">
         {/*
           Full-width page: the 1170px constraint for the main site now lives
           inside imports/index.tsx (Background), so the simulator branch can
-          go full-bleed black without being clipped by this wrapper.
+          go full-bleed without being clipped by this wrapper.
         */}
         <div
           style={{

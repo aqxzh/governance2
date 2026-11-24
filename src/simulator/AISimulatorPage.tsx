@@ -240,6 +240,7 @@ function ScaledSlide({ Component, height, minW, isLast }: SlideDef & { isLast: b
   return (
     <div
       ref={outerRef}
+      className="text-black [color-scheme:light]"
       style={{
         position: "relative",
         width: "100%",
@@ -315,26 +316,26 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
   }, []);
 
   return (
-    <div className="w-full bg-black">
+    <div className="w-full bg-gov-canvas">
       <div
-        className="relative w-full overflow-x-clip bg-black"
+        className="relative w-full overflow-x-clip"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
         {/* Шапка страницы — та же колонка 1170: кнопка и текст в одном контейнере,
             отступы как у контента главной */}
-        <div className="relative w-full overflow-hidden bg-black">
+        <div className="relative w-full overflow-hidden">
           <div
             aria-hidden
-            className="absolute inset-0 opacity-[0.35]"
+            className="absolute inset-0 opacity-40"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+                "linear-gradient(var(--gov-line) 1px, transparent 1px), linear-gradient(90deg, var(--gov-line) 1px, transparent 1px)",
               backgroundSize: "44px 44px",
             }}
           />
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
+            className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gov-line to-transparent"
           />
           <div className="relative z-10 mx-auto w-full max-w-[1170px] px-[20px] sm:px-[44px]">
             {/* Кнопка назад */}
@@ -342,7 +343,7 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
               <button
                 type="button"
                 onClick={onBack}
-                className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-white/50 cursor-pointer transition-colors hover:text-white"
+                className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-gov-muted cursor-pointer transition-colors hover:text-gov-accent"
               >
                 <span className="text-[14px] leading-none">←</span>
                 НАЗАД К ГЛАВНОЙ
@@ -350,13 +351,13 @@ export default function AISimulatorPage({ onBack }: { onBack: () => void }) {
             </div>
             <div className="flex flex-col gap-[12px] pb-[22px] pt-[10px]">
             <h2
-              className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-white sm:text-[38px]"
+              className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[30px] tracking-[-0.36px] text-gov-ink sm:text-[38px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               Моделирование
             </h2>
             <p
-              className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-white/70 max-w-[900px] sm:text-[17px]"
+              className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-gov-body max-w-[900px] sm:text-[17px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               Моделирование сценариев и поведение синтетической аудитории:

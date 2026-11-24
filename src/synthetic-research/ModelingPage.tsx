@@ -50,10 +50,10 @@ export function RegistryTable({
     <div className="relative w-full">
       <div
         aria-hidden
-        className="absolute border border-[#0d0f16] border-solid inset-0 pointer-events-none"
+        className="absolute border border-gov-line border-solid inset-0 pointer-events-none"
       />
       <div className="content-stretch flex flex-col items-start pb-px pt-px relative size-full">
-        <div className="bg-[#0d0f16] grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
+        <div className="bg-gov-emphasis grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[39px] h-[39px] relative shrink-0 w-full">
           {["№", "РЕШЕНИЕ", "ЧТО ДЕЛАЕТ", "ОСОБЕННОСТЬ"].map((h) => (
             <div
               key={h}
@@ -75,28 +75,28 @@ export function RegistryTable({
               key={row.num}
               onClick={clickable ? () => onSelect(row) : undefined}
               className={`group grid grid-cols-[60px_minmax(0,1.10fr)_minmax(0,2fr)_minmax(0,1.10fr)] grid-rows-[auto] min-h-[64px] pt-px relative shrink-0 w-full transition-colors ${
-                clickable ? "cursor-pointer hover:bg-[#eef0f5]" : ""
-              } ${i % 2 === 0 ? "bg-white" : "bg-[#f6f7fb]"}`}
+                 clickable ? "cursor-pointer hover:bg-gov-hover" : ""
+               } ${i % 2 === 0 ? "bg-gov-panel" : "bg-gov-inset"}`}
             >
               <div
                 aria-hidden
-                className="absolute border-[#e6e8ee] border-solid border-t inset-0 pointer-events-none"
+                className="absolute border-gov-line border-solid border-t inset-0 pointer-events-none"
               />
               <span
                 aria-hidden
-                className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"
+                className="absolute left-0 top-0 bottom-0 w-[3px] bg-gov-accent opacity-0 transition-opacity group-hover:opacity-100"
               />
               {clickable && (
                 <span
                   aria-hidden
-                  className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover:opacity-100"
+                  className="absolute right-[14px] top-1/2 -translate-y-1/2 text-[16px] leading-none text-gov-accent opacity-0 transition-opacity group-hover:opacity-100"
                 >
                   →
                 </span>
               )}
               <div className="col-1 justify-self-stretch relative row-1 self-start shrink-0">
                 <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
-                  <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[16px] whitespace-nowrap">
+                  <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gov-accent text-[16px] whitespace-nowrap">
                     <p className="leading-[normal]">{row.num}</p>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export function RegistryTable({
               <div className="col-2 justify-self-stretch relative row-1 self-start shrink-0">
                 <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
                   <div
-                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-[#0d0f16] text-[16px]"
+                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] min-w-0 relative shrink-0 text-gov-ink text-[16px]"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     <p className="leading-[24px]">{row.name}</p>
@@ -114,7 +114,7 @@ export function RegistryTable({
               <div className="col-3 justify-self-stretch relative row-1 self-start shrink-0">
                 <div className="content-stretch flex flex-col items-start p-[16px] relative size-full">
                   <div
-                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#3a4050] text-[16px]"
+                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-gov-body text-[16px]"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     <p className="leading-[24px]">{row.does}</p>
@@ -124,7 +124,7 @@ export function RegistryTable({
               <div className="col-4 justify-self-stretch relative row-1 self-start shrink-0">
                 <div className="content-stretch flex flex-col items-start pb-[19px] pt-[16px] px-[16px] relative size-full">
                   <div
-                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-[#5a606e] text-[16px]"
+                    className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Regular',sans-serif] font-normal justify-center leading-[0] min-w-0 relative shrink-0 text-gov-muted text-[16px]"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     <p className="leading-[24px]">{row.feature}</p>

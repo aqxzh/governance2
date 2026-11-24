@@ -42,6 +42,8 @@ import SyntheticResearchSection from "../src/synthetic-research/SyntheticResearc
 import { RegistryTable } from "../src/synthetic-research/ModelingPage"
 import { ImageModal } from "../src/synthetic-research/ImageModal"
 import BackToTopButton from "../src/components/BackToTopButton"
+import ThemeToggle from "../src/components/ThemeToggle"
+import { useSiteTheme, type SiteTheme } from "../src/lib/siteTheme"
 
 export type ProductImageKey = "smarthr" | "assessment" | "assistant" | "sovereignty"
 
@@ -491,11 +493,11 @@ function ContoursSection({
   return (
     <section id="contours" className="relative w-full">
       <div className="content-stretch flex flex-col items-start pb-[56px] pt-[52px] px-[20px] sm:px-[28px] relative size-full w-full max-w-[1170px] mx-auto">
-        <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#2242d6]">
+        <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-gov-accent">
           ВЫБРАТЬ ЗАДАЧУ
         </div>
         <h1
-          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-gov-ink text-[30px] tracking-[-0.3px] w-full"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Понять. Организовать. Проверить.
@@ -505,25 +507,25 @@ function ContoursSection({
           {cards.map((card) => (
             <article
               key={card.key}
-              className="flex flex-col rounded-[16px] border border-[#e6e8ee] bg-white p-[20px] transition-colors hover:border-[#0d0f16]"
+              className="flex flex-col rounded-[16px] border border-gov-line bg-gov-panel p-[20px] transition-colors hover:border-gov-outline"
             >
-              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-[#2242d6]">
+              <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-gov-accent">
                 {card.num}
               </span>
               <span
-                className="mt-[10px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-[#0d0f16]"
+                className="mt-[10px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[20px] text-gov-ink"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 {card.title}
               </span>
-              <span className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] leading-[1.6] text-[#5a606e]">
+              <span className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] leading-[1.6] text-gov-muted">
                 {card.text}
               </span>
               <span className="mt-[16px] flex flex-col gap-[10px]">
                 {card.items.map((item) => (
                   <span
                     key={item}
-                    className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] text-[#0d0f16]"
+                    className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[14px] text-gov-ink"
                   >
                     {item}
                   </span>
@@ -533,7 +535,7 @@ function ContoursSection({
                 <button
                   type="button"
                   onClick={() => onTabClick(card.key)}
-                  className="block w-full whitespace-nowrap rounded-[8px] border border-[#0d0f16] bg-white px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-[#0d0f16] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] cursor-pointer"
+                  className="block w-full whitespace-nowrap rounded-[8px] border border-gov-outline bg-gov-panel px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent cursor-pointer"
                 >
                   Разобрать направление
                 </button>
@@ -553,7 +555,7 @@ function Container3() {
       data-name="Container"
     >
       <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[17px] tracking-[-0.17px] whitespace-nowrap"
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-gov-ink text-[clamp(13px,4vw,17px)] tracking-[-0.17px] whitespace-nowrap"
         style={{ fontVariationSettings: '"wdth" 100' }}
       >
         <p className="leading-[normal]">GOVERNANCE.KZ</p>
@@ -567,14 +569,14 @@ function Container2({ onHomeClick }: { onHomeClick?: () => void }) {
     <button
       type="button"
       onClick={onHomeClick}
-      className="content-stretch flex gap-[11px] items-center relative shrink-0 cursor-pointer justify-self-start rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2242d6]"
+      className="content-stretch flex gap-[7px] items-center relative shrink-0 cursor-pointer justify-self-start rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gov-accent min-[400px]:gap-[11px]"
       data-name="Container"
       aria-label="На главную"
     >
-      <div className="relative shrink-0 size-[26px]" data-name="Border">
+      <div className="relative shrink-0 size-[clamp(20px,6vw,26px)]" data-name="Border">
         <div
           aria-hidden
-          className="absolute border-[3px] border-[#2242d6] border-solid inset-0 pointer-events-none"
+          className="absolute border-[3px] border-gov-accent border-solid inset-0 pointer-events-none"
         />
       </div>
       <Container3 />
@@ -671,21 +673,26 @@ export function HorizontalBorder({
   onHomeClick,
   language,
   onLanguageChange,
+  theme,
+  onThemeToggle,
 }: {
   activePage: PageKey | null
   onHomeClick?: () => void
   language: Language
   onLanguageChange: (lang: Language) => void
+  theme: SiteTheme
+  onThemeToggle: () => void
 }) {
   return (
     <header
-      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[16px] gap-y-[12px] bg-white px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[900px]:grid-cols-[minmax(0,1fr)_auto_auto]"
+      className="grid w-full shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-[8px] gap-y-[12px] bg-gov-canvas px-[20px] pb-[22px] pt-[20px] sm:px-[28px] min-[960px]:grid-cols-[minmax(0,1fr)_auto_auto] min-[960px]:gap-x-[16px]"
       data-name="HorizontalBorder"
     >
       <Container2 onHomeClick={onHomeClick} />
       <HeroTabs activePage={activePage} />
-      <div className="col-start-2 row-start-1 min-[900px]:col-start-3">
+      <div className="col-start-2 row-start-1 flex items-center gap-[4px] min-[400px]:gap-[8px] min-[960px]:col-start-3">
         <LanguageSwitcher language={language} onChange={onLanguageChange} />
+        <ThemeToggle theme={theme} onToggle={onThemeToggle} />
       </div>
     </header>
   )
@@ -733,7 +740,7 @@ function Background2({ onClick }: { onClick: () => void }) {
   return (
     <div
       onClick={onClick}
-      className="bg-[#2242d6] rounded-[8px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      className="bg-gov-action rounded-[8px] relative shrink-0 cursor-pointer transition-colors hover:bg-gov-action-hover"
       data-name="Background"
     >
       <div className="content-stretch flex flex-col items-start px-[22px] py-[14px] relative size-full">
@@ -752,16 +759,16 @@ function Border1({ onClick }: { onClick: () => void }) {
   return (
     <div
       onClick={onClick}
-      className="relative shrink-0 cursor-pointer bg-white rounded-[8px]"
+      className="relative shrink-0 cursor-pointer rounded-[8px] bg-gov-panel transition-colors hover:bg-gov-hover"
       data-name="Border"
     >
       <div
         aria-hidden
-        className="absolute border border-[#0d0f16] border-solid rounded-[8px] inset-0 pointer-events-none"
+        className="absolute border border-gov-outline border-solid rounded-[8px] inset-0 pointer-events-none"
       />
       <div className="content-stretch flex flex-col items-start px-[24px] py-[15px] relative size-full">
         <div
-          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[13px] whitespace-nowrap"
+          className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-gov-ink text-[13px] whitespace-nowrap"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           <p className="leading-[normal]">Аналитическая записка</p>
@@ -780,7 +787,7 @@ function Container12({
 }) {
   return (
     <div
-      className="col-0 content-stretch flex flex-row gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full"
+      className="col-0 content-stretch flex flex-wrap gap-[10px] items-start justify-self-stretch relative row-0 self-end shrink-0 w-full"
       data-name="Container"
     >
       <Background2 onClick={onMeetingClick} />
@@ -826,7 +833,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
   }
 
   const inputClass =
-    "w-full rounded-[10px] border border-[#e6e8ee] bg-[#f6f7fb] px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-[#0d0f16] outline-none transition-colors focus:border-[#2242d6] focus:bg-white placeholder:text-[#9aa0ad]"
+    "w-full rounded-[10px] border border-gov-outline bg-gov-inset px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-gov-ink outline-none transition-colors focus:border-gov-accent focus:bg-gov-panel focus:ring-1 focus:ring-gov-accent placeholder:text-gov-muted"
 
   return (
     <div
@@ -837,34 +844,34 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
       aria-label="Записаться на встречу"
     >
       <div
-        className="relative w-full max-w-[560px] rounded-[24px] bg-white p-[32px] shadow-[0_40px_80px_rgba(13,15,22,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-[560px] overflow-y-auto rounded-[24px] bg-gov-panel p-6 shadow-[0_40px_80px_rgba(13,15,22,0.35)] animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)] sm:p-8"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Закрыть"
-          className="absolute right-6 top-5 text-[26px] leading-none text-[#5a606e] transition-colors hover:text-[#0d0f16] cursor-pointer"
+          className="absolute right-5 top-5 rounded text-[26px] leading-none text-gov-muted transition-colors hover:text-gov-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent cursor-pointer sm:right-6"
         >
           ×
         </button>
 
         <h2
-          className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-[#0d0f16]"
+          className="pr-6 font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[26px] leading-[1.15] tracking-[-0.26px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Записаться на встречу
         </h2>
-        <p className="mt-[14px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-[#5a606e]">
+        <p className="mt-[14px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
           Опишите ваш вопрос — и мы свяжемся с вами.
         </p>
 
         {status === "sent" ? (
-          <div className="mt-[26px] flex flex-col items-center gap-[8px] rounded-[14px] border border-[#d7f0dd] bg-[#effaf2] px-[22px] py-[18px] text-center">
-            <span className="font-['IBM_Plex_Sans:Bold',sans-serif] text-[16px] text-[#137333]">
+          <div className="mt-[26px] flex flex-col items-center gap-[8px] rounded-[14px] border border-gov-success-line bg-gov-success-panel px-[22px] py-[18px] text-center text-gov-success">
+            <span className="font-['IBM_Plex_Sans:Bold',sans-serif] text-[16px]">
               Заявка отправлена
             </span>
-            <span className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#41754d]">
+            <span className="font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5]">
               Спасибо! Мы свяжемся с вами в ближайшее время.
             </span>
           </div>
@@ -897,7 +904,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
               type="button"
               onClick={send}
               disabled={status === "sending" || !name.trim() || !phone.trim()}
-              className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-[#2242d6] px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-[#1a35ad] disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-[26px] flex w-full cursor-pointer items-center justify-center gap-[8px] rounded-full bg-gov-action px-[22px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[15px] whitespace-nowrap text-white transition-colors hover:bg-gov-action-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent disabled:cursor-not-allowed disabled:bg-gov-hover disabled:text-gov-muted"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -911,7 +918,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
             {status === "error" && (
               <p
                 role="alert"
-                className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-[#c5221f]"
+                className="mt-[10px] text-center font-['IBM_Plex_Sans:Regular',sans-serif] text-[13px] leading-[1.5] text-gov-error"
               >
                 Не удалось отправить заявку. Попробуйте ещё раз.
               </p>
@@ -936,20 +943,24 @@ function InfoModal({
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
     >
       <div
-        className="relative w-full max-w-2xl rounded-[24px] bg-white p-8 shadow-[0_40px_80px_rgba(0,0,0,0.18)]"
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[24px] bg-gov-panel p-6 shadow-[0_40px_80px_rgba(0,0,0,0.18)] sm:p-8"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-5 top-5 text-[24px] font-bold text-slate-500 hover:text-slate-900"
+          aria-label="Закрыть"
+          className="absolute right-5 top-5 cursor-pointer rounded text-[24px] font-bold text-gov-muted hover:text-gov-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
         >
           ×
         </button>
-        <h2 className="mb-4 text-2xl font-semibold text-slate-900">{title}</h2>
-        <div className="space-y-4 text-sm leading-6 text-slate-700">
+        <h2 className="mb-4 pr-6 text-2xl font-semibold text-gov-ink">{title}</h2>
+        <div className="space-y-4 text-sm leading-6 text-gov-body">
           {description}
         </div>
       </div>
@@ -1221,9 +1232,9 @@ function HorizontalBorder1() {
           style={{ transform: "scale(1.12)" }}
         />
         {/* Затемнение для читаемости текста */}
-        <div className="absolute inset-0 bg-[#0d0f16]/65" />
-        {/* Плавный fade в белый снизу — бесшовный переход в контент */}
-        <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-0 bg-gov-media-scrim" />
+        {/* Плавный переход к фону страницы */}
+        <div className="absolute inset-x-0 bottom-0 h-[100px] bg-gradient-to-b from-transparent to-gov-canvas" />
       </div>
 
       {/* Контент поверх фона */}
@@ -1262,7 +1273,7 @@ function HorizontalBorder1() {
           {/* Right column: image + buttons */}
           <div className="flex-shrink-0 w-full lg:w-auto flex flex-col gap-[24px]">
             {/* Hero image */}
-            <div className="w-full lg:w-[516px] min-h-[200px] bg-[#f4f5f8] rounded-[8px] overflow-hidden">
+            <div className="w-full lg:w-[516px] min-h-[200px] bg-gov-inset rounded-[8px] overflow-hidden">
               <img
                 alt="Governance.kz"
                 className="block w-full h-auto object-cover rounded-[8px]"
@@ -1368,7 +1379,7 @@ const teamMonoLabel = "font-['IBM_Plex_Mono:Regular',sans-serif] not-italic"
 function TeamNode({ n }: { n: string }) {
   return (
     <span
-      className={`${teamMonoLabel} grid size-[34px] shrink-0 place-items-center rounded-[8px] border-[1.5px] border-[#0d0f16] bg-white text-[13px] tabular-nums text-[#0d0f16]`}
+      className={`${teamMonoLabel} grid size-[34px] shrink-0 place-items-center rounded-[8px] border-[1.5px] border-gov-outline bg-gov-panel text-[13px] tabular-nums text-gov-ink`}
     >
       {n}
     </span>
@@ -1378,7 +1389,7 @@ function TeamNode({ n }: { n: string }) {
 function TeamPort({ label }: { label: string }) {
   return (
     <span
-      className={`${teamMonoLabel} shrink-0 whitespace-nowrap bg-white px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-[#5a606e]`}
+      className={`${teamMonoLabel} shrink-0 whitespace-nowrap bg-gov-canvas px-[16px] py-[6px] text-[11.5px] tracking-[1.1px] text-gov-muted`}
     >
       {label}
     </span>
@@ -1417,11 +1428,11 @@ function TeamSection() {
 
   return (
     <div
-      className="relative w-full shrink-0 bg-white border-t border-[#e6e8ee]"
+      className="relative w-full shrink-0 border-t border-gov-line bg-gov-canvas"
       data-name="HorizontalBorder"
     >
       <style>{`
-        .team-rail { background-image: repeating-linear-gradient(to right, #b9c0d0 0 3px, transparent 3px 6px); }
+        .team-rail { background-image: repeating-linear-gradient(to right, var(--gov-rail) 0 3px, transparent 3px 6px); }
         @keyframes team-rail-move { to { background-position-x: -6px; } }
         @media (prefers-reduced-motion: no-preference) {
           .team-rail { animation: team-rail-move 1.1s linear infinite; }
@@ -1429,18 +1440,18 @@ function TeamSection() {
       `}</style>
       <div className="content-stretch relative flex size-full w-full flex-col items-start gap-[8px] px-[20px] pb-[68px] pt-[66px] sm:px-[28px]">
         {/* label */}
-        <div className="[word-break:break-word] flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[12px] tracking-[1.2px] text-[#2242d6]">
+        <div className="[word-break:break-word] flex w-full flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[12px] tracking-[1.2px] text-gov-accent">
           <p className="leading-[normal]">КОМАНДА</p>
         </div>
         <h2
-          className="w-full font-['IBM_Plex_Sans:Bold',sans-serif] text-[30px] font-bold leading-[1.1] tracking-[-0.3px] text-[#0d0f16]"
+          className="w-full font-['IBM_Plex_Sans:Bold',sans-serif] text-[30px] font-bold leading-[1.1] tracking-[-0.3px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Те, кто превращают сложное в рабочее
-          <span className="text-[#2242d6]">.</span>
+          <span className="text-gov-accent">.</span>
         </h2>
         <p
-          className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.55] text-[#5a606e] sm:text-[17px] xl:whitespace-nowrap"
+          className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.55] text-gov-muted sm:text-[17px] xl:whitespace-nowrap"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Задача не переходит из кабинета в кабинет — она проходит по цепочке
@@ -1477,13 +1488,13 @@ function TeamSection() {
           <div className="relative mt-[14px] lg:mt-0">
             <span
               aria-hidden
-              className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[#c3cad9] lg:hidden"
+              className="absolute -top-[6px] bottom-[8px] left-[16px] w-0 border-l border-dashed border-[color:var(--gov-rail)] lg:hidden"
             />
             <ol className="flex flex-col gap-[24px] lg:grid lg:grid-cols-4 lg:gap-[32px]">
               {teamStages.map((s, i) => (
                 <li
                   key={s.n}
-                  className="group relative ml-[48px] flex flex-col rounded-[12px] border border-[#e0e4ee] bg-white p-[24px] transition-colors duration-200 hover:border-[#0d0f16] lg:ml-0"
+                  className="group relative ml-[48px] flex flex-col rounded-[12px] border border-gov-line bg-gov-panel p-[24px] transition-colors duration-200 hover:border-gov-outline lg:ml-0"
                   style={step(i + 1)}
                 >
                   <span
@@ -1495,50 +1506,50 @@ function TeamSection() {
                   <div className="flex items-center gap-[10px]">
                     <TeamNode n={s.n} />
                     <h3
-                      className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
+                      className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-gov-ink"
                       style={{ fontVariationSettings: '"wdth" 100' }}
                     >
                       {s.phase}
                     </h3>
                   </div>
                   <p
-                    className="mt-[4px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[15px] font-medium leading-[1.35] text-[#2242d6]"
+                    className="mt-[4px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[15px] font-medium leading-[1.35] text-gov-accent"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {s.role}
                   </p>
                   <p
-                    className="mt-[10px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#3a4050]"
+                    className="mt-[10px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-body"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {s.does}
                   </p>
                   <p
-                    className={`${teamMonoLabel} mt-[12px] text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                    className={`${teamMonoLabel} mt-[12px] text-[11px] uppercase tracking-[1.2px] text-gov-muted`}
                   >
                     Метод
                   </p>
                   <p
-                    className={`${teamMonoLabel} mt-[3px] text-[12px] leading-[1.4] text-[#6a7080]`}
+                    className={`${teamMonoLabel} mt-[3px] text-[12px] leading-[1.4] text-gov-muted`}
                   >
                     {s.method}
                   </p>
                   <div className="mt-auto pt-[16px]">
-                    <div className="border-t border-[#eceff5] pt-[12px]">
+                    <div className="border-t border-gov-line pt-[12px]">
                       <p
-                        className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                        className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-gov-muted`}
                       >
                         Артефакт
                       </p>
                       <p className="mt-[4px] flex items-start gap-[8px]">
                         <span
                           aria-hidden
-                          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold leading-[1.45] text-[#2242d6]"
+                          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold leading-[1.45] text-gov-accent"
                         >
                           →
                         </span>
                         <span
-                          className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
+                          className="font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-gov-ink"
                           style={{ fontVariationSettings: '"wdth" 100' }}
                         >
                           {s.artifact}
@@ -1560,34 +1571,34 @@ function TeamSection() {
               {teamStages.map((s) => (
                 <span
                   key={s.n}
-                  className="mx-auto w-0 border-l border-dashed border-[#c3cad9]"
+                  className="mx-auto w-0 border-l border-dashed border-[color:var(--gov-rail)]"
                 />
               ))}
             </div>
-            <div className="flex flex-col gap-[10px] rounded-[12px] border border-[#d8dde8] bg-white px-[20px] py-[16px] transition-colors duration-200 hover:border-[#0d0f16] lg:flex-row lg:items-center lg:gap-[24px]">
+            <div className="flex flex-col gap-[10px] rounded-[12px] border border-gov-line bg-gov-panel px-[20px] py-[16px] transition-colors duration-200 hover:border-gov-outline lg:flex-row lg:items-center lg:gap-[24px]">
               <div className="flex shrink-0 items-center gap-[12px]">
                 <TeamNode n={teamOwner.n} />
                 <h3
-                  className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-[#0d0f16]"
+                  className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[18px] font-semibold leading-[1.25] text-gov-ink"
                   style={{ fontVariationSettings: '"wdth" 100' }}
                 >
                   {teamOwner.role}
                 </h3>
               </div>
               <p
-                className="flex-1 font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+                className="flex-1 font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 {teamOwner.does}
               </p>
               <p className="shrink-0 lg:text-right">
                 <span
-                  className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-[#6a7080]`}
+                  className={`${teamMonoLabel} text-[11px] uppercase tracking-[1.2px] text-gov-muted`}
                 >
                   Артефакт
                 </span>
                 <span
-                  className="ml-[6px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-[#0d0f16]"
+                  className="ml-[6px] font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium leading-[1.45] text-gov-ink"
                   style={{ fontVariationSettings: '"wdth" 100' }}
                 >
                   {teamOwner.artifact}
@@ -1608,14 +1619,14 @@ function TeamSection() {
             {teamSeal.map((s, i) => (
               <li
                 key={s}
-                className="flex items-baseline gap-[10px] rounded-[12px] border border-[#d8dde8] bg-white px-[20px] py-[18px]"
+                className="flex items-baseline gap-[10px] rounded-[12px] border border-gov-line bg-gov-panel px-[20px] py-[18px]"
               >
                 <span
-                  className={`${teamMonoLabel} text-[11.5px] tabular-nums tracking-[1px] text-[#2242d6]`}
+                  className={`${teamMonoLabel} text-[11.5px] tabular-nums tracking-[1px] text-gov-accent`}
                 >
                   0{i + 1}
                 </span>
-                <span className="text-[15px] font-medium leading-[1.45] text-[#0d0f16]">
+                <span className="text-[15px] font-medium leading-[1.45] text-gov-ink">
                   {s}
                 </span>
               </li>
@@ -1633,10 +1644,8 @@ function Container47() {
       className="content-stretch flex flex-col items-start relative shrink-0 w-full"
       data-name="Container"
     >
-      <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px]">
-        <span className="text-[#2242d6]">БЫЛО</span>
-        <span className="text-[#2242d6]"> → </span>
-        <span className="text-[#2242d6]">СТАЛО</span>
+      <div className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-gov-accent">
+        БЫЛО → СТАЛО
       </div>
     </div>
   )
@@ -1649,7 +1658,7 @@ function Heading5() {
       data-name="Heading 2"
     >
       <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-gov-ink text-[30px] tracking-[-0.3px] w-full"
         style={{ fontVariationSettings: '"wdth" 100' }}
       >
         <p className="leading-[normal]">
@@ -1663,13 +1672,13 @@ function Heading5() {
 function Group4() {
   return (
     <div className="flex flex-col gap-[24px]">
-      <p className="max-w-[760px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[17px] leading-[1.6] text-[#5a606e]">
+      <p className="max-w-[760px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[17px] leading-[1.6] text-gov-muted">
         Функции пересекаются, услуги состоят из лишних этапов, а нагрузка видна
         только по отдельным отчётам. Начинаем с того, как устроен процесс, а не
         с выбора ИИ.
       </p>
       <div className="grid grid-cols-1 gap-y-[20px] md:grid-cols-2 md:gap-x-[40px]">
-        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white transition-colors duration-300 hover:border-[#0d0f16]">
+        <div className="relative rounded-[20px] border-[0.75px] border-gov-line border-solid bg-white transition-colors duration-300 hover:border-gov-outline">
           <img
             alt="Было"
             className="block w-full rounded-[20px]"
@@ -1679,7 +1688,7 @@ function Group4() {
             Было
           </span>
         </div>
-        <div className="relative rounded-[20px] border-[0.75px] border-[#dbe2ec] border-solid bg-white transition-colors duration-300 hover:border-[#0d0f16]">
+        <div className="relative rounded-[20px] border-[0.75px] border-gov-line border-solid bg-white transition-colors duration-300 hover:border-gov-outline">
           <img
             alt="Стало"
             className="block w-full rounded-[20px]"
@@ -1720,17 +1729,17 @@ function SchemeExplorer() {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="group flex cursor-pointer items-center gap-[10px] rounded-[8px] border border-[#0d0f16] border-solid bg-white px-[19px] py-[12px] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+        className="flex cursor-pointer items-center gap-[10px] rounded-[8px] border border-gov-outline bg-gov-panel px-[19px] py-[12px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
       >
         <span
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] whitespace-nowrap transition-colors group-hover:text-white"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           {expanded ? "Скрыть схему" : "Разобрать схему процесса"}
         </span>
         <span
           aria-hidden
-          className={`text-[14px] leading-none text-[#0d0f16] transition-all duration-300 group-hover:text-white ${
+          className={`text-[14px] leading-none transition-transform duration-300 ${
             expanded ? "rotate-180" : ""
           }`}
         >
@@ -1745,7 +1754,7 @@ function SchemeExplorer() {
               key={card.num}
               type="button"
               onClick={() => setZoom(card)}
-              className="group/card flex cursor-pointer flex-col overflow-hidden rounded-[14px] border-[0.75px] border-[#dbe2ec] border-solid bg-white text-left transition-colors duration-300 hover:border-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+              className="group/card flex cursor-pointer flex-col overflow-hidden rounded-[14px] border-[0.75px] border-gov-line border-solid bg-gov-panel text-left transition-colors duration-300 hover:border-gov-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
             >
               <span className="block overflow-hidden">
                 <img
@@ -1756,11 +1765,11 @@ function SchemeExplorer() {
               </span>
               <span className="flex items-center justify-between gap-[12px] px-[18px] py-[14px]">
                 <span className="flex items-baseline gap-[10px]">
-                  <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-[#2242d6]">
+                  <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-gov-accent">
                     {card.num}
                   </span>
                   <span
-                    className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] text-[#0d0f16]"
+                    className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[16px] text-gov-ink"
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {card.title}
@@ -1768,7 +1777,7 @@ function SchemeExplorer() {
                 </span>
                 <span
                   aria-hidden
-                  className="text-[16px] leading-none text-[#2242d6] opacity-0 transition-opacity group-hover/card:opacity-100"
+                  className="text-[16px] leading-none text-gov-accent opacity-0 transition-opacity group-hover/card:opacity-100"
                 >
                   ⤢
                 </span>
@@ -1794,12 +1803,12 @@ function SchemeExplorer() {
 function BackgroundHorizontalBorder2() {
   return (
     <div
-      className="bg-white relative shrink-0 w-full overflow-hidden"
+      className="bg-gov-canvas relative shrink-0 w-full overflow-hidden"
       data-name="Background+HorizontalBorder"
     >
       <div
         aria-hidden
-        className="absolute border-[#e6e8ee] border-b border-t border-solid inset-0 pointer-events-none"
+        className="absolute border-gov-line border-b border-t border-solid inset-0 pointer-events-none"
       />
       <div className="content-stretch flex flex-col gap-[20px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container47 />
@@ -1817,7 +1826,7 @@ function Container48() {
       className="content-stretch flex flex-col items-start relative shrink-0 w-full"
       data-name="Container"
     >
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gov-accent text-[12px] tracking-[1.2px] w-full">
         <p className="leading-[normal]">СТРАТЕГИЯ</p>
       </div>
     </div>
@@ -1826,7 +1835,7 @@ function Container48() {
 
 function Group6() {
   return (
-    <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
+    <div className="relative inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start bg-white">
       <div
         className="col-1 h-[511.807px] ml-[271.9px] mt-0 relative row-1 w-[840.103px]"
         data-name="image 55"
@@ -1891,12 +1900,14 @@ function Heading6() {
       data-name="Heading 2"
     >
       <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-[min-content]"
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center min-w-full relative shrink-0 text-gov-ink text-[30px] tracking-[-0.3px] w-[min-content]"
         style={{ fontVariationSettings: '"wdth" 100' }}
       >
         <p className="leading-[normal]">Стратегический фундамент</p>
       </div>
-      <Group6 />
+      <div className="w-full shrink-0 overflow-x-auto rounded-[12px] bg-white">
+        <Group6 />
+      </div>
       <Group5 />
     </div>
   )
@@ -1905,12 +1916,12 @@ function Heading6() {
 function BackgroundHorizontalBorder3() {
   return (
     <div
-      className="bg-white relative shrink-0 w-full"
+      className="bg-gov-canvas relative shrink-0 w-full"
       data-name="Background+HorizontalBorder"
     >
       <div
         aria-hidden
-        className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"
+        className="absolute border-gov-line border-b border-solid inset-0 pointer-events-none"
       />
       <div className="content-stretch flex flex-col gap-[6px] items-start pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
         <Container48 />
@@ -1926,7 +1937,7 @@ function Container52() {
       className="content-stretch flex flex-col items-start relative shrink-0 w-full"
       data-name="Container"
     >
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#2242d6] text-[12px] tracking-[1.2px] w-full">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gov-accent text-[12px] tracking-[1.2px] w-full">
         <p className="leading-[normal]">БЕЗОПАСНОСТЬ И ДОВЕРИЕ</p>
       </div>
     </div>
@@ -1940,7 +1951,7 @@ function Heading10() {
       data-name="Heading 2"
     >
       <div
-        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#0d0f16] text-[30px] tracking-[-0.3px] w-full"
+        className="[word-break:break-word] flex flex-col font-['IBM_Plex_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-gov-ink text-[30px] tracking-[-0.3px] w-full"
         style={{ fontVariationSettings: '"wdth" 100' }}
       >
         <p className="leading-[normal]">Безопасность и доверие</p>
@@ -2196,71 +2207,71 @@ function Container53() {
       className="grid w-full grid-cols-1 gap-y-[20px] sm:grid-cols-2 sm:gap-x-[28px] lg:grid-cols-5 lg:gap-x-[20px]"
       data-name="Container"
     >
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
+      <div className="rounded-[12px] border border-gov-line bg-gov-panel px-[15px] py-[18px] transition-colors hover:border-gov-outline">
         <h3
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Human-in-the-loop
         </h3>
         <p
-          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Ответственность — за уполномоченными лицами
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
+      <div className="rounded-[12px] border border-gov-line bg-gov-panel px-[15px] py-[18px] transition-colors hover:border-gov-outline">
         <h3
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Замкнутый контур
         </h3>
         <p
-          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Безопасная среда апробации
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
+      <div className="rounded-[12px] border border-gov-line bg-gov-panel px-[15px] py-[18px] transition-colors hover:border-gov-outline">
         <h3
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Защита данных
         </h3>
         <p
-          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Этика и законодательство РК
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
+      <div className="rounded-[12px] border border-gov-line bg-gov-panel px-[15px] py-[18px] transition-colors hover:border-gov-outline">
         <h3
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Межведомственность
         </h3>
         <p
-          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Устранение барьеров данных
         </p>
       </div>
-      <div className="rounded-[12px] border border-[#e0e4ee] bg-white px-[15px] py-[18px] transition-colors hover:border-[#0d0f16]">
+      <div className="rounded-[12px] border border-gov-line bg-gov-panel px-[15px] py-[18px] transition-colors hover:border-gov-outline">
         <h3
-          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-[#0d0f16]"
+          className="font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[16px] font-semibold leading-[1.3] tracking-[-0.1px] text-gov-ink"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Прозрачность и аудит
         </h3>
         <p
-          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-[#5a606e]"
+          className="mt-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] font-normal leading-[1.5] text-gov-muted"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Проверяемость процессов
@@ -2276,7 +2287,7 @@ function HorizontalBorder10() {
     <div className="relative shrink-0 w-full" data-name="HorizontalBorder">
       <div
         aria-hidden
-        className="absolute border-[#e6e8ee] border-b border-solid inset-0 pointer-events-none"
+        className="absolute border-gov-line border-b border-solid inset-0 pointer-events-none"
       />
       <div className="flex flex-col items-center justify-center size-full">
         <div className="content-stretch flex flex-col gap-[16px] items-center justify-center pb-[68px] pt-[66px] px-[20px] sm:px-[28px] relative size-full">
@@ -2287,17 +2298,17 @@ function HorizontalBorder10() {
             type="button"
             onClick={() => setShowFoundation((v) => !v)}
             aria-expanded={showFoundation}
-            className="group mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-[#0d0f16] bg-white px-[19px] py-[12px] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6]"
+            className="mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-gov-outline bg-gov-panel px-[19px] py-[12px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
           >
             <span
-              className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] text-[#0d0f16] transition-colors group-hover:text-white"
+              className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               Стратегический фундамент
             </span>
             <span
               aria-hidden
-              className={`text-[14px] leading-none text-[#0d0f16] transition-all group-hover:text-white ${
+              className={`text-[14px] leading-none transition-transform ${
                 showFoundation ? "rotate-180" : ""
               }`}
             >
@@ -2305,7 +2316,7 @@ function HorizontalBorder10() {
             </span>
           </button>
           {showFoundation && (
-            <div className="mt-[20px] w-full max-w-[960px] overflow-hidden rounded-[16px] border border-[#e6e8ee] bg-white">
+            <div className="mt-[20px] w-full max-w-[960px] overflow-hidden rounded-[16px] border border-gov-line bg-white">
               <img
                 src={imgImage56}
                 alt="Стратегический фундамент"
@@ -2360,7 +2371,7 @@ function Background8({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="bg-[#2242d6] rounded-[8px] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-[#1a35ad]"
+      className="bg-gov-action rounded-[8px] content-stretch flex flex-col items-start px-[26px] py-[14px] relative shrink-0 cursor-pointer transition-colors hover:bg-gov-action-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       data-name="Background"
     >
       <div
@@ -2378,7 +2389,7 @@ function Background7() {
   return (
     <>
       <div
-        className="bg-[#0d0f16] relative shrink-0 w-full"
+        className="bg-gov-emphasis relative shrink-0 w-full"
         data-name="Background"
       >
         <div className="flex flex-row items-center size-full">
@@ -2399,7 +2410,7 @@ function Container67() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="Container"
     >
-      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#8990a0] text-[11.5px] whitespace-nowrap">
+      <div className="[word-break:break-word] flex flex-col font-['IBM_Plex_Mono:Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gov-muted text-[11.5px] whitespace-nowrap">
         <p className="leading-[normal]">GOVERNANCE.KZ</p>
       </div>
     </div>
@@ -2421,7 +2432,7 @@ function HeroTabs({ activePage }: { activePage: PageKey | null }) {
   return (
     <nav
       aria-label="Основная навигация"
-      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[900px]:col-span-1 min-[900px]:col-start-2 min-[900px]:row-start-1"
+      className="col-span-2 col-start-1 row-start-2 grid grid-cols-2 gap-[6px] sm:flex min-[960px]:col-span-1 min-[960px]:col-start-2 min-[960px]:row-start-1"
     >
       {pageKeys.map((key) => {
         const tab = key === "general" ? null : tabData[key]
@@ -2431,22 +2442,22 @@ function HeroTabs({ activePage }: { activePage: PageKey | null }) {
             key={key}
             href={pageHashes[key]}
             aria-current={isCurrent ? "page" : undefined}
-            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] sm:px-[12px] min-[900px]:min-h-0 ${
+            className={`flex min-h-11 items-center gap-[6px] rounded-[6px] border px-[8px] py-[8px] text-left no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent sm:px-[12px] min-[960px]:min-h-0 ${
               isCurrent
-                ? "border-[#2242d6] bg-[#f6f7fb]"
-                : "border-[#e6e8ee] bg-white hover:border-[#0d0f16] hover:bg-[#f6f7fb]"
+                ? "border-gov-accent bg-gov-hover"
+                : "border-gov-line bg-gov-panel hover:border-gov-outline hover:bg-gov-inset"
             }`}
           >
             {tab && (
               <span
                 aria-hidden
-                className="shrink-0 font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-[#2242d6] max-[369px]:hidden"
+                className="shrink-0 font-['IBM_Plex_Mono:Regular',sans-serif] text-[13px] tabular-nums text-gov-accent max-[369px]:hidden"
               >
                 {tab.index}
               </span>
             )}
             <span
-              className="whitespace-nowrap font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold text-[#0d0f16]"
+              className="whitespace-nowrap font-['IBM_Plex_Sans:SemiBold',sans-serif] text-[14px] font-semibold text-gov-ink"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               {tab?.label ?? "Общее"}
@@ -2469,20 +2480,16 @@ function LanguageSwitcher({
 }) {
   const langs: Language[] = ["RU", "KZ", "EN"]
   return (
-    <div className="flex flex-row items-center gap-[2px] shrink-0">
+    <div className="flex shrink-0 items-center gap-px min-[400px]:gap-[2px]">
       {langs.map((lang, i) => (
         <React.Fragment key={lang}>
           {i > 0 && (
-            <span className="text-[12px] text-[#b9c1e8] select-none">·</span>
+            <span aria-hidden="true" className="select-none text-[12px] text-gov-muted">·</span>
           )}
           <button
             type="button"
             onClick={() => onChange(lang)}
-            className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[0.46px] px-[6px] py-[4px] cursor-pointer transition-colors hover:text-[#2242d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2242d6] rounded-[4px]"
-            style={{
-              color: lang === language ? "#2242d6" : "#3a4050",
-              fontWeight: lang === language ? 700 : 400,
-            }}
+            className="min-h-8 min-w-6 cursor-pointer rounded-[4px] px-[3px] font-['IBM_Plex_Mono:Regular',sans-serif] text-[11.5px] tracking-[0.46px] text-gov-body transition-colors hover:text-gov-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent aria-pressed:font-bold aria-pressed:text-gov-accent min-[400px]:px-[6px]"
             aria-pressed={lang === language}
             aria-label={`Сменить язык на ${lang}`}
           >
@@ -2511,7 +2518,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-[#3a4050] cursor-pointer transition-colors hover:text-[#2242d6]"
+          className="inline-flex items-center gap-[8px] font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[12px] tracking-[1.2px] text-gov-body cursor-pointer transition-colors hover:text-gov-accent"
         >
           <span className="text-[14px] leading-none">←</span>
           НАЗАД К ГЛАВНОЙ
@@ -2529,13 +2536,13 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
               className="size-full object-cover"
               style={{ transform: "scale(1.05)" }}
             />
-            <div className="absolute inset-0 bg-[#0d0f16]/65" />
-            <div className="absolute inset-x-0 bottom-0 h-[160px] bg-gradient-to-b from-transparent via-white/40 to-white" />
+            <div className="absolute inset-0 bg-gov-media-scrim" />
+            <div className="absolute inset-x-0 bottom-0 h-[88px] bg-gradient-to-b from-transparent to-gov-canvas" />
           </div>
         )}
 
         {/* Контент поверх фона */}
-        <div className="relative z-10 flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[40px] pt-[20px] w-full max-w-[1170px] mx-auto min-h-[300px] sm:min-h-[360px]">
+        <div className="relative z-10 flex flex-col gap-[20px] px-[20px] sm:px-[44px] pb-[96px] pt-[20px] w-full max-w-[1170px] mx-auto min-h-[300px] sm:min-h-[360px]">
           {/* Heading */}
           <h2
             className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[36px] tracking-[-0.36px] text-white sm:text-[42px]"
@@ -2546,7 +2553,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
 
           {/* Description */}
           <p
-            className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-white/75 max-w-[900px]"
+            className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-white/85 max-w-[900px]"
             style={{ fontVariationSettings: '"wdth" 100' }}
           >
             {data.description}
@@ -2562,7 +2569,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
               aria-label={`Смотреть видео — ${data.title}`}
               className="absolute inset-0 z-20 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80"
             />
-            <span className="pointer-events-none absolute bottom-[22px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[10px] rounded-full px-[18px] py-[10px] text-white/85 ring-1 ring-white/30 backdrop-blur-xl transition-all duration-300 group-hover:scale-[1.05] group-hover:text-white group-hover:ring-white/50">
+            <span className="pointer-events-none absolute bottom-[22px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[10px] rounded-full bg-[#0d0f16]/90 px-[18px] py-[10px] text-white ring-1 ring-white/30 transition-all duration-300 group-hover:scale-[1.05] group-hover:ring-white/50">
               <span
                 aria-hidden
                 className="absolute -inset-[6px] rounded-full opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
@@ -2574,7 +2581,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
               />
               <span
                 aria-hidden
-                className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 animate-[glass-video-flow_4s_linear_infinite] group-hover:opacity-100"
+                className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 animate-[glass-video-flow_4s_linear_infinite] group-hover:opacity-25"
                 style={
                   data.videoGradient && {
                     backgroundImage: `linear-gradient(120deg, ${[...data.videoGradient, data.videoGradient[0]].join(", ")})`,
@@ -2656,6 +2663,7 @@ function Background() {
   const [imageModal, setImageModal] = useState<ProductImageKey | null>(null)
   const [activePage, setActivePage] = useState(getActivePage)
   const [language, setLanguage] = useState<Language>("RU")
+  const { theme, toggleTheme } = useSiteTheme()
 
   // Если пользователь попал сюда переходом с другой страницы этого же сайта,
   // «НАЗАД К ГЛАВНОЙ» ведёт по истории — назад туда, откуда он начинал.
@@ -2716,9 +2724,7 @@ function Background() {
 
   return (
     <div
-      className={`${
-        isSimulator ? "bg-black" : "bg-white"
-      } content-stretch flex flex-col items-stretch relative shrink-0 w-full`}
+      className="content-stretch flex flex-col items-stretch relative shrink-0 w-full bg-gov-canvas text-gov-ink"
       data-name="Background"
     >
       <HorizontalBorder
@@ -2726,13 +2732,13 @@ function Background() {
         onHomeClick={handleHome}
         language={language}
         onLanguageChange={setLanguage}
+        theme={theme}
+        onThemeToggle={toggleTheme}
       />
       {isSimulator ? (
         <>
           <AISimulatorPage onBack={handleBack} />
-          <div className="bg-black w-full">
-            <Container66 />
-          </div>
+          <Container66 />
         </>
       ) : (
         <div className="w-full max-w-[1170px] mx-auto flex flex-col items-center">

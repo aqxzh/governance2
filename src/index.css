@@ -1,7 +1,84 @@
 @import 'tailwindcss';
 
+@theme inline {
+  --color-gov-canvas: var(--gov-canvas);
+  --color-gov-panel: var(--gov-panel);
+  --color-gov-inset: var(--gov-inset);
+  --color-gov-hover: var(--gov-hover);
+  --color-gov-ink: var(--gov-ink);
+  --color-gov-body: var(--gov-body);
+  --color-gov-muted: var(--gov-muted);
+  --color-gov-line: var(--gov-line);
+  --color-gov-outline: var(--gov-outline);
+  --color-gov-accent: var(--gov-accent);
+  --color-gov-action: var(--gov-action);
+  --color-gov-action-hover: var(--gov-action-hover);
+  --color-gov-emphasis: var(--gov-emphasis);
+  --color-gov-media-scrim: var(--gov-media-scrim);
+  --color-gov-success: var(--gov-success);
+  --color-gov-success-panel: var(--gov-success-panel);
+  --color-gov-success-line: var(--gov-success-line);
+  --color-gov-error: var(--gov-error);
+}
+
+:root {
+  --gov-canvas: #fff;
+  --gov-panel: #fff;
+  --gov-inset: #f6f7fb;
+  --gov-hover: #eef0f5;
+  --gov-ink: #0d0f16;
+  --gov-body: #3a4050;
+  --gov-muted: #5a606e;
+  --gov-line: #e6e8ee;
+  --gov-outline: #707c92;
+  --gov-rail: #b9c0d0;
+  --gov-accent: #2242d6;
+  --gov-action: #2242d6;
+  --gov-action-hover: #1a35ad;
+  --gov-emphasis: #0d0f16;
+  --gov-media-scrim: rgb(13 15 22 / 65%);
+  --gov-success: #137333;
+  --gov-success-panel: #effaf2;
+  --gov-success-line: #d7f0dd;
+  --gov-error: #c5221f;
+}
+
+:root[data-governance-theme] {
+  background-color: var(--gov-canvas);
+  color-scheme: light;
+}
+
+:root[data-governance-theme='dark'] {
+  color-scheme: dark;
+  --gov-canvas: #10141e;
+  --gov-panel: #191f2d;
+  --gov-inset: #131925;
+  --gov-hover: #242e42;
+  --gov-ink: #f0f3fa;
+  --gov-body: #c4cde0;
+  --gov-muted: #aab6ce;
+  --gov-line: #323d52;
+  --gov-outline: #6d7d9b;
+  --gov-rail: #586887;
+  --gov-accent: #a1b2ff;
+  --gov-action: #3857e3;
+  --gov-action-hover: #4363ea;
+  --gov-emphasis: #222d45;
+  --gov-media-scrim: rgb(11 15 24 / 78%);
+  --gov-success: #9ae0b1;
+  --gov-success-panel: #193126;
+  --gov-success-line: #34674a;
+  --gov-error: #ffaba7;
+}
+
+:root[data-governance-theme-switching] *,
+:root[data-governance-theme-switching] *::before,
+:root[data-governance-theme-switching] *::after {
+  transition: none !important;
+}
+
 ::selection {
-  background: #2242d6;
+  background: var(--gov-action);
   color: #fff;
 }
 

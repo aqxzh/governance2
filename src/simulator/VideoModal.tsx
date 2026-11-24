@@ -48,7 +48,7 @@ export function VideoModal({
           type="button"
           onClick={onClose}
           aria-label="Закрыть"
-          className="absolute -right-3 -top-3 z-10 grid size-9 place-items-center rounded-full bg-white text-[22px] leading-none text-[#0d0f16] shadow-lg transition-colors hover:bg-[#2242d6] hover:text-white cursor-pointer"
+          className="absolute -right-3 -top-3 z-10 grid size-9 place-items-center rounded-full bg-gov-panel text-[22px] leading-none text-gov-ink shadow-lg transition-colors hover:bg-gov-action hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent cursor-pointer"
         >
           ×
         </button>
@@ -58,7 +58,7 @@ export function VideoModal({
           autoPlay
           playsInline
           onError={onError}
-          className={`block rounded-[12px] object-contain ring-4 ring-white ${large ? "max-h-[75vh] max-w-[1000px]" : "max-h-[65vh] max-w-[760px]"}`}
+          className={`block rounded-[12px] object-contain ring-4 ring-gov-panel ${large ? "max-h-[75vh] max-w-[1000px]" : "max-h-[65vh] max-w-[760px]"}`}
         />
       </div>
     </div>,

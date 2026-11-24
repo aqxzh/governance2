@@ -387,7 +387,7 @@ export default function SyntheticResearchSection({
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white border-t border-[#e6e8ee]"
+      className="w-full border-t border-gov-line bg-gov-canvas"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -396,17 +396,17 @@ export default function SyntheticResearchSection({
       }}
     >
       <div className="w-full max-w-[1170px] mx-auto px-[20px] sm:px-[28px] pt-[60px] pb-[64px] flex flex-col">
-        <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] not-italic leading-[normal] tracking-[1.2px] text-[#2242d6]">
+        <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] not-italic leading-[normal] tracking-[1.2px] text-gov-accent">
           СИНТЕТИЧЕСКИЕ ИССЛЕДОВАНИЯ
         </p>
         <h2
-          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[34px] sm:text-[42px] tracking-[-0.34px] leading-[1.1]"
+          className="mt-[14px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-gov-ink text-[34px] sm:text-[42px] tracking-[-0.34px] leading-[1.1]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Один вопрос. Разные сценарии.
         </h2>
         <p
-          className="mt-[18px] w-full font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-[#3a4050]"
+          className="mt-[18px] w-full font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-gov-body"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Как исследовать реакцию на предложение без полевого опроса? В исходном
@@ -414,7 +414,7 @@ export default function SyntheticResearchSection({
           разной цене. Ответы переводятся в оценку для сравнения сценариев.
         </p>
         <h3
-          className="mt-[30px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[#0d0f16] text-[20px]"
+          className="mt-[30px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-gov-ink text-[20px]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
           Опрос 100 синтетических покупателей
@@ -425,16 +425,16 @@ export default function SyntheticResearchSection({
             <img
               src="/graphics/ai-robot.png"
               alt="ИИ-робот"
-              className="block w-full h-auto"
+              className="block h-auto w-full rounded-[12px]"
               loading="lazy"
             />
           </div>
           <div className="w-full lg:w-[340px] shrink-0 flex flex-col gap-[20px] lg:pt-0">
             <aside
               aria-label="Что сравниваем"
-              className="w-full rounded-[14px] border border-[#b9c6f5] bg-white p-[20px]"
+              className="w-full rounded-[14px] border border-gov-outline bg-gov-panel p-[20px]"
             >
-              <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] not-italic leading-[normal] tracking-[1.2px] text-[#2242d6]">
+              <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[11px] not-italic leading-[normal] tracking-[1.2px] text-gov-accent">
                 ЧТО СРАВНИВАЕМ
               </p>
               <ul className="mt-[14px] flex flex-col gap-[14px]">
@@ -445,13 +445,13 @@ export default function SyntheticResearchSection({
                 ].map(([num, label]) => (
                   <li key={label} className="flex items-baseline gap-[12px]">
                     <span
-                      className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[22px] leading-none tabular-nums text-[#0d0f16]"
+                      className="font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-[22px] leading-none tabular-nums text-gov-ink"
                       style={{ fontVariationSettings: '"wdth" 100' }}
                     >
                       {num}
                     </span>
                     <span
-                      className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.4] text-[#0d0f16]"
+                      className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[15px] leading-[1.4] text-gov-ink"
                       style={{ fontVariationSettings: '"wdth" 100' }}
                     >
                       {label}
@@ -462,7 +462,7 @@ export default function SyntheticResearchSection({
             </aside>
             <div className="flex flex-col gap-[20px] lg:mt-[40px]">
             <p
-              className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-[#3a4050]"
+              className="font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[16px] leading-[1.6] text-gov-body"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               Демонстрация на исходных синтетических данных. Это не подключённая
@@ -472,7 +472,7 @@ export default function SyntheticResearchSection({
               <button
                 type="button"
                 onClick={() => onTabClick("modeling")}
-                className="inline-flex items-center justify-center rounded-[10px] border border-[#0d0f16] bg-white px-[24px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[15px] text-[#0d0f16] transition-colors hover:border-[#2242d6] hover:bg-[#2242d6] hover:text-white cursor-pointer"
+                className="inline-flex cursor-pointer items-center justify-center rounded-[10px] border border-gov-outline bg-gov-panel px-[24px] py-[14px] font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[15px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 Посмотреть метод и пример
@@ -482,7 +482,7 @@ export default function SyntheticResearchSection({
           </div>
         </div>
 
-        <p className="mt-[28px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13px] text-[#8990a0]">
+        <p className="mt-[28px] font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[13px] text-gov-muted">
           Статическая реконструкция исходной схемы; не работающий сервис.
         </p>
       </div>
