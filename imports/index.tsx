@@ -461,6 +461,7 @@ const directionCards: {
   key: TabKey
   num: string
   title: string
+  actionLabel: string
   summary: string
   text: string
   items: string[]
@@ -469,6 +470,7 @@ const directionCards: {
     key: "recruitment",
     num: "01",
     title: "Обучение",
+    actionLabel: "Посмотреть диагностику",
     summary: "Освоить ИИ на рабочих задачах.",
     text: "Научим команду применять ИИ в повседневной работе: готовить черновики, разбирать документы и анализировать таблицы.",
     items: [
@@ -481,6 +483,7 @@ const directionCards: {
     key: "analytics",
     num: "02",
     title: "Консультации",
+    actionLabel: "Посмотреть координацию",
     summary: "Разобрать процесс и выбрать, с чего начать.",
     text: "Разберём, где ИИ может сократить ручную работу, а где достаточно изменить сам процесс. Предложим, с какой задачи начать.",
     items: ["Разбор процессов", "Оценка данных и ограничений", "План пилота"],
@@ -489,6 +492,7 @@ const directionCards: {
     key: "modeling",
     num: "03",
     title: "Внедрение ИИ",
+    actionLabel: "Открыть моделирование",
     summary: "Проверить решение на пилоте и встроить его в работу.",
     text: "Начнём с одного процесса и заранее договоримся, как измерить результат. Если пилот покажет пользу, подключим решение к вашим системам.",
     items: [
@@ -552,7 +556,7 @@ function ContoursSection({
                   onClick={() => onTabClick(card.key)}
                   className="block w-full whitespace-nowrap rounded-[8px] border border-gov-outline bg-gov-panel px-[8px] py-[12px] text-center font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[13px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent cursor-pointer"
                 >
-                  Разобрать направление
+                  {card.actionLabel}
                 </button>
               </span>
             </article>

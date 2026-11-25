@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react"
 import researchDark from "../../imports/dark/synthetic-research.webp"
 import type { SiteTheme } from "../lib/siteTheme"
 
@@ -369,36 +368,8 @@ export default function SyntheticResearchSection({
   onTabClick: (key: "recruitment" | "modeling" | "analytics") => void
   theme: SiteTheme
 }) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section
-      ref={sectionRef}
-      className="w-full border-t border-gov-line bg-gov-canvas"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(24px)",
-        transition:
-          "opacity .6s ease, transform .6s cubic-bezier(0.2,0.8,0.2,1)",
-      }}
-    >
+    <section className="w-full border-t border-gov-line bg-gov-canvas">
       <div className="w-full max-w-[1170px] mx-auto px-[20px] sm:px-[28px] pt-[60px] pb-[64px] flex flex-col">
         <p className="font-['IBM_Plex_Mono:Regular',sans-serif] text-[12px] not-italic leading-[normal] tracking-[1.2px] text-gov-accent">
           СИНТЕТИЧЕСКИЕ ИССЛЕДОВАНИЯ
@@ -413,9 +384,9 @@ export default function SyntheticResearchSection({
           className="mt-[18px] w-full font-['IBM_Plex_Sans:Regular',sans-serif] font-normal text-[18px] leading-[1.65] text-gov-body"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          Как исследовать реакцию на предложение без полевого опроса? В исходном
-          примере 100 синтетических покупателей отвечают на один вопрос при
-          разной цене. Ответы переводятся в оценку для сравнения сценариев.
+          На условных данных показываем, как сравнивать сценарии перед пилотом.
+          В этом примере 100 синтетических покупателей отвечают на один и тот же
+          вопрос при разных ценах, а ответы переводятся в сопоставимые оценки.
         </p>
         <h3
           className="mt-[30px] font-['IBM_Plex_Sans:Bold',sans-serif] font-bold text-gov-ink text-[20px]"
