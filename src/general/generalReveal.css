@@ -1,0 +1,15 @@
+@media (prefers-reduced-motion: no-preference) {
+  .general-page [data-general-reveal="pending"]:not(:focus-within) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .general-page [data-general-reveal="entered"] {
+    animation: general-block-appear .4s ease-out;
+  }
+}
+
+@keyframes general-block-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

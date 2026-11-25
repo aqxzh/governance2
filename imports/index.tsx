@@ -42,6 +42,7 @@ import imgTabCoordination from "./tab-coordination.png"
 import { VideoModal } from "../src/simulator/VideoModal"
 import AISimulatorPage from "../src/simulator/AISimulatorPage"
 import SyntheticResearchSection from "../src/synthetic-research/SyntheticResearchSection"
+import { useGeneralReveal } from "../src/general/useGeneralReveal"
 import { RegistryTable } from "../src/synthetic-research/ModelingPage"
 import { ImageModal } from "../src/synthetic-research/ImageModal"
 import BackToTopButton from "../src/components/BackToTopButton"
@@ -520,6 +521,7 @@ function ContoursSection({
           {directionCards.map((card) => (
             <article
               key={card.key}
+              data-general-reveal=""
               className="flex flex-col rounded-[16px] border border-gov-line bg-gov-panel p-[20px] transition-colors hover:border-gov-outline"
             >
               <span className="font-['IBM_Plex_Mono:Regular',sans-serif] not-italic text-[13px] tabular-nums text-gov-accent">
@@ -2478,6 +2480,10 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
   )
 }
 
+function GeneralRevealSection({ children }: { children: React.ReactNode }) {
+  return <div data-general-reveal="">{children}</div>
+}
+
 function GeneralPage({
   onTabClick,
   theme,
@@ -2485,15 +2491,29 @@ function GeneralPage({
   onTabClick: (key: TabKey) => void
   theme: SiteTheme
 }) {
+  const pageRef = useGeneralReveal()
+
   return (
-    <main className="w-full" aria-label="Общее">
+    <main ref={pageRef} className="general-page w-full" aria-label="Общее">
       <ContoursSection onTabClick={onTabClick} />
-      <TeamSection />
-      <SyntheticResearchSection onTabClick={onTabClick} theme={theme} />
-      <BackgroundHorizontalBorder2 theme={theme} />
-      <BackgroundHorizontalBorder3 theme={theme} />
-      <HorizontalBorder10 theme={theme} />
-      <Background7 />
+      <GeneralRevealSection>
+        <TeamSection />
+      </GeneralRevealSection>
+      <GeneralRevealSection>
+        <SyntheticResearchSection onTabClick={onTabClick} theme={theme} />
+      </GeneralRevealSection>
+      <GeneralRevealSection>
+        <BackgroundHorizontalBorder2 theme={theme} />
+      </GeneralRevealSection>
+      <GeneralRevealSection>
+        <BackgroundHorizontalBorder3 theme={theme} />
+      </GeneralRevealSection>
+      <GeneralRevealSection>
+        <HorizontalBorder10 theme={theme} />
+      </GeneralRevealSection>
+      <GeneralRevealSection>
+        <Background7 />
+      </GeneralRevealSection>
     </main>
   )
 }
