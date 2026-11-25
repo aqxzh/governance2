@@ -778,7 +778,9 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
   }
 
   const inputClass =
-    "w-full rounded-[10px] border border-gov-outline bg-gov-inset px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-gov-ink outline-none transition-colors focus:border-gov-accent focus:bg-gov-panel focus:ring-1 focus:ring-gov-accent placeholder:text-gov-muted"
+    "w-full rounded-[10px] border border-gov-outline bg-gov-inset px-[16px] py-[12px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] text-gov-ink outline-none transition-colors focus:border-gov-accent focus:bg-gov-panel focus:ring-1 focus:ring-gov-accent"
+  const labelClass =
+    "font-['IBM_Plex_Sans:Medium',sans-serif] text-[14px] font-medium text-gov-ink"
 
   return (
     <div
@@ -808,7 +810,7 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
           Записаться на встречу
         </h2>
         <p className="mt-[14px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
-          Опишите ваш вопрос — и мы свяжемся с вами.
+          Оставьте контакты — и мы свяжемся с вами.
         </p>
         <p className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
           Заявка будет отправлена на{" "}
@@ -833,27 +835,42 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
         ) : (
           <>
             <div className="mt-[22px] flex flex-col gap-[14px]">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Как к вам обращаться"
-                className={inputClass}
-              />
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Телефон"
-                className={inputClass}
-              />
-              <textarea
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                rows={3}
-                placeholder="Ваш вопрос / тема встречи"
-                className={`${inputClass} resize-none`}
-              />
+              <label className="flex flex-col gap-[6px]">
+                <span className={labelClass}>Имя</span>
+                <input
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <label className="flex flex-col gap-[6px]">
+                <span className={labelClass}>Телефон</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className={inputClass}
+                />
+              </label>
+              <label className="flex flex-col gap-[6px]">
+                <span className={labelClass}>
+                  Тема встречи{" "}
+                  <span className="font-normal text-gov-muted">(необязательно)</span>
+                </span>
+                <textarea
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  rows={3}
+                  className={`${inputClass} resize-none`}
+                />
+              </label>
             </div>
             <button
               type="button"
@@ -2175,17 +2192,17 @@ function HorizontalBorder10({ theme }: { theme: SiteTheme }) {
             type="button"
             onClick={() => setShowVisual((v) => !v)}
             aria-expanded={showVisual}
-            className="mt-[16px] flex cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-gov-outline bg-gov-panel px-[19px] py-[12px] text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
+            className="mt-[16px] flex max-w-full cursor-pointer items-center justify-center gap-[10px] self-start rounded-[8px] border border-gov-outline bg-gov-panel px-[19px] py-[12px] text-left text-gov-ink transition-colors hover:border-gov-action hover:bg-gov-action hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gov-accent"
           >
             <span
               className="font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px]"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
-              Визуал
+              {showVisual ? "Скрыть схему" : "Показать схему подбора кандидатов"}
             </span>
             <span
               aria-hidden
-              className={`text-[14px] leading-none transition-transform ${
+              className={`shrink-0 text-[14px] leading-none transition-transform ${
                 showVisual ? "rotate-180" : ""
               }`}
             >
