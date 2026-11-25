@@ -36,44 +36,33 @@ export default function HomePage({
   onNoteClick: () => void
 }) {
   const story = useHomeStory()
-  const filmRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
-  const filmIsCurrent = !story.horizontal || story.activeChapter === 1
 
   useEffect(() => {
     const video = videoRef.current
-    const film = filmRef.current
-    if (!filmIsCurrent || !video || !film) return
+    if (!video) return
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
-    let inView = false
     const syncPlayback = () => {
-      if (!inView || motion.matches || document.hidden) {
+      if (motion.matches || document.hidden) {
         video.pause()
-      } else if (!video.ended && !video.error) {
+      } else if (!video.error) {
         void video.play().catch(() => {})
       }
     }
 
-    const visibility = new IntersectionObserver(([entry]) => {
-      inView = entry.intersectionRatio >= 0.5
-      syncPlayback()
-    }, { threshold: 0.5 })
-    visibility.observe(film)
-
-    // Start the short, non-looping clip when the viewer reaches its chapter.
+    // Keep the film running across chapters without playing in a hidden tab.
     motion.addEventListener("change", syncPlayback)
     document.addEventListener("visibilitychange", syncPlayback)
     syncPlayback()
 
     return () => {
-      visibility.disconnect()
       motion.removeEventListener("change", syncPlayback)
       document.removeEventListener("visibilitychange", syncPlayback)
       video.pause()
     }
-  }, [filmIsCurrent])
+  }, [])
 
   return (
     <main className="home-page">
@@ -117,13 +106,14 @@ export default function HomePage({
                 role="img"
                 aria-label="Фрагмент интерфейса: граф связей и рабочая область ИИ"
               >
-                <div ref={filmRef} className="home-hero__film" aria-hidden="true">
+                <div className="home-hero__film" aria-hidden="true">
                   <div className="home-hero__media">
                     <video
                       ref={videoRef}
                       src={heroVideoSource}
                       poster={graphsPoster}
                       muted
+                      loop
                       playsInline
                       preload="none"
                       hidden={videoFailed}

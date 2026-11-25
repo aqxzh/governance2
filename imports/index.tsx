@@ -757,11 +757,14 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
     if (!name.trim() || !phone.trim()) return
     setStatus("sending")
     try {
-      await sendApplication({
-        name: name.trim(),
-        phone: phone.trim(),
-        message: question.trim() || undefined,
-      })
+      await sendApplication(
+        {
+          name: name.trim(),
+          phone: phone.trim(),
+          message: question.trim() || undefined,
+        },
+        meetingEmail,
+      )
       setStatus("sent")
     } catch {
       setStatus("error")
@@ -802,13 +805,14 @@ function MeetingModal({ onClose }: { onClose: () => void }) {
           Опишите ваш вопрос — и мы свяжемся с вами.
         </p>
         <p className="mt-[6px] font-['IBM_Plex_Sans:Regular',sans-serif] text-[15px] leading-[1.5] text-gov-muted">
-          Или напишите напрямую:{" "}
+          Заявка будет отправлена на{" "}
           <a
             href={`mailto:${meetingEmail}`}
             className="rounded-sm text-gov-accent underline underline-offset-2 hover:decoration-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-accent"
           >
             {meetingEmail}
           </a>
+          .
         </p>
 
         {status === "sent" ? (
