@@ -41,7 +41,7 @@ export function VideoModal({
       aria-label={title}
     >
       <div
-        className="relative animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)]"
+        className={`relative min-w-0 animate-[imgmodal-pop_.24s_cubic-bezier(0.2,0.8,0.2,1)] ${large ? "max-w-[min(100%,1000px)]" : "max-w-[min(100%,760px)]"}`}
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -58,7 +58,7 @@ export function VideoModal({
           autoPlay
           playsInline
           onError={onError}
-          className={`block rounded-[12px] object-contain ring-4 ring-gov-panel ${large ? "max-h-[75vh] max-w-[1000px]" : "max-h-[65vh] max-w-[760px]"}`}
+          className={`block max-w-full rounded-[12px] object-contain ring-4 ring-gov-panel ${large ? "max-h-[75vh]" : "max-h-[65vh]"}`}
         />
       </div>
     </div>,

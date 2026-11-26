@@ -2423,21 +2423,19 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
               type="button"
               onClick={() => setShowHeroVideo(true)}
               aria-label={`Смотреть видео — ${data.title}`}
-              className="absolute inset-0 z-20 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white/80"
+              className="peer absolute inset-0 z-20 cursor-pointer outline-none"
             />
-            <span className="pointer-events-none absolute bottom-[22px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[10px] rounded-full bg-[#0d0f16]/90 px-[18px] py-[10px] text-white ring-1 ring-white/30 transition-all duration-300 group-hover:scale-[1.05] group-hover:ring-white/50">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute bottom-[22px] left-1/2 z-30 flex -translate-x-1/2 items-center gap-[10px] rounded-full bg-[#0d0f16]/30 px-[18px] py-[10px] text-white ring-1 ring-white/30 backdrop-blur-xl group-hover:ring-white/50 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-white peer-focus-visible:ring-2 peer-focus-visible:ring-[#0d0f16] motion-safe:transition-[scale,box-shadow] motion-safe:duration-300 motion-safe:group-hover:scale-105"
+            >
               <span
-                aria-hidden
-                className="absolute -inset-[6px] rounded-full opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
+                className="absolute -inset-[6px] rounded-full opacity-0 blur-lg group-hover:opacity-60 motion-safe:transition-opacity motion-safe:duration-300"
                 style={{ background: data.videoGlow }}
               />
+              <span className="absolute inset-0 rounded-full bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]" />
               <span
-                aria-hidden
-                className="absolute inset-0 rounded-full bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]"
-              />
-              <span
-                aria-hidden
-                className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 animate-[glass-video-flow_4s_linear_infinite] group-hover:opacity-25"
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 motion-safe:transition-opacity motion-safe:duration-300 motion-safe:group-hover:animate-[glass-video-flow_4s_linear_infinite]"
                 style={
                   data.videoGradient && {
                     backgroundImage: `linear-gradient(120deg, ${[...data.videoGradient, data.videoGradient[0]].join(", ")})`,
@@ -2453,7 +2451,7 @@ function TabPage({ tabKey, onBack }: { tabKey: TabKey; onBack: () => void }) {
                 <path d="M8 5.14v13.72L19 12 8 5.14z" />
               </svg>
               <span
-                className="relative font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap"
+                className="relative font-['IBM_Plex_Sans:SemiBold',sans-serif] font-semibold text-[14px] whitespace-nowrap text-shadow-[0_1px_2px_rgb(13_15_22_/_0.65)]"
                 style={{ fontVariationSettings: '"wdth" 100' }}
               >
                 Смотреть видео
