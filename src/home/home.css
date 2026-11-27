@@ -238,6 +238,54 @@
   flex: none;
 }
 
+.home-hero__related {
+  max-width: 36rem;
+  margin-top: clamp(1.125rem, 3svh, 1.75rem);
+  padding-top: .375rem;
+  border-top: 1px solid var(--gov-line);
+  color: var(--gov-muted);
+  font-size: .875rem;
+  line-height: 1.4;
+}
+
+.home-hero__related-row {
+  display: grid;
+  min-height: 2.75rem;
+  grid-template-columns: 4.75rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .25rem .75rem;
+  padding-block: .5rem;
+}
+
+.home-hero__related-row strong {
+  color: var(--gov-ink);
+  font-weight: 620;
+  white-space: nowrap;
+}
+
+.home-hero__adam-link:is(:hover, :focus-visible) strong,
+.home-hero__related-domain {
+  color: var(--gov-accent);
+}
+
+.home-hero__related-domain {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-weight: 590;
+  white-space: nowrap;
+}
+
+.home-hero__related-domain > span {
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.home-hero .home-hero__related-domain svg {
+  width: .875rem;
+  height: .875rem;
+}
+
 .home-hero__directions {
   max-width: var(--home-directions-width);
   margin-top: clamp(1rem, 2.3svh, 1.5rem);
@@ -330,6 +378,21 @@
 
   .home-hero__directions > div {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 34rem) {
+  .home-hero__related-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+  }
+
+  .home-hero__related-copy {
+    grid-column: 1 / -1;
+  }
+
+  .home-hero__related-domain {
+    grid-area: 1 / 2;
   }
 }
 

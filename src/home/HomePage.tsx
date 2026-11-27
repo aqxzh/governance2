@@ -5,11 +5,12 @@ import "./home.css"
 
 const heroVideoSource = `${import.meta.env.BASE_URL}videos/graphs-hero.mp4`
 
-function ArrowIcon({ direction = "right" }: { direction?: "right" | "down" | "up" }) {
+function ArrowIcon({ direction = "right" }: { direction?: "right" | "down" | "up" | "external" }) {
   const paths = {
     right: "M3.5 10h12m-4.5-4.5 4.5 4.5-4.5 4.5",
     down: "M10 3.5v12m-4.5-4.5 4.5 4.5 4.5-4.5",
     up: "M10 16.5v-12M5.5 9 10 4.5 14.5 9",
+    external: "M5 15 15 5m-6 0h6v6",
   }
   return (
     <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
@@ -99,6 +100,28 @@ export default function HomePage({
                     Аналитическая записка
                   </button>
                 </div>
+                <ul className="home-hero__related" role="list" aria-label="ИИ в работе организаций">
+                  <li>
+                    <a
+                      className="home-hero__related-row home-hero__adam-link"
+                      href="https://adamai.kz/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <strong>ADAM</strong>
+                      <span className="home-hero__related-copy">ИИ-помощник для документов и сводок</span>
+                      <span className="home-hero__related-domain">
+                        <span>adamai.kz</span>
+                        <ArrowIcon direction="external" />
+                      </span>
+                      <span className="sr-only"> (в новой вкладке)</span>
+                    </a>
+                  </li>
+                  <li className="home-hero__related-row">
+                    <strong>Gov LLM</strong>
+                    <span className="home-hero__related-copy">Языковые модели для госуправления</span>
+                  </li>
+                </ul>
               </div>
 
               <div
